@@ -2,6 +2,7 @@
 using CommunityToolkit.Mvvm.Input;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using System.Windows;
 using WubiMaster.Views;
 
@@ -11,6 +12,8 @@ namespace WubiMaster.ViewModels
     {
         [ObservableProperty]
         public object currentView;
+        [ObservableProperty]
+        public string pageTitle;
 
         public MainViewModel()
         {
@@ -19,8 +22,9 @@ namespace WubiMaster.ViewModels
         }
 
         [RelayCommand]
-        public void LoadedWindow()
+        public async void LoadedWindow()
         {
+            await Task.Delay(500);
             ChangePage("Home");
         }
 
@@ -30,6 +34,7 @@ namespace WubiMaster.ViewModels
             if (pageName == null) return;
 
             string pName = pageName.ToString();
+            PageTitle = pName;
             if (pageDict.ContainsKey(pName))
                 CurrentView = pageDict[pName];
             else

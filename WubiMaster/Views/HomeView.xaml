@@ -1,20 +1,63 @@
 ﻿<UserControl x:Class="WubiMaster.Views.HomeView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:c="clr-namespace:WubiMaster.Controls"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:WubiMaster.Views"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             d:DesignHeight="450"
+             d:DesignHeight="600"
              d:DesignWidth="800"
              Style="{DynamicResource PageStyle}"
              mc:Ignorable="d">
     <Grid>
         <Border Background="{DynamicResource PageColor}" CornerRadius="15" />
 
-        <TextBlock HorizontalAlignment="Center"
-                   VerticalAlignment="Center"
-                   FontSize="22"
-                   Foreground="LightBlue"
-                   Text="Home View" />
+        <Grid Margin="120,10">
+
+            <UniformGrid Columns="3" Rows="3">
+
+                <c:ToolButton Title="字根表"
+                              Width="150"
+                              Height="150"
+                              IconText="&#xe67a;" />
+
+                <c:ToolButton Title="自造词"
+                              Width="150"
+                              Height="150"
+                              IconText="&#xe610;" />
+
+                <c:ToolButton Title="词库管理"
+                              Width="150"
+                              Height="150"
+                              IconText="&#xe608;" />
+
+                <c:ToolButton Title="配置"
+                              Width="150"
+                              Height="150"
+                              IconText="&#xe8b8;" />
+
+                <c:ToolButton Title="字典"
+                              Width="150"
+                              Height="150"
+                              IconText="&#xe694;" />
+
+                <c:ToolButton Title="表情"
+                              Width="150"
+                              Height="150"
+                              IconText="&#xe69e;" />
+
+                <c:ToolButton Title="符号"
+                              Width="150"
+                              Height="150"
+                              IconText="&#xe704;" />
+
+                <c:ToolButton Title="快捷键"
+                              Width="150"
+                              Height="150"
+                              IconText="&#xe60a;" />
+            </UniformGrid>
+
+        </Grid>
+
     </Grid>
 </UserControl>

@@ -1,0 +1,40 @@
+﻿<UserControl x:Class="WubiMaster.Controls.PageTitle"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:WubiMaster.Controls"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             Name="page_title"
+             d:DesignHeight="25"
+             d:DesignWidth="120"
+             mc:Ignorable="d">
+
+    <Grid ClipToBounds="True">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+
+        <Border Width="5"
+                Height="Auto"
+                Background="{DynamicResource IconColor}"
+                CornerRadius="8 0 0 8" />
+
+        <Grid Grid.Column="1" Background="{DynamicResource PageColor}">
+
+            <TextBlock HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       FontSize="15"
+                       Foreground="{DynamicResource TextColor}"
+                       Text="{Binding ElementName=page_title, Path=Title}" />
+        </Grid>
+
+
+        <Border Grid.Column="2"
+                Width="5"
+                Height="Auto"
+                Background="{DynamicResource IconColor}"
+                CornerRadius="0 8 8 0" />
+    </Grid>
+</UserControl>

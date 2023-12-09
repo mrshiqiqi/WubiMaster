@@ -35,6 +35,13 @@
                 MouseDown="Border_MouseDown"
                 MouseLeftButtonDown="Border_MouseLeftButtonDown" />
 
+        <c:PageTitle Width="120"
+                     Height="25"
+                     Margin="198,15,0,0"
+                     HorizontalAlignment="Left"
+                     VerticalAlignment="Top"
+                     Title="{Binding PageTitle}"/>
+
         <StackPanel HorizontalAlignment="Right"
                     VerticalAlignment="Top"
                     Orientation="Horizontal">
