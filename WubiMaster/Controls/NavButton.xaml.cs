@@ -47,6 +47,15 @@ namespace WubiMaster.Controls
         public static readonly DependencyProperty IconColorProperty =
             DependencyProperty.Register("IconColor", typeof(Brush), typeof(NavButton));
 
+        public Brush TextColor
+        {
+            get { return (Brush)GetValue(TextColorProperty); }
+            set { SetValue(TextColorProperty, value); }
+        }
+
+        public static readonly DependencyProperty TextColorProperty =
+            DependencyProperty.Register("TextColor", typeof(Brush), typeof(NavButton));
+
         public double TextFontSize
         {
             get { return (double)GetValue(TextFontSizeProperty); }
@@ -64,14 +73,5 @@ namespace WubiMaster.Controls
 
         public static readonly DependencyProperty IcontFontSizeProperty =
             DependencyProperty.Register("IcontFontSize", typeof(double), typeof(NavButton));
-
-        public Brush TextColor
-        {
-            get { return (Brush)GetValue(TextColorProperty); }
-            set { SetValue(TextColorProperty, value); }
-        }
-
-        public static readonly DependencyProperty TextColorProperty =
-            DependencyProperty.Register("TextColor", typeof(Brush), typeof(NavButton));
     }
 }

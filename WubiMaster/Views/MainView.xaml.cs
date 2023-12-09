@@ -9,7 +9,6 @@ namespace WubiMaster.Views
         public MainView()
         {
             InitializeComponent();
-            Application.Current.Resources.MergedDictionaries[0].Source = new Uri("pack://application:,,,/Themes/DarkYellowTheme.xaml");
         }
 
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
@@ -46,22 +45,6 @@ namespace WubiMaster.Views
                     isMaximized = true;
                 }
             }
-        }
-
-        private void btn_theme_Click(object sender, RoutedEventArgs e)
-        {
-            ResourceDictionary resource = new ResourceDictionary();
-            string darkYellowThemePack = "pack://application:,,,/Themes/DarkYellowTheme.xaml";
-            string darkBlueThemePack = "pack://application:,,,/Themes/DarkBlueTheme.xaml";
-            if (Application.Current.Resources.MergedDictionaries[0].Source.ToString() == darkYellowThemePack)
-            {
-                resource.Source = new Uri(darkBlueThemePack);
-            }
-            else
-            {
-                resource.Source = new Uri(darkYellowThemePack);
-            }
-            Application.Current.Resources.MergedDictionaries[0].Source = resource.Source;
         }
 
         private void btn_min_Click(object sender, RoutedEventArgs e)

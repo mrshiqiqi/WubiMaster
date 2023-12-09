@@ -4,6 +4,7 @@
         xmlns:c="clr-namespace:WubiMaster.Controls"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:WubiMaster.ViewModels"
         Title="MainView"
         Width="1000"
         Height="618"
@@ -14,12 +15,16 @@
         WindowStyle="None"
         mc:Ignorable="d">
 
+    <Window.DataContext>
+        <vm:MainViewModel />
+    </Window.DataContext>
+
     <Grid>
 
         <Border Background="{DynamicResource BackColor}"
-                BorderBrush="{DynamicResource NavPanelColor}"
+                BorderBrush="{DynamicResource BorderColor}"
                 BorderThickness="3"
-                CornerRadius="5"
+                CornerRadius="15"
                 MouseDown="Border_MouseDown"
                 MouseLeftButtonDown="Border_MouseLeftButtonDown" />
 
@@ -29,14 +34,61 @@
 
             <Button x:Name="btn_theme"
                     Margin="0,15,20,0"
-                    Click="btn_theme_Click"
-                    ContextMenu="{StaticResource theme_menu}"
-                    Style="{StaticResource ThemeButtonStyle}" />
+                    Style="{StaticResource ThemeButtonStyle}">
+                <Button.ContextMenu>
+                    <ContextMenu>
+
+                        <MenuItem Command="{Binding SetThemeCommand}" CommandParameter="DarkBlue">
+                            <MenuItem.Header>
+                                <Border Width="15"
+                                        Height="15"
+                                        Background="#02B1E4"
+                                        CornerRadius="2" />
+                            </MenuItem.Header>
+                        </MenuItem>
+
+                        <MenuItem Command="{Binding SetThemeCommand}" CommandParameter="DarkYellow">
+                            <MenuItem.Header>
+                                <Border Width="15"
+                                        Height="15"
+                                        Background="#FFF00F"
+                                        CornerRadius="2" />
+                            </MenuItem.Header>
+                        </MenuItem>
+
+                        <MenuItem Command="{Binding SetThemeCommand}" CommandParameter="LightBrown">
+                            <MenuItem.Header>
+                                <Border Width="15"
+                                        Height="15"
+                                        Background="#828484"
+                                        CornerRadius="2" />
+                            </MenuItem.Header>
+                        </MenuItem>
+
+                        <MenuItem Command="{Binding SetThemeCommand}" CommandParameter="LightBlack">
+                            <MenuItem.Header>
+                                <Border Width="15"
+                                        Height="15"
+                                        Background="#000000"
+                                        CornerRadius="2" />
+                            </MenuItem.Header>
+                        </MenuItem>
+
+                        <MenuItem Command="{Binding SetThemeCommand}" CommandParameter="LightGreen">
+                            <MenuItem.Header>
+                                <Border Width="15"
+                                        Height="15"
+                                        Background="#00A666"
+                                        CornerRadius="2" />
+                            </MenuItem.Header>
+                        </MenuItem>
+                    </ContextMenu>
+                </Button.ContextMenu>
+            </Button>
 
             <Button x:Name="btn_min"
                     Margin="0,15,15,0"
                     Click="btn_min_Click"
-                    ContextMenu="{StaticResource theme_menu}"
                     Style="{StaticResource MinButtonStyle}" />
 
             <Button x:Name="btn_clo"
@@ -53,7 +105,7 @@
 
             <Grid Grid.Column="0" Margin="8">
 
-                <Border Background="{DynamicResource NavPanelColor}" CornerRadius="5">
+                <Border Background="{DynamicResource NavPanelColor}" CornerRadius="15">
 
                     <StackPanel VerticalAlignment="Center">
 
@@ -61,18 +113,23 @@
                                      IsSelected="True"
                                      Style="{StaticResource NavButtonStyle}"
                                      Text="主页" />
+
                         <c:NavButton IconText="&#xe694;"
                                      Style="{StaticResource NavButtonStyle}"
                                      Text="字根反查" />
+
                         <c:NavButton IconText="&#xe636;"
                                      Style="{StaticResource NavButtonStyle}"
                                      Text="词库管理" />
+
                         <c:NavButton IconText="&#xe63c;"
                                      Style="{StaticResource NavButtonStyle}"
                                      Text="导入导出" />
+
                         <c:NavButton IconText="&#xe647;"
                                      Style="{StaticResource NavButtonStyle}"
                                      Text="云同步" />
+
                         <c:NavButton IconText="&#xe8b8;"
                                      Style="{StaticResource NavButtonStyle}"
                                      Text="设置" />

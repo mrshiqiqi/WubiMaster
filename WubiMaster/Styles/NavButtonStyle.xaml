@@ -6,7 +6,7 @@
         <Setter Property="Height" Value="40" />
         <Setter Property="IconColor" Value="{DynamicResource IconColor}" />
         <Setter Property="IcontFontSize" Value="18" />
-        <Setter Property="TextColor" Value="#FFFFFF" />
+        <Setter Property="TextColor" Value="{DynamicResource TextColor}" />
         <Setter Property="TextFontSize" Value="15" />
     </Style>
 </ResourceDictionary>

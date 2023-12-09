@@ -19,7 +19,7 @@
 
                             <Border Name="bg"
                                     Background="Transparent"
-                                    CornerRadius="3"
+                                    CornerRadius="5"
                                     Visibility="Visible" />
 
                             <Grid Margin="5">
@@ -35,7 +35,8 @@
                                            Foreground="{Binding ElementName=nav_button, Path=IconColor}"
                                            Text="{Binding ElementName=nav_button, Path=IconText}" />
 
-                                <TextBlock Grid.Column="1"
+                                <TextBlock x:Name="txt_content"
+                                           Grid.Column="1"
                                            HorizontalAlignment="Left"
                                            VerticalAlignment="Center"
                                            FontSize="{Binding ElementName=nav_button, Path=TextFontSize}"
@@ -56,12 +57,14 @@
                         <ControlTemplate.Triggers>
 
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="bg" Property="Background" Value="{DynamicResource BackColor}" />
+                                <Setter TargetName="bg" Property="Background" Value="{DynamicResource NavHoverColor}" />
+                                <Setter TargetName="txt_content" Property="Foreground" Value="{DynamicResource TextHoverColor}" />
                             </Trigger>
 
                             <Trigger Property="IsChecked" Value="True">
-                                <Setter TargetName="bg" Property="Background" Value="{DynamicResource BackColor}" />
+                                <Setter TargetName="bg" Property="Background" Value="{DynamicResource NavHoverColor}" />
                                 <Setter TargetName="bd_left" Property="Visibility" Value="Visible" />
+                                <Setter TargetName="txt_content" Property="Foreground" Value="{DynamicResource TextHoverColor}" />
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>

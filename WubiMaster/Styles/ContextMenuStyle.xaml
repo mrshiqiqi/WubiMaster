@@ -6,7 +6,7 @@
                 <ControlTemplate TargetType="{x:Type ContextMenu}">
                     <Border x:Name="Border"
                             Background="{DynamicResource NavPanelColor}"
-                            CornerRadius="3">
+                            CornerRadius="5">
                         <ItemsPresenter />
                     </Border>
                 </ControlTemplate>
@@ -23,7 +23,7 @@
                             Padding="25,5"
                             VerticalAlignment="Center"
                             Background="Transparent"
-                            CornerRadius="2">
+                            CornerRadius="5">
 
                         <WrapPanel>
                             <ContentPresenter HorizontalAlignment="Left"
@@ -42,41 +42,4 @@
         </Setter>
     </Style>
 
-    <ContextMenu x:Key="theme_menu" StaysOpen="True">
-        <MenuItem>
-            <MenuItem.Header>
-                <Border Width="15"
-                        Height="15"
-                        Background="#FFF00F"
-                        CornerRadius="2" />
-            </MenuItem.Header>
-        </MenuItem>
-
-        <MenuItem>
-            <MenuItem.Header>
-                <Border Width="15"
-                        Height="15"
-                        Background="#02B1E4"
-                        CornerRadius="2" />
-            </MenuItem.Header>
-        </MenuItem>
-
-        <MenuItem>
-            <MenuItem.Header>
-                <Border Width="15"
-                        Height="15"
-                        Background="#FFFFFF"
-                        CornerRadius="2" />
-            </MenuItem.Header>
-        </MenuItem>
-
-        <MenuItem>
-            <MenuItem.Header>
-                <Border Width="15"
-                        Height="15"
-                        Background="Orange"
-                        CornerRadius="2" />
-            </MenuItem.Header>
-        </MenuItem>
-    </ContextMenu>
 </ResourceDictionary>
