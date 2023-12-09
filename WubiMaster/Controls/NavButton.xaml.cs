@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using CommunityToolkit.Mvvm.Input;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 
@@ -73,5 +74,23 @@ namespace WubiMaster.Controls
 
         public static readonly DependencyProperty IcontFontSizeProperty =
             DependencyProperty.Register("IcontFontSize", typeof(double), typeof(NavButton));
+
+        public RelayCommand<object> NavCommand
+        {
+            get { return (RelayCommand<object>)GetValue(NavCommandProperty); }
+            set { SetValue(NavCommandProperty, value); }
+        }
+
+        public static readonly DependencyProperty NavCommandProperty =
+            DependencyProperty.Register("NavCommand", typeof(RelayCommand<object>), typeof(NavButton));
+
+        public string NavName
+        {
+            get { return (string)GetValue(NavNameProperty); }
+            set { SetValue(NavNameProperty, value); }
+        }
+
+        public static readonly DependencyProperty NavNameProperty =
+            DependencyProperty.Register("NavName", typeof(string), typeof(NavButton));
     }
 }

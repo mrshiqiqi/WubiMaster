@@ -7,14 +7,24 @@ using System.Windows;
 using CommunityToolkit.Mvvm;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using WubiMaster.Views;
 
 namespace WubiMaster.ViewModels
 {
     public partial class MainViewModel : ObservableObject
     {
+        [ObservableProperty]
+        public object currentView;
+
         public MainViewModel()
         {
             Application.Current.Resources.MergedDictionaries[0].Source = new Uri(darkYellowThemePack);
+        }
+
+        [RelayCommand]
+        public void ChangePage(object pageName)
+        {
+            CurrentView = new TestView();
         }
 
         [RelayCommand]

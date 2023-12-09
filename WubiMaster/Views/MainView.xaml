@@ -36,6 +36,7 @@
                     Margin="0,15,20,0"
                     Style="{StaticResource ThemeButtonStyle}">
                 <Button.ContextMenu>
+
                     <ContextMenu>
 
                         <MenuItem Command="{Binding SetThemeCommand}" CommandParameter="DarkBlue">
@@ -111,26 +112,38 @@
 
                         <c:NavButton IconText="&#xe867;"
                                      IsSelected="True"
+                                     NavCommand="{Binding ChangePageCommand}"
+                                     NavName="Home"
                                      Style="{StaticResource NavButtonStyle}"
                                      Text="主页" />
 
                         <c:NavButton IconText="&#xe694;"
+                                     NavCommand="{Binding ChangePageCommand}"
+                                     NavName="Zigen"
                                      Style="{StaticResource NavButtonStyle}"
                                      Text="字根反查" />
 
                         <c:NavButton IconText="&#xe636;"
+                                     NavCommand="{Binding ChangePageCommand}"
+                                     NavName="Ciku"
                                      Style="{StaticResource NavButtonStyle}"
                                      Text="词库管理" />
 
                         <c:NavButton IconText="&#xe63c;"
+                                     NavCommand="{Binding ChangePageCommand}"
+                                     NavName="Import"
                                      Style="{StaticResource NavButtonStyle}"
                                      Text="导入导出" />
 
                         <c:NavButton IconText="&#xe647;"
+                                     NavCommand="{Binding ChangePageCommand}"
+                                     NavName="Synchronous"
                                      Style="{StaticResource NavButtonStyle}"
                                      Text="云同步" />
 
                         <c:NavButton IconText="&#xe8b8;"
+                                     NavCommand="{Binding ChangePageCommand}"
+                                     NavName="Setting"
                                      Style="{StaticResource NavButtonStyle}"
                                      Text="设置" />
                     </StackPanel>
@@ -149,6 +162,17 @@
                            VerticalAlignment="Bottom"
                            Foreground="#BABABA"
                            Text="五笔助手 for Rime" />
+            </Grid>
+
+            <Grid Grid.Column="1">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                
+                <ContentControl Grid.Row="1" x:Name="Pages" Content="{Binding CurrentView}" Margin="10"/>
+
             </Grid>
         </Grid>
     </Grid>

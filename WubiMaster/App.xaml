@@ -8,6 +8,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Themes/DarkYellowTheme.xaml" />
 
+                <ResourceDictionary Source="/Styles/PageStyle.xaml" />
                 <ResourceDictionary Source="/Styles/NavButtonStyle.xaml" />
                 <ResourceDictionary Source="/Styles/CloseButtonStyle.xaml" />
                 <ResourceDictionary Source="/Styles/ThemeButtonStyle.xaml" />

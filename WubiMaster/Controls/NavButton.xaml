@@ -75,7 +75,9 @@
 
     <Grid>
 
-        <RadioButton Content="{Binding ElementName=nav_button, Path=Text}"
+        <RadioButton Command="{Binding ElementName=nav_button, Path=NavCommand}"
+                     CommandParameter="{Binding ElementName=nav_button, Path=NavName}"
+                     Content="{Binding ElementName=nav_button, Path=Text}"
                      GroupName="nav_group"
                      IsChecked="{Binding ElementName=nav_button, Path=IsSelected}"
                      Style="{StaticResource navButtonStyle}" />
