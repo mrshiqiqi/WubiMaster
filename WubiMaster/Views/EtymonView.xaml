@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="WubiMaster.Views.TestView"
+﻿<UserControl x:Class="WubiMaster.Views.EtymonView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -15,6 +15,6 @@
                    VerticalAlignment="Center"
                    FontSize="22"
                    Foreground="LightBlue"
-                   Text="Test View" />
+                   Text="Etymon View" />
     </Grid>
 </UserControl>

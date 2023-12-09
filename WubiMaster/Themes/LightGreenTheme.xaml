@@ -2,6 +2,7 @@
 
     <SolidColorBrush x:Key="BackColor" Color="#D9D9D9" />
     <SolidColorBrush x:Key="BorderColor" Color="#CCCED2" />
+    <SolidColorBrush x:Key="PageColor" Color="#CCCED2" />
     <SolidColorBrush x:Key="NavPanelColor" Color="#CCCED2" />
     <SolidColorBrush x:Key="NavHoverColor" Color="#2B2B2B" />
     <SolidColorBrush x:Key="IconColor" Color="#38BC55" />
