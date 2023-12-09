@@ -1,0 +1,9 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <SolidColorBrush x:Key="BackColor" Color="#272D36" />
+    <SolidColorBrush x:Key="NavPanelColor" Color="#36404E" />
+    <SolidColorBrush x:Key="IconColor" Color="#FFF00F" />
+    <SolidColorBrush x:Key="BtnRestColor" Color="#FFF00F" />
+    <SolidColorBrush x:Key="BtnHoverColor" Color="#FFFFFF" />
+    <SolidColorBrush x:Key="BtnPressedColor" Color="White" />
+</ResourceDictionary>

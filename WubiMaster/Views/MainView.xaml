@@ -1,0 +1,98 @@
+﻿<Window x:Class="WubiMaster.Views.MainView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:c="clr-namespace:WubiMaster.Controls"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        Title="MainView"
+        Width="1000"
+        Height="618"
+        AllowsTransparency="True"
+        Background="Transparent"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        mc:Ignorable="d">
+
+    <Grid>
+
+        <Border Background="{DynamicResource BackColor}"
+                BorderBrush="{DynamicResource NavPanelColor}"
+                BorderThickness="3"
+                CornerRadius="5"
+                MouseDown="Border_MouseDown"
+                MouseLeftButtonDown="Border_MouseLeftButtonDown" />
+
+        <StackPanel HorizontalAlignment="Right"
+                    VerticalAlignment="Top"
+                    Orientation="Horizontal">
+
+            <Button x:Name="btn_theme"
+                    Margin="0,15,20,0"
+                    Click="btn_theme_Click"
+                    ContextMenu="{StaticResource theme_menu}"
+                    Style="{StaticResource ThemeButtonStyle}" />
+
+            <Button x:Name="btn_min"
+                    Margin="0,15,15,0"
+                    Click="btn_min_Click"
+                    ContextMenu="{StaticResource theme_menu}"
+                    Style="{StaticResource MinButtonStyle}" />
+
+            <Button x:Name="btn_clo"
+                    Margin="0,15,15,0"
+                    Click="Button_Click"
+                    Style="{StaticResource CloseButtonStyle}" />
+        </StackPanel>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="190" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="0" Margin="8">
+
+                <Border Background="{DynamicResource NavPanelColor}" CornerRadius="5">
+
+                    <StackPanel VerticalAlignment="Center">
+
+                        <c:NavButton IconText="&#xe867;"
+                                     IsSelected="True"
+                                     Style="{StaticResource NavButtonStyle}"
+                                     Text="主页" />
+                        <c:NavButton IconText="&#xe694;"
+                                     Style="{StaticResource NavButtonStyle}"
+                                     Text="字根反查" />
+                        <c:NavButton IconText="&#xe636;"
+                                     Style="{StaticResource NavButtonStyle}"
+                                     Text="词库管理" />
+                        <c:NavButton IconText="&#xe63c;"
+                                     Style="{StaticResource NavButtonStyle}"
+                                     Text="导入导出" />
+                        <c:NavButton IconText="&#xe647;"
+                                     Style="{StaticResource NavButtonStyle}"
+                                     Text="云同步" />
+                        <c:NavButton IconText="&#xe8b8;"
+                                     Style="{StaticResource NavButtonStyle}"
+                                     Text="设置" />
+                    </StackPanel>
+                </Border>
+
+                <TextBlock Margin="0,35,0,0"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Top"
+                           FontFamily="../Fonts/#iconfont"
+                           FontSize="80"
+                           Foreground="{DynamicResource IconColor}"
+                           Text="&#xe600;" />
+
+                <TextBlock Margin="0,5"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Bottom"
+                           Foreground="#BABABA"
+                           Text="五笔助手 for Rime" />
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>

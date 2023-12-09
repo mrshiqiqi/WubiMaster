@@ -1,0 +1,19 @@
+﻿<Application x:Class="WubiMaster.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:WubiMaster"
+             StartupUri="Views/MainView.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Themes/DarkYellowTheme.xaml" />
+
+                <ResourceDictionary Source="/Styles/NavButtonStyle.xaml" />
+                <ResourceDictionary Source="/Styles/CloseButtonStyle.xaml" />
+                <ResourceDictionary Source="/Styles/ThemeButtonStyle.xaml" />
+                <ResourceDictionary Source="/Styles/MinButtonStyle.xaml" />
+                <ResourceDictionary Source="/Styles/ContextMenuStyle.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

@@ -1,0 +1,80 @@
+﻿<UserControl x:Class="WubiMaster.Controls.NavButton"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:WubiMaster.Controls"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             Name="nav_button"
+             mc:Ignorable="d">
+
+    <UserControl.Resources>
+
+        <Style x:Key="navButtonStyle" TargetType="RadioButton">
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="RadioButton">
+
+                        <Grid Margin="3">
+
+                            <Border Name="bg"
+                                    Background="Transparent"
+                                    CornerRadius="3"
+                                    Visibility="Visible" />
+
+                            <Grid Margin="5">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock Margin="18,0"
+                                           VerticalAlignment="Center"
+                                           FontFamily="../Fonts/#iconfont"
+                                           FontSize="{Binding ElementName=nav_button, Path=IcontFontSize}"
+                                           Foreground="{Binding ElementName=nav_button, Path=IconColor}"
+                                           Text="{Binding ElementName=nav_button, Path=IconText}" />
+
+                                <TextBlock Grid.Column="1"
+                                           HorizontalAlignment="Left"
+                                           VerticalAlignment="Center"
+                                           FontSize="{Binding ElementName=nav_button, Path=TextFontSize}"
+                                           Foreground="{Binding ElementName=nav_button, Path=TextColor}"
+                                           Text="{TemplateBinding Content}" />
+                            </Grid>
+
+                            <Border Name="bd_left"
+                                    Width="4"
+                                    Height="18"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Center"
+                                    Background="{Binding ElementName=nav_button, Path=IconColor}"
+                                    CornerRadius="0 4 4 0"
+                                    Visibility="Collapsed" />
+                        </Grid>
+
+                        <ControlTemplate.Triggers>
+
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="bg" Property="Background" Value="{DynamicResource BackColor}" />
+                            </Trigger>
+
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="bg" Property="Background" Value="{DynamicResource BackColor}" />
+                                <Setter TargetName="bd_left" Property="Visibility" Value="Visible" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+
+    <Grid>
+
+        <RadioButton Content="{Binding ElementName=nav_button, Path=Text}"
+                     GroupName="nav_group"
+                     IsChecked="{Binding ElementName=nav_button, Path=IsSelected}"
+                     Style="{StaticResource navButtonStyle}" />
+    </Grid>
+</UserControl>
