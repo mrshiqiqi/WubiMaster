@@ -8,22 +8,56 @@
              d:DesignWidth="150"
              mc:Ignorable="d">
 
-    <Grid MinWidth="150" MinHeight="150">
+    <UserControl.Resources>
+        <Style x:Key="btn_style" TargetType="Button">
 
-        <Border Background="{DynamicResource BackColor}" CornerRadius="10" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
 
-        <TextBlock HorizontalAlignment="Center"
-                   VerticalAlignment="Center"
-                   FontFamily="../Fonts/#iconfont"
-                   FontSize="70"
-                   Foreground="{DynamicResource IconColor}"
-                   Text="{Binding ElementName=tool_button, Path=IconText}" />
+                        <Border x:Name="bd_back"
+                                Background="{DynamicResource ToolButtonColor}"
+                                CornerRadius="10">
 
-        <TextBlock Margin="0,0,0,10"
-                   HorizontalAlignment="Center"
-                   VerticalAlignment="Bottom"
-                   FontSize="15"
-                   Foreground="{DynamicResource TextColor}"
-                   Text="{Binding ElementName=tool_button, Path=Title}" />
+                            <Grid MinWidth="150" MinHeight="150">
+
+                                <TextBlock HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"
+                                           FontFamily="../Fonts/#iconfont"
+                                           FontSize="50"
+                                           Foreground="{DynamicResource IconColor}"
+                                           Text="{Binding ElementName=tool_button, Path=IconText}" />
+
+                                <TextBlock Margin="0,0,0,10"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Bottom"
+                                           FontSize="15"
+                                           Foreground="{DynamicResource TextColor}"
+                                           Text="{Binding ElementName=tool_button, Path=Title}" />
+                            </Grid>
+                        </Border>
+
+                        <ControlTemplate.Triggers>
+
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="bd_back" Property="Background" Value="{DynamicResource ToolButtonHoverColor}" />
+                            </Trigger>
+
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="bd_back" Property="Background" Value="{DynamicResource ToolButtonPressedColor}" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+
+    </UserControl.Resources>
+
+    <Grid>
+
+        <Button Style="{StaticResource btn_style}" />
     </Grid>
+
 </UserControl>

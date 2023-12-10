@@ -11,4 +11,10 @@
     <SolidColorBrush x:Key="BtnRestColor" Color="#FFF00F" />
     <SolidColorBrush x:Key="BtnHoverColor" Color="#FFFFFF" />
     <SolidColorBrush x:Key="BtnPressedColor" Color="White" />
+
+    <!--  ToolButton  -->
+    <SolidColorBrush x:Key="ToolButtonColor" Color="#272D36" />
+    <SolidColorBrush x:Key="ToolButtonHoverColor" Color="#BCBFC4" />
+    <SolidColorBrush x:Key="ToolButtonPressedColor" Color="#7E7E7E" />
+
 </ResourceDictionary>
