@@ -20,17 +20,22 @@
                                 CornerRadius="10">
 
                             <Grid MinWidth="150" MinHeight="150">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                    <RowDefinition Height="30" />
+                                </Grid.RowDefinitions>
 
-                                <TextBlock HorizontalAlignment="Center"
+                                <TextBlock Grid.Row="0"
+                                           HorizontalAlignment="Center"
                                            VerticalAlignment="Center"
                                            FontFamily="../Fonts/#iconfont"
-                                           FontSize="50"
+                                           FontSize="60"
                                            Foreground="{DynamicResource IconColor}"
                                            Text="{Binding ElementName=tool_button, Path=IconText}" />
 
-                                <TextBlock Margin="0,0,0,10"
+                                <TextBlock Grid.Row="1"
                                            HorizontalAlignment="Center"
-                                           VerticalAlignment="Bottom"
+                                           VerticalAlignment="Top"
                                            FontSize="15"
                                            Foreground="{DynamicResource TextColor}"
                                            Text="{Binding ElementName=tool_button, Path=Title}" />

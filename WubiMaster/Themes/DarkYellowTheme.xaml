@@ -7,6 +7,8 @@
     <SolidColorBrush x:Key="NavHoverColor" Color="#272D36" />
     <SolidColorBrush x:Key="IconColor" Color="#FFF00F" />
     <SolidColorBrush x:Key="TextColor" Color="#FFFFFF" />
+    <SolidColorBrush x:Key="TitleColor" Color="#FFFFFF" />
+    <SolidColorBrush x:Key="SubTitleColor" Color="#D4D4D4" />
     <SolidColorBrush x:Key="TextHoverColor" Color="#FFFFFF" />
     <SolidColorBrush x:Key="BtnRestColor" Color="#FFF00F" />
     <SolidColorBrush x:Key="BtnHoverColor" Color="#FFFFFF" />
@@ -17,4 +19,8 @@
     <SolidColorBrush x:Key="ToolButtonHoverColor" Color="#BCBFC4" />
     <SolidColorBrush x:Key="ToolButtonPressedColor" Color="#7E7E7E" />
 
+    <!--  SearchTextbox  -->
+    <SolidColorBrush x:Key="SearchTextColor" Color="#272D36" />
+    <SolidColorBrush x:Key="SearchTextColor1" Color="#BCBFC4" />
+    <SolidColorBrush x:Key="SearchTextColor2" Color="#7E7E7E" />
 </ResourceDictionary>
