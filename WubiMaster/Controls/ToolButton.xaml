@@ -17,7 +17,7 @@
 
                         <Border x:Name="bd_back"
                                 Background="{DynamicResource ToolButtonColor}"
-                                CornerRadius="10">
+                                CornerRadius="15">
 
                             <Grid MinWidth="150" MinHeight="150">
                                 <Grid.RowDefinitions>
