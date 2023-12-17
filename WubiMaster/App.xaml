@@ -14,6 +14,7 @@
                 <ResourceDictionary Source="/Styles/ThemeButtonStyle.xaml" />
                 <ResourceDictionary Source="/Styles/MinButtonStyle.xaml" />
                 <ResourceDictionary Source="/Styles/ContextMenuStyle.xaml" />
+                <ResourceDictionary Source="/Styles/PopViewBaseStyle.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

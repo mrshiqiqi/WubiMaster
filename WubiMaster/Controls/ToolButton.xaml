@@ -62,7 +62,7 @@
 
     <Grid>
 
-        <Button Style="{StaticResource btn_style}" />
+        <Button Style="{StaticResource btn_style}" Command="{Binding ElementName=tool_button, Path=TBCommand}"/>
     </Grid>
 
 </UserControl>

@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using CommunityToolkit.Mvvm.Input;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace WubiMaster.Controls
@@ -27,5 +28,14 @@ namespace WubiMaster.Controls
 
         public static readonly DependencyProperty IconTextProperty =
             DependencyProperty.Register("IconText", typeof(string), typeof(ToolButton));
+
+        public RelayCommand TBCommand
+        {
+            get { return (RelayCommand)GetValue(TBCommandProperty); }
+            set { SetValue(TBCommandProperty, value); }
+        }
+
+        public static readonly DependencyProperty TBCommandProperty =
+            DependencyProperty.Register("TBCommand", typeof(RelayCommand), typeof(ToolButton));
     }
 }

@@ -5,10 +5,16 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:WubiMaster.Views"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:WubiMaster.ViewModels"
              d:DesignHeight="600"
              d:DesignWidth="800"
              Style="{DynamicResource PageStyle}"
              mc:Ignorable="d">
+
+    <UserControl.DataContext>
+        <vm:HomeViewModel />
+    </UserControl.DataContext>
+
     <Grid>
         <Border Background="{DynamicResource PageColor}" CornerRadius="15" />
 
@@ -19,7 +25,8 @@
                 <c:ToolButton Title="字根表"
                               Width="150"
                               Height="150"
-                              IconText="&#xe67a;" />
+                              IconText="&#xe67a;"
+                              TBCommand="{Binding ShowZiGenCommand}" />
 
                 <c:ToolButton Title="自造词"
                               Width="150"
