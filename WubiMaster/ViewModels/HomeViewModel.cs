@@ -1,5 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging.Messages;
+using CommunityToolkit.Mvvm.Messaging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,10 +21,10 @@ namespace WubiMaster.ViewModels
         }
 
         [RelayCommand]
-        public void ShowZiGen()
+        public void ShowEtymon()
         {
-            MessageView messageView = new MessageView();
-            messageView.ShowPop();
+            WeakReferenceMessenger.Default.Send<ValueChangedMessage<bool>, string>(new ValueChangedMessage<bool>(true), "ShowMaskLayer");
+            this.ShowMessage("提示", "找不到该页面", DialogType.Warring);
         }
     }
 }

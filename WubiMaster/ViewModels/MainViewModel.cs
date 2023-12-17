@@ -1,5 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
+using CommunityToolkit.Mvvm.Messaging.Messages;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -8,17 +10,22 @@ using WubiMaster.Views;
 
 namespace WubiMaster.ViewModels
 {
-    public partial class MainViewModel : ObservableObject
+    public partial class MainViewModel : ObservableRecipient
     {
         [ObservableProperty]
         public object currentView;
         [ObservableProperty]
         public string pageTitle;
+        [ObservableProperty]
+        public Visibility maskLayerVisable = Visibility.Collapsed;
 
         public MainViewModel()
         {
+            IsActive = true;
             pageDict = new Dictionary<string, object>();
             Application.Current.Resources.MergedDictionaries[0].Source = new Uri(darkYellowThemePack);
+
+            Messenger.Register<MainViewModel, ValueChangedMessage<bool>, string>(this, "ShowMaskLayer", ShowMaskLayer);
         }
 
         [RelayCommand]
@@ -118,6 +125,16 @@ namespace WubiMaster.ViewModels
                 default:
                     break;
             }
+        }
+
+        private void ShowMaskLayer(MainViewModel vm, ValueChangedMessage<bool> vcm)
+        {
+            bool isShow = vcm.Value;
+
+            if (isShow)
+                MaskLayerVisable = Visibility.Visible;
+            else
+                MaskLayerVisable = Visibility.Collapsed;
         }
 
         private string darkYellowThemePack = "pack://application:,,,/WubiMaster;component/Themes/DarkYellowTheme.xaml";

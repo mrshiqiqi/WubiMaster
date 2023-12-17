@@ -26,7 +26,7 @@
                               Width="150"
                               Height="150"
                               IconText="&#xe67a;"
-                              TBCommand="{Binding ShowZiGenCommand}" />
+                              TBCommand="{Binding ShowEtymonCommand}" />
 
                 <c:ToolButton Title="自造词"
                               Width="150"

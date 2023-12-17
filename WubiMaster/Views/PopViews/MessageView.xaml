@@ -69,11 +69,11 @@
                                    HorizontalAlignment="Center"
                                    VerticalAlignment="Center"
                                    FontSize="35"
-                                   Text="警告！" />
+                                   Text="{Binding MessageDialogModel.Title}" />
 
                         <TextBlock Grid.Row="2"
                                    HorizontalAlignment="Center"
-                                   Text="这里是内容哈哈中侃侃侃侃哈哈咒" />
+                                   Text="{Binding MessageDialogModel.Message}" />
                     </Grid>
                 </Border>
 
