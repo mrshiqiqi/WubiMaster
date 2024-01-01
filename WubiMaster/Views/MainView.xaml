@@ -30,10 +30,12 @@
 
         <Border Background="{DynamicResource BackColor}"
                 BorderBrush="{DynamicResource BorderColor}"
-                BorderThickness="3"
+                BorderThickness="2"
                 CornerRadius="15"
                 MouseDown="Border_MouseDown"
-                MouseLeftButtonDown="Border_MouseLeftButtonDown" />
+                MouseLeftButtonDown="Border_MouseLeftButtonDown"
+                SnapsToDevicePixels="True"
+                UseLayoutRounding="True" />
 
         <c:PageTitle Title="{Binding PageTitle}"
                      Width="120"
