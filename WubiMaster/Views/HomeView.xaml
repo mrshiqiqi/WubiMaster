@@ -46,10 +46,18 @@
                         </LinearGradientBrush>
                     </Border.Background>
 
-                    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
-                        <TextBlock Text="Rime 主页" />
+                    <Grid HorizontalAlignment="Center"
+                          VerticalAlignment="Center"
+                          Background="Red">
 
-                        <Image Source="https://rime.im/images/home-title.svg"/>
+                        <Viewbox Width="50"
+                                 Height="50"
+                                 HorizontalAlignment="Right"
+                                 VerticalAlignment="Top">
+
+                            <c:LogoControl />
+                        </Viewbox>
+
                     </Grid>
 
                 </Border>

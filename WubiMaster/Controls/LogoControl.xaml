@@ -1,0 +1,50 @@
+﻿<UserControl x:Class="WubiMaster.Controls.LogoControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:WubiMaster.Controls"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             d:DesignHeight="400"
+             d:DesignWidth="400"
+             mc:Ignorable="d">
+
+    <Grid>
+
+        <Path Stroke="White" StrokeThickness="30">
+            <Path.Data>
+                <PathGeometry>
+                    <PathFigure IsClosed="False" StartPoint="20, 50">
+
+                        <LineSegment Point="20, 150" />
+                        <ArcSegment Point="380, 150"
+                                    Size="180, 120"
+                                    SweepDirection="Counterclockwise" />
+                        <LineSegment Point="380, 50" />
+                    </PathFigure>
+                </PathGeometry>
+            </Path.Data>
+        </Path>
+
+        <Path Stroke="White" StrokeThickness="30">
+            <Path.Data>
+                <PathGeometry>
+                    <PathFigure IsClosed="False" StartPoint="200, 10">
+
+                        <LineSegment Point="200, 380" />
+                    </PathFigure>
+                </PathGeometry>
+            </Path.Data>
+        </Path>
+
+        <Path Stroke="White" StrokeThickness="30">
+            <Path.Data>
+                <PathGeometry>
+                    <PathFigure IsClosed="False" StartPoint="10, 380">
+
+                        <LineSegment Point="390, 380" />
+                    </PathFigure>
+                </PathGeometry>
+            </Path.Data>
+        </Path>
+    </Grid>
+</UserControl>
