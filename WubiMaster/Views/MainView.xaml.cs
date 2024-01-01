@@ -34,7 +34,7 @@ namespace WubiMaster.Views
                 {
                     this.WindowState = WindowState.Normal;
                     this.Width = 1000;
-                    this.Height = 618;
+                    this.Height = 700;
 
                     isMaximized = false;
                 }

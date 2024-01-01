@@ -15,54 +15,109 @@
         <vm:HomeViewModel />
     </UserControl.DataContext>
 
+
     <Grid>
-        <Border Background="{DynamicResource PageColor}" CornerRadius="15" />
+        <Border Background="{DynamicResource bg-100}" CornerRadius="15" />
 
-        <Grid Margin="120,10">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
 
-            <UniformGrid Columns="3" Rows="3">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="2*" />
+                </Grid.RowDefinitions>
 
-                <c:ToolButton Title="字根表"
-                              Width="150"
-                              Height="150"
-                              IconText="&#xe67a;"
-                              TBCommand="{Binding ShowEtymonCommand}" />
+                <Border Margin="5" CornerRadius="15">
+                    <Border.Background>
+                        <LinearGradientBrush>
+                            <LinearGradientBrush.GradientStops>
+                                <GradientStop Offset="0" Color="#FFD700" />
+                                <GradientStop Offset="0.5" Color="#ddb900" />
+                                <GradientStop Offset="1" Color="#917800" />
+                            </LinearGradientBrush.GradientStops>
+                        </LinearGradientBrush>
+                    </Border.Background>
 
-                <c:ToolButton Title="自造词"
-                              Width="150"
-                              Height="150"
-                              IconText="&#xe610;" />
+                    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <TextBlock Text="Rime 主页" />
 
-                <c:ToolButton Title="词库管理"
-                              Width="150"
-                              Height="150"
-                              IconText="&#xe608;" />
+                        <Image Source="https://rime.im/images/home-title.svg"/>
+                    </Grid>
 
-                <c:ToolButton Title="配置"
-                              Width="150"
-                              Height="150"
-                              IconText="&#xe8b8;" />
+                </Border>
 
-                <c:ToolButton Title="字典"
-                              Width="150"
-                              Height="150"
-                              IconText="&#xe694;" />
+                <Grid Grid.Row="1" Grid.Column="0">
 
-                <c:ToolButton Title="表情"
-                              Width="150"
-                              Height="150"
-                              IconText="&#xe69e;" />
+                    <Border Margin="5"
+                            Background="{DynamicResource bg-200}"
+                            CornerRadius="15" />
+                </Grid>
+            </Grid>
 
-                <c:ToolButton Title="符号"
-                              Width="150"
-                              Height="150"
-                              IconText="&#xe704;" />
+            <Grid Grid.Row="0" Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="2.5*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
 
-                <c:ToolButton Title="快捷键"
-                              Width="150"
-                              Height="150"
-                              IconText="&#xe60a;" />
-            </UniformGrid>
+                <Grid>
+
+                    <Border Margin="5"
+                            Background="{DynamicResource bg-200}"
+                            CornerRadius="15" />
+
+                    <UniformGrid Columns="3" Rows="3">
+
+                        <c:ToolButton Title="字根表"
+                                      IconText="&#xe67a;"
+                                      TBCommand="{Binding ShowEtymonCommand}" />
+
+                        <c:ToolButton Title="自造词" IconText="&#xe610;" />
+
+                        <c:ToolButton Title="词库管理" IconText="&#xe608;" />
+
+                        <c:ToolButton Title="配置" IconText="&#xe8b8;" />
+
+                        <c:ToolButton Title="字典" IconText="&#xe694;" />
+
+                        <c:ToolButton Title="表情" IconText="&#xe69e;" />
+
+                        <c:ToolButton Title="符号" IconText="&#xe704;" />
+
+                        <c:ToolButton Title="快捷键" IconText="&#xe60a;" />
+
+                        <c:ToolButton Title="主题" IconText="&#xe654;" />
+                    </UniformGrid>
+                </Grid>
+
+                <Grid Grid.Row="1">
+
+                    <Border Margin="5"
+                            Background="{DynamicResource bg-200}"
+                            CornerRadius="15" />
+                </Grid>
+
+
+            </Grid>
+
+            <Grid Grid.Row="1"
+                  Grid.Column="0"
+                  Grid.ColumnSpan="2"
+                  Height="120">
+
+                <Border Margin="5"
+                        Background="{DynamicResource bg-200}"
+                        CornerRadius="15" />
+            </Grid>
+
 
         </Grid>
 

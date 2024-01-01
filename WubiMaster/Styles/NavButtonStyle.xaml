@@ -3,10 +3,10 @@
                     xmlns:c="clr-namespace:WubiMaster.Controls">
 
     <Style x:Key="NavButtonStyle" TargetType="c:NavButton">
-        <Setter Property="Height" Value="40" />
-        <Setter Property="IconColor" Value="{DynamicResource IconColor}" />
-        <Setter Property="IcontFontSize" Value="18" />
-        <Setter Property="TextColor" Value="{DynamicResource TextColor}" />
+        <Setter Property="Height" Value="45" />
+        <Setter Property="IconColor" Value="{DynamicResource bg-300}" />
+        <Setter Property="IcontFontSize" Value="20" />
+        <Setter Property="TextColor" Value="{DynamicResource text-200}" />
         <Setter Property="TextFontSize" Value="15" />
     </Style>
 </ResourceDictionary>

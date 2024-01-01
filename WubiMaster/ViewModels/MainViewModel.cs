@@ -23,7 +23,7 @@ namespace WubiMaster.ViewModels
         {
             IsActive = true;
             pageDict = new Dictionary<string, object>();
-            Application.Current.Resources.MergedDictionaries[0].Source = new Uri(darkYellowThemePack);
+            Application.Current.Resources.MergedDictionaries[0].Source = new Uri(goldDarkThemePack);
 
             Messenger.Register<MainViewModel, ValueChangedMessage<bool>, string>(this, "ShowMaskLayer", ShowMaskLayer);
         }
@@ -137,6 +137,7 @@ namespace WubiMaster.ViewModels
                 MaskLayerVisable = Visibility.Collapsed;
         }
 
+        private string goldDarkThemePack = "pack://application:,,,/WubiMaster;component/Themes/GoldDarkTheme.xaml";
         private string darkYellowThemePack = "pack://application:,,,/WubiMaster;component/Themes/DarkYellowTheme.xaml";
         private string darkBlueThemePack = "pack://application:,,,/WubiMaster;component/Themes/DarkBlueTheme.xaml";
         private string lightBrownThemePack = "pack://application:,,,/WubiMaster;component/Themes/LightBrownTheme.xaml";

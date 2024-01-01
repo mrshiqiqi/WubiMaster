@@ -28,7 +28,8 @@
                                     <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
 
-                                <TextBlock Margin="18,0"
+                                <TextBlock x:Name="txt_icon"
+                                           Margin="18,0"
                                            VerticalAlignment="Center"
                                            FontFamily="../Fonts/#iconfont"
                                            FontSize="{Binding ElementName=nav_button, Path=IcontFontSize}"
@@ -49,7 +50,7 @@
                                     Height="18"
                                     HorizontalAlignment="Left"
                                     VerticalAlignment="Center"
-                                    Background="{Binding ElementName=nav_button, Path=IconColor}"
+                                    Background="{DynamicResource primary-100}"
                                     CornerRadius="0 4 4 0"
                                     Visibility="Collapsed" />
                         </Grid>
@@ -57,14 +58,16 @@
                         <ControlTemplate.Triggers>
 
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="bg" Property="Background" Value="{DynamicResource NavHoverColor}" />
-                                <Setter TargetName="txt_content" Property="Foreground" Value="{DynamicResource TextHoverColor}" />
+                                <Setter TargetName="txt_icon" Property="Foreground" Value="{DynamicResource primary-100}" />
+                                <Setter TargetName="bg" Property="Background" Value="{DynamicResource bg-300}" />
+                                <Setter TargetName="txt_content" Property="Foreground" Value="{DynamicResource text-100}" />
                             </Trigger>
 
                             <Trigger Property="IsChecked" Value="True">
-                                <Setter TargetName="bg" Property="Background" Value="{DynamicResource NavHoverColor}" />
+                                <Setter TargetName="txt_icon" Property="Foreground" Value="{DynamicResource primary-100}" />
+                                <Setter TargetName="bg" Property="Background" Value="{DynamicResource bg-300}" />
                                 <Setter TargetName="bd_left" Property="Visibility" Value="Visible" />
-                                <Setter TargetName="txt_content" Property="Foreground" Value="{DynamicResource TextHoverColor}" />
+                                <Setter TargetName="txt_content" Property="Foreground" Value="{DynamicResource text-100}" />
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
