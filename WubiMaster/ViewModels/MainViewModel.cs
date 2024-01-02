@@ -127,6 +127,12 @@ namespace WubiMaster.ViewModels
             }
         }
 
+        [RelayCommand]
+        public void Close(object obj)
+        {
+            App.Current.MainWindow.Close();
+        }
+
         private void ShowMaskLayer(MainViewModel vm, ValueChangedMessage<bool> vcm)
         {
             bool isShow = vcm.Value;

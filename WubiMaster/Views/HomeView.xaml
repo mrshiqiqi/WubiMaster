@@ -25,17 +25,35 @@
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
+                <RowDefinition Height="40" />
                 <RowDefinition Height="*" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
-            <Grid>
+            <Border Grid.Row="0"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    Width="250"
+                    Height="30"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Background="{DynamicResource bg-200}"
+                    CornerRadius="15">
+
+                <TextBlock Margin="20,0,0,0"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Center"
+                           Foreground="{DynamicResource text-200}"
+                           Text="快速查询字根" />
+            </Border>
+
+            <Grid Grid.Row="1">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
                     <RowDefinition Height="2*" />
                 </Grid.RowDefinitions>
 
-                <Border Margin="5" CornerRadius="15">
+                <Border Margin="5,5,10,10" CornerRadius="15">
                     <Border.Background>
                         <LinearGradientBrush>
                             <LinearGradientBrush.GradientStops>
@@ -46,43 +64,33 @@
                         </LinearGradientBrush>
                     </Border.Background>
 
-                    <Grid HorizontalAlignment="Center"
-                          VerticalAlignment="Center"
-                          Background="Red">
 
-                        <Viewbox Width="50"
-                                 Height="50"
-                                 HorizontalAlignment="Right"
-                                 VerticalAlignment="Top">
-
-                            <c:LogoControl />
-                        </Viewbox>
-
-                    </Grid>
 
                 </Border>
 
                 <Grid Grid.Row="1" Grid.Column="0">
 
-                    <Border Margin="5"
+                    <Border Margin="5,5,10,10"
                             Background="{DynamicResource bg-200}"
                             CornerRadius="15" />
                 </Grid>
             </Grid>
 
-            <Grid Grid.Row="0" Grid.Column="1">
+            <Grid Grid.Row="1" Grid.Column="1">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="2.5*" />
+                    <RowDefinition Height="3*" />
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
 
                 <Grid>
 
-                    <Border Margin="5"
+                    <Border Margin="10,5,5,10"
                             Background="{DynamicResource bg-200}"
                             CornerRadius="15" />
 
-                    <UniformGrid Columns="3" Rows="3">
+                    <UniformGrid Columns="3"
+                                 Rows="3"
+                                 Visibility="Collapsed">
 
                         <c:ToolButton Title="字根表"
                                       IconText="&#xe67a;"
@@ -108,7 +116,7 @@
 
                 <Grid Grid.Row="1">
 
-                    <Border Margin="5"
+                    <Border Margin="10,5,5,10"
                             Background="{DynamicResource bg-200}"
                             CornerRadius="15" />
                 </Grid>
@@ -116,12 +124,12 @@
 
             </Grid>
 
-            <Grid Grid.Row="1"
+            <Grid Grid.Row="2"
                   Grid.Column="0"
                   Grid.ColumnSpan="2"
                   Height="120">
 
-                <Border Margin="5"
+                <Border Margin="5,10,5,0"
                         Background="{DynamicResource bg-200}"
                         CornerRadius="15" />
             </Grid>

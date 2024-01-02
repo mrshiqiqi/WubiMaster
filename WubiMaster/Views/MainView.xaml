@@ -116,7 +116,7 @@
 
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="190" />
+                    <ColumnDefinition Width="220" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
@@ -161,7 +161,7 @@
 
                     <Border Background="{DynamicResource bg-100}" CornerRadius="10">
 
-                        <Grid>
+                        <Grid Margin="15,0">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="*" />
@@ -174,15 +174,13 @@
                                         Height="60"
                                         HorizontalAlignment="Center"
                                         VerticalAlignment="Top"
-                                        Background="{DynamicResource bg-100}"
-                                        CornerRadius="25">
+                                        Background="{DynamicResource bg-200}"
+                                        CornerRadius="22">
 
-                                    <TextBlock HorizontalAlignment="Center"
-                                               VerticalAlignment="Center"
-                                               FontFamily="../Fonts/#iconfont"
-                                               FontSize="35"
-                                               Foreground="{DynamicResource primary-200}"
-                                               Text="&#xe600;" />
+                                    <Viewbox Margin="10">
+                                        <c:LogoControl IconColor="{DynamicResource primary-100}" />
+                                    </Viewbox>
+
                                 </Border>
 
                                 <TextBlock Margin="0,5,0,0"
@@ -191,6 +189,14 @@
                                            FontSize="15"
                                            Foreground="{DynamicResource text-100}"
                                            Text="Rime Tool" />
+
+                                <TextBlock Margin="0,5,0,0"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Bottom"
+                                           FontSize="12"
+                                           Foreground="{DynamicResource text-200}"
+                                           Text="for 五笔" />
+
                             </StackPanel>
 
                             <StackPanel Grid.Row="1"
@@ -228,6 +234,12 @@
                                              Style="{StaticResource NavButtonStyle}"
                                              Text="云同步" />
 
+                                <c:NavButton IconText="&#xe654;"
+                                             NavCommand="{Binding ChangePageCommand}"
+                                             NavName="Etymon"
+                                             Style="{StaticResource NavButtonStyle}"
+                                             Text="主题" />
+
                                 <c:NavButton IconText="&#xe8b8;"
                                              NavCommand="{Binding ChangePageCommand}"
                                              NavName="Settings"
@@ -235,9 +247,9 @@
                                              Text="设置" />
 
                                 <c:NavButton Margin="0,100,0,0"
-                                             IconText="&#xe8b8;"
-                                             NavCommand="{Binding ChangePageCommand}"
-                                             NavName="Settings"
+                                             IconText="&#xe97f;"
+                                             NavCommand="{Binding CloseCommand}"
+                                             NavName="Close"
                                              Style="{StaticResource NavButtonStyle}"
                                              Text="退出" />
 
@@ -245,7 +257,7 @@
                         </Grid>
                     </Border>
 
-                    <Border Width="2"
+                    <Border Width="1"
                             Margin="0,30"
                             HorizontalAlignment="Right"
                             VerticalAlignment="Stretch"

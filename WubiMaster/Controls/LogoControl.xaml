@@ -4,13 +4,24 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:WubiMaster.Controls"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             Name="logo_control"
              d:DesignHeight="400"
              d:DesignWidth="400"
              mc:Ignorable="d">
 
     <Grid>
 
-        <Path Stroke="White" StrokeThickness="30">
+        <Line Panel.ZIndex="100"
+              Stroke="{Binding ElementName=logo_control, Path=IconColor}"
+              StrokeEndLineCap="Flat"
+              StrokeStartLineCap="Round"
+              StrokeThickness="40"
+              X1="20"
+              X2="20"
+              Y1="50"
+              Y2="100" />
+
+        <Path Stroke="{Binding ElementName=logo_control, Path=IconColor}" StrokeThickness="40">
             <Path.Data>
                 <PathGeometry>
                     <PathFigure IsClosed="False" StartPoint="20, 50">
@@ -25,26 +36,32 @@
             </Path.Data>
         </Path>
 
-        <Path Stroke="White" StrokeThickness="30">
-            <Path.Data>
-                <PathGeometry>
-                    <PathFigure IsClosed="False" StartPoint="200, 10">
+        <Line Panel.ZIndex="100"
+              Stroke="{Binding ElementName=logo_control, Path=IconColor}"
+              StrokeEndLineCap="Round"
+              StrokeStartLineCap="Flat"
+              StrokeThickness="40"
+              X1="380"
+              X2="380"
+              Y1="100"
+              Y2="50" />
 
-                        <LineSegment Point="200, 380" />
-                    </PathFigure>
-                </PathGeometry>
-            </Path.Data>
-        </Path>
+        <Line Stroke="{Binding ElementName=logo_control, Path=IconColor}"
+              StrokeEndLineCap="Flat"
+              StrokeStartLineCap="Round"
+              StrokeThickness="40"
+              X1="200"
+              X2="200"
+              Y1="20"
+              Y2="380" />
 
-        <Path Stroke="White" StrokeThickness="30">
-            <Path.Data>
-                <PathGeometry>
-                    <PathFigure IsClosed="False" StartPoint="10, 380">
-
-                        <LineSegment Point="390, 380" />
-                    </PathFigure>
-                </PathGeometry>
-            </Path.Data>
-        </Path>
+        <Line Stroke="{Binding ElementName=logo_control, Path=IconColor}"
+              StrokeEndLineCap="Round"
+              StrokeStartLineCap="Round"
+              StrokeThickness="40"
+              X1="20"
+              X2="380"
+              Y1="380"
+              Y2="380" />
     </Grid>
 </UserControl>

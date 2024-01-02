@@ -1,28 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace WubiMaster.Controls
 {
-    /// <summary>
-    /// LogoControl.xaml 的交互逻辑
-    /// </summary>
     public partial class LogoControl : UserControl
     {
         public LogoControl()
         {
             InitializeComponent();
         }
+
+        public Brush IconColor
+        {
+            get { return (Brush)GetValue(IconColorProperty); }
+            set { SetValue(IconColorProperty, value); }
+        }
+
+        public static readonly DependencyProperty IconColorProperty =
+            DependencyProperty.Register("IconColor", typeof(Brush), typeof(LogoControl));
     }
 }
