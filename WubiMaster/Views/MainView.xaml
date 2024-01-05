@@ -170,12 +170,7 @@
                             <!--Logo Icon-->
                             <StackPanel Grid.Row="0" Margin="0,30,0,0">
 
-                                <Border Width="55"
-                                        Height="60"
-                                        HorizontalAlignment="Center"
-                                        VerticalAlignment="Top"
-                                        Background="{DynamicResource bg-200}"
-                                        CornerRadius="22">
+                                <Border Style="{StaticResource LogoStyle}">
 
                                     <Viewbox Margin="10">
                                         <c:LogoControl IconColor="{DynamicResource primary-100}" />

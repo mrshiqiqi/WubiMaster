@@ -8,6 +8,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Themes/GoldDarkTheme.xaml" />
 
+                <ResourceDictionary Source="/Styles/MainViewStyle.xaml" />
                 <ResourceDictionary Source="/Styles/CommonStyle.xaml" />
                 <ResourceDictionary Source="/Styles/PageStyle.xaml" />
                 <ResourceDictionary Source="/Styles/NavButtonStyle.xaml" />

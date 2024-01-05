@@ -1,6 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using CommunityToolkit.Mvvm.Messaging;
 using CommunityToolkit.Mvvm.Messaging.Messages;
 using System;
 using System.Collections.Generic;
@@ -14,10 +13,24 @@ namespace WubiMaster.ViewModels
     {
         [ObservableProperty]
         public object currentView;
-        [ObservableProperty]
-        public string pageTitle;
+
         [ObservableProperty]
         public Visibility maskLayerVisable = Visibility.Collapsed;
+
+        [ObservableProperty]
+        public string pageTitle;
+
+        private string darkBlueThemePack = "pack://application:,,,/WubiMaster;component/Themes/DarkBlueTheme.xaml";
+
+        private string darkYellowThemePack = "pack://application:,,,/WubiMaster;component/Themes/DarkYellowTheme.xaml";
+
+        private string goldDarkThemePack = "pack://application:,,,/WubiMaster;component/Themes/GoldDarkTheme.xaml";
+
+        private string lightBlackThemePack = "pack://application:,,,/WubiMaster;component/Themes/LightBlackTheme.xaml";
+
+        private string lightBrownThemePack = "pack://application:,,,/WubiMaster;component/Themes/LightBrownTheme.xaml";
+
+        private string lightGreenThemePack = "pack://application:,,,/WubiMaster;component/Themes/LightGreenTheme.xaml";
 
         public MainViewModel()
         {
@@ -28,12 +41,7 @@ namespace WubiMaster.ViewModels
             Messenger.Register<MainViewModel, ValueChangedMessage<bool>, string>(this, "ShowMaskLayer", ShowMaskLayer);
         }
 
-        [RelayCommand]
-        public async void LoadedWindow()
-        {
-            await Task.Delay(500);
-            ChangePage("Home");
-        }
+        public Dictionary<string, object> pageDict { get; set; }
 
         [RelayCommand]
         public void ChangePage(object pageName)
@@ -98,6 +106,19 @@ namespace WubiMaster.ViewModels
         }
 
         [RelayCommand]
+        public void Close(object obj)
+        {
+            App.Current.MainWindow.Close();
+        }
+
+        [RelayCommand]
+        public async void LoadedWindow()
+        {
+            await Task.Delay(500);
+            ChangePage("Home");
+        }
+
+        [RelayCommand]
         public void SetTheme(object themeName)
         {
             switch (themeName.ToString())
@@ -127,12 +148,6 @@ namespace WubiMaster.ViewModels
             }
         }
 
-        [RelayCommand]
-        public void Close(object obj)
-        {
-            App.Current.MainWindow.Close();
-        }
-
         private void ShowMaskLayer(MainViewModel vm, ValueChangedMessage<bool> vcm)
         {
             bool isShow = vcm.Value;
@@ -142,14 +157,5 @@ namespace WubiMaster.ViewModels
             else
                 MaskLayerVisable = Visibility.Collapsed;
         }
-
-        private string goldDarkThemePack = "pack://application:,,,/WubiMaster;component/Themes/GoldDarkTheme.xaml";
-        private string darkYellowThemePack = "pack://application:,,,/WubiMaster;component/Themes/DarkYellowTheme.xaml";
-        private string darkBlueThemePack = "pack://application:,,,/WubiMaster;component/Themes/DarkBlueTheme.xaml";
-        private string lightBrownThemePack = "pack://application:,,,/WubiMaster;component/Themes/LightBrownTheme.xaml";
-        private string lightBlackThemePack = "pack://application:,,,/WubiMaster;component/Themes/LightBlackTheme.xaml";
-        private string lightGreenThemePack = "pack://application:,,,/WubiMaster;component/Themes/LightGreenTheme.xaml";
-
-        public Dictionary<string, object> pageDict { get; set; }
     }
 }
