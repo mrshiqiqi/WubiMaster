@@ -24,4 +24,14 @@
     <SolidColorBrush x:Key="bg-200" Color="#2d2d2d" />
     <SolidColorBrush x:Key="bg-300" Color="#454545" />
 
+    <Color x:Key="primary-1000">#FFD700</Color>
+    <Color x:Key="primary-2000">#ddb900</Color>
+    <Color x:Key="primary-3000">#917800</Color>
+    <Color x:Key="accent-1000">#c49216</Color>
+    <Color x:Key="accent-2000">#5e3b00</Color>
+    <Color x:Key="text-1000">#dcdcdc</Color>
+    <Color x:Key="text-2000">#929292</Color>
+    <Color x:Key="bg-1000">#1E1E1E</Color>
+    <Color x:Key="bg-2000">#2d2d2d</Color>
+    <Color x:Key="bg-3000">#454545</Color>
 </ResourceDictionary>

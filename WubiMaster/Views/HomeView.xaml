@@ -55,11 +55,10 @@
 
                 <Border Margin="5,5,10,10" CornerRadius="15">
                     <Border.Background>
-                        <LinearGradientBrush>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
                             <LinearGradientBrush.GradientStops>
-                                <GradientStop Offset="0" Color="#FFD700" />
-                                <GradientStop Offset="0.5" Color="#ddb900" />
-                                <GradientStop Offset="1" Color="#917800" />
+                                <GradientStop Offset="0" Color="{DynamicResource primary-1000}" />
+                                <GradientStop Offset="1" Color="{DynamicResource primary-3000}" />
                             </LinearGradientBrush.GradientStops>
                         </LinearGradientBrush>
                     </Border.Background>

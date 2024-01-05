@@ -52,7 +52,11 @@
                                     VerticalAlignment="Center"
                                     Background="{DynamicResource primary-100}"
                                     CornerRadius="0 4 4 0"
-                                    Visibility="Collapsed" />
+                                    Visibility="Collapsed">
+                                <Border.RenderTransform>
+                                    <TranslateTransform />
+                                </Border.RenderTransform>
+                            </Border>
                         </Grid>
 
                         <ControlTemplate.Triggers>
@@ -61,6 +65,25 @@
                                 <Setter TargetName="txt_icon" Property="Foreground" Value="{DynamicResource primary-100}" />
                                 <Setter TargetName="bg" Property="Background" Value="{DynamicResource bg-300}" />
                                 <Setter TargetName="txt_content" Property="Foreground" Value="{DynamicResource text-100}" />
+
+                                <Trigger.EnterActions>
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetName="bg"
+                                                             Storyboard.TargetProperty="Opacity"
+                                                             From="0"
+                                                             To="1"
+                                                             Duration="0:0:0.2" />
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </Trigger.EnterActions>
+                            </Trigger>
+
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="txt_icon" Property="Foreground" Value="{DynamicResource primary-100}" />
+                                <Setter TargetName="bg" Property="Background" Value="{DynamicResource bg-300}" />
+                                <Setter TargetName="txt_content" Property="Foreground" Value="{DynamicResource text-100}" />
+                                <Setter TargetName="bd_left" Property="Visibility" Value="Visible" />
                             </Trigger>
 
                             <Trigger Property="IsChecked" Value="True">
@@ -68,6 +91,24 @@
                                 <Setter TargetName="bg" Property="Background" Value="{DynamicResource bg-300}" />
                                 <Setter TargetName="bd_left" Property="Visibility" Value="Visible" />
                                 <Setter TargetName="txt_content" Property="Foreground" Value="{DynamicResource text-100}" />
+
+                                <Trigger.EnterActions>
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetName="bd_left"
+                                                             Storyboard.TargetProperty="RenderTransform.X"
+                                                             From="10"
+                                                             To="0"
+                                                             Duration="0:0:1">
+                                                <DoubleAnimation.EasingFunction>
+                                                    <ElasticEase EasingMode="EaseOut"
+                                                                 Oscillations="5"
+                                                                 Springiness="5" />
+                                                </DoubleAnimation.EasingFunction>
+                                            </DoubleAnimation>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </Trigger.EnterActions>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
