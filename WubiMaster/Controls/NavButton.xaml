@@ -69,9 +69,16 @@
                                 <Trigger.EnterActions>
                                     <BeginStoryboard>
                                         <Storyboard>
+
                                             <DoubleAnimation Storyboard.TargetName="bg"
                                                              Storyboard.TargetProperty="Opacity"
-                                                             From="0"
+                                                             From="0.1"
+                                                             To="1"
+                                                             Duration="0:0:0.2" />
+
+                                            <DoubleAnimation Storyboard.TargetName="txt_icon"
+                                                             Storyboard.TargetProperty="Opacity"
+                                                             From="0.1"
                                                              To="1"
                                                              Duration="0:0:0.2" />
                                         </Storyboard>
