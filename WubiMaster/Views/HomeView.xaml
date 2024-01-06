@@ -55,7 +55,7 @@
 
                 <Border Margin="5,5,10,10" CornerRadius="15">
                     <Border.Background>
-                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                        <LinearGradientBrush Opacity="0.6" StartPoint="0,0" EndPoint="1,1">
                             <LinearGradientBrush.GradientStops>
                                 <GradientStop Offset="0" Color="{DynamicResource primary-1000}" />
                                 <GradientStop Offset="1" Color="{DynamicResource primary-3000}" />

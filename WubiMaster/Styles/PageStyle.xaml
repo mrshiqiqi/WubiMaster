@@ -11,16 +11,17 @@
         <Style.Triggers>
 
             <Trigger Property="Visibility" Value="Collapsed">
-
                 <Setter Property="Opacity" Value="0" />
             </Trigger>
 
             <EventTrigger RoutedEvent="Loaded">
                 <BeginStoryboard>
                     <Storyboard>
+
                         <DoubleAnimation Storyboard.TargetProperty="Opacity"
                                          From="0" To="1"
                                          Duration="0:0:1" />
+
                         <DoubleAnimation DecelerationRatio="0.6"
                                          Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.Y)"
                                          From="50" To="0"
