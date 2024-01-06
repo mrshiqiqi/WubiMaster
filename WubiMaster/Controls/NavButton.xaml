@@ -72,14 +72,12 @@
 
                                             <DoubleAnimation Storyboard.TargetName="bg"
                                                              Storyboard.TargetProperty="Opacity"
-                                                             From="0.1"
-                                                             To="1"
+                                                             From="0.1" To="1"
                                                              Duration="0:0:0.2" />
 
                                             <DoubleAnimation Storyboard.TargetName="txt_icon"
                                                              Storyboard.TargetProperty="Opacity"
-                                                             From="0.1"
-                                                             To="1"
+                                                             From="0.1" To="1"
                                                              Duration="0:0:0.2" />
                                         </Storyboard>
                                     </BeginStoryboard>
@@ -91,6 +89,17 @@
                                 <Setter TargetName="bg" Property="Background" Value="{DynamicResource bg-300}" />
                                 <Setter TargetName="txt_content" Property="Foreground" Value="{DynamicResource text-100}" />
                                 <Setter TargetName="bd_left" Property="Visibility" Value="Visible" />
+
+                                <Trigger.EnterActions>
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetName="bd_left"
+                                                             Storyboard.TargetProperty="Opacity"
+                                                             From="0.1" To="1"
+                                                             Duration="0:0:0.2" />
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </Trigger.EnterActions>
                             </Trigger>
 
                             <Trigger Property="IsChecked" Value="True">
@@ -104,8 +113,7 @@
                                         <Storyboard>
                                             <DoubleAnimation Storyboard.TargetName="bd_left"
                                                              Storyboard.TargetProperty="RenderTransform.X"
-                                                             From="10"
-                                                             To="0"
+                                                             From="10" To="0"
                                                              Duration="0:0:1">
                                                 <DoubleAnimation.EasingFunction>
                                                     <ElasticEase EasingMode="EaseOut"
