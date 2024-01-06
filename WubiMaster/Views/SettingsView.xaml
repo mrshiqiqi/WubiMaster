@@ -40,7 +40,16 @@
                                     SubTitle="设置主题配色">
                         <c:SettingPanel.SettingContent>
                             <StackPanel Orientation="Horizontal">
-                                <ComboBox Width="150" />
+                                <ComboBox Width="150"
+                                          Foreground="White"
+                                          SelectedIndex="0"
+                                          Style="{StaticResource ComboBoxStyle}">
+                                    <ComboBox.Items>
+                                        <TextBlock Text="hello1" />
+                                        <TextBlock Text="hello2" />
+                                        <TextBlock Text="hello3" />
+                                    </ComboBox.Items>
+                                </ComboBox>
                                 <CheckBox Margin="10,0,0,0"
                                           VerticalContentAlignment="Center"
                                           Content="随机主题"
