@@ -9,42 +9,54 @@
              Style="{StaticResource PageStyle}"
              mc:Ignorable="d">
 
-    <UserControl.Resources>
-        <Style x:Key="BorderStyle" TargetType="Border">
-            <Setter Property="Background" Value="Transparent" />
-            <Setter Property="CornerRadius" Value="10" />
-            <Setter Property="Opacity" Value="1" />
-            <Setter Property="Margin" Value="5" />
-
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="{DynamicResource bg-200}" />
-
-                    <Trigger.EnterActions>
-                        <BeginStoryboard>
-                            <Storyboard>
-                                <DoubleAnimation Storyboard.TargetProperty="Opacity"
-                                                 From="0.5" To="1"
-                                                 Duration="0:0:0.2" />
-                            </Storyboard>
-                        </BeginStoryboard>
-                    </Trigger.EnterActions>
-                </Trigger>
-            </Style.Triggers>
-        </Style>
-    </UserControl.Resources>
-
     <Grid>
 
-        <ScrollViewer>
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
 
             <Grid>
 
                 <StackPanel>
 
-                    <c:SettingPanel Title="Hello"
+                    <c:SettingPanel Title="关联用户目录"
                                     IconText="&#xe620;"
-                                    SubTitle="Hello">
+                                    SubTitle="从 Rime 用户目录读取配置文件">
+                        <c:SettingPanel.SettingContent>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBox Width="150" IsReadOnly="True" />
+                                <Button Width="50"
+                                        Margin="10,0,0,0"
+                                        Content="打开" />
+                            </StackPanel>
+                        </c:SettingPanel.SettingContent>
+                    </c:SettingPanel>
+
+                    <c:SettingPanel Title="主题"
+                                    IconText="&#xe654;"
+                                    SubTitle="设置主题配色">
+                        <c:SettingPanel.SettingContent>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBox Width="150" IsReadOnly="True" />
+                                <Button Width="50"
+                                        Margin="10,0,0,0"
+                                        Content="打开" />
+                            </StackPanel>
+                        </c:SettingPanel.SettingContent>
+                    </c:SettingPanel>
+
+                    <c:SettingPanel Title="同步"
+                                    IconText="&#xe647;"
+                                    SubTitle="打开或关闭同步功能">
+                        <c:SettingPanel.SettingContent>
+                            <ToggleButton Width="60"
+                                          HorizontalAlignment="Left"
+                                          VerticalAlignment="Center"
+                                          Content="开" />
+                        </c:SettingPanel.SettingContent>
+                    </c:SettingPanel>
+
+                    <c:SettingPanel Title="自定义词库文件"
+                                    IconText="&#xe610;"
+                                    SubTitle="关联 Rime 扩展词库文件">
                         <c:SettingPanel.SettingContent>
                             <StackPanel Margin="0,4" Orientation="Horizontal">
                                 <TextBox Width="150" IsReadOnly="True" />
@@ -55,326 +67,18 @@
                         </c:SettingPanel.SettingContent>
                     </c:SettingPanel>
 
-                    <Border Style="{StaticResource BorderStyle}">
-                        <Grid Margin="10,5,5,5">
-                            <Grid.RowDefinitions>
-                                <RowDefinition />
-                                <RowDefinition />
-                            </Grid.RowDefinitions>
-
-                            <StackPanel Margin="0,5"
-                                        HorizontalAlignment="Left"
-                                        VerticalAlignment="Center"
-                                        Orientation="Horizontal">
-                                <TextBlock VerticalAlignment="Center"
-                                           FontFamily="../Fonts/#iconfont"
-                                           FontSize="15"
-                                           Foreground="{DynamicResource text-100}"
-                                           Text="&#xe620;" />
-                                <TextBlock Margin="5,0,0,0"
-                                           VerticalAlignment="Center"
-                                           FontSize="15"
-                                           Foreground="{DynamicResource text-100}"
-                                           Text="关联目录:" />
+                    <c:SettingPanel Title="安全密码"
+                                    IconText="&#xe850;"
+                                    SubTitle="设置密码以保护隐私 | 默认没有密码">
+                        <c:SettingPanel.SettingContent>
+                            <StackPanel Orientation="Horizontal">
+                                <PasswordBox Uid="*" Width="150" />
+                                <Button Width="50"
+                                        Margin="10,0,0,0"
+                                        Content="保存" />
                             </StackPanel>
-
-                            <StackPanel Grid.Row="1">
-                                <TextBlock FontSize="14"
-                                           Foreground="{DynamicResource text-200}"
-                                           Text="选择 Rime 的用户目录" />
-                                <StackPanel Margin="0,4" Orientation="Horizontal">
-                                    <TextBox Width="150" IsReadOnly="True" />
-                                    <Button Width="50"
-                                            Margin="10,0,0,0"
-                                            Content="打开" />
-                                </StackPanel>
-                            </StackPanel>
-                        </Grid>
-                    </Border>
-
-                    <Border Style="{StaticResource BorderStyle}">
-                        <Grid Margin="10,5,5,5">
-                            <Grid.RowDefinitions>
-                                <RowDefinition />
-                                <RowDefinition />
-                            </Grid.RowDefinitions>
-
-                            <StackPanel Margin="0,5"
-                                        HorizontalAlignment="Left"
-                                        VerticalAlignment="Center"
-                                        Orientation="Horizontal">
-                                <TextBlock VerticalAlignment="Center"
-                                           FontFamily="../Fonts/#iconfont"
-                                           FontSize="15"
-                                           Foreground="{DynamicResource text-100}"
-                                           Text="&#xe654;" />
-                                <TextBlock Margin="5,0,0,0"
-                                           VerticalAlignment="Center"
-                                           FontSize="15"
-                                           Foreground="{DynamicResource text-100}"
-                                           Text="主题色:" />
-                            </StackPanel>
-
-                            <StackPanel Grid.Row="1">
-                                <TextBlock FontSize="14"
-                                           Foreground="{DynamicResource text-200}"
-                                           Text="选择主题色" />
-                                <StackPanel Margin="0,4" Orientation="Horizontal">
-                                    <ComboBox MinWidth="150" />
-                                    <CheckBox Margin="20,0,0,0"
-                                              VerticalAlignment="Center"
-                                              Content="随机主题"
-                                              Foreground="{DynamicResource text-200}" />
-                                </StackPanel>
-                            </StackPanel>
-                        </Grid>
-                    </Border>
-
-                    <Border Margin="0,5"
-                            Background="{DynamicResource bg-100}"
-                            CornerRadius="10"
-                            Opacity="0.9">
-                        <Grid Margin="10,5,5,5">
-                            <Grid.RowDefinitions>
-                                <RowDefinition />
-                                <RowDefinition />
-                            </Grid.RowDefinitions>
-
-                            <StackPanel Margin="0,5"
-                                        HorizontalAlignment="Left"
-                                        VerticalAlignment="Center"
-                                        Orientation="Horizontal">
-                                <TextBlock VerticalAlignment="Center"
-                                           FontFamily="../Fonts/#iconfont"
-                                           FontSize="15"
-                                           Foreground="{DynamicResource text-100}"
-                                           Text="&#xe654;" />
-                                <TextBlock Margin="5,0,0,0"
-                                           VerticalAlignment="Center"
-                                           FontSize="15"
-                                           Foreground="{DynamicResource text-100}"
-                                           Text="主题色:" />
-                            </StackPanel>
-
-                            <StackPanel Grid.Row="1">
-                                <TextBlock FontSize="14"
-                                           Foreground="{DynamicResource text-200}"
-                                           Text="选择主题色" />
-                                <StackPanel Margin="0,4" Orientation="Horizontal">
-                                    <ComboBox MinWidth="150" />
-                                    <CheckBox Margin="20,0,0,0"
-                                              VerticalAlignment="Center"
-                                              Content="随机主题"
-                                              Foreground="{DynamicResource text-200}" />
-                                </StackPanel>
-                            </StackPanel>
-                        </Grid>
-                    </Border>
-
-                    <Border Margin="0,5"
-                            Background="{DynamicResource bg-100}"
-                            CornerRadius="10"
-                            Opacity="0.9">
-                        <Grid Margin="10,5,5,5">
-                            <Grid.RowDefinitions>
-                                <RowDefinition />
-                                <RowDefinition />
-                            </Grid.RowDefinitions>
-
-                            <StackPanel Margin="0,5"
-                                        HorizontalAlignment="Left"
-                                        VerticalAlignment="Center"
-                                        Orientation="Horizontal">
-                                <TextBlock VerticalAlignment="Center"
-                                           FontFamily="../Fonts/#iconfont"
-                                           FontSize="15"
-                                           Foreground="{DynamicResource text-100}"
-                                           Text="&#xe654;" />
-                                <TextBlock Margin="5,0,0,0"
-                                           VerticalAlignment="Center"
-                                           FontSize="15"
-                                           Foreground="{DynamicResource text-100}"
-                                           Text="主题色:" />
-                            </StackPanel>
-
-                            <StackPanel Grid.Row="1">
-                                <TextBlock FontSize="14"
-                                           Foreground="{DynamicResource text-200}"
-                                           Text="选择主题色" />
-                                <StackPanel Margin="0,4" Orientation="Horizontal">
-                                    <ComboBox MinWidth="150" />
-                                    <CheckBox Margin="20,0,0,0"
-                                              VerticalAlignment="Center"
-                                              Content="随机主题"
-                                              Foreground="{DynamicResource text-200}" />
-                                </StackPanel>
-                            </StackPanel>
-                        </Grid>
-                    </Border>
-
-                    <Border Margin="0,5"
-                            Background="{DynamicResource bg-100}"
-                            CornerRadius="10"
-                            Opacity="0.9">
-                        <Grid Margin="10,5,5,5">
-                            <Grid.RowDefinitions>
-                                <RowDefinition />
-                                <RowDefinition />
-                            </Grid.RowDefinitions>
-
-                            <StackPanel Margin="0,5"
-                                        HorizontalAlignment="Left"
-                                        VerticalAlignment="Center"
-                                        Orientation="Horizontal">
-                                <TextBlock VerticalAlignment="Center"
-                                           FontFamily="../Fonts/#iconfont"
-                                           FontSize="15"
-                                           Foreground="{DynamicResource text-100}"
-                                           Text="&#xe654;" />
-                                <TextBlock Margin="5,0,0,0"
-                                           VerticalAlignment="Center"
-                                           FontSize="15"
-                                           Foreground="{DynamicResource text-100}"
-                                           Text="主题色:" />
-                            </StackPanel>
-
-                            <StackPanel Grid.Row="1">
-                                <TextBlock FontSize="14"
-                                           Foreground="{DynamicResource text-200}"
-                                           Text="选择主题色" />
-                                <StackPanel Margin="0,4" Orientation="Horizontal">
-                                    <ComboBox MinWidth="150" />
-                                    <CheckBox Margin="20,0,0,0"
-                                              VerticalAlignment="Center"
-                                              Content="随机主题"
-                                              Foreground="{DynamicResource text-200}" />
-                                </StackPanel>
-                            </StackPanel>
-                        </Grid>
-                    </Border>
-
-                    <Border Margin="0,5"
-                            Background="{DynamicResource bg-100}"
-                            CornerRadius="10"
-                            Opacity="0.9">
-                        <Grid Margin="10,5,5,5">
-                            <Grid.RowDefinitions>
-                                <RowDefinition />
-                                <RowDefinition />
-                            </Grid.RowDefinitions>
-
-                            <StackPanel Margin="0,5"
-                                        HorizontalAlignment="Left"
-                                        VerticalAlignment="Center"
-                                        Orientation="Horizontal">
-                                <TextBlock VerticalAlignment="Center"
-                                           FontFamily="../Fonts/#iconfont"
-                                           FontSize="15"
-                                           Foreground="{DynamicResource text-100}"
-                                           Text="&#xe654;" />
-                                <TextBlock Margin="5,0,0,0"
-                                           VerticalAlignment="Center"
-                                           FontSize="15"
-                                           Foreground="{DynamicResource text-100}"
-                                           Text="主题色:" />
-                            </StackPanel>
-
-                            <StackPanel Grid.Row="1">
-                                <TextBlock FontSize="14"
-                                           Foreground="{DynamicResource text-200}"
-                                           Text="选择主题色" />
-                                <StackPanel Margin="0,4" Orientation="Horizontal">
-                                    <ComboBox MinWidth="150" />
-                                    <CheckBox Margin="20,0,0,0"
-                                              VerticalAlignment="Center"
-                                              Content="随机主题"
-                                              Foreground="{DynamicResource text-200}" />
-                                </StackPanel>
-                            </StackPanel>
-                        </Grid>
-                    </Border>
-
-                    <Border Margin="0,5"
-                            Background="{DynamicResource bg-100}"
-                            CornerRadius="10"
-                            Opacity="0.9">
-                        <Grid Margin="10,5,5,5">
-                            <Grid.RowDefinitions>
-                                <RowDefinition />
-                                <RowDefinition />
-                            </Grid.RowDefinitions>
-
-                            <StackPanel Margin="0,5"
-                                        HorizontalAlignment="Left"
-                                        VerticalAlignment="Center"
-                                        Orientation="Horizontal">
-                                <TextBlock VerticalAlignment="Center"
-                                           FontFamily="../Fonts/#iconfont"
-                                           FontSize="15"
-                                           Foreground="{DynamicResource text-100}"
-                                           Text="&#xe654;" />
-                                <TextBlock Margin="5,0,0,0"
-                                           VerticalAlignment="Center"
-                                           FontSize="15"
-                                           Foreground="{DynamicResource text-100}"
-                                           Text="主题色:" />
-                            </StackPanel>
-
-                            <StackPanel Grid.Row="1">
-                                <TextBlock FontSize="14"
-                                           Foreground="{DynamicResource text-200}"
-                                           Text="选择主题色" />
-                                <StackPanel Margin="0,4" Orientation="Horizontal">
-                                    <ComboBox MinWidth="150" />
-                                    <CheckBox Margin="20,0,0,0"
-                                              VerticalAlignment="Center"
-                                              Content="随机主题"
-                                              Foreground="{DynamicResource text-200}" />
-                                </StackPanel>
-                            </StackPanel>
-                        </Grid>
-                    </Border>
-
-                    <Border Margin="0,5"
-                            Background="{DynamicResource bg-100}"
-                            CornerRadius="10"
-                            Opacity="0.9">
-                        <Grid Margin="10,5,5,5">
-                            <Grid.RowDefinitions>
-                                <RowDefinition />
-                                <RowDefinition />
-                            </Grid.RowDefinitions>
-
-                            <StackPanel Margin="0,5"
-                                        HorizontalAlignment="Left"
-                                        VerticalAlignment="Center"
-                                        Orientation="Horizontal">
-                                <TextBlock VerticalAlignment="Center"
-                                           FontFamily="../Fonts/#iconfont"
-                                           FontSize="15"
-                                           Foreground="{DynamicResource text-100}"
-                                           Text="&#xe654;" />
-                                <TextBlock Margin="5,0,0,0"
-                                           VerticalAlignment="Center"
-                                           FontSize="15"
-                                           Foreground="{DynamicResource text-100}"
-                                           Text="主题色:" />
-                            </StackPanel>
-
-                            <StackPanel Grid.Row="1">
-                                <TextBlock FontSize="14"
-                                           Foreground="{DynamicResource text-200}"
-                                           Text="选择主题色" />
-                                <StackPanel Margin="0,4" Orientation="Horizontal">
-                                    <ComboBox MinWidth="150" />
-                                    <CheckBox Margin="20,0,0,0"
-                                              VerticalAlignment="Center"
-                                              Content="随机主题"
-                                              Foreground="{DynamicResource text-200}" />
-                                </StackPanel>
-                            </StackPanel>
-                        </Grid>
-                    </Border>
+                        </c:SettingPanel.SettingContent>
+                    </c:SettingPanel>
                 </StackPanel>
             </Grid>
         </ScrollViewer>
