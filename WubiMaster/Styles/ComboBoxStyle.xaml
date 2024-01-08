@@ -63,6 +63,7 @@
                             </ToggleButton>
 
                             <Popup x:Name="popup"
+                                   AllowsTransparency="True"
                                    IsOpen="{TemplateBinding IsDropDownOpen}"
                                    Placement="Bottom"
                                    VerticalOffset="3">
@@ -71,7 +72,7 @@
                                         BorderBrush="{DynamicResource primary-200}"
                                         BorderThickness="1"
                                         CornerRadius="5"
-                                        Opacity="0.7">
+                                        Opacity="0.9">
                                     <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
                                         <StackPanel Margin="3" IsItemsHost="True" />
                                     </ScrollViewer>

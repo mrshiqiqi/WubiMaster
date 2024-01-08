@@ -41,7 +41,7 @@
                                    Margin="5,0,0,0"
                                    HorizontalAlignment="Left"
                                    VerticalAlignment="Center"
-                                   Foreground="White"
+                                   Foreground="{TemplateBinding Foreground}"
                                    Text="{TemplateBinding Content}" />
                     </Grid>
 
