@@ -1,6 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using System.Collections.Generic;
+using System;
 using System.Collections.ObjectModel;
 using System.Windows;
 using WubiMaster.Models;
@@ -19,35 +19,40 @@ namespace WubiMaster.ViewModels
         }
 
         [RelayCommand]
-        public void ChangeTheme(object obj)
+        public void ChangeTheme(string theme)
         {
-            if (obj == null) { return; }
-            MessageBox.Show(obj.ToString());
+            if (theme == null || theme.Length == 0) { return; }
+            try
+            {
+                string pack = $"pack://application:,,,/WubiMaster;component/Themes/{theme}.xaml";
+                ResourceDictionary themeResource = new ResourceDictionary();
+                themeResource.Source = new Uri(pack);
+                Application.Current.Resources.MergedDictionaries[0].Source = themeResource.Source;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }
 
         private void InitThemes()
         {
-            List<string> themeNames = new List<string>()
+            try
             {
-                "Gold Dark",
-                "Light Blue",
-                "Summer Meadow",
-                "Electric City Nights",
-                "Lavendar",
-                "Hacker News",
-                "Navy And Blush",
-                "White Width Blue",
-                "Dark Sage Green",
-                "Spring",
-                "Neon",
-            };
-
-            foreach (var themeName in themeNames)
+                var sourceThemes = new ResourceDictionary();
+                sourceThemes.Source = new Uri("pack://application:,,,/WubiMaster;component/Themes/ThemeNames.xaml");
+                foreach (string name in sourceThemes.Keys)
+                {
+                    string path = sourceThemes[name].ToString();
+                    ThemeModel themeModel = new ThemeModel();
+                    themeModel.Name = name;
+                    themeModel.Value = path;
+                    ThemeList?.Add(themeModel);
+                }
+            }
+            catch (Exception ex)
             {
-                ThemeModel themeModel = new ThemeModel();
-                themeModel.Name = themeName;
-                themeModel.Value = themeName;
-                ThemeList?.Add(themeModel);
+                MessageBox.Show(ex.ToString());
             }
         }
     }
