@@ -1,7 +1,9 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows;
 using WubiMaster.Models;
 
@@ -10,11 +12,11 @@ namespace WubiMaster.ViewModels
     public partial class SettingsViewModel : ObservableRecipient
     {
         [ObservableProperty]
-        public ObservableCollection<ThemeModel> themeList;
+        public List<ThemeModel> themeList;
 
         public SettingsViewModel()
         {
-            themeList = new ObservableCollection<ThemeModel>();
+            themeList = new List<ThemeModel>();
             InitThemes();
         }
 
@@ -39,6 +41,7 @@ namespace WubiMaster.ViewModels
         {
             try
             {
+                ObservableCollection<ThemeModel> themeModels = new ObservableCollection<ThemeModel>();
                 var sourceThemes = new ResourceDictionary();
                 sourceThemes.Source = new Uri("pack://application:,,,/WubiMaster;component/Themes/ThemeNames.xaml");
                 foreach (string name in sourceThemes.Keys)
@@ -47,8 +50,9 @@ namespace WubiMaster.ViewModels
                     ThemeModel themeModel = new ThemeModel();
                     themeModel.Name = name;
                     themeModel.Value = path;
-                    ThemeList?.Add(themeModel);
+                    themeModels?.Add(themeModel);
                 }
+                ThemeList = themeModels.OrderBy(t => t.Name).ToList();
             }
             catch (Exception ex)
             {

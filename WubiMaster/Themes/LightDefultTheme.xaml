@@ -1,0 +1,37 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!--
+        primary-100:#d4eaf7;
+        primary-200:#b6ccd8;
+        primary-300:#3b3c3d;
+        accent-100:#71c4ef;
+        accent-200:#00668c;
+        text-100:#1d1c1c;
+        text-200:#313d44;
+        bg-100:#fffefb;
+        bg-200:#f5f4f1;
+        bg-300:#cccbc8;
+    -->
+
+    <SolidColorBrush x:Key="primary-100" Color="#d4eaf7" />
+    <SolidColorBrush x:Key="primary-200" Color="#b6ccd8" />
+    <SolidColorBrush x:Key="primary-300" Color="#3b3c3d" />
+    <SolidColorBrush x:Key="accent-100" Color="#71c4ef" />
+    <SolidColorBrush x:Key="accent-200" Color="#00668c" />
+    <SolidColorBrush x:Key="text-100" Color="#1d1c1c" />
+    <SolidColorBrush x:Key="text-200" Color="#313d44" />
+    <SolidColorBrush x:Key="bg-100" Color="#fffefb" />
+    <SolidColorBrush x:Key="bg-200" Color="#f5f4f1" />
+    <SolidColorBrush x:Key="bg-300" Color="#cccbc8" />
+
+    <Color x:Key="primary-1000">#d4eaf7</Color>
+    <Color x:Key="primary-2000">#b6ccd8</Color>
+    <Color x:Key="primary-3000">#3b3c3d</Color>
+    <Color x:Key="accent-1000">#71c4ef</Color>
+    <Color x:Key="accent-2000">#00668c</Color>
+    <Color x:Key="text-1000">#1d1c1c</Color>
+    <Color x:Key="text-2000">#313d44</Color>
+    <Color x:Key="bg-1000">#fffefb</Color>
+    <Color x:Key="bg-2000">#f5f4f1</Color>
+    <Color x:Key="bg-3000">#cccbc8</Color>
+</ResourceDictionary>

@@ -72,12 +72,14 @@
 
                                             <DoubleAnimation Storyboard.TargetName="bg"
                                                              Storyboard.TargetProperty="Opacity"
-                                                             From="0.1" To="1"
+                                                             From="0.1"
+                                                             To="1"
                                                              Duration="0:0:0.2" />
 
                                             <DoubleAnimation Storyboard.TargetName="txt_icon"
                                                              Storyboard.TargetProperty="Opacity"
-                                                             From="0.1" To="1"
+                                                             From="0.1"
+                                                             To="1"
                                                              Duration="0:0:0.2" />
                                         </Storyboard>
                                     </BeginStoryboard>
@@ -95,7 +97,8 @@
                                         <Storyboard>
                                             <DoubleAnimation Storyboard.TargetName="bd_left"
                                                              Storyboard.TargetProperty="Opacity"
-                                                             From="0.1" To="1"
+                                                             From="0.1"
+                                                             To="1"
                                                              Duration="0:0:0.2" />
                                         </Storyboard>
                                     </BeginStoryboard>
@@ -113,7 +116,8 @@
                                         <Storyboard>
                                             <DoubleAnimation Storyboard.TargetName="bd_left"
                                                              Storyboard.TargetProperty="RenderTransform.X"
-                                                             From="10" To="0"
+                                                             From="10"
+                                                             To="0"
                                                              Duration="0:0:1">
                                                 <DoubleAnimation.EasingFunction>
                                                     <ElasticEase EasingMode="EaseOut"

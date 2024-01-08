@@ -3,4 +3,6 @@
                     xmlns:sys="clr-namespace:System;assembly=mscorlib">
 
     <sys:String x:Key="GoldDark">GoldDarkTheme</sys:String>
+    <sys:String x:Key="LightDefult">LightDefultTheme</sys:String>
+    <sys:String x:Key="DefultBlue">DefultBlueTheme</sys:String>
 </ResourceDictionary>
