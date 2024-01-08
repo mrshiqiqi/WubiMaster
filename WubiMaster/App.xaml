@@ -19,6 +19,7 @@
                 <ResourceDictionary Source="/Styles/ToggleButtonStyle.xaml" />
                 <ResourceDictionary Source="/Styles/CheckBoxStyle.xaml" />
                 <ResourceDictionary Source="/Styles/ComboBoxStyle.xaml" />
+                <ResourceDictionary Source="/Styles/ScrollViewerStyle.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

@@ -7,6 +7,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="clr-namespace:WubiMaster.ViewModels"
              x:Name="settings_view"
+             d:Background="{DynamicResource bg-100}"
              d:DesignHeight="450"
              d:DesignWidth="800"
              Style="{StaticResource PageStyle}"
@@ -18,7 +19,9 @@
 
     <Grid>
 
-        <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <ScrollViewer Padding="0,0,15,0"
+                      Style="{StaticResource ScrollViewerStyle}"
+                      VerticalScrollBarVisibility="Auto">
 
             <Grid>
 
@@ -27,6 +30,19 @@
                     <c:SettingPanel Title="关联用户目录"
                                     IconText="&#xe620;"
                                     SubTitle="从 Rime 用户目录读取配置文件">
+                        <c:SettingPanel.SettingContent>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBox Width="150" IsReadOnly="True" />
+                                <Button Width="50"
+                                        Margin="10,0,0,0"
+                                        Content="打开" />
+                            </StackPanel>
+                        </c:SettingPanel.SettingContent>
+                    </c:SettingPanel>
+
+                    <c:SettingPanel Title="关联程序目录"
+                                    IconText="&#xe620;"
+                                    SubTitle="从 Rime 程序目录读取配置文件">
                         <c:SettingPanel.SettingContent>
                             <StackPanel Orientation="Horizontal">
                                 <TextBox Width="150" IsReadOnly="True" />
@@ -100,6 +116,44 @@
                                 <Button Width="50"
                                         Margin="10,0,0,0"
                                         Content="保存" />
+                            </StackPanel>
+                        </c:SettingPanel.SettingContent>
+                    </c:SettingPanel>
+
+                    <c:SettingPanel Title="首页快速查询"
+                                    IconText="&#xe850;"
+                                    SubTitle="选择首页字根快速查询版本">
+                        <c:SettingPanel.SettingContent>
+                            <StackPanel Orientation="Horizontal">
+                                <CheckBox Content="86" />
+                                <CheckBox Content="98" />
+                                <CheckBox Content="新世纪" />
+                            </StackPanel>
+                        </c:SettingPanel.SettingContent>
+                    </c:SettingPanel>
+
+                    <c:SettingPanel Title="导出词库"
+                                    IconText="&#xe620;"
+                                    SubTitle="从 Rime 用户目录读取配置文件">
+                        <c:SettingPanel.SettingContent>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBox Width="150" IsReadOnly="True" />
+                                <Button Width="50"
+                                        Margin="10,0,0,0"
+                                        Content="打开" />
+                            </StackPanel>
+                        </c:SettingPanel.SettingContent>
+                    </c:SettingPanel>
+
+                    <c:SettingPanel Title="导入词库"
+                                    IconText="&#xe620;"
+                                    SubTitle="从 Rime 用户目录读取配置文件">
+                        <c:SettingPanel.SettingContent>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBox Width="150" IsReadOnly="True" />
+                                <Button Width="50"
+                                        Margin="10,0,0,0"
+                                        Content="打开" />
                             </StackPanel>
                         </c:SettingPanel.SettingContent>
                     </c:SettingPanel>
