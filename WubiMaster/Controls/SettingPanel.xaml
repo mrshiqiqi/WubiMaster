@@ -41,7 +41,7 @@
                                                    VerticalAlignment="Center"
                                                    FontFamily="../Fonts/#iconfont"
                                                    FontSize="18"
-                                                   Foreground="{DynamicResource accent-100}"
+                                                   Foreground="{DynamicResource primary-200}"
                                                    Text="{Binding ElementName=setting_panel, Path=IconText}" />
 
                                         <TextBlock Margin="5,0,0,0"

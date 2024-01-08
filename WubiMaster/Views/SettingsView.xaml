@@ -20,6 +20,7 @@
     <Grid>
 
         <ScrollViewer Padding="0,0,15,0"
+                      HorizontalScrollBarVisibility="Visible"
                       Style="{StaticResource ScrollViewerStyle}"
                       VerticalScrollBarVisibility="Auto">
 

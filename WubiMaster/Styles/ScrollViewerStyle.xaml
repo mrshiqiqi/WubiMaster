@@ -59,7 +59,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type RepeatButton}">
                     <Rectangle Width="0" Height="0"
-                               Fill="#90000000" />
+                               Fill="{DynamicResource primary-200}" />
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
