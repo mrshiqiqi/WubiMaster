@@ -8,7 +8,6 @@
              xmlns:vm="clr-namespace:WubiMaster.ViewModels"
              x:Name="settings_view"
              d:Background="{DynamicResource bg-100}"
-             d:DesignHeight="450"
              d:DesignWidth="800"
              Style="{StaticResource PageStyle}"
              mc:Ignorable="d">
@@ -101,10 +100,7 @@
                                     IconText="&#xe647;"
                                     SubTitle="打开或关闭同步功能">
                         <c:SettingPanel.SettingContent>
-                            <ToggleButton Width="60"
-                                          HorizontalAlignment="Left"
-                                          VerticalAlignment="Center"
-                                          Content="开" />
+                            <ToggleButton HorizontalAlignment="Left" VerticalAlignment="Center" />
                         </c:SettingPanel.SettingContent>
                     </c:SettingPanel>
 

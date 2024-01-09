@@ -3,6 +3,7 @@
     <Style BasedOn="{StaticResource ButtonStyle}" TargetType="Button" />
     <Style BasedOn="{StaticResource ComboBoxStyle}" TargetType="ComboBox" />
     <Style BasedOn="{StaticResource TextBoxStyle}" TargetType="TextBox" />
+    <Style BasedOn="{StaticResource ToggleButtonStyle}" TargetType="ToggleButton" />
     <Style BasedOn="{StaticResource ScrollBarStyle}" TargetType="ScrollBar" />
     <Style BasedOn="{StaticResource ScrollViewerStyle}" TargetType="ScrollViewer" />
     <!--
