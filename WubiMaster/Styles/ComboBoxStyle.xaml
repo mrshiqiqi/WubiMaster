@@ -66,6 +66,7 @@
                                    AllowsTransparency="True"
                                    IsOpen="{TemplateBinding IsDropDownOpen}"
                                    Placement="Bottom"
+                                   PopupAnimation="Slide"
                                    VerticalOffset="3">
                                 <Border Width="{TemplateBinding Width}"
                                         Background="{DynamicResource bg-300}"
