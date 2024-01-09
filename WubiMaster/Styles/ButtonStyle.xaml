@@ -3,21 +3,41 @@
     <Style x:Key="ButtonStyle" TargetType="Button">
         <Setter Property="HorizontalAlignment" Value="Stretch" />
         <Setter Property="VerticalAlignment" Value="Stretch" />
-        <Setter Property="Foreground" Value="{DynamicResource primary-100}" />
+        <Setter Property="MinWidth" Value="55" />
+        <Setter Property="Background" Value="{DynamicResource primary-300}" />
+        <Setter Property="Foreground" Value="{DynamicResource text-100}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource primary-100}" />
+        <Setter Property="BorderThickness" Value="0" />
         <Setter Property="FontSize" Value="10" />
 
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
-                    <Border Background="{DynamicResource bg-300}"
-                            BorderBrush="{DynamicResource bg-200}"
-                            BorderThickness="1"
+
+                    <Border x:Name="border"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
                             CornerRadius="5">
 
                         <ContentPresenter HorizontalAlignment="Center"
                                           VerticalAlignment="Center"
                                           Content="{TemplateBinding Content}" />
                     </Border>
+
+                    <ControlTemplate.Triggers>
+
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="border" Property="Background" Value="{DynamicResource bg-300}" />
+                        </Trigger>
+
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="border" Property="Background" Value="{DynamicResource primary-200}" />
+                        </Trigger>
+
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="border" Property="Opacity" Value="0.8" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
