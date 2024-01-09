@@ -28,14 +28,14 @@
 
     <Border Background="{DynamicResource bg-100}"
             BorderBrush="{DynamicResource bg-300}"
-            BorderThickness="1"
+            BorderThickness="2"
             CornerRadius="15"
             MouseDown="Border_MouseDown"
             MouseLeftButtonDown="Border_MouseLeftButtonDown"
             SnapsToDevicePixels="True"
             UseLayoutRounding="True">
 
-        <Grid>
+        <Grid Margin="2">
 
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -50,6 +50,7 @@
                 <!--Title Bar-->
                 <Border Grid.ColumnSpan="2"
                         Height="30"
+                        Margin="-2,-2,-2,0"
                         VerticalAlignment="Top"
                         Panel.ZIndex="100"
                         Background="{DynamicResource bg-300}"

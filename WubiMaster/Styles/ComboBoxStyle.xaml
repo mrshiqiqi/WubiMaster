@@ -35,7 +35,9 @@
                             Background="Transparent"
                             BorderBrush="{DynamicResource primary-200}"
                             BorderThickness="1"
-                            CornerRadius="5">
+                            CornerRadius="5"
+                            SnapsToDevicePixels="True">
+
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition />
@@ -66,14 +68,18 @@
                                    AllowsTransparency="True"
                                    IsOpen="{TemplateBinding IsDropDownOpen}"
                                    Placement="Bottom"
+                                   PlacementTarget="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Border, AncestorLevel=1}}"
                                    PopupAnimation="Slide"
                                    VerticalOffset="3">
+
                                 <Border Width="{TemplateBinding Width}"
                                         Background="{DynamicResource bg-300}"
                                         BorderBrush="{DynamicResource primary-200}"
                                         BorderThickness="1"
                                         CornerRadius="5"
-                                        Opacity="0.9">
+                                        Opacity="0.9"
+                                        SnapsToDevicePixels="True">
+
                                     <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
                                         <StackPanel Margin="3" IsItemsHost="True" />
                                     </ScrollViewer>

@@ -8,7 +8,7 @@
                 <ControlTemplate TargetType="{x:Type Thumb}">
                     <Grid>
                         <!--滚动条颜色-->
-                        <Border Background="{DynamicResource primary-200}" CornerRadius="3" />
+                        <Border Background="{DynamicResource primary-200}" CornerRadius="5" />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
