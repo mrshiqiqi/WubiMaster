@@ -33,7 +33,7 @@
                                     SubTitle="从 Rime 用户目录读取配置文件">
                         <c:SettingPanel.SettingContent>
                             <StackPanel Orientation="Horizontal">
-                                <TextBox Width="150" IsReadOnly="True" />
+                                <TextBox Width="150" Text="Hello" />
                                 <Button Width="50"
                                         Margin="10,0,0,0"
                                         Content="打开" />
@@ -160,6 +160,32 @@
                     </c:SettingPanel>
 
                     <c:SettingPanel Title="导入词库"
+                                    IconText="&#xe620;"
+                                    SubTitle="从 Rime 用户目录读取配置文件">
+                        <c:SettingPanel.SettingContent>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBox Width="150" IsReadOnly="True" />
+                                <Button Width="50"
+                                        Margin="10,0,0,0"
+                                        Content="打开" />
+                            </StackPanel>
+                        </c:SettingPanel.SettingContent>
+                    </c:SettingPanel>
+
+                    <c:SettingPanel Title="方案备份"
+                                    IconText="&#xe620;"
+                                    SubTitle="从 Rime 用户目录读取配置文件">
+                        <c:SettingPanel.SettingContent>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBox Width="150" IsReadOnly="True" />
+                                <Button Width="50"
+                                        Margin="10,0,0,0"
+                                        Content="打开" />
+                            </StackPanel>
+                        </c:SettingPanel.SettingContent>
+                    </c:SettingPanel>
+
+                    <c:SettingPanel Title="配置备份"
                                     IconText="&#xe620;"
                                     SubTitle="从 Rime 用户目录读取配置文件">
                         <c:SettingPanel.SettingContent>

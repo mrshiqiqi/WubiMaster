@@ -1,5 +1,10 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
+    <Style BasedOn="{StaticResource ButtonStyle}" TargetType="Button" />
+    <Style BasedOn="{StaticResource ComboBoxStyle}" TargetType="ComboBox" />
+    <Style BasedOn="{StaticResource TextBoxStyle}" TargetType="TextBox" />
+    <Style BasedOn="{StaticResource ScrollBarStyle}" TargetType="ScrollBar" />
+    <Style BasedOn="{StaticResource ScrollViewerStyle}" TargetType="ScrollViewer" />
     <!--
         鼠标移动到元素上时，元素以动画的方式放大
         鼠标离开元素时，元素以动画的方式缩小

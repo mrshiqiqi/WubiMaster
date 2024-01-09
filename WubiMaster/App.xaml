@@ -5,10 +5,9 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/Themes/GoldDarkTheme.xaml" />
+                <ResourceDictionary Source="/Themes/DefultBlueTheme.xaml" />
 
                 <ResourceDictionary Source="/Styles/MainViewStyle.xaml" />
-                <ResourceDictionary Source="/Styles/CommonStyle.xaml" />
                 <ResourceDictionary Source="/Styles/PageStyle.xaml" />
                 <ResourceDictionary Source="/Styles/NavButtonStyle.xaml" />
                 <ResourceDictionary Source="/Styles/CloseButtonStyle.xaml" />
@@ -20,6 +19,9 @@
                 <ResourceDictionary Source="/Styles/CheckBoxStyle.xaml" />
                 <ResourceDictionary Source="/Styles/ComboBoxStyle.xaml" />
                 <ResourceDictionary Source="/Styles/ScrollViewerStyle.xaml" />
+                <ResourceDictionary Source="/Styles/ButtonStyle.xaml" />
+                <ResourceDictionary Source="/Styles/TextBoxStyle.xaml" />
+                <ResourceDictionary Source="/Styles/CommonStyle.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

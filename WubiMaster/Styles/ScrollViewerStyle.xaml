@@ -240,6 +240,4 @@
         </Setter>
     </Style>
 
-    <!--<Style BasedOn="{StaticResource ScrollBarStyle}" TargetType="ScrollBar" />
-    <Style BasedOn="{StaticResource ScrollViewerStyle}" TargetType="ScrollViewer" />-->
 </ResourceDictionary>
