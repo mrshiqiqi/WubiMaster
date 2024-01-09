@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows;
+using WubiMaster.Common;
 using WubiMaster.Views;
 
 namespace WubiMaster.ViewModels
@@ -28,6 +29,7 @@ namespace WubiMaster.ViewModels
             Messenger.Register<MainViewModel, ValueChangedMessage<bool>, string>(this, "ShowMaskLayer", ShowMaskLayer);
 
             SetDefultTheme();
+            MessageBox.Show(NongliHelper.GetYear(DateTime.Now));
         }
 
         private Dictionary<string, object> pageDict { get; set; }
