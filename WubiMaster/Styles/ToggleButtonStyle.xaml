@@ -6,7 +6,7 @@
     <sys:String x:Key="CloseStr">关</sys:String>
 
     <Style x:Key="ToggleButtonStyle" TargetType="ToggleButton">
-        <Setter Property="Background" Value="{DynamicResource primary-200}" />
+        <Setter Property="Background" Value="{DynamicResource primary-100}" />
         <Setter Property="BorderBrush" Value="{DynamicResource primary-100}" />
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="Foreground" Value="{DynamicResource text-100}" />
@@ -38,7 +38,7 @@
                                      Height="18"
                                      HorizontalAlignment="Left"
                                      VerticalAlignment="Center"
-                                     Fill="{DynamicResource primary-300}" />
+                                     Fill="{DynamicResource primary-200}" />
 
                             <TextBlock x:Name="text"
                                        HorizontalAlignment="Center"

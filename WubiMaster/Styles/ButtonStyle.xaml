@@ -4,7 +4,7 @@
         <Setter Property="HorizontalAlignment" Value="Stretch" />
         <Setter Property="VerticalAlignment" Value="Stretch" />
         <Setter Property="MinWidth" Value="55" />
-        <Setter Property="Background" Value="{DynamicResource primary-300}" />
+        <Setter Property="Background" Value="{DynamicResource primary-200}" />
         <Setter Property="Foreground" Value="{DynamicResource text-100}" />
         <Setter Property="BorderBrush" Value="{DynamicResource primary-100}" />
         <Setter Property="BorderThickness" Value="0" />
@@ -31,11 +31,11 @@
                         </Trigger>
 
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter TargetName="border" Property="Background" Value="{DynamicResource primary-200}" />
+                            <Setter TargetName="border" Property="Opacity" Value="0.8" />
                         </Trigger>
 
                         <Trigger Property="IsPressed" Value="True">
-                            <Setter TargetName="border" Property="Opacity" Value="0.8" />
+                            <Setter TargetName="border" Property="Opacity" Value="1" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
