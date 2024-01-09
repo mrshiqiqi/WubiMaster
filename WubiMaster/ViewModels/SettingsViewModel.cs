@@ -14,10 +14,16 @@ namespace WubiMaster.ViewModels
         [ObservableProperty]
         public List<ThemeModel> themeList;
 
+        [ObservableProperty]
+        public int themeIndex;
+
         public SettingsViewModel()
         {
             themeList = new List<ThemeModel>();
             InitThemes();
+
+            var currentTheme = ThemeList.FirstOrDefault(t => t.Name == "DefultBlue");
+            themeIndex = themeList.IndexOf(currentTheme);
         }
 
         [RelayCommand]

@@ -54,6 +54,19 @@
                         </c:SettingPanel.SettingContent>
                     </c:SettingPanel>
 
+                    <c:SettingPanel Title="五笔方案"
+                                    IconText="&#xe620;"
+                                    SubTitle="一键配置五笔方案，包含 86、98及新世纪三个版本">
+                        <c:SettingPanel.SettingContent>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBox Width="150" IsReadOnly="True" />
+                                <Button Width="50"
+                                        Margin="10,0,0,0"
+                                        Content="打开" />
+                            </StackPanel>
+                        </c:SettingPanel.SettingContent>
+                    </c:SettingPanel>
+
                     <c:SettingPanel Title="主题"
                                     IconText="&#xe654;"
                                     SubTitle="设置主题配色">
@@ -65,7 +78,7 @@
                                           DisplayMemberPath="Name"
                                           Foreground="{DynamicResource text-100}"
                                           ItemsSource="{Binding ThemeList}"
-                                          SelectedIndex="0"
+                                          SelectedIndex="{Binding ThemeIndex}"
                                           SelectedValuePath="Value"
                                           Style="{StaticResource ComboBoxStyle}">
                                     <b:Interaction.Triggers>
