@@ -89,9 +89,7 @@
 
                                 <CheckBox Margin="10,0,0,0"
                                           VerticalContentAlignment="Center"
-                                          Content="随机主题"
-                                          Foreground="{DynamicResource text-200}"
-                                          Style="{StaticResource CheckBoxStyle}" />
+                                          Content="随机主题" />
                             </StackPanel>
                         </c:SettingPanel.SettingContent>
                     </c:SettingPanel>
@@ -122,7 +120,7 @@
                                     SubTitle="设置密码以保护隐私 | 默认没有密码">
                         <c:SettingPanel.SettingContent>
                             <StackPanel Orientation="Horizontal">
-                                <PasswordBox Uid="*" Width="150" />
+                                <TextBox Width="150" />
                                 <Button Width="50"
                                         Margin="10,0,0,0"
                                         Content="保存" />
