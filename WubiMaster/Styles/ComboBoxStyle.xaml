@@ -19,6 +19,10 @@
     </ControlTemplate>
 
     <Style x:Key="ComboBoxStyle" TargetType="ComboBox">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderBrush" Value="{DynamicResource primary-200}" />
+        <Setter Property="BorderThickness" Value="2" />
+
         <Setter Property="ItemContainerStyle">
             <Setter.Value>
                 <Style TargetType="ComboBoxItem">
@@ -32,9 +36,9 @@
                 <ControlTemplate TargetType="ComboBox">
 
                     <Border x:Name="border"
-                            Background="Transparent"
-                            BorderBrush="{DynamicResource primary-200}"
-                            BorderThickness="1"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
                             CornerRadius="5"
                             SnapsToDevicePixels="True">
 
@@ -73,11 +77,10 @@
                                    VerticalOffset="3">
 
                                 <Border Width="{TemplateBinding Width}"
-                                        Background="{DynamicResource bg-300}"
+                                        Background="{DynamicResource bg-200}"
                                         BorderBrush="{DynamicResource primary-200}"
-                                        BorderThickness="1"
+                                        BorderThickness="{TemplateBinding BorderThickness}"
                                         CornerRadius="5"
-                                        Opacity="0.9"
                                         SnapsToDevicePixels="True">
 
                                     <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">

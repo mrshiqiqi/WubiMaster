@@ -176,7 +176,7 @@
                         </Grid>
                     </Border>
 
-                    <Border Width="1"
+                    <Border Width="2"
                             Margin="0,30"
                             HorizontalAlignment="Right"
                             VerticalAlignment="Stretch"
