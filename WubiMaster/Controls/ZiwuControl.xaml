@@ -1,0 +1,23 @@
+﻿<UserControl x:Class="WubiMaster.Controls.ZiwuControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:WubiMaster.Controls"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             d:Background="{DynamicResource bg-100}"
+             d:DesignHeight="450"
+             d:DesignWidth="800"
+             mc:Ignorable="d">
+
+    <Grid>
+        <Border Width="150"
+                Height="150"
+                Background="Transparent"
+                BorderBrush="{DynamicResource primary-200}"
+                BorderThickness="2"
+                CornerRadius="150"
+                Opacity="0.5">
+            <TextBlock />
+        </Border>
+    </Grid>
+</UserControl>
