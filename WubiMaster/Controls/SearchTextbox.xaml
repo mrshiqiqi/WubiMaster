@@ -477,10 +477,10 @@
 
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Foreground" Value="{DynamicResource IconColor}"/>
+                    <Setter Property="Foreground" Value="{DynamicResource IconColor}" />
                 </Trigger>
                 <Trigger Property="IsMouseOver" Value="False">
-                    <Setter Property="Foreground" Value="{DynamicResource BackColor}"/>
+                    <Setter Property="Foreground" Value="{DynamicResource BackColor}" />
                 </Trigger>
             </Style.Triggers>
         </Style>
