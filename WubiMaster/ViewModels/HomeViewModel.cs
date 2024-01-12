@@ -12,12 +12,12 @@ using WubiMaster.Views.PopViews;
 
 namespace WubiMaster.ViewModels
 {
-   public partial class HomeViewModel:ObservableObject
+    public partial class HomeViewModel : ObservableObject
     {
 
         public HomeViewModel()
         {
-                
+
         }
 
         [RelayCommand]
