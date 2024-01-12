@@ -16,13 +16,13 @@
             <Setter Property="Margin" Value="0,0,10,0" />
             <Setter Property="HorizontalAlignment" Value="Center" />
             <Setter Property="VerticalAlignment" Value="Center" />
-            <Setter Property="Effect">
+            <!--<Setter Property="Effect">
                 <Setter.Value>
                     <DropShadowEffect BlurRadius="4"
                                       ShadowDepth="2"
                                       Color="Gray" />
                 </Setter.Value>
-            </Setter>
+            </Setter>-->
         </Style>
 
         <Style x:Key="zigen_textblock_style" TargetType="TextBlock">
@@ -41,13 +41,13 @@
             <Setter Property="Margin" Value="10,0,0,0" />
             <Setter Property="HorizontalAlignment" Value="Center" />
             <Setter Property="VerticalAlignment" Value="Center" />
-            <Setter Property="Effect">
+            <!--<Setter Property="Effect">
                 <Setter.Value>
                     <DropShadowEffect BlurRadius="4"
                                       ShadowDepth="2"
                                       Color="Gray" />
                 </Setter.Value>
-            </Setter>
+            </Setter>-->
         </Style>
 
         <Style x:Key="code_textblock_style" TargetType="TextBlock">
