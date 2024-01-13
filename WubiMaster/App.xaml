@@ -21,8 +21,9 @@
                 <ResourceDictionary Source="/Styles/ScrollViewerStyle.xaml" />
                 <ResourceDictionary Source="/Styles/ButtonStyle.xaml" />
                 <ResourceDictionary Source="/Styles/TextBoxStyle.xaml" />
-                <ResourceDictionary Source="/Styles/CommonStyle.xaml" />
+                <ResourceDictionary Source="/Styles/DataGridStyle.xaml" />
                 <ResourceDictionary Source="/Styles/ItemsControlStyle.xaml" />
+                <ResourceDictionary Source="/Styles/CommonStyle.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
