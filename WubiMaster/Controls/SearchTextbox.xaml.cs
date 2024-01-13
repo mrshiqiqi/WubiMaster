@@ -1,28 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace WubiMaster.Controls
 {
-    /// <summary>
-    /// SearchTextbox.xaml 的交互逻辑
-    /// </summary>
     public partial class SearchTextbox : UserControl
     {
+        public static readonly DependencyProperty SecrchContentProperty =
+            DependencyProperty.Register("SecrchContent", typeof(string), typeof(SearchTextbox));
+
         public SearchTextbox()
         {
             InitializeComponent();
+        }
+
+        public string SecrchContent
+        {
+            get { return (string)GetValue(SecrchContentProperty); }
+            set { SetValue(SecrchContentProperty, value); }
         }
     }
 }

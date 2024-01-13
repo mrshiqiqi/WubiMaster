@@ -9,32 +9,16 @@
              Style="{StaticResource PageStyle}"
              mc:Ignorable="d">
     <Grid>
-        <Border Background="{DynamicResource PageColor}" CornerRadius="15" />
 
+        <TextBox Width="150"
+                 Height="40"
+                 Text="Hello" />
         <!--<TextBlock HorizontalAlignment="Center"
                    VerticalAlignment="Center"
                    FontSize="22"
                    Foreground="LightBlue"
                    Text="Test View" />-->
 
-        <Border Height="50"
-                Background="{DynamicResource bg-300}"
-                CornerRadius="10">
-            <TextBlock HorizontalAlignment="Center"
-                       VerticalAlignment="Center"
-                       FontSize="20"
-                       Foreground="{DynamicResource text-100}"
-                       Text="Test" />
 
-            <Border.Style>
-                <Style TargetType="Border">
-                    <Style.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="Red"/>
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-            </Border.Style>
-        </Border>
     </Grid>
 </UserControl>

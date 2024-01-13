@@ -19,10 +19,13 @@
 
                         <Grid>
                             <ScrollViewer x:Name="PART_ContentHost"
+                                          Height="Auto"
                                           Margin="3"
                                           HorizontalAlignment="Stretch"
-                                          VerticalAlignment="Stretch"
-                                          Focusable="False"
+                                          VerticalAlignment="Center"
+                                          HorizontalContentAlignment="Left"
+                                          VerticalContentAlignment="Center"
+                                          Focusable="True"
                                           HorizontalScrollBarVisibility="Hidden"
                                           VerticalScrollBarVisibility="Hidden" />
                         </Grid>

@@ -3,8 +3,7 @@
                     xmlns:c="clr-namespace:WubiMaster.Controls">
 
     <ControlTemplate x:Key="items_control_template" TargetType="ItemsControl">
-        <Border Margin="10"
-                Background="Transparent"
+        <Border Background="Transparent"
                 BorderBrush="Transparent"
                 BorderThickness="1"
                 CornerRadius="20">
@@ -13,21 +12,20 @@
     </ControlTemplate>
 
     <ItemsPanelTemplate x:Key="items_panel_template">
-        <StackPanel Margin="20" Background="Transparent" />
+        <StackPanel />
     </ItemsPanelTemplate>
 
     <DataTemplate x:Key="data_template">
-        <c:ZigenPanel Margin="0,15,0,0" />
+        <c:ZigenPanel Margin="0,0,0,15" />
     </DataTemplate>
 
-    <Style x:Key="ItemsControlPanel" TargetType="ItemsControl">
+    <Style x:Key="ItemsControlStyle" TargetType="ItemsControl">
         <Setter Property="Template" Value="{StaticResource items_control_template}" />
         <Setter Property="ItemsPanel" Value="{StaticResource items_panel_template}" />
         <Setter Property="ItemTemplate" Value="{StaticResource data_template}" />
-        <Setter Property="ItemContainerStyle">
-            <Setter.Value>
-                <Style />
-            </Setter.Value>
-        </Setter>
     </Style>
+
+    <Style x:Key="ZigenItemsControlStyle"
+           BasedOn="{StaticResource ItemsControlStyle}"
+           TargetType="ItemsControl" />
 </ResourceDictionary>

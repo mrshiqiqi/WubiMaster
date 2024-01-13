@@ -18,10 +18,7 @@
 
     <Grid>
 
-        <ScrollViewer Padding="0,0,15,0"
-                      HorizontalScrollBarVisibility="Visible"
-                      Style="{StaticResource ScrollViewerStyle}"
-                      VerticalScrollBarVisibility="Auto">
+        <ScrollViewer>
 
             <Grid>
 
@@ -32,7 +29,9 @@
                                     SubTitle="从 Rime 用户目录读取配置文件">
                         <c:SettingPanel.SettingContent>
                             <StackPanel Orientation="Horizontal">
-                                <TextBox Width="150" Text="Hello" />
+                                <TextBox Width="150"
+                                         VerticalContentAlignment="Center"
+                                         Text="Hello" />
                                 <Button Width="50"
                                         Margin="10,0,0,0"
                                         Content="打开" />
