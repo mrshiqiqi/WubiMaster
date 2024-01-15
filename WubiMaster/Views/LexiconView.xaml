@@ -40,16 +40,16 @@
                         </DataGridCheckBoxColumn.HeaderTemplate>
                     </DataGridCheckBoxColumn>
 
-                    <DataGridTextColumn Width="Auto"
+                    <DataGridTextColumn Width="50"
                                         Binding="{Binding Id}"
                                         Header="ID" />
-                    <DataGridTextColumn Width="Auto"
+                    <DataGridTextColumn Width="100"
                                         Binding="{Binding Code}"
                                         Header="编码" />
                     <DataGridTextColumn Width="*"
                                         Binding="{Binding Worlds}"
                                         Header="词" />
-                    <DataGridTextColumn Width="Auto"
+                    <DataGridTextColumn Width="100"
                                         Binding="{Binding Group}"
                                         Header="分组" />
                     <DataGridTemplateColumn Header="操作">
@@ -57,25 +57,50 @@
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal" TextBlock.FontFamily="../Fonts/#iconfont">
 
-                                    <TextBlock HorizontalAlignment="Center"
-                                               VerticalAlignment="Center"
-                                               Foreground="{DynamicResource text-200}"
-                                               Text="&#xe7c6;" />
+                                    <Border Width="20"
+                                            Height="20 "
+                                            Margin="3,0"
+                                            Background="{DynamicResource accent-100}"
+                                            CornerRadius="10">
+                                        <TextBlock HorizontalAlignment="Center"
+                                                   VerticalAlignment="Center"
+                                                   Foreground="{DynamicResource text-100}"
+                                                   Text="&#xe60e;" />
+                                    </Border>
 
-                                    <TextBlock HorizontalAlignment="Center"
-                                               VerticalAlignment="Center"
-                                               Foreground="{DynamicResource text-200}"
-                                               Text="&#xe7c6;" />
+                                    <Border Width="20"
+                                            Height="20 "
+                                            Margin="3,0"
+                                            Background="Red"
+                                            CornerRadius="10">
+                                        <TextBlock HorizontalAlignment="Center"
+                                                   VerticalAlignment="Center"
+                                                   Foreground="White"
+                                                   Text="&#xe629;" />
+                                    </Border>
 
-                                    <TextBlock HorizontalAlignment="Center"
-                                               VerticalAlignment="Center"
-                                               Foreground="{DynamicResource text-200}"
-                                               Text="&#xe7c6;" />
+                                    <Border Width="20"
+                                            Height="20 "
+                                            Margin="3,0"
+                                            Background="{DynamicResource accent-100}"
+                                            CornerRadius="10">
+                                        <TextBlock HorizontalAlignment="Center"
+                                                   VerticalAlignment="Center"
+                                                   Foreground="{DynamicResource text-200}"
+                                                   Text="&#xe60c;" />
+                                    </Border>
 
-                                    <TextBlock HorizontalAlignment="Center"
-                                               VerticalAlignment="Center"
-                                               Foreground="{DynamicResource text-200}"
-                                               Text="&#xe7c6;" />
+                                    <Border Width="20"
+                                            Height="20 "
+                                            Margin="3,0"
+                                            Background="{DynamicResource accent-100}"
+                                            CornerRadius="10">
+                                        <TextBlock HorizontalAlignment="Center"
+                                                   VerticalAlignment="Center"
+                                                   Foreground="{DynamicResource text-200}"
+                                                   Text="&#xe60d;" />
+                                    </Border>
+
                                 </StackPanel>
 
                             </DataTemplate>
