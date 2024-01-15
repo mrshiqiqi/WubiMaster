@@ -17,7 +17,7 @@ namespace WubiMaster.ViewModels
         public LexiconViewModel()
         {
             ObservableCollection<CikuModel> temp = new ObservableCollection<CikuModel>();
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 100; i++)
             {
                 CikuModel ckModel = new CikuModel();
                 ckModel.Id = i;

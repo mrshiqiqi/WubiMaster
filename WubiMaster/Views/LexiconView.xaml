@@ -27,32 +27,60 @@
         <Grid Grid.Row="1">
 
             <DataGrid x:Name="DataGrid"
-                      Margin="5"
-                      VerticalAlignment="Top"
-                      AlternationCount="2"
-                      AutoGenerateColumns="False"
-                      CanUserAddRows="False"
-                      CanUserReorderColumns="False"
-                      CanUserResizeColumns="False"
-                      CanUserResizeRows="False"
-                      CanUserSortColumns="False"
-                      IsReadOnly="True"
                       ItemsSource="{Binding CikuList}"
-                      RowHeaderWidth="0"
-                      SelectionMode="Single">
+                      Style="{StaticResource DataGridStyle}">
+
                 <DataGrid.Columns>
+
+                    <DataGridCheckBoxColumn ElementStyle="{StaticResource CheckBoxStyle}" Header="C">
+                        <DataGridCheckBoxColumn.HeaderTemplate>
+                            <DataTemplate>
+                                <CheckBox />
+                            </DataTemplate>
+                        </DataGridCheckBoxColumn.HeaderTemplate>
+                    </DataGridCheckBoxColumn>
+
                     <DataGridTextColumn Width="Auto"
                                         Binding="{Binding Id}"
                                         Header="ID" />
                     <DataGridTextColumn Width="Auto"
                                         Binding="{Binding Code}"
                                         Header="编码" />
-                    <DataGridTextColumn Width="120"
+                    <DataGridTextColumn Width="*"
                                         Binding="{Binding Worlds}"
                                         Header="词" />
-                    <DataGridTextColumn Width="130"
+                    <DataGridTextColumn Width="Auto"
                                         Binding="{Binding Group}"
                                         Header="分组" />
+                    <DataGridTemplateColumn Header="操作">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal" TextBlock.FontFamily="../Fonts/#iconfont">
+
+                                    <TextBlock HorizontalAlignment="Center"
+                                               VerticalAlignment="Center"
+                                               Foreground="{DynamicResource text-200}"
+                                               Text="&#xe7c6;" />
+
+                                    <TextBlock HorizontalAlignment="Center"
+                                               VerticalAlignment="Center"
+                                               Foreground="{DynamicResource text-200}"
+                                               Text="&#xe7c6;" />
+
+                                    <TextBlock HorizontalAlignment="Center"
+                                               VerticalAlignment="Center"
+                                               Foreground="{DynamicResource text-200}"
+                                               Text="&#xe7c6;" />
+
+                                    <TextBlock HorizontalAlignment="Center"
+                                               VerticalAlignment="Center"
+                                               Foreground="{DynamicResource text-200}"
+                                               Text="&#xe7c6;" />
+                                </StackPanel>
+
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>
