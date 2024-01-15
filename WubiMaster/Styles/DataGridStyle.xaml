@@ -9,16 +9,8 @@
         <Setter Property="CanUserResizeColumns" Value="false" />
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="BorderBrush" Value="Transparent" />
-        <Setter Property="HorizontalGridLinesBrush">
-            <Setter.Value>
-                <SolidColorBrush Color="{DynamicResource primary-2000}" />
-            </Setter.Value>
-        </Setter>
-        <Setter Property="VerticalGridLinesBrush">
-            <Setter.Value>
-                <SolidColorBrush Color="Transparent" />
-            </Setter.Value>
-        </Setter>
+        <Setter Property="HorizontalGridLinesBrush" Value="Transparent" />
+        <Setter Property="VerticalGridLinesBrush" Value="Transparent" />
     </Style>
 
     <!--标题栏样式-->
@@ -34,24 +26,10 @@
                 <ControlTemplate TargetType="DataGridColumnHeader">
                     <Border x:Name="BackgroundBorder" Width="Auto">
                         <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
 
                             <ContentPresenter Margin="0,0,0,0"
                                               HorizontalAlignment="Center"
                                               VerticalAlignment="Center" />
-
-                            <Path x:Name="SortArrow"
-                                  Grid.Column="2"
-                                  Width="8" Height="6"
-                                  Margin="0,0,50,0"
-                                  VerticalAlignment="Center"
-                                  Data="M0,0 L1,0 0.5,1 z"
-                                  Fill="White"
-                                  RenderTransformOrigin="1,1"
-                                  Stretch="Fill"
-                                  Visibility="Collapsed" />
                         </Grid>
                     </Border>
                 </ControlTemplate>
@@ -66,6 +44,39 @@
         <Setter Property="Height" Value="25" />
         <Setter Property="Foreground" Value="{DynamicResource text-100}" />
         <Setter Property="Height" Value="30" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type DataGridRow}">
+                    <Border x:Name="DGR_Border"
+                            Padding="0,8"
+                            Background="{TemplateBinding Background}"
+                            BorderThickness="0"
+                            CornerRadius="5"
+                            SnapsToDevicePixels="True">
+                        <SelectiveScrollingGrid>
+                            <SelectiveScrollingGrid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </SelectiveScrollingGrid.ColumnDefinitions>
+                            <SelectiveScrollingGrid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="Auto" />
+                            </SelectiveScrollingGrid.RowDefinitions>
+                            <DataGridCellsPresenter Grid.Column="1"
+                                                    ItemsPanel="{TemplateBinding ItemsPanel}"
+                                                    SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                            <DataGridDetailsPresenter Grid.Row="1"
+                                                      Grid.Column="1"
+                                                      SelectiveScrollingGrid.SelectiveScrollingOrientation="{Binding AreRowDetailsFrozen, Converter={x:Static DataGrid.RowDetailsScrollingConverter}, ConverterParameter={x:Static SelectiveScrollingOrientation.Vertical}, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
+                                                      Visibility="{TemplateBinding DetailsVisibility}" />
+                            <DataGridRowHeader Grid.RowSpan="2"
+                                               SelectiveScrollingGrid.SelectiveScrollingOrientation="Vertical"
+                                               Visibility="{Binding HeadersVisibility, Converter={x:Static DataGrid.HeadersVisibilityConverter}, ConverterParameter={x:Static DataGridHeadersVisibility.Row}, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" />
+                        </SelectiveScrollingGrid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
 
         <Style.Triggers>
             <!--隔行换色-->
@@ -78,7 +89,6 @@
 
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter Property="Background" Value="{DynamicResource primary-200}" />
-                <!--<Setter Property="Foreground" Value="White"/>-->
             </Trigger>
 
             <Trigger Property="IsSelected" Value="True">
