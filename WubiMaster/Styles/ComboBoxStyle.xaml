@@ -19,7 +19,7 @@
     </ControlTemplate>
 
     <Style x:Key="ComboBoxStyle" TargetType="ComboBox">
-        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Background" Value="{DynamicResource bg-200}" />
         <Setter Property="BorderBrush" Value="{DynamicResource primary-200}" />
         <Setter Property="BorderThickness" Value="2" />
         <Setter Property="HorizontalContentAlignment" Value="Left" />
@@ -78,14 +78,16 @@
                                    PopupAnimation="Slide"
                                    VerticalOffset="3">
 
-                                <Border Width="{TemplateBinding Width}"
-                                        Background="{DynamicResource bg-200}"
-                                        BorderBrush="{DynamicResource primary-200}"
+                                <Border Width="{Binding ElementName=border, Path=ActualWidth}"
+                                        Background="{TemplateBinding Background}"
+                                        BorderBrush="{TemplateBinding BorderBrush}"
                                         BorderThickness="{TemplateBinding BorderThickness}"
                                         CornerRadius="5"
                                         SnapsToDevicePixels="True">
 
-                                    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                                    <ScrollViewer Padding="0"
+                                                  HorizontalScrollBarVisibility="Hidden"
+                                                  VerticalScrollBarVisibility="Auto">
                                         <StackPanel Margin="3" IsItemsHost="True" />
                                     </ScrollViewer>
                                 </Border>

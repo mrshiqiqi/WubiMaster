@@ -1,0 +1,97 @@
+﻿<UserControl x:Class="WubiMaster.Controls.PagingControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             x:Name="paging_control"
+             d:Background="{DynamicResource bg-100}"
+             d:DesignHeight="450"
+             d:DesignWidth="800"
+             mc:Ignorable="d">
+
+    <UserControl.Resources>
+
+        <Style x:Key="button_sytle" TargetType="Button">
+            <Setter Property="Width" Value="25" />
+            <Setter Property="Height" Value="25" />
+            <Setter Property="FontFamily" Value="../Fonts/#iconfont" />
+            <Setter Property="Foreground" Value="{DynamicResource text-100}" />
+            <Setter Property="Background" Value="{DynamicResource bg-300}" />
+            <Setter Property="Margin" Value="5,0,0,0" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="border"
+                                Background="{TemplateBinding Background}"
+                                CornerRadius="100">
+                            <Viewbox Margin="3">
+                                <ContentPresenter HorizontalAlignment="Center"
+                                                  VerticalAlignment="Center"
+                                                  Content="{TemplateBinding Content}" />
+                            </Viewbox>
+                        </Border>
+
+                        <ControlTemplate.Triggers>
+
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="{DynamicResource primary-200}" />
+                                <Setter TargetName="border" Property="Opacity" Value="0.8" />
+                            </Trigger>
+
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="border" Property="Opacity" Value="1" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Name="text_style" TargetType="TextBlock">
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="FontSize" Value="15" />
+            <Setter Property="Foreground" Value="{DynamicResource text-100}" />
+        </Style>
+    </UserControl.Resources>
+
+    <Grid>
+        <StackPanel HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Orientation="Horizontal">
+
+            <StackPanel Margin="0,0,30,0" Orientation="Horizontal">
+                <TextBlock Margin="0,0,10,0" Text="每页" />
+                <ComboBox Background="{DynamicResource bg-100}"
+                          BorderBrush="{DynamicResource bg-300}"
+                          Foreground="{DynamicResource text-100}"
+                          SelectedIndex="1"
+                          Text="{Binding ElementName=paging_control, Path=CountOfPage, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                    <ComboBoxItem>10</ComboBoxItem>
+                    <ComboBoxItem>20</ComboBoxItem>
+                    <ComboBoxItem>30</ComboBoxItem>
+                    <ComboBoxItem>50</ComboBoxItem>
+                    <ComboBoxItem>80</ComboBoxItem>
+                    <ComboBoxItem>120</ComboBoxItem>
+                </ComboBox>
+                <TextBlock Margin="10,0,0,0" Text="条" />
+            </StackPanel>
+
+            <Button Command="{Binding ElementName=paging_control, Path=FirstPageCommand}"
+                    Content="&#xeb8e;"
+                    Style="{StaticResource button_sytle}" />
+            <Button Command="{Binding ElementName=paging_control, Path=PreviousPageCommand}"
+                    Content="&#xe8ef;"
+                    Style="{StaticResource button_sytle}" />
+            <TextBlock Margin="10,0,0,0" Text="{Binding ElementName=paging_control, Path=PageIndex}" />
+            <TextBlock Text="/" />
+            <TextBlock Margin="0,0,5,0" Text="{Binding ElementName=paging_control, Path=TotalPageCount}" />
+            <Button Command="{Binding ElementName=paging_control, Path=NextPageCommand}"
+                    Content="&#xe8f1;"
+                    Style="{StaticResource button_sytle}" />
+            <Button Command="{Binding ElementName=paging_control, Path=LastPageCommand}"
+                    Content="&#xeb8f;"
+                    Style="{StaticResource button_sytle}" />
+        </StackPanel>
+    </Grid>
+</UserControl>
