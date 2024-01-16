@@ -1,5 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 
 namespace WubiMaster.Controls
@@ -8,6 +7,9 @@ namespace WubiMaster.Controls
     {
         public static readonly DependencyProperty SecrchContentProperty =
             DependencyProperty.Register("SecrchContent", typeof(string), typeof(SearchTextbox));
+
+        public static readonly DependencyProperty WaterMarkTextProperty =
+            DependencyProperty.Register("WaterMarkText", typeof(string), typeof(SearchTextbox));
 
         public SearchTextbox()
         {
@@ -18,6 +20,12 @@ namespace WubiMaster.Controls
         {
             get { return (string)GetValue(SecrchContentProperty); }
             set { SetValue(SecrchContentProperty, value); }
+        }
+
+        public string WaterMarkText
+        {
+            get { return (string)GetValue(WaterMarkTextProperty); }
+            set { SetValue(WaterMarkTextProperty, value); }
         }
     }
 }

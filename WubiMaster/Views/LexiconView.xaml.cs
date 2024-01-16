@@ -15,9 +15,6 @@ using System.Windows.Shapes;
 
 namespace WubiMaster.Views
 {
-    /// <summary>
-    /// LexiconView.xaml 的交互逻辑
-    /// </summary>
     public partial class LexiconView : UserControl
     {
         public LexiconView()

@@ -18,12 +18,51 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
+            <RowDefinition Height="60" />
             <RowDefinition />
             <RowDefinition Height="50" />
         </Grid.RowDefinitions>
 
-        <c:SearchTextbox Width="400" Height="40" />
+        <Grid>
+
+            <StackPanel VerticalAlignment="Top" Orientation="Horizontal">
+                <TextBlock Margin="20,0,5,0"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Center"
+                           FontSize="18"
+                           Foreground="{DynamicResource text-100}"
+                           Text="自造词：" />
+                <Button Width="30"
+                        Height="30"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Content="+"
+                        FontSize="20"
+                        Foreground="{DynamicResource text-100}" />
+
+                <TextBlock Margin="30,0,5,0"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Center"
+                           FontSize="18"
+                           Foreground="{DynamicResource text-100}"
+                           Text="分组：" />
+                <ComboBox Width="150"
+                          Height="35"
+                          Background="{DynamicResource bg-200}"
+                          BorderBrush="{DynamicResource primary-200}">
+                    <ComboBoxItem>全部</ComboBoxItem>
+                    <ComboBoxItem>写作</ComboBoxItem>
+                    <ComboBoxItem>游戏</ComboBoxItem>
+                </ComboBox>
+            </StackPanel>
+
+
+            <c:SearchTextbox Width="200"
+                             Height="40"
+                             HorizontalAlignment="Right"
+                             VerticalAlignment="Top" />
+        </Grid>
+
 
         <Grid Grid.Row="1">
 
