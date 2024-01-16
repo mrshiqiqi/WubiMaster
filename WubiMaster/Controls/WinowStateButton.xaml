@@ -1,0 +1,60 @@
+﻿<UserControl x:Class="WubiMaster.Controls.WinowStateButton"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:WubiMaster.Controls"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             x:Name="window_state_button"
+             d:DesignHeight="50"
+             d:DesignWidth="50"
+             mc:Ignorable="d">
+
+    <UserControl.Resources>
+
+        <Style x:Key="border_style" TargetType="Border">
+            <Setter Property="Background" Value="{Binding ElementName=window_state_button, Path=ButtonBackground}" />
+            <Setter Property="CornerRadius" Value="100" />
+            <Setter Property="TextBlock.FontFamily" Value="../Fonts/#iconfont" />
+            <Setter Property="SnapsToDevicePixels" Value="True" />
+        </Style>
+
+        <Style x:Key="text_style" TargetType="TextBlock">
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="Text" Value="{Binding ElementName=window_state_button, Path=IconContent}" />
+            <Setter Property="Visibility" Value="Collapsed" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="Foreground" Value="{Binding ElementName=window_state_button, Path=IconColor}" />
+        </Style>
+
+        <Style x:Key="button_style" TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="border" Style="{StaticResource border_style}">
+
+                            <Viewbox Margin="3">
+                                <TextBlock x:Name="text_block" Style="{StaticResource text_style}" />
+                            </Viewbox>
+                        </Border>
+
+                        <ControlTemplate.Triggers>
+
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="text_block" Property="Visibility" Value="Visible" />
+                                <Setter TargetName="border" Property="Opacity" Value="0.8" />
+                            </Trigger>
+
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="text_block" Property="Visibility" Value="Visible" />
+                                <Setter TargetName="border" Property="Opacity" Value="1" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+
+    <Button Command="{Binding ElementName=window_state_button, Path=ButtonCommand}" Style="{StaticResource button_style}" />
+</UserControl>

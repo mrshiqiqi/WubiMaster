@@ -61,22 +61,28 @@
                                 VerticalAlignment="Center"
                                 Orientation="Horizontal">
 
-                        <Border Width="12"
-                                Height="12"
-                                Background="Red"
-                                CornerRadius="12" />
+                        <c:WinowStateButton Width="15"
+                                            Height="15"
+                                            ButtonBackground="Red"
+                                            ButtonCommand="{Binding CloseWindowCommand}"
+                                            IconColor="Black"
+                                            IconContent="&#xeca0;" />
 
-                        <Border Width="12"
-                                Height="12"
-                                Margin="5,0,0,0"
-                                Background="{DynamicResource bg-100}"
-                                CornerRadius="12" />
+                        <c:WinowStateButton Width="15"
+                                            Height="15"
+                                            Margin="5,0,0,0"
+                                            ButtonBackground="{DynamicResource bg-100}"
+                                            ButtonCommand="{Binding MaxWindowCommand}"
+                                            IconColor="{DynamicResource text-100}"
+                                            IconContent="&#xe651;" />
 
-                        <Border Width="12"
-                                Height="12"
-                                Margin="5,0,0,0"
-                                Background="{DynamicResource bg-100}"
-                                CornerRadius="12" />
+                        <c:WinowStateButton Width="15"
+                                            Height="15"
+                                            Margin="5,0,0,0"
+                                            ButtonBackground="{DynamicResource bg-100}"
+                                            ButtonCommand="{Binding MinWindowCommand}"
+                                            IconColor="{DynamicResource text-100}"
+                                            IconContent="&#xe650;" />
                     </StackPanel>
                 </Border>
 
@@ -167,7 +173,7 @@
 
                                 <c:NavButton Margin="0,100,0,0"
                                              IconText="&#xe97f;"
-                                             NavCommand="{Binding CloseCommand}"
+                                             NavCommand="{Binding CloseWindowCommand}"
                                              NavName="Close"
                                              Style="{StaticResource NavButtonStyle}"
                                              Text="退出" />

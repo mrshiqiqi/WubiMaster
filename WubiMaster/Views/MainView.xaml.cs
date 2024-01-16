@@ -1,5 +1,4 @@
-﻿using System;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Input;
 
 namespace WubiMaster.Views
@@ -19,37 +18,25 @@ namespace WubiMaster.Views
             }
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
-        }
-
-        private bool isMaximized = false;
-
         private void Border_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             if (e.ClickCount == 2)
             {
-                if (isMaximized)
+                if (App.IsMaximized)
                 {
                     this.WindowState = WindowState.Normal;
                     this.Width = 1000;
                     this.Height = 700;
 
-                    isMaximized = false;
+                    App.IsMaximized = false;
                 }
                 else
                 {
                     this.WindowState = WindowState.Maximized;
 
-                    isMaximized = true;
+                    App.IsMaximized = true;
                 }
             }
-        }
-
-        private void btn_min_Click(object sender, RoutedEventArgs e)
-        {
-            this.WindowState = WindowState.Minimized;
         }
     }
 }

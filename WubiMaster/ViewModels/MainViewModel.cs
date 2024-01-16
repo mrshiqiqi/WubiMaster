@@ -5,7 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows;
-using WubiMaster.Common;
 using WubiMaster.Views;
 
 namespace WubiMaster.ViewModels
@@ -80,7 +79,7 @@ namespace WubiMaster.ViewModels
         }
 
         [RelayCommand]
-        public void Close(object obj)
+        public void CloseWindow(object obj)
         {
             App.Current.MainWindow.Close();
         }
@@ -90,6 +89,31 @@ namespace WubiMaster.ViewModels
         {
             await Task.Delay(500);
             ChangePage("Home");
+        }
+
+        [RelayCommand]
+        public void MaxWindow(object obj)
+        {
+            if (App.IsMaximized)
+            {
+                App.Current.MainWindow.WindowState = WindowState.Normal;
+                App.Current.MainWindow.Width = 1000;
+                App.Current.MainWindow.Height = 700;
+
+                App.IsMaximized = false;
+            }
+            else
+            {
+                App.Current.MainWindow.WindowState = WindowState.Maximized;
+
+                App.IsMaximized = true;
+            }
+        }
+
+        [RelayCommand]
+        public void MinWindow(object obj)
+        {
+            App.Current.MainWindow.WindowState = WindowState.Minimized;
         }
 
         private static void SetDefultTheme()
