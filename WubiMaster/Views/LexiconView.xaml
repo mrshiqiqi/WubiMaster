@@ -3,7 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:c="clr-namespace:WubiMaster.Controls"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:local="clr-namespace:WubiMaster.Views"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="clr-namespace:WubiMaster.ViewModels"
              d:Background="{DynamicResource bg-100}"
@@ -56,13 +55,11 @@
                 </ComboBox>
             </StackPanel>
 
-
             <c:SearchTextbox Width="200"
                              Height="40"
                              HorizontalAlignment="Right"
                              VerticalAlignment="Top" />
         </Grid>
-
 
         <Grid Grid.Row="1">
 
@@ -140,9 +137,7 @@
                                                    Foreground="{DynamicResource text-200}"
                                                    Text="&#xe60d;" />
                                     </Border>
-
                                 </StackPanel>
-
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>

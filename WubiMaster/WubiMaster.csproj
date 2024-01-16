@@ -5,6 +5,7 @@
     <TargetFramework>net6.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
+    <ApplicationIcon>logo.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
@@ -21,7 +22,14 @@
     <None Remove="Images\Jieqi\Jieqi7.png" />
     <None Remove="Images\Jieqi\Jieqi8.png" />
     <None Remove="Images\Jieqi\Jieqi9.png" />
+    <None Remove="Images\logo.ico" />
     <None Remove="Images\节气1.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="logo.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
