@@ -135,6 +135,12 @@
                                              Style="{StaticResource NavButtonStyle}"
                                              Text="主页" />
 
+                                <c:NavButton IconText="&#xe657;"
+                                             NavCommand="{Binding ChangePageCommand}"
+                                             NavName="Attribute"
+                                             Style="{StaticResource NavButtonStyle}"
+                                             Text="属性设置" />
+
                                 <c:NavButton IconText="&#xe694;"
                                              NavCommand="{Binding ChangePageCommand}"
                                              NavName="Etymon"
@@ -147,11 +153,11 @@
                                              Style="{StaticResource NavButtonStyle}"
                                              Text="词库管理" />
 
-                                <c:NavButton IconText="&#xe63c;"
+                                <!--<c:NavButton IconText="&#xe63c;"
                                              NavCommand="{Binding ChangePageCommand}"
                                              NavName="Import"
                                              Style="{StaticResource NavButtonStyle}"
-                                             Text="导入导出" />
+                                             Text="导入导出" />-->
 
                                 <c:NavButton IconText="&#xe647;"
                                              NavCommand="{Binding ChangePageCommand}"
