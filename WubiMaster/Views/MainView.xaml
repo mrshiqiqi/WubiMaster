@@ -155,9 +155,9 @@
 
                                 <c:NavButton IconText="&#xe654;"
                                              NavCommand="{Binding ChangePageCommand}"
-                                             NavName="Etymon"
+                                             NavName="Themes"
                                              Style="{StaticResource NavButtonStyle}"
-                                             Text="主题" />
+                                             Text="皮肤" />
 
                                 <c:NavButton IconText="&#xe8b8;"
                                              NavCommand="{Binding ChangePageCommand}"
