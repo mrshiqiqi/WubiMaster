@@ -29,9 +29,9 @@
                                     SubTitle="从 Rime 用户目录读取配置文件">
                         <c:SettingPanel.SettingContent>
                             <StackPanel Orientation="Horizontal">
-                                <TextBox Width="150"
+                                <TextBox MinWidth="150"
                                          VerticalContentAlignment="Center"
-                                         Text="Hello" />
+                                         Text="C:\Users\mrshi\AppData\Roaming\Rime" />
                                 <Button Width="50"
                                         Margin="10,0,0,0"
                                         Content="打开" />
@@ -44,7 +44,9 @@
                                     SubTitle="从 Rime 程序目录读取配置文件">
                         <c:SettingPanel.SettingContent>
                             <StackPanel Orientation="Horizontal">
-                                <TextBox Width="150" IsReadOnly="True" />
+                                <TextBox MinWidth="150"
+                                         IsReadOnly="True"
+                                         Text="D:\Program Files (x86)\Rime\weasel-1.0.0" />
                                 <Button Width="50"
                                         Margin="10,0,0,0"
                                         Content="打开" />
