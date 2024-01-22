@@ -3,7 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:c="clr-namespace:WubiMaster.Controls"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:local="clr-namespace:WubiMaster.Views"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="clr-namespace:WubiMaster.ViewModels"
              d:DesignHeight="600"
@@ -14,7 +13,6 @@
     <UserControl.DataContext>
         <vm:HomeViewModel />
     </UserControl.DataContext>
-
 
     <Grid>
         <Border Background="{DynamicResource bg-100}" CornerRadius="15" />
@@ -86,11 +84,7 @@
                                        Foreground="{DynamicResource text-100}"
                                        Text="一份详尽而简洁的使用指南" />
                         </StackPanel>
-
-
                     </Grid>
-
-
                 </Border>
 
                 <Grid Grid.Row="1" Grid.Column="0">
@@ -141,8 +135,6 @@
 
                     <Border Margin="10,5,5,10" Style="{StaticResource CardStyle}" />
                 </Grid>
-
-
             </Grid>
 
             <Grid Grid.Row="2"
@@ -175,31 +167,21 @@
                                     VerticalAlignment="Center"
                                     Orientation="Horizontal">
 
-                            <Border Style="{StaticResource SocialCardStyle}">
-                                <c:IconButton ButtonCommand="{Binding ToQQSocialCommand}"
-                                              IconText="&#xE882;"
-                                              Style="{StaticResource SocialIconStyle}" />
-                            </Border>
+                            <c:IconButton ButtonCommand="{Binding ToQQSocialCommand}"
+                                          IconText="&#xE882;"
+                                          Style="{StaticResource SocialIconStyle}" />
 
-                            <Border Style="{StaticResource SocialCardStyle}">
-                                <c:IconButton IconText="&#xe637;" Style="{StaticResource SocialIconStyle}" />
-                            </Border>
+                            <c:IconButton IconText="&#xe637;" Style="{StaticResource SocialIconStyle}" />
 
-                            <Border Style="{StaticResource SocialCardStyle}">
-                                <c:IconButton IconText="&#xe6a6;" Style="{StaticResource SocialIconStyle}" />
-                            </Border>
+                            <c:IconButton IconText="&#xe6a6;" Style="{StaticResource SocialIconStyle}" />
 
-                            <Border Style="{StaticResource SocialCardStyle}">
-                                <c:IconButton IconText="&#xe849;" Style="{StaticResource SocialIconStyle}" />
-                            </Border>
+                            <c:IconButton IconText="&#xe849;" Style="{StaticResource SocialIconStyle}" />
 
+                            <c:IconButton IconText="&#xe691;" Style="{StaticResource SocialIconStyle}" />
                         </StackPanel>
                     </Grid>
                 </Border>
             </Grid>
-
-
         </Grid>
-
     </Grid>
 </UserControl>
