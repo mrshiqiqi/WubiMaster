@@ -113,7 +113,7 @@
                                            VerticalAlignment="Bottom"
                                            FontSize="15"
                                            Foreground="{DynamicResource text-100}"
-                                           Text="Rime Tool" />
+                                           Text="Rime 大师" />
 
                                 <TextBlock Margin="0,5,0,0"
                                            HorizontalAlignment="Center"
