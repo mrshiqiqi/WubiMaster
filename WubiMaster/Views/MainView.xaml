@@ -177,6 +177,12 @@
                                              Style="{StaticResource NavButtonStyle}"
                                              Text="设置" />
 
+                                <c:NavButton IconText="&#xe622;"
+                                             NavCommand="{Binding ChangePageCommand}"
+                                             NavName="About"
+                                             Style="{StaticResource NavButtonStyle}"
+                                             Text="关于" />
+
                                 <c:NavButton Margin="0,100,0,0"
                                              IconText="&#xe97f;"
                                              NavCommand="{Binding CloseWindowCommand}"
