@@ -1,0 +1,48 @@
+﻿<UserControl x:Class="WubiMaster.Controls.IconButton"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:WubiMaster.Controls"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             x:Name="icon_button"
+             d:DesignHeight="450"
+             d:DesignWidth="800"
+             mc:Ignorable="d">
+
+    <UserControl.Resources>
+
+        <ControlTemplate x:Key="icon_button_template" TargetType="Button">
+            <Border x:Name="border"
+                    Width="{TemplateBinding Width}"
+                    Height="{TemplateBinding Height}"
+                    Background="{Binding ElementName=icon_button, Path=ButtonBackground}"
+                    CornerRadius="100">
+                <Viewbox Margin="10">
+                    <TextBlock x:Name="text"
+                               FontFamily="../Fonts/#iconfont"
+                               Foreground="{Binding ElementName=icon_button, Path=ButtonForeground}"
+                               Text="{Binding ElementName=icon_button, Path=IconText}" />
+                </Viewbox>
+            </Border>
+
+            <ControlTemplate.Triggers>
+
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter TargetName="border" Property="Opacity" Value="0.8" />
+                </Trigger>
+
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter TargetName="border" Property="Opacity" Value="1" />
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+
+    </UserControl.Resources>
+
+    <Grid>
+        <Button Width="{Binding ElementName=icon_button, Path=ButtonWidth}"
+                Height="{Binding ElementName=icon_button, Path=ButtonHeight}"
+                Command="{Binding ElementName=icon_button, Path=ButtonCommand}"
+                Template="{StaticResource icon_button_template}" />
+    </Grid>
+</UserControl>

@@ -53,7 +53,7 @@
                     <RowDefinition Height="2*" />
                 </Grid.RowDefinitions>
 
-                <Border Margin="5,5,10,10" CornerRadius="15">
+                <Border Margin="5,5,10,10" Style="{StaticResource CardStyle}">
                     <Border.Background>
                         <LinearGradientBrush Opacity="0.6" StartPoint="0,0" EndPoint="1,1">
                             <LinearGradientBrush.GradientStops>
@@ -63,15 +63,39 @@
                         </LinearGradientBrush>
                     </Border.Background>
 
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <TextBlock Style="{StaticResource CardTitleStyle}" Text="Rime 大师" />
+
+                        <StackPanel Grid.Row="1" Orientation="Horizontal">
+                            <Viewbox Width="30"
+                                     Height="30"
+                                     HorizontalAlignment="Left">
+                                <TextBlock FontFamily="../Fonts/#iconfont"
+                                           Foreground="{DynamicResource primary-200}"
+                                           Text="&#xe8fe;" />
+                            </Viewbox>
+
+                            <TextBlock Margin="20,0,0,0"
+                                       VerticalAlignment="Center"
+                                       FontSize="20"
+                                       FontWeight="Light"
+                                       Foreground="{DynamicResource text-100}"
+                                       Text="一份详尽而简洁的使用指南" />
+                        </StackPanel>
+
+
+                    </Grid>
 
 
                 </Border>
 
                 <Grid Grid.Row="1" Grid.Column="0">
 
-                    <Border Margin="5,5,10,10"
-                            Background="{DynamicResource bg-200}"
-                            CornerRadius="15" />
+                    <Border Margin="5,5,10,10" Style="{StaticResource CardStyle}" />
                 </Grid>
             </Grid>
 
@@ -115,9 +139,7 @@
 
                 <Grid Grid.Row="1">
 
-                    <Border Margin="10,5,5,10"
-                            Background="{DynamicResource bg-200}"
-                            CornerRadius="15" />
+                    <Border Margin="10,5,5,10" Style="{StaticResource CardStyle}" />
                 </Grid>
 
 
@@ -126,11 +148,54 @@
             <Grid Grid.Row="2"
                   Grid.Column="0"
                   Grid.ColumnSpan="2"
-                  Height="120">
+                  Height="130">
 
-                <Border Margin="5,10,5,0"
-                        Background="{DynamicResource bg-200}"
-                        CornerRadius="15" />
+                <Border Margin="5,10,5,0" Style="{StaticResource CardStyle}">
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="200" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel VerticalAlignment="Center">
+                            <TextBlock HorizontalAlignment="Center"
+                                       Style="{StaticResource CardTitleStyle}"
+                                       Text="组织基地" />
+                            <TextBlock HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       FontSize="15"
+                                       FontWeight="Light"
+                                       Foreground="{DynamicResource text-200}"
+                                       Text="斯是陃室，惟吾德馨" />
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="1"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Orientation="Horizontal">
+
+                            <Border Style="{StaticResource SocialCardStyle}">
+                                <c:IconButton ButtonCommand="{Binding ToQQSocialCommand}"
+                                              IconText="&#xE882;"
+                                              Style="{StaticResource SocialIconStyle}" />
+                            </Border>
+
+                            <Border Style="{StaticResource SocialCardStyle}">
+                                <c:IconButton IconText="&#xe637;" Style="{StaticResource SocialIconStyle}" />
+                            </Border>
+
+                            <Border Style="{StaticResource SocialCardStyle}">
+                                <c:IconButton IconText="&#xe6a6;" Style="{StaticResource SocialIconStyle}" />
+                            </Border>
+
+                            <Border Style="{StaticResource SocialCardStyle}">
+                                <c:IconButton IconText="&#xe849;" Style="{StaticResource SocialIconStyle}" />
+                            </Border>
+
+                        </StackPanel>
+                    </Grid>
+                </Border>
             </Grid>
 
 

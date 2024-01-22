@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using WubiMaster.Common;
 using WubiMaster.Views.PopViews;
+using System.Windows;
 
 namespace WubiMaster.ViewModels
 {
@@ -25,6 +26,12 @@ namespace WubiMaster.ViewModels
         {
             WeakReferenceMessenger.Default.Send<ValueChangedMessage<bool>, string>(new ValueChangedMessage<bool>(true), "ShowMaskLayer");
             this.ShowMessage("提示", "找不到该页面", DialogType.Warring);
+        }
+
+        [RelayCommand]
+        public void ToQQSocial()
+        {
+            MessageBox.Show("Hello");
         }
     }
 }
