@@ -94,7 +94,237 @@
 
                 <Grid Grid.Row="1" Grid.Column="0">
 
-                    <Border Margin="5,5,10,10" Style="{StaticResource CardStyle}" />
+                    <Border Margin="5,5,10,10" Style="{StaticResource CardStyle}">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+
+                            <TextBlock Margin="10,0,0,0"
+                                       HorizontalAlignment="Left"
+                                       Style="{StaticResource CardTitleStyle}"
+                                       Text="切换五笔版本" />
+
+                            <Grid Grid.Row="1">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="auto" />
+                                </Grid.ColumnDefinitions>
+
+                                <Border Width="45"
+                                        Height="45"
+                                        Margin="10,0,10,0"
+                                        Background="{DynamicResource accent-200}"
+                                        CornerRadius="10">
+                                    <TextBlock HorizontalAlignment="Center"
+                                               VerticalAlignment="Center"
+                                               FontSize="22"
+                                               Foreground="{DynamicResource accent-100}"
+                                               Text="86" />
+                                </Border>
+
+                                <Grid Grid.Column="1"
+                                      HorizontalAlignment="Stretch"
+                                      VerticalAlignment="Center">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                    </Grid.ColumnDefinitions>
+
+                                    <TextBlock HorizontalAlignment="Center"
+                                               VerticalAlignment="Center"
+                                               FontSize="20"
+                                               FontWeight="Bold"
+                                               Foreground="{DynamicResource text-100}"
+                                               Text="钱" />
+
+                                    <TextBlock Grid.Column="1"
+                                               HorizontalAlignment="Center"
+                                               VerticalAlignment="Center"
+                                               FontSize="20"
+                                               Text="扌" />
+
+                                    <TextBlock Grid.Column="2"
+                                               HorizontalAlignment="Center"
+                                               VerticalAlignment="Center"
+                                               FontSize="20"
+                                               Text="巴" />
+
+                                    <TextBlock Grid.Column="3"
+                                               HorizontalAlignment="Center"
+                                               VerticalAlignment="Center"
+                                               FontSize="20"
+                                               Text="刂" />
+
+                                    <TextBlock Grid.Column="4"
+                                               HorizontalAlignment="Center"
+                                               VerticalAlignment="Center"
+                                               FontSize="20"
+                                               Text="二" />
+                                </Grid>
+
+                                <Grid Grid.Column="2">
+                                    <c:IconButton ButtonBackground="{DynamicResource bg-300}"
+                                                  ButtonForeground="{DynamicResource primary-100}"
+                                                  ButtonHeight="40"
+                                                  ButtonWidth="40"
+                                                  IconText="&#xe978;" />
+                                </Grid>
+
+                            </Grid>
+
+                            <Grid Grid.Row="2">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="auto" />
+                                </Grid.ColumnDefinitions>
+
+                                <Border Width="45"
+                                        Height="45"
+                                        Margin="10,0,10,0"
+                                        Background="{DynamicResource accent-200}"
+                                        CornerRadius="10">
+                                    <TextBlock HorizontalAlignment="Center"
+                                               VerticalAlignment="Center"
+                                               FontSize="22"
+                                               Foreground="{DynamicResource accent-100}"
+                                               Text="86" />
+                                </Border>
+
+                                <Grid Grid.Column="1"
+                                      HorizontalAlignment="Stretch"
+                                      VerticalAlignment="Center">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                    </Grid.ColumnDefinitions>
+
+                                    <TextBlock HorizontalAlignment="Center"
+                                               VerticalAlignment="Center"
+                                               FontSize="20"
+                                               FontWeight="Bold"
+                                               Foreground="{DynamicResource text-100}"
+                                               Text="钱" />
+
+                                    <TextBlock Grid.Column="1"
+                                               HorizontalAlignment="Center"
+                                               VerticalAlignment="Center"
+                                               FontSize="20"
+                                               Text="扌" />
+
+                                    <TextBlock Grid.Column="2"
+                                               HorizontalAlignment="Center"
+                                               VerticalAlignment="Center"
+                                               FontSize="20"
+                                               Text="巴" />
+
+                                    <TextBlock Grid.Column="3"
+                                               HorizontalAlignment="Center"
+                                               VerticalAlignment="Center"
+                                               FontSize="20"
+                                               Text="刂" />
+
+                                    <TextBlock Grid.Column="4"
+                                               HorizontalAlignment="Center"
+                                               VerticalAlignment="Center"
+                                               FontSize="20"
+                                               Text="二" />
+                                </Grid>
+
+                                <Grid Grid.Column="2">
+                                    <c:IconButton ButtonBackground="{DynamicResource bg-300}"
+                                                  ButtonForeground="{DynamicResource primary-100}"
+                                                  ButtonHeight="40"
+                                                  ButtonWidth="40"
+                                                  IconText="&#xe978;" />
+                                </Grid>
+
+                            </Grid>
+
+                            <Grid Grid.Row="3">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="auto" />
+                                </Grid.ColumnDefinitions>
+
+                                <Border Width="45"
+                                        Height="45"
+                                        Margin="10,0,10,0"
+                                        Background="{DynamicResource accent-200}"
+                                        CornerRadius="10">
+                                    <TextBlock HorizontalAlignment="Center"
+                                               VerticalAlignment="Center"
+                                               FontSize="22"
+                                               Foreground="{DynamicResource accent-100}"
+                                               Text="86" />
+                                </Border>
+
+                                <Grid Grid.Column="1"
+                                      HorizontalAlignment="Stretch"
+                                      VerticalAlignment="Center">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                    </Grid.ColumnDefinitions>
+
+                                    <TextBlock HorizontalAlignment="Center"
+                                               VerticalAlignment="Center"
+                                               FontSize="20"
+                                               FontWeight="Bold"
+                                               Foreground="{DynamicResource text-100}"
+                                               Text="钱" />
+
+                                    <TextBlock Grid.Column="1"
+                                               HorizontalAlignment="Center"
+                                               VerticalAlignment="Center"
+                                               FontSize="20"
+                                               Text="扌" />
+
+                                    <TextBlock Grid.Column="2"
+                                               HorizontalAlignment="Center"
+                                               VerticalAlignment="Center"
+                                               FontSize="20"
+                                               Text="巴" />
+
+                                    <TextBlock Grid.Column="3"
+                                               HorizontalAlignment="Center"
+                                               VerticalAlignment="Center"
+                                               FontSize="20"
+                                               Text="刂" />
+
+                                    <TextBlock Grid.Column="4"
+                                               HorizontalAlignment="Center"
+                                               VerticalAlignment="Center"
+                                               FontSize="20"
+                                               Text="二" />
+                                </Grid>
+
+                                <Grid Grid.Column="2">
+                                    <c:IconButton ButtonBackground="{DynamicResource bg-300}"
+                                                  ButtonForeground="{DynamicResource primary-100}"
+                                                  ButtonHeight="40"
+                                                  ButtonWidth="40"
+                                                  IconText="&#xe978;" />
+                                </Grid>
+
+                            </Grid>
+                        </Grid>
+                    </Border>
                 </Grid>
             </Grid>
 
