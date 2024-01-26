@@ -23,6 +23,7 @@
     <None Remove="Images\Jieqi\Jieqi8.png" />
     <None Remove="Images\Jieqi\Jieqi9.png" />
     <None Remove="Images\logo.ico" />
+    <None Remove="Images\wubi_demo.png" />
     <None Remove="Images\节气1.png" />
   </ItemGroup>
 
@@ -56,6 +57,7 @@
     <Resource Include="Images\Jieqi\Jieqi7.png" />
     <Resource Include="Images\Jieqi\Jieqi8.png" />
     <Resource Include="Images\Jieqi\Jieqi9.png" />
+    <Resource Include="Images\wubi_demo.png" />
   </ItemGroup>
 
 </Project>

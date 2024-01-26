@@ -70,7 +70,10 @@
                                    Style="{StaticResource CardTitleStyle}"
                                    Text="Rime 大师" />
 
-                        <StackPanel Grid.Row="1" Orientation="Horizontal">
+                        <StackPanel Grid.Row="1"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Orientation="Horizontal">
                             <Viewbox Width="30"
                                      Height="30"
                                      HorizontalAlignment="Left">
@@ -105,32 +108,56 @@
 
                     <Border Margin="10,5,5,10"
                             Background="{DynamicResource bg-200}"
-                            CornerRadius="15" />
+                            CornerRadius="15">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
 
-                    <UniformGrid Columns="3"
-                                 Rows="3"
-                                 Visibility="Collapsed">
+                            <StackPanel Margin="10"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        Orientation="Horizontal">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="4*" />
+                                    </Grid.ColumnDefinitions>
 
-                        <c:ToolButton Title="字根表"
-                                      IconText="&#xe67a;"
-                                      TBCommand="{Binding ShowEtymonCommand}" />
+                                    <Border Width="30"
+                                            Margin="0,0,10,0"
+                                            HorizontalAlignment="Right"
+                                            VerticalAlignment="Center">
+                                        <Viewbox>
+                                            <TextBlock FontFamily="../Fonts/#iconfont"
+                                                       Foreground="{DynamicResource primary-200}"
+                                                       Opacity="0.8"
+                                                       Text="&#xe6a2;" />
+                                        </Viewbox>
+                                    </Border>
 
-                        <c:ToolButton Title="自造词" IconText="&#xe610;" />
+                                    <StackPanel Grid.Column="1"
+                                                HorizontalAlignment="Left"
+                                                VerticalAlignment="Center">
+                                        <TextBlock Style="{StaticResource CardTitleStyle}" Text="五笔方案展示" />
+                                        <TextBlock Style="{StaticResource CardSubTitleStyle}" Text="点击了解详情" />
+                                    </StackPanel>
+                                </Grid>
+                            </StackPanel>
 
-                        <c:ToolButton Title="词库管理" IconText="&#xe608;" />
+                            <Border Grid.Row="1"
+                                    Margin="5"
+                                    CornerRadius="15">
+                                <Border.Background>
+                                    <ImageBrush ImageSource="../Images/wubi_demo.png"
+                                                Stretch="Uniform"
+                                                Viewbox="0.2, 0.3 0.6,0.6" />
+                                </Border.Background>
+                            </Border>
 
-                        <c:ToolButton Title="配置" IconText="&#xe8b8;" />
-
-                        <c:ToolButton Title="字典" IconText="&#xe694;" />
-
-                        <c:ToolButton Title="表情" IconText="&#xe69e;" />
-
-                        <c:ToolButton Title="符号" IconText="&#xe704;" />
-
-                        <c:ToolButton Title="快捷键" IconText="&#xe60a;" />
-
-                        <c:ToolButton Title="主题" IconText="&#xe654;" />
-                    </UniformGrid>
+                        </Grid>
+                    </Border>
                 </Grid>
 
                 <Grid Grid.Row="1">
@@ -138,14 +165,14 @@
                     <Border Margin="10,5,5,10" Style="{StaticResource CardStyle}">
                         <Grid>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="4*" />
                             </Grid.ColumnDefinitions>
 
                             <Viewbox Width="30"
                                      Margin="5"
-                                     HorizontalAlignment="Left">
-                                <c:LogoControl IconColor="{DynamicResource primary-200}" />
+                                     HorizontalAlignment="Right">
+                                <c:LogoControl IconColor="{DynamicResource primary-200}" Opacity="0.8" />
                             </Viewbox>
 
                             <StackPanel Grid.Column="1"
@@ -169,11 +196,11 @@
 
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="200" />
-                            <ColumnDefinition />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="3*" />
                         </Grid.ColumnDefinitions>
 
-                        <StackPanel VerticalAlignment="Center">
+                        <StackPanel HorizontalAlignment="Right" VerticalAlignment="Center">
                             <TextBlock Style="{StaticResource CardTitleStyle}" Text="组织基地" />
                             <TextBlock Style="{StaticResource CardSubTitleStyle}" Text="斯是陃室，惟吾德馨" />
                         </StackPanel>
