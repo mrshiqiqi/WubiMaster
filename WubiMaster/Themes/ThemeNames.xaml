@@ -15,4 +15,5 @@
     <sys:String x:Key="SummerMeadow">SummerMeadowTheme</sys:String>
     <sys:String x:Key="Cyberpunk">CyberpunkTheme</sys:String>
     <sys:String x:Key="DarkGreen">DarkGreenTheme</sys:String>
+    <sys:String x:Key="InkBueNight">InkBueNightTheme</sys:String>
 </ResourceDictionary>
