@@ -97,13 +97,13 @@
                     <Border Margin="5,5,10,10" Style="{StaticResource CardStyle}">
                         <Grid>
                             <Grid.RowDefinitions>
-                                <RowDefinition />
+                                <RowDefinition Height="Auto" />
                                 <RowDefinition />
                                 <RowDefinition />
                                 <RowDefinition />
                             </Grid.RowDefinitions>
 
-                            <TextBlock Margin="10,0,0,0"
+                            <TextBlock Margin="10"
                                        HorizontalAlignment="Left"
                                        Style="{StaticResource CardTitleStyle}"
                                        Text="切换五笔版本" />
@@ -149,24 +149,32 @@
                                                HorizontalAlignment="Center"
                                                VerticalAlignment="Center"
                                                FontSize="20"
+                                               FontWeight="Light"
+                                               Foreground="{DynamicResource text-200}"
                                                Text="扌" />
 
                                     <TextBlock Grid.Column="2"
                                                HorizontalAlignment="Center"
                                                VerticalAlignment="Center"
                                                FontSize="20"
+                                               FontWeight="Light"
+                                               Foreground="{DynamicResource text-200}"
                                                Text="巴" />
 
                                     <TextBlock Grid.Column="3"
                                                HorizontalAlignment="Center"
                                                VerticalAlignment="Center"
                                                FontSize="20"
+                                               FontWeight="Light"
+                                               Foreground="{DynamicResource text-200}"
                                                Text="刂" />
 
                                     <TextBlock Grid.Column="4"
                                                HorizontalAlignment="Center"
                                                VerticalAlignment="Center"
                                                FontSize="20"
+                                               FontWeight="Light"
+                                               Foreground="{DynamicResource text-200}"
                                                Text="二" />
                                 </Grid>
 
@@ -196,7 +204,7 @@
                                                VerticalAlignment="Center"
                                                FontSize="22"
                                                Foreground="{DynamicResource accent-100}"
-                                               Text="86" />
+                                               Text="98" />
                                 </Border>
 
                                 <Grid Grid.Column="1"
@@ -221,24 +229,32 @@
                                                HorizontalAlignment="Center"
                                                VerticalAlignment="Center"
                                                FontSize="20"
+                                               FontWeight="Light"
+                                               Foreground="{DynamicResource text-200}"
                                                Text="扌" />
 
                                     <TextBlock Grid.Column="2"
                                                HorizontalAlignment="Center"
                                                VerticalAlignment="Center"
                                                FontSize="20"
+                                               FontWeight="Light"
+                                               Foreground="{DynamicResource text-200}"
                                                Text="巴" />
 
                                     <TextBlock Grid.Column="3"
                                                HorizontalAlignment="Center"
                                                VerticalAlignment="Center"
                                                FontSize="20"
+                                               FontWeight="Light"
+                                               Foreground="{DynamicResource text-200}"
                                                Text="刂" />
 
                                     <TextBlock Grid.Column="4"
                                                HorizontalAlignment="Center"
                                                VerticalAlignment="Center"
                                                FontSize="20"
+                                               FontWeight="Light"
+                                               Foreground="{DynamicResource text-200}"
                                                Text="二" />
                                 </Grid>
 
@@ -268,7 +284,7 @@
                                                VerticalAlignment="Center"
                                                FontSize="22"
                                                Foreground="{DynamicResource accent-100}"
-                                               Text="86" />
+                                               Text="06" />
                                 </Border>
 
                                 <Grid Grid.Column="1"
@@ -293,24 +309,32 @@
                                                HorizontalAlignment="Center"
                                                VerticalAlignment="Center"
                                                FontSize="20"
+                                               FontWeight="Light"
+                                               Foreground="{DynamicResource text-200}"
                                                Text="扌" />
 
                                     <TextBlock Grid.Column="2"
                                                HorizontalAlignment="Center"
                                                VerticalAlignment="Center"
                                                FontSize="20"
+                                               FontWeight="Light"
+                                               Foreground="{DynamicResource text-200}"
                                                Text="巴" />
 
                                     <TextBlock Grid.Column="3"
                                                HorizontalAlignment="Center"
                                                VerticalAlignment="Center"
                                                FontSize="20"
+                                               FontWeight="Light"
+                                               Foreground="{DynamicResource text-200}"
                                                Text="刂" />
 
                                     <TextBlock Grid.Column="4"
                                                HorizontalAlignment="Center"
                                                VerticalAlignment="Center"
                                                FontSize="20"
+                                               FontWeight="Light"
+                                               Foreground="{DynamicResource text-200}"
                                                Text="二" />
                                 </Grid>
 
