@@ -95,6 +95,7 @@
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="*" />
+                                <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
 
                             <!--Logo Icon-->
@@ -182,15 +183,16 @@
                                              NavName="About"
                                              Style="{StaticResource NavButtonStyle}"
                                              Text="关于" />
-
-                                <c:NavButton Margin="0,100,0,0"
-                                             IconText="&#xe97f;"
-                                             NavCommand="{Binding CloseWindowCommand}"
-                                             NavName="Close"
-                                             Style="{StaticResource NavButtonStyle}"
-                                             Text="退出" />
-
                             </StackPanel>
+
+                            <c:NavButton Grid.Row="2"
+                                         Margin="0,0,0,30"
+                                         VerticalAlignment="Bottom"
+                                         IconText="&#xe97e;"
+                                         NavCommand="{Binding}"
+                                         NavName="Deploy"
+                                         Style="{StaticResource NavButtonStyle}"
+                                         Text="部署" />
                         </Grid>
                     </Border>
 
