@@ -18,4 +18,5 @@
     <sys:String x:Key="InkBueNight">InkBueNightTheme</sys:String>
     <sys:String x:Key="OceanSunset">OceanSunsetTheme</sys:String>
     <sys:String x:Key="TurquoiseRust">TurquoiseRustTheme</sys:String>
+    <sys:String x:Key="RainyMorming">RainyMormingTheme</sys:String>
 </ResourceDictionary>
