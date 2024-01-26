@@ -363,6 +363,7 @@
                     <Border Margin="10,5,5,10"
                             Background="{DynamicResource bg-200}"
                             CornerRadius="15">
+
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto" />
@@ -411,6 +412,51 @@
                             </Border>
 
                         </Grid>
+                    </Border>
+
+                    <Border Margin="10,5,5,10"
+                            Background="{DynamicResource bg-200}"
+                            CornerRadius="15"
+                            Opacity="1">
+                        <TextBlock HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   FontSize="100"
+                                   Foreground="{DynamicResource text-100}"
+                                   Text="Hello" />
+
+                        <Border.Style>
+                            <Style TargetType="Border">
+                                <Style.Triggers>
+                                    <EventTrigger RoutedEvent="Border.MouseEnter">
+                                        <EventTrigger.Actions>
+                                            <BeginStoryboard>
+                                                <Storyboard>
+                                                    <DoubleAnimation AccelerationRatio="0.3"
+                                                                     DecelerationRatio="0.2"
+                                                                     Storyboard.TargetProperty="(Border.Opacity)"
+                                                                     From="1"
+                                                                     To="0"
+                                                                     Duration="0:0:1.5" />
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </EventTrigger.Actions>
+                                    </EventTrigger>
+
+                                    <EventTrigger RoutedEvent="Border.MouseLeave">
+                                        <EventTrigger.Actions>
+                                            <BeginStoryboard>
+                                                <Storyboard>
+                                                    <DoubleAnimation Storyboard.TargetProperty="(Border.Opacity)"
+                                                                     From="0"
+                                                                     To="1"
+                                                                     Duration="0:0:0.5" />
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </EventTrigger.Actions>
+                                    </EventTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Border.Style>
                     </Border>
                 </Grid>
 
