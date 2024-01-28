@@ -4,14 +4,13 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:WubiMaster.Controls"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             x:Name="shici_control"
              d:Background="{DynamicResource bg-100}"
              d:DesignHeight="400"
              d:DesignWidth="400"
              mc:Ignorable="d">
 
     <UserControl.Resources>
-
-        <ImageBrush x:Key="image1" ImageSource="../Images/JinriShici/侧脸.png" />
 
         <Style x:Key="shici_text_style" TargetType="TextBlock">
             <Setter Property="Width" Value="25" />
@@ -50,11 +49,12 @@
             <ColumnDefinition Width="1.5*" />
         </Grid.ColumnDefinitions>
 
-        <Image Height="150"
+        <Image x:Name="imagexx"
+               Height="150"
                Margin="0,0,0,20"
                HorizontalAlignment="Center"
                VerticalAlignment="Bottom"
-               Source="../Images/JinriShici/青花瓷少女.png" />
+               Source="{Binding ElementName=shici_control, Path=ShiciImage}" />
 
         <Grid Grid.Column="1"
               HorizontalAlignment="Center"

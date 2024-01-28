@@ -420,7 +420,7 @@
                             Opacity="1">
                         <Grid>
                             <!--<Image Source="../Images/低头的人.png" />-->
-                            <c:ShiciControl/>
+                            <c:ShiciControl />
                         </Grid>
 
                         <Border.Style>
