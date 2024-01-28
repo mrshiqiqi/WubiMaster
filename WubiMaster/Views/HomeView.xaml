@@ -418,11 +418,10 @@
                             Background="{DynamicResource bg-200}"
                             CornerRadius="15"
                             Opacity="1">
-                        <TextBlock HorizontalAlignment="Center"
-                                   VerticalAlignment="Center"
-                                   FontSize="100"
-                                   Foreground="{DynamicResource text-100}"
-                                   Text="Hello" />
+                        <Grid>
+                            <!--<Image Source="../Images/低头的人.png" />-->
+                            <c:ShiciControl/>
+                        </Grid>
 
                         <Border.Style>
                             <Style TargetType="Border">
@@ -434,8 +433,7 @@
                                                     <DoubleAnimation AccelerationRatio="0.3"
                                                                      DecelerationRatio="0.2"
                                                                      Storyboard.TargetProperty="(Border.Opacity)"
-                                                                     From="1"
-                                                                     To="0"
+                                                                     From="1" To="0"
                                                                      Duration="0:0:1.5" />
                                                 </Storyboard>
                                             </BeginStoryboard>
@@ -447,8 +445,7 @@
                                             <BeginStoryboard>
                                                 <Storyboard>
                                                     <DoubleAnimation Storyboard.TargetProperty="(Border.Opacity)"
-                                                                     From="0"
-                                                                     To="1"
+                                                                     From="0" To="1"
                                                                      Duration="0:0:0.5" />
                                                 </Storyboard>
                                             </BeginStoryboard>

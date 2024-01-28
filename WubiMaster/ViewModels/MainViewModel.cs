@@ -5,7 +5,11 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows;
+using WubiMaster.Common;
 using WubiMaster.Views;
+using Newtonsoft.Json;
+using WubiMaster.Models;
+using Newtonsoft.Json.Linq;
 
 namespace WubiMaster.ViewModels
 {
