@@ -18,8 +18,17 @@ namespace WubiMaster.Controls
         public static readonly DependencyProperty ShiciImageProperty =
             DependencyProperty.Register("ShiciImage", typeof(ImageSource), typeof(ShiciControl));
 
+        public static readonly DependencyProperty Tag1Property =
+            DependencyProperty.Register("Tag1", typeof(string), typeof(ShiciControl));
+
+        public static readonly DependencyProperty Tag2Property =
+            DependencyProperty.Register("Tag2", typeof(string), typeof(ShiciControl));
+
+        public static readonly DependencyProperty Tag3Property =
+            DependencyProperty.Register("Tag3", typeof(string), typeof(ShiciControl));
+
         public static readonly DependencyProperty WeatherProperty =
-                    DependencyProperty.Register("Weather", typeof(string), typeof(ShiciControl));
+                                            DependencyProperty.Register("Weather", typeof(string), typeof(ShiciControl));
 
         public ShiciControl()
         {
@@ -27,7 +36,7 @@ namespace WubiMaster.Controls
             httpRequestHelper = new HttpRequestHelper();
             InitImages();
             GetToken();
-            //GetWeather();
+            GetWeather();
             GetJinrishici();
 
             ShiciImage = ChangeImage();
@@ -45,6 +54,24 @@ namespace WubiMaster.Controls
         {
             get { return (ImageSource)GetValue(ShiciImageProperty); }
             set { SetValue(ShiciImageProperty, value); }
+        }
+
+        public string Tag1
+        {
+            get { return (string)GetValue(Tag1Property); }
+            set { SetValue(Tag1Property, value); }
+        }
+
+        public string Tag2
+        {
+            get { return (string)GetValue(Tag2Property); }
+            set { SetValue(Tag2Property, value); }
+        }
+
+        public string Tag3
+        {
+            get { return (string)GetValue(Tag3Property); }
+            set { SetValue(Tag3Property, value); }
         }
 
         public string Token { get; set; }
@@ -103,13 +130,15 @@ namespace WubiMaster.Controls
 
         private void GetWeather()
         {
-            //if (string.IsNullOrEmpty(Token))
-            //    if (!GetToken()) return;
+            if (string.IsNullOrEmpty(Token))
+                if (!GetToken()) return;
 
-            //string jsonString = httpRequestHelper.HttpGet("https://v2.jinrishici.com/info", $"X-User-Token:{Token}");
-            //Root model = JsonConvert.DeserializeObject<Root>(jsonString);
+            string jsonString = httpRequestHelper.HttpGet("https://v2.jinrishici.com/info", "");
+            ShiciWeatherModel model = JsonConvert.DeserializeObject<ShiciWeatherModel>(jsonString);
 
-            //Weather = model.data.weatherData.weather;
+            Tag1 = model.data.tags[0];
+            Tag2 = model.data.tags[5];
+            Tag3 = model.data.tags[7];
         }
 
         private void InitImages()

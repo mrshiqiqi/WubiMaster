@@ -68,15 +68,15 @@
 
                 <StackPanel HorizontalAlignment="Left" VerticalAlignment="Bottom">
                     <Border Background="IndianRed" Style="{StaticResource tag_border_style}">
-                        <TextBlock Style="{StaticResource tag_text_style}" Text="梅花" />
+                        <TextBlock Style="{StaticResource tag_text_style}" Text="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=Tag1}" />
                     </Border>
 
                     <Border Background="{DynamicResource accent-100}" Style="{StaticResource tag_border_style}">
-                        <TextBlock Style="{StaticResource tag_text_style}" Text="冬" />
+                        <TextBlock Style="{StaticResource tag_text_style}" Text="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=Tag2}" />
                     </Border>
 
                     <Border Background="{DynamicResource accent-100}" Style="{StaticResource tag_border_style}">
-                        <TextBlock Style="{StaticResource tag_text_style}" Text="寒冷" />
+                        <TextBlock Style="{StaticResource tag_text_style}" Text="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=Tag3}" />
                     </Border>
                 </StackPanel>
 
