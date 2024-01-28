@@ -94,9 +94,6 @@ namespace WubiMaster.Controls
 
         private void GetJinrishici()
         {
-            if (string.IsNullOrEmpty(Token))
-                if (!GetToken()) return;
-
             try
             {
                 string jsonString = httpRequestHelper.HttpGetByHeader("https://v2.jinrishici.com/sentence", Token);
@@ -108,6 +105,7 @@ namespace WubiMaster.Controls
             catch (Exception ex)
             {
                 JinriShici = "明月几时有，把酒问青天。";
+                ShiciTitle = "水调歌头・苏轼";
             }
         }
 
@@ -132,15 +130,22 @@ namespace WubiMaster.Controls
 
         private void GetWeather()
         {
-            if (string.IsNullOrEmpty(Token))
-                if (!GetToken()) return;
+            try
+            {
+                string jsonString = httpRequestHelper.HttpGet("https://v2.jinrishici.com/info", "");
+                ShiciWeatherModel model = JsonConvert.DeserializeObject<ShiciWeatherModel>(jsonString);
 
-            string jsonString = httpRequestHelper.HttpGet("https://v2.jinrishici.com/info", "");
-            ShiciWeatherModel model = JsonConvert.DeserializeObject<ShiciWeatherModel>(jsonString);
-
-            Tag1 = model.data.tags[0];
-            Tag2 = model.data.tags[5];
-            Tag3 = model.data.tags[7];
+                Tag1 = model.data.tags[0];
+                Tag2 = model.data.tags[6];
+                Tag3 = model.data.tags[8];
+            }
+            catch (Exception)
+            {
+                Tag1 = "酒";
+                Tag2 = "夜";
+                Tag3 = "明月";
+            }
+          
         }
 
         private void InitImages()
