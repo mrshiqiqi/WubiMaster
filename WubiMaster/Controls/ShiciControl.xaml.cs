@@ -136,8 +136,8 @@ namespace WubiMaster.Controls
                 ShiciWeatherModel model = JsonConvert.DeserializeObject<ShiciWeatherModel>(jsonString);
 
                 Tag1 = model.data.tags[0];
-                Tag2 = model.data.tags[6];
-                Tag3 = model.data.tags[8];
+                Tag2 = model.data.tags[^3];
+                Tag3 = model.data.tags[^1];
             }
             catch (Exception)
             {
