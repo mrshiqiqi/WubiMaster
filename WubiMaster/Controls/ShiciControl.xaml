@@ -10,6 +10,9 @@
              mc:Ignorable="d">
 
     <UserControl.Resources>
+
+        <ImageBrush x:Key="image1" ImageSource="../Images/JinriShici/侧脸.png" />
+
         <Style x:Key="shici_text_style" TargetType="TextBlock">
             <Setter Property="Width" Value="25" />
             <Setter Property="Margin" Value="10,0,0,0" />
@@ -47,14 +50,21 @@
             <ColumnDefinition Width="1.5*" />
         </Grid.ColumnDefinitions>
 
-        <Image Margin="5" Source="../Images/低头的人.png" />
+        <Image Height="150"
+               Margin="0,0,0,20"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Bottom"
+               Source="../Images/JinriShici/青花瓷少女.png" />
 
-        <Grid Grid.Column="1">
+        <Grid Grid.Column="1"
+              HorizontalAlignment="Center"
+              VerticalAlignment="Center">
             <StackPanel Margin="0,20,20,0"
                         HorizontalAlignment="Right"
                         VerticalAlignment="Center"
                         Orientation="Horizontal"
-                        TextBlock.FontFamily="宋体">
+                        TextBlock.FontFamily="宋体"
+                        TextBlock.Foreground="{DynamicResource text-100}">
 
                 <StackPanel HorizontalAlignment="Left" VerticalAlignment="Bottom">
                     <Border Background="IndianRed" Style="{StaticResource tag_border_style}">

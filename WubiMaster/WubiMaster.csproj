@@ -22,12 +22,22 @@
     <None Remove="Images\Jieqi\Jieqi7.png" />
     <None Remove="Images\Jieqi\Jieqi8.png" />
     <None Remove="Images\Jieqi\Jieqi9.png" />
+    <None Remove="Images\JinriShici\低头.png" />
+    <None Remove="Images\JinriShici\侧脸.png" />
+    <None Remove="Images\JinriShici\侧身微笑.png" />
+    <None Remove="Images\JinriShici\坐椅子的女人.png" />
+    <None Remove="Images\JinriShici\坐着的女人.png" />
+    <None Remove="Images\JinriShici\思考.png" />
+    <None Remove="Images\JinriShici\手托头.png" />
+    <None Remove="Images\JinriShici\正面.png" />
+    <None Remove="Images\JinriShici\翘二郎腿的女人.png" />
+    <None Remove="Images\JinriShici\长发女人.png" />
+    <None Remove="Images\JinriShici\青花瓷少女.png" />
+    <None Remove="Images\JinriShici\青花瓷衣服.png" />
     <None Remove="Images\logo.ico" />
     <None Remove="Images\wubi_demo.png" />
     <None Remove="Images\低头的人.png" />
-    <None Remove="Images\剪纸红灯笼.png" />
     <None Remove="Images\节气1.png" />
-    <None Remove="Images\跨越式发展.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -61,10 +71,20 @@
     <Resource Include="Images\Jieqi\Jieqi7.png" />
     <Resource Include="Images\Jieqi\Jieqi8.png" />
     <Resource Include="Images\Jieqi\Jieqi9.png" />
+    <Resource Include="Images\JinriShici\低头.png" />
+    <Resource Include="Images\JinriShici\侧脸.png" />
+    <Resource Include="Images\JinriShici\侧身微笑.png" />
+    <Resource Include="Images\JinriShici\坐椅子的女人.png" />
+    <Resource Include="Images\JinriShici\坐着的女人.png" />
+    <Resource Include="Images\JinriShici\思考.png" />
+    <Resource Include="Images\JinriShici\手托头.png" />
+    <Resource Include="Images\JinriShici\正面.png" />
+    <Resource Include="Images\JinriShici\翘二郎腿的女人.png" />
+    <Resource Include="Images\JinriShici\长发女人.png" />
+    <Resource Include="Images\JinriShici\青花瓷少女.png" />
+    <Resource Include="Images\JinriShici\青花瓷衣服.png" />
     <Resource Include="Images\wubi_demo.png" />
-    <Resource Include="Images\低头的人.png" />
-    <Resource Include="Images\剪纸红灯笼.png" />
-    <Resource Include="Images\跨越式发展.png" />
+    <Resource Include="Images\JinriShici\低头的人.png" />
   </ItemGroup>
 
 </Project>
