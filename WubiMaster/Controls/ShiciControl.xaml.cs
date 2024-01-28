@@ -16,10 +16,13 @@ namespace WubiMaster.Controls
             DependencyProperty.Register("JinriShici", typeof(string), typeof(ShiciControl));
 
         public static readonly DependencyProperty ShiciImageProperty =
-            DependencyProperty.Register("ShiciImage", typeof(ImageSource), typeof(ShiciControl));
+                    DependencyProperty.Register("ShiciImage", typeof(ImageSource), typeof(ShiciControl));
+
+        public static readonly DependencyProperty ShiciTitleProperty =
+            DependencyProperty.Register("ShiciTitle", typeof(string), typeof(ShiciControl));
 
         public static readonly DependencyProperty Tag1Property =
-            DependencyProperty.Register("Tag1", typeof(string), typeof(ShiciControl));
+                    DependencyProperty.Register("Tag1", typeof(string), typeof(ShiciControl));
 
         public static readonly DependencyProperty Tag2Property =
             DependencyProperty.Register("Tag2", typeof(string), typeof(ShiciControl));
@@ -27,8 +30,6 @@ namespace WubiMaster.Controls
         public static readonly DependencyProperty Tag3Property =
             DependencyProperty.Register("Tag3", typeof(string), typeof(ShiciControl));
 
-        public static readonly DependencyProperty WeatherProperty =
-                                            DependencyProperty.Register("Weather", typeof(string), typeof(ShiciControl));
 
         public ShiciControl()
         {
@@ -56,6 +57,12 @@ namespace WubiMaster.Controls
             set { SetValue(ShiciImageProperty, value); }
         }
 
+        public string ShiciTitle
+        {
+            get { return (string)GetValue(ShiciTitleProperty); }
+            set { SetValue(ShiciTitleProperty, value); }
+        }
+
         public string Tag1
         {
             get { return (string)GetValue(Tag1Property); }
@@ -75,12 +82,6 @@ namespace WubiMaster.Controls
         }
 
         public string Token { get; set; }
-
-        public string Weather
-        {
-            get { return (string)GetValue(WeatherProperty); }
-            set { SetValue(WeatherProperty, value); }
-        }
 
         private HttpRequestHelper httpRequestHelper { get; set; }
 
@@ -102,10 +103,11 @@ namespace WubiMaster.Controls
                 ShiciContentModel model = JsonConvert.DeserializeObject<ShiciContentModel>(jsonString);
 
                 JinriShici = model.data.content;
+                ShiciTitle = model.data.origin.title + "・" + model.data.origin.author; ;
             }
             catch (Exception ex)
             {
-                JinriShici = ex.Message;
+                JinriShici = "明月几时有，把酒问青天。";
             }
         }
 
