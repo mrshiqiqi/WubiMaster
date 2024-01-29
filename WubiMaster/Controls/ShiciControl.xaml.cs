@@ -14,8 +14,11 @@ namespace WubiMaster.Controls
         public static readonly DependencyProperty JinriShiciProperty =
             DependencyProperty.Register("JinriShici", typeof(string), typeof(ShiciControl));
 
+        public static readonly DependencyProperty ShiciAuthorProperty =
+            DependencyProperty.Register("ShiciAuthor", typeof(string), typeof(ShiciControl));
+
         public static readonly DependencyProperty ShiciImageProperty =
-                    DependencyProperty.Register("ShiciImage", typeof(ImageSource), typeof(ShiciControl));
+                            DependencyProperty.Register("ShiciImage", typeof(ImageSource), typeof(ShiciControl));
 
         public static readonly DependencyProperty ShiciTitleProperty =
             DependencyProperty.Register("ShiciTitle", typeof(string), typeof(ShiciControl));
@@ -29,26 +32,22 @@ namespace WubiMaster.Controls
         public static readonly DependencyProperty Tag3Property =
             DependencyProperty.Register("Tag3", typeof(string), typeof(ShiciControl));
 
+        private List<ShiciContentModel> defaultShiciList;
+
         public ShiciControl()
         {
             InitializeComponent();
+            InitDefaultShici();
             InitImages();
             ShiciImage = ChangeImage();
             GetJinrishici();
         }
 
-
-
-        public string ShiciAuthor
+        public List<ShiciContentModel> DefaultShiciList
         {
-            get { return (string)GetValue(ShiciAuthorProperty); }
-            set { SetValue(ShiciAuthorProperty, value); }
+            get { return defaultShiciList; }
+            set { defaultShiciList = value; }
         }
-
-        public static readonly DependencyProperty ShiciAuthorProperty =
-            DependencyProperty.Register("ShiciAuthor", typeof(string), typeof(ShiciControl));
-
-
 
         public List<ImageSource> Images { get; set; }
 
@@ -56,6 +55,12 @@ namespace WubiMaster.Controls
         {
             get { return (string)GetValue(JinriShiciProperty); }
             set { SetValue(JinriShiciProperty, value); }
+        }
+
+        public string ShiciAuthor
+        {
+            get { return (string)GetValue(ShiciAuthorProperty); }
+            set { SetValue(ShiciAuthorProperty, value); }
         }
 
         public ImageSource ShiciImage
@@ -191,63 +196,91 @@ namespace WubiMaster.Controls
                     }
                 }
 
-                ShiciContentModel model = ShiciHelper.GetShiciByType(type);
-
-                JinriShici = model.content;
-                ShiciTitle = model.origin; //model.origin + "·" + model.author;
-                ShiciAuthor = model.author;
                 Tag1 = tag;
                 Tag2 = monthToday;
                 Tag3 = dayToday;
+
+                ShiciContentModel model = ShiciHelper.GetShiciByType(type);
+
+                JinriShici = model.content;
+                ShiciTitle = model.origin;
+                ShiciAuthor = model.author;
             }
             catch (Exception ex)
             {
-                JinriShici = "明月几时有，把酒问青天。";
-                ShiciTitle = "水调歌头·苏轼";
-                Tag1 = "酒";
-                Tag2 = "夜";
-                Tag3 = "明月";
+                Random random = new Random();
+                int index = random.Next(0, DefaultShiciList.Count);
+                ShiciContentModel model = DefaultShiciList[index];
+                JinriShici = model.content;
+                ShiciTitle = model.origin;
+                ShiciAuthor = model.author;
             }
         }
 
-        //private bool GetToken()
-        //{
-        //    try
-        //    {
-        //        string jsonString = httpRequestHelper.HttpGet("https://v2.jinrishici.com/token", "");
-        //        ShiciRootModel model = JsonConvert.DeserializeObject<ShiciRootModel>(jsonString);
-        //        if (model.status == "success")
-        //        {
-        //            Token = model.data;
-        //            return true;
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return false;
-        //    }
-        //    return false;
-        //}
+        private void InitDefaultShici()
+        {
+            DefaultShiciList = new List<ShiciContentModel>();
 
-        //private void GetWeather()
-        //{
-        //    try
-        //    {
-        //        string jsonString = httpRequestHelper.HttpGet("https://v2.jinrishici.com/info", "");
-        //        ShiciWeatherModel model = JsonConvert.DeserializeObject<ShiciWeatherModel>(jsonString);
+            ShiciContentModel model1 = new ShiciContentModel();
+            model1.content = "明月几时有，把酒问青天。";
+            model1.origin = "水调歌头";
+            model1.author = "苏轼";
+            DefaultShiciList.Add(model1);
 
-        //        Tag1 = model.data.tags[0];
-        //        Tag2 = model.data.tags[^3];
-        //        Tag3 = model.data.tags[^1];
-        //    }
-        //    catch (Exception)
-        //    {
-        //        Tag1 = "酒";
-        //        Tag2 = "夜";
-        //        Tag3 = "明月";
-        //    }
+            ShiciContentModel model2 = new ShiciContentModel();
+            model2.content = "天生我材必有用，千金散尽还复来。";
+            model2.origin = "将进酒";
+            model2.author = "李白";
+            DefaultShiciList.Add(model2);
 
-        //}
+            ShiciContentModel model3 = new ShiciContentModel();
+            model3.content = "流水落花春去也，天上人间。";
+            model3.origin = "浪淘沙令·帘外雨潺潺";
+            model3.author = "李煜";
+            DefaultShiciList.Add(model3);
+
+            ShiciContentModel model4 = new ShiciContentModel();
+            model4.content = "会当凌绝顶，一览众山小。";
+            model4.origin = "望岳";
+            model4.author = "杜甫";
+            DefaultShiciList.Add(model4);
+
+            ShiciContentModel model5 = new ShiciContentModel();
+            model5.content = "采菊东篱下，悠然见南山。";
+            model5.origin = "饮酒·其五";
+            model5.author = "陶渊明";
+            DefaultShiciList.Add(model5);
+
+            ShiciContentModel model6 = new ShiciContentModel();
+            model6.content = "大漠孤烟直，长河落日圆。";
+            model6.origin = "使至塞上";
+            model6.author = "王维";
+            DefaultShiciList.Add(model6);
+
+            ShiciContentModel model7 = new ShiciContentModel();
+            model7.content = "晩来天欲雪，能饮一杯无。";
+            model7.origin = "赠刘十九";
+            model7.author = "白居易";
+            DefaultShiciList.Add(model7);
+
+            ShiciContentModel model8 = new ShiciContentModel();
+            model8.content = "天下英雄谁敌手？曹刘。生子当如孙仲谋。";
+            model8.origin = "南乡子";
+            model8.author = "辛弃疾";
+            DefaultShiciList.Add(model8);
+
+            ShiciContentModel model9 = new ShiciContentModel();
+            model9.content = "青春都一饷。忍把浮名，换了浅斟低唱！";
+            model9.origin = "鹤冲天";
+            model9.author = "柳永";
+            DefaultShiciList.Add(model9);
+
+            ShiciContentModel model10 = new ShiciContentModel();
+            model10.content = "便作春江都是泪，流不尽，许多愁。";
+            model10.origin = "江城子";
+            model10.author = "秦观";
+            DefaultShiciList.Add(model10);
+        }
 
         private void InitImages()
         {
