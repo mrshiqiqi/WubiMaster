@@ -4,6 +4,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Threading;
 using WubiMaster.Common;
 using WubiMaster.Models;
 
@@ -39,6 +40,8 @@ namespace WubiMaster.Controls
             InitializeComponent();
             InitDefaultShici();
             InitImages();
+            InitTimer();
+
             ShiciImage = ChangeImage();
             GetJinrishici();
         }
@@ -68,6 +71,8 @@ namespace WubiMaster.Controls
             get { return (ImageSource)GetValue(ShiciImageProperty); }
             set { SetValue(ShiciImageProperty, value); }
         }
+
+        public DispatcherTimer ShiciTimer { get; set; }
 
         public string ShiciTitle
         {
@@ -298,6 +303,20 @@ namespace WubiMaster.Controls
             Images.Add(new BitmapImage(new Uri("../Images/JinriShici/正面.png", UriKind.Relative)));
             Images.Add(new BitmapImage(new Uri("../Images/JinriShici/坐椅子的女人.png", UriKind.Relative)));
             Images.Add(new BitmapImage(new Uri("../Images/JinriShici/坐着的女人.png", UriKind.Relative)));
+        }
+
+        private void InitTimer()
+        {
+            ShiciTimer = new DispatcherTimer();
+            ShiciTimer.Interval = TimeSpan.FromSeconds(60 * 30);
+            ShiciTimer.Tick += ShiciTimer_Tick;
+            ShiciTimer.Start();
+        }
+
+        private void ShiciTimer_Tick(object? sender, EventArgs e)
+        {
+            ShiciImage = ChangeImage();
+            GetJinrishici();
         }
     }
 }
