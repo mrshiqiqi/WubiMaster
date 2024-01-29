@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Globalization;
+using System.Windows.Documents;
 
 namespace WubiMaster.Common
 {
@@ -39,9 +41,17 @@ namespace WubiMaster.Common
             nHoliday.Add("0101", "春节");
             nHoliday.Add("0115", "元宵节");
             nHoliday.Add("0505", "端午节");
+            nHoliday.Add("0707", "七夕节"); // 后加
+            nHoliday.Add("0715", "中元节"); // 后加
             nHoliday.Add("0815", "中秋节");
             nHoliday.Add("0909", "重阳节");
             nHoliday.Add("1208", "腊八节");
+            nHoliday.Add("1223", "北方小年"); // 后加
+            nHoliday.Add("1224", "南方小年"); // 后加
+            //需要特殊计算的节日
+            //寒食节
+            //清明节
+            //除夕节
         }
 
         /// <summary>
@@ -91,6 +101,15 @@ namespace WubiMaster.Common
             if (china.GetDayOfYear(dt) == china.GetDaysInYear(year))
             {
                 strReturn = "除夕";
+            }
+            else if (NongliHelper.GetSolarTerm(dt) == "清明")
+            {
+                strReturn = "清明节";
+            }
+            else if (NongliHelper.GetSolarTerm((dt.AddDays(-105))) == "冬至")
+            {
+                // 清明节前一二日 寒食节，中国传统节日， 在夏历冬至后105日，清明节前一二日 。
+                strReturn = "寒食节";
             }
             else if (leapMonth != iMonth)
             {
@@ -220,6 +239,33 @@ namespace WubiMaster.Common
         }
 
         /// <summary>
+        /// 获取节气（按节气阶段，即最近一个节气）
+        /// </summary>
+        /// <param name="dt"></param>
+        /// <returns></returns>
+        public static string GetSolarTermLast(DateTime dt)
+        {
+            DateTime dtBase = new DateTime(1900, 1, 6, 2, 5, 0);
+            DateTime dtNew;
+            double num;
+            int y;
+            string strReturn = "";
+
+            y = dt.Year;
+            for (int i = 1; i <= 24; i++)
+            {
+                num = 525948.76 * (y - 1900) + JQData[i - 1];
+                dtNew = dtBase.AddMinutes(num);
+                if (dtNew.DayOfYear <= dt.DayOfYear)
+                {
+                    strReturn = JQ[i - 1];
+                }
+            }
+
+            return strReturn;
+        }
+
+        /// <summary>
         /// 获取农历年份
         /// </summary>
         /// <param name="dt"></param>
@@ -237,5 +283,43 @@ namespace WubiMaster.Common
             string str = string.Format("[{1}]{2}{3}{0}", year, yearSX[yDZ], yearTG[yTG], yearDZ[yDZ]);
             return str;
         }
+
+        /// <summary>
+        /// 获取农历季节（春、夏、秋、冬）
+        /// </summary>
+        /// <returns></returns>
+        public static string GetJijie(DateTime dt)
+        {
+            string jijieStr = "";
+
+            string jieqiLast = NongliHelper.GetSolarTermLast(dt);
+            List<string> jieqiList = new List<string>();
+            for (int i = 0; i < JQ.Length; i++)
+            {
+                jieqiList.Add(JQ[i]);
+            }
+            int jieqiIndex = jieqiList.IndexOf(jieqiLast);
+
+            if (jieqiIndex >= 2 && jieqiIndex <= 7)
+            {
+                jijieStr = "春";
+            }
+            else if (jieqiIndex >= 8 && jieqiIndex <= 13)
+            {
+                jijieStr = "夏";
+            }
+            else if (jieqiIndex >= 14 && jieqiIndex <= 19)
+            {
+                jijieStr = "秋";
+            }
+            else
+            {
+                jijieStr = "冬";
+            }
+
+            return jijieStr;
+
+        }
+
     }
 }

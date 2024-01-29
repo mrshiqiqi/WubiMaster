@@ -34,13 +34,9 @@ namespace WubiMaster.Controls
         public ShiciControl()
         {
             InitializeComponent();
-            httpRequestHelper = new HttpRequestHelper();
             InitImages();
-            GetToken();
-            GetWeather();
-            GetJinrishici();
-
             ShiciImage = ChangeImage();
+            GetJinrishici();
         }
 
         public List<ImageSource> Images { get; set; }
@@ -96,11 +92,59 @@ namespace WubiMaster.Controls
         {
             try
             {
-                string jsonString = httpRequestHelper.HttpGetByHeader("https://v2.jinrishici.com/sentence", Token);
-                ShiciContentModel model = JsonConvert.DeserializeObject<ShiciContentModel>(jsonString);
+                DateTime todayTime = Convert.ToDateTime("2024/02/24");
+                ShiciType type = ShiciType.Defualt;
+                string tag = "";
 
-                JinriShici = model.data.content;
-                ShiciTitle = model.data.origin.title + "・" + model.data.origin.author; ;
+                string jieriToday = NongliHelper.GetChinaHoliday(todayTime);
+                string jieqiLast = NongliHelper.GetSolarTermLast(todayTime);
+                string jijieToday = NongliHelper.GetJijie(todayTime);
+                string monthToday = NongliHelper.GetMonth(todayTime);
+                string dayToday = NongliHelper.GetDay(todayTime);
+                tag = jijieToday;
+
+                if (!string.IsNullOrEmpty(jieriToday))
+                {
+                    tag = jieriToday;
+                    switch (jieriToday)
+                    {
+                        case "春节":
+                            type = ShiciType.Chunjie;
+                            break;
+                        case "元宵节":
+                            type = ShiciType.Yuanxiaojie;
+                            break;
+                        case "寒食节":
+                            type = ShiciType.Hanshijie;
+                            break;
+                        case "清明节":
+                            type = ShiciType.Qingmingjie;
+                            break;
+                        case "端午节":
+                            type = ShiciType.Duanwujie;
+                            break;
+                        case "七夕节":
+                            type = ShiciType.Qixijie;
+                            break;
+                        case "中秋节":
+                            type = ShiciType.Zhongqiujie;
+                            break;
+                        case "重阳节":
+                            type = ShiciType.Chongyangjie;
+                            break;
+                        default:
+                            type = ShiciType.Defualt;
+                            break;
+                    }
+                }
+
+                ShiciContentModel model = ShiciHelper.GetShiciByType(type);
+
+                JinriShici = model.content;
+                ShiciTitle = model.origin + "・" + model.author;
+                Tag1 = tag;
+                Tag2 = monthToday;
+                Tag3 = dayToday;
             }
             catch (Exception ex)
             {
@@ -109,44 +153,44 @@ namespace WubiMaster.Controls
             }
         }
 
-        private bool GetToken()
-        {
-            try
-            {
-                string jsonString = httpRequestHelper.HttpGet("https://v2.jinrishici.com/token", "");
-                ShiciRootModel model = JsonConvert.DeserializeObject<ShiciRootModel>(jsonString);
-                if (model.status == "success")
-                {
-                    Token = model.data;
-                    return true;
-                }
-            }
-            catch (Exception ex)
-            {
-                return false;
-            }
-            return false;
-        }
+        //private bool GetToken()
+        //{
+        //    try
+        //    {
+        //        string jsonString = httpRequestHelper.HttpGet("https://v2.jinrishici.com/token", "");
+        //        ShiciRootModel model = JsonConvert.DeserializeObject<ShiciRootModel>(jsonString);
+        //        if (model.status == "success")
+        //        {
+        //            Token = model.data;
+        //            return true;
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return false;
+        //    }
+        //    return false;
+        //}
 
-        private void GetWeather()
-        {
-            try
-            {
-                string jsonString = httpRequestHelper.HttpGet("https://v2.jinrishici.com/info", "");
-                ShiciWeatherModel model = JsonConvert.DeserializeObject<ShiciWeatherModel>(jsonString);
+        //private void GetWeather()
+        //{
+        //    try
+        //    {
+        //        string jsonString = httpRequestHelper.HttpGet("https://v2.jinrishici.com/info", "");
+        //        ShiciWeatherModel model = JsonConvert.DeserializeObject<ShiciWeatherModel>(jsonString);
 
-                Tag1 = model.data.tags[0];
-                Tag2 = model.data.tags[^3];
-                Tag3 = model.data.tags[^1];
-            }
-            catch (Exception)
-            {
-                Tag1 = "酒";
-                Tag2 = "夜";
-                Tag3 = "明月";
-            }
-          
-        }
+        //        Tag1 = model.data.tags[0];
+        //        Tag2 = model.data.tags[^3];
+        //        Tag3 = model.data.tags[^1];
+        //    }
+        //    catch (Exception)
+        //    {
+        //        Tag1 = "酒";
+        //        Tag2 = "夜";
+        //        Tag3 = "明月";
+        //    }
+
+        //}
 
         private void InitImages()
         {
@@ -165,5 +209,6 @@ namespace WubiMaster.Controls
             Images.Add(new BitmapImage(new Uri("../Images/JinriShici/坐椅子的女人.png", UriKind.Relative)));
             Images.Add(new BitmapImage(new Uri("../Images/JinriShici/坐着的女人.png", UriKind.Relative)));
         }
+
     }
 }
