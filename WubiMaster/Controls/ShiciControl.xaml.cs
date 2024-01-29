@@ -203,7 +203,7 @@ namespace WubiMaster.Controls
                 ShiciContentModel model = ShiciHelper.GetShiciByType(type);
 
                 JinriShici = model.content;
-                ShiciTitle = model.origin;
+                ShiciTitle = model.origin.Split("·")[0];
                 ShiciAuthor = model.author;
             }
             catch (Exception ex)
