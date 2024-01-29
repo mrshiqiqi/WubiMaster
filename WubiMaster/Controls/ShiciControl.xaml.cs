@@ -240,7 +240,7 @@ namespace WubiMaster.Controls
 
             ShiciContentModel model3 = new ShiciContentModel();
             model3.content = "流水落花春去也，天上人间。";
-            model3.origin = "浪淘沙令·帘外雨潺潺";
+            model3.origin = "浪淘沙";
             model3.author = "李煜";
             DefaultShiciList.Add(model3);
 
@@ -252,7 +252,7 @@ namespace WubiMaster.Controls
 
             ShiciContentModel model5 = new ShiciContentModel();
             model5.content = "采菊东篱下，悠然见南山。";
-            model5.origin = "饮酒·其五";
+            model5.origin = "饮酒";
             model5.author = "陶渊明";
             DefaultShiciList.Add(model5);
 
