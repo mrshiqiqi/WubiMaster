@@ -141,7 +141,7 @@ namespace WubiMaster.Controls
                 ShiciContentModel model = ShiciHelper.GetShiciByType(type);
 
                 JinriShici = model.content;
-                ShiciTitle = model.origin + "・" + model.author;
+                ShiciTitle = model.origin + "·" + model.author;
                 Tag1 = tag;
                 Tag2 = monthToday;
                 Tag3 = dayToday;
@@ -149,7 +149,7 @@ namespace WubiMaster.Controls
             catch (Exception ex)
             {
                 JinriShici = "明月几时有，把酒问青天。";
-                ShiciTitle = "水调歌头・苏轼";
+                ShiciTitle = "水调歌头·苏轼";
             }
         }
 

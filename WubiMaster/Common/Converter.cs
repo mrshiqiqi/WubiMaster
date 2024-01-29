@@ -36,9 +36,9 @@ namespace WubiMaster.Common
             try
             {
                 string shici_text = (string)value;
-                string[] shici_texts = shici_text.Split('，');
-                string first_text = shici_texts[0];
-                return first_text+"，";
+                string[] shici_texts = shici_text.Split(new char[4] { '，', '。', '！', '？'});
+                string result_text = shici_texts[0];
+                return result_text;
             }
             catch (Exception)
             {
@@ -62,15 +62,40 @@ namespace WubiMaster.Common
             try
             {
                 string shici_text = (string)value;
-                string[] shici_texts = shici_text.Split('，');
-                string first_text = shici_texts[1];
-                return first_text;
+                string[] shici_texts = shici_text.Split(new char[4] { '，', '。', '！', '？' });
+                string result_text = shici_texts[1];
+                return result_text;
             }
             catch (Exception)
             {
                 return "";
             }
 
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return value;
+        }
+    }
+
+    public class ShiciTextToThrid : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value == null) return "";
+
+            try
+            {
+                string shici_text = (string)value;
+                string[] shici_texts = shici_text.Split(new char[4] { '，', '。', '！', '？' });
+                string result_text = shici_texts[2];
+                return result_text;
+            }
+            catch (Exception)
+            {
+                return "";
+            }
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
