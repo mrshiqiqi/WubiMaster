@@ -19,14 +19,14 @@
 
         <Style x:Key="shici_text_style" TargetType="TextBlock">
             <Setter Property="MaxWidth" Value="22" />
-            <Setter Property="Margin" Value="10,0,0,0" />
+            <Setter Property="Margin" Value="10,20,0,0" />
             <Setter Property="FontSize" Value="22" />
             <Setter Property="TextWrapping" Value="Wrap" />
         </Style>
 
         <Style x:Key="auther_text_style" TargetType="TextBlock">
             <Setter Property="Width" Value="15" />
-            <Setter Property="Margin" Value="10,60,0,0" />
+            <Setter Property="Margin" Value="10,46,0,0" />
             <Setter Property="FontSize" Value="15" />
             <Setter Property="TextWrapping" Value="Wrap" />
         </Style>
@@ -52,28 +52,40 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="1.5*" />
         </Grid.ColumnDefinitions>
 
-        <Image x:Name="imagexx"
-               Height="150"
-               Margin="0,0,0,20"
-               HorizontalAlignment="Center"
-               VerticalAlignment="Bottom"
-               Source="{Binding ElementName=shici_control, Path=ShiciImage}" />
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="2.5*" />
+            </Grid.RowDefinitions>
+
+            <Image x:Name="imagexx"
+                   Grid.Row="2"
+                   Margin="10,0,0,20"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Bottom"
+                   Source="{Binding ElementName=shici_control, Path=ShiciImage}" />
+        </Grid>
+
 
         <Grid Grid.Column="1"
-              HorizontalAlignment="Center"
-              VerticalAlignment="Center">
-            <StackPanel Margin="0,20,20,20"
+              HorizontalAlignment="Right"
+              VerticalAlignment="Stretch">
+
+            <StackPanel Margin="30,20"
                         HorizontalAlignment="Right"
-                        VerticalAlignment="Center"
+                        VerticalAlignment="Stretch"
                         Orientation="Horizontal"
                         TextBlock.FontFamily="宋体"
                         TextBlock.Foreground="{DynamicResource text-100}">
 
-                <StackPanel HorizontalAlignment="Left" VerticalAlignment="Bottom">
+                <StackPanel Margin="0,20,10,0"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Top">
                     <Border Background="IndianRed" Style="{StaticResource tag_border_style}">
                         <TextBlock Style="{StaticResource tag_text_style}" Text="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=Tag1}" />
                     </Border>
@@ -86,6 +98,8 @@
                         <TextBlock Style="{StaticResource tag_text_style}" Text="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=Tag3}" />
                     </Border>
                 </StackPanel>
+
+                <TextBlock Style="{StaticResource auther_text_style}" Text="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=ShiciAuthor}" />
 
                 <TextBlock Style="{StaticResource auther_text_style}" Text="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=ShiciTitle}" />
 

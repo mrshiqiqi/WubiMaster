@@ -1,5 +1,4 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
@@ -30,7 +29,6 @@ namespace WubiMaster.Controls
         public static readonly DependencyProperty Tag3Property =
             DependencyProperty.Register("Tag3", typeof(string), typeof(ShiciControl));
 
-
         public ShiciControl()
         {
             InitializeComponent();
@@ -38,6 +36,19 @@ namespace WubiMaster.Controls
             ShiciImage = ChangeImage();
             GetJinrishici();
         }
+
+
+
+        public string ShiciAuthor
+        {
+            get { return (string)GetValue(ShiciAuthorProperty); }
+            set { SetValue(ShiciAuthorProperty, value); }
+        }
+
+        public static readonly DependencyProperty ShiciAuthorProperty =
+            DependencyProperty.Register("ShiciAuthor", typeof(string), typeof(ShiciControl));
+
+
 
         public List<ImageSource> Images { get; set; }
 
@@ -92,7 +103,7 @@ namespace WubiMaster.Controls
         {
             try
             {
-                DateTime todayTime = Convert.ToDateTime("2024/02/24");
+                DateTime todayTime = DateTime.Now;// Convert.ToDateTime("2024/02/24");
                 ShiciType type = ShiciType.Defualt;
                 string tag = "";
 
@@ -111,37 +122,80 @@ namespace WubiMaster.Controls
                         case "春节":
                             type = ShiciType.Chunjie;
                             break;
+
                         case "元宵节":
                             type = ShiciType.Yuanxiaojie;
                             break;
+
                         case "寒食节":
                             type = ShiciType.Hanshijie;
                             break;
+
                         case "清明节":
                             type = ShiciType.Qingmingjie;
                             break;
+
                         case "端午节":
                             type = ShiciType.Duanwujie;
                             break;
+
                         case "七夕节":
                             type = ShiciType.Qixijie;
                             break;
+
                         case "中秋节":
                             type = ShiciType.Zhongqiujie;
                             break;
+
                         case "重阳节":
                             type = ShiciType.Chongyangjie;
                             break;
+
                         default:
                             type = ShiciType.Defualt;
                             break;
+                    }
+                }
+                else
+                {
+                    Random random = new Random();
+                    int value = random.Next(0, 3);
+                    if (value % 2 == 0)
+                    {
+                        type = ShiciType.Defualt;
+                    }
+                    else
+                    {
+                        switch (jijieToday)
+                        {
+                            case "春":
+                                type = ShiciType.Chun;
+                                break;
+
+                            case "夏":
+                                type = ShiciType.Xia;
+                                break;
+
+                            case "秋":
+                                type = ShiciType.Qiu;
+                                break;
+
+                            case "冬":
+                                type = ShiciType.Dong;
+                                break;
+
+                            default:
+                                type = ShiciType.Defualt;
+                                break;
+                        }
                     }
                 }
 
                 ShiciContentModel model = ShiciHelper.GetShiciByType(type);
 
                 JinriShici = model.content;
-                ShiciTitle = model.origin + "·" + model.author;
+                ShiciTitle = model.origin; //model.origin + "·" + model.author;
+                ShiciAuthor = model.author;
                 Tag1 = tag;
                 Tag2 = monthToday;
                 Tag3 = dayToday;
@@ -150,6 +204,9 @@ namespace WubiMaster.Controls
             {
                 JinriShici = "明月几时有，把酒问青天。";
                 ShiciTitle = "水调歌头·苏轼";
+                Tag1 = "酒";
+                Tag2 = "夜";
+                Tag3 = "明月";
             }
         }
 
@@ -209,6 +266,5 @@ namespace WubiMaster.Controls
             Images.Add(new BitmapImage(new Uri("../Images/JinriShici/坐椅子的女人.png", UriKind.Relative)));
             Images.Add(new BitmapImage(new Uri("../Images/JinriShici/坐着的女人.png", UriKind.Relative)));
         }
-
     }
 }
