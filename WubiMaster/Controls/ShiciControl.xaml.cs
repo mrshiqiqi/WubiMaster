@@ -310,7 +310,7 @@ namespace WubiMaster.Controls
         private void InitTimer()
         {
             ShiciTimer = new DispatcherTimer();
-            ShiciTimer.Interval = TimeSpan.FromSeconds(60 * 30);
+            ShiciTimer.Interval = TimeSpan.FromSeconds(60 * 5);
             ShiciTimer.Tick += ShiciTimer_Tick;
             ShiciTimer.Start();
         }
