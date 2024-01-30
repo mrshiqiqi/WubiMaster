@@ -195,8 +195,8 @@ namespace WubiMaster.Controls
                 else
                 {
                     Random random = new Random();
-                    int value = random.Next(0, 3);
-                    if (value % 2 == 1)
+                    int value = random.Next(0, 5);
+                    if (value % 2 == 0)
                     {
                         type = ShiciType.Defualt;
                     }
@@ -234,7 +234,7 @@ namespace WubiMaster.Controls
                 ShiciContentModel model = ShiciHelper.GetShiciByType(type);
 
                 JinriShici = model.content;
-                ShiciTitle = model.origin.Split("·")[0];
+                ShiciTitle = model.origin.Split(new char[] { '·', '/' })[0].Trim();
                 ShiciAuthor = model.author;
             }
             catch (Exception ex)
