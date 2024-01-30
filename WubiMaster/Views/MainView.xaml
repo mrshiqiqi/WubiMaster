@@ -99,12 +99,17 @@
                             </Grid.RowDefinitions>
 
                             <!--Logo Icon-->
-                            <StackPanel Grid.Row="0" Margin="0,30,0,0">
+                            <StackPanel Grid.Row="0"
+                                        Margin="0,30,0,0"
+                                        TextBlock.FontFamily="../Fonts/#方正启体_GBK">
 
                                 <Border Style="{StaticResource LogoStyle}">
 
                                     <Viewbox Margin="10">
-                                        <c:LogoControl IconColor="{DynamicResource primary-100}" />
+                                        <TextBlock FontFamily="../Fonts/#iconfont"
+                                                   Foreground="{DynamicResource primary-100}"
+                                                   Text="&#xe66a;" />
+                                        <!--<c:LogoControl IconColor="{DynamicResource primary-100}" />-->
                                     </Viewbox>
 
                                 </Border>
@@ -112,16 +117,18 @@
                                 <TextBlock Margin="0,5,0,0"
                                            HorizontalAlignment="Center"
                                            VerticalAlignment="Bottom"
-                                           FontSize="15"
+                                           FontSize="16"
+                                           FontWeight="Bold"
                                            Foreground="{DynamicResource text-100}"
-                                           Text="Rime 大师" />
+                                           Text="书中君" />
 
                                 <TextBlock Margin="0,5,0,0"
                                            HorizontalAlignment="Center"
                                            VerticalAlignment="Bottom"
-                                           FontSize="12"
+                                           FontSize="13"
                                            Foreground="{DynamicResource text-200}"
-                                           Text="for 五笔" />
+                                           Text="五笔管理器"
+                                           TextOptions.TextFormattingMode="Display" />
 
                             </StackPanel>
 
