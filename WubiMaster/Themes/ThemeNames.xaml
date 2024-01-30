@@ -20,4 +20,5 @@
     <sys:String x:Key="TurquoiseRust">TurquoiseRustTheme</sys:String>
     <sys:String x:Key="RainyMorming">RainyMormingTheme</sys:String>
     <sys:String x:Key="BlackWhite">BlackWhiteTheme</sys:String>
+    <sys:String x:Key="Red">RedTheme</sys:String>
 </ResourceDictionary>
