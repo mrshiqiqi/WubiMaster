@@ -119,10 +119,12 @@ namespace WubiMaster.Controls
 
                 string jieriToday = NongliHelper.GetChinaHoliday(todayTime);
                 string jieqiLast = NongliHelper.GetSolarTermLast(todayTime);
+                string jieqiHouLast = NongliHelper.GetJieqiHou(todayTime);
                 string jijieToday = NongliHelper.GetJijie(todayTime);
                 string monthToday = NongliHelper.GetMonth(todayTime);
+                string monthName = NongliHelper.GetJiejieMonth(todayTime);
                 string dayToday = NongliHelper.GetDay(todayTime);
-                tag = jijieToday;
+                tag = monthName;
 
                 if (!string.IsNullOrEmpty(jieriToday))
                 {
@@ -170,7 +172,7 @@ namespace WubiMaster.Controls
                 {
                     Random random = new Random();
                     int value = random.Next(0, 3);
-                    if (value % 2 == 0)
+                    if (value % 2 == 1)
                     {
                         type = ShiciType.Defualt;
                     }
@@ -201,9 +203,9 @@ namespace WubiMaster.Controls
                     }
                 }
 
-                Tag1 = tag;
-                Tag2 = monthToday;
-                Tag3 = dayToday;
+                Tag1 = jieqiLast;
+                Tag2 = jieqiHouLast;
+                Tag3 = tag;
 
                 ShiciContentModel model = ShiciHelper.GetShiciByType(type);
 

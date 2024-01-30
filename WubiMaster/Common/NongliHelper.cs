@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Windows.Documents;
 
 namespace WubiMaster.Common
 {
@@ -12,6 +11,38 @@ namespace WubiMaster.Common
         private static Hashtable gHoliday = new Hashtable();
         private static string[] JQ = { "小寒", "大寒", "立春", "雨水", "惊蛰", "春分", "清明", "谷雨", "立夏", "小满", "芒种", "夏至", "小暑", "大暑", "立秋", "处暑", "白露", "秋分", "寒露", "霜降", "立冬", "小雪", "大雪", "冬至" };
         private static int[] JQData = { 0, 21208, 43467, 63836, 85337, 107014, 128867, 150921, 173149, 195551, 218072, 240693, 263343, 285989, 308563, 331033, 353350, 375494, 397447, 419210, 440795, 462224, 483532, 504758 };
+        private static string[] JQMonth = {
+            "季冬", "孟春", "仲春",
+            "季春", "孟夏", "仲夏",
+            "季夏", "孟秋", "仲秋",
+            "季秋", "孟冬", "仲冬", };
+        private static string[] JQHou = {
+            "雁北乡", "鹊始巢", "雉始鸲",
+            "鸡始乳", "征鸟厉疾", "水泽腹坚",
+            "东风解冻", "蛰虫始振", "鱼陟负冰",
+            "獭祭鱼", "鸿雁来", "草木萌动",
+            "桃始华", "仓庚鸣", "鹰化为鸠",
+            "玄鸟至", "雷乃发声", "始电",
+            "桐始华", "田鼠化为鴽", "虹始见",
+            "萍始生", "鸣鸠拂其羽", "戴胜降于桑",
+            "蝼蝈鸣", "蚯蚓出", "王瓜出",
+            "苦菜秀", "靡草死", "麦秋至",
+            "螳螂生", "鵙始鸣", "反舌无声",
+            "鹿角解", "蜩始鸣", "半夏生",
+            "温风至", "蟋蟀居壁", "鹰始击",
+            "腐草为萤", "土润溽暑", "大雨时行",
+            "凉风至", "白露降", "寒蝉鸣",
+            "鹰乃祭鸟", "天地始肃", "禾乃登",
+            "鸿雁来", "玄鸟归", "群鸟养羞",
+            "雷始收声", "蛰虫坯户", "水始涸",
+            "鸿雁来宾", "雀入大水为蛤", "菊有黄华",
+            "豺祭兽", "草木黄落", "蛰虫咸俯",
+            "水始冰", "地始冻", "雉入大水为蜃",
+            "虹藏不见", "天气上升，地气下降", "闭塞而成冬",
+            "鹖鴠不鸣", "虎始交", "荔挺出",
+            "蚯蚓结", "麋角解", "水泉动",
+        };
+
         private static Hashtable nHoliday = new Hashtable();
 
         static NongliHelper()
@@ -318,8 +349,59 @@ namespace WubiMaster.Common
             }
 
             return jijieStr;
-
         }
 
+        /// <summary>
+        /// 获取农历季节对应的月名称（孟春、仲春、季春）
+        /// </summary>
+        /// <param name="dt"></param>
+        /// <returns></returns>
+        public static string GetJiejieMonth(DateTime dt)
+        {
+            string monthName = "";
+            int jieqiHouIndex = -1;
+
+            string jieqiLast = NongliHelper.GetSolarTermLast(dt);
+
+            List<string> jieqiList = new List<string>();
+            for (int i = 0; i < JQ.Length; i++)
+                jieqiList.Add(JQ[i]);
+            int jieqiIndex = jieqiList.IndexOf(jieqiLast);
+
+            int mouthIndex = jieqiIndex / 2;
+
+            monthName = JQMonth[mouthIndex];
+            return monthName;
+        }
+
+        /// <summary>
+        /// 获取节气对应的七十二候
+        /// </summary>
+        /// <param name="dt"></param>
+        /// <returns></returns>
+        public static string GetJieqiHou(DateTime dt)
+        {
+            string jieqiHouStr = "";
+            int jieqiHouIndex = -1;
+
+            string jieqiLast = NongliHelper.GetSolarTermLast(dt);
+
+            List<string> jieqiList = new List<string>();
+            for (int i = 0; i < JQ.Length; i++)
+                jieqiList.Add(JQ[i]);
+            int jieqiIndex = jieqiList.IndexOf(jieqiLast);
+
+            DateTime dtBase = new DateTime(1900, 1, 6, 2, 5, 0);
+            int y = dt.Year;
+            double num = 525948.76 * (y - 1900) + JQData[jieqiIndex];
+            DateTime dtJieqi = dtBase.AddMinutes(num);
+
+            int dateSpan = dt.DayOfYear - dtJieqi.DayOfYear;
+            int value = dateSpan / 5;
+            jieqiHouIndex = jieqiIndex * 3 + value;
+
+            jieqiHouStr = JQHou[jieqiHouIndex];
+            return jieqiHouStr;
+        }
     }
 }
