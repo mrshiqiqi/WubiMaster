@@ -113,7 +113,7 @@ namespace WubiMaster.Controls
         {
             try
             {
-                DateTime todayTime = DateTime.Now;// Convert.ToDateTime("2024/02/24");
+                DateTime todayTime = DateTime.Now;// Convert.ToDateTime("2023/11/28");
                 ShiciType type = ShiciType.Defualt;
                 string tag = "";
 
