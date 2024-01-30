@@ -11,6 +11,8 @@
   <ItemGroup>
     <None Remove="Fonts\iconfont.ttf" />
     <None Remove="Fonts\zigen.ttf" />
+    <None Remove="Fonts\启功字体简体.ttf" />
+    <None Remove="Fonts\颜真卿颜体.ttf" />
     <None Remove="Images\Jieqi\Jieqi10.png" />
     <None Remove="Images\Jieqi\Jieqi11.png" />
     <None Remove="Images\Jieqi\Jieqi12.png" />
@@ -59,6 +61,8 @@
   <ItemGroup>
     <Resource Include="Fonts\iconfont.ttf" />
     <Resource Include="Fonts\zigen.ttf" />
+    <Resource Include="Fonts\启功字体简体.ttf" />
+    <Resource Include="Fonts\颜真卿颜体.ttf" />
     <Resource Include="Images\Jieqi\Jieqi1.png" />
     <Resource Include="Images\Jieqi\Jieqi10.png" />
     <Resource Include="Images\Jieqi\Jieqi11.png" />

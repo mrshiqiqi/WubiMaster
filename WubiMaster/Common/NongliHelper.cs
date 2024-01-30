@@ -142,13 +142,16 @@ namespace WubiMaster.Common
                 // 清明节前一二日 寒食节，中国传统节日， 在夏历冬至后105日，清明节前一二日 。
                 strReturn = "寒食节";
             }
-            else if (leapMonth != iMonth)
+            else
             {
-                //if (leapMonth != 0 && iMonth == leapMonth)
-                if (leapMonth != 0 && iMonth > 12)
+                if (leapMonth != 0)
                 {
-                    iMonth--;
+                    if (iMonth >= leapMonth)
+                    {
+                        iMonth--;
+                    }
                 }
+
                 object n = nHoliday[iMonth.ToString("00") + iDay.ToString("00")];
                 if (n != null)
                 {
@@ -162,7 +165,7 @@ namespace WubiMaster.Common
                     }
                 }
             }
-
+           
             return strReturn;
         }
 
