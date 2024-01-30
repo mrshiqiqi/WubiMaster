@@ -73,7 +73,7 @@
                                             Margin="5,0,0,0"
                                             ButtonBackground="{DynamicResource bg-100}"
                                             ButtonCommand="{Binding MaxWindowCommand}"
-                                            IconColor="{DynamicResource text-100}"
+                                            IconColor="{DynamicResource primary-100}"
                                             IconContent="&#xe651;" />
 
                         <c:WinowStateButton Width="15"
@@ -81,7 +81,7 @@
                                             Margin="5,0,0,0"
                                             ButtonBackground="{DynamicResource bg-100}"
                                             ButtonCommand="{Binding MinWindowCommand}"
-                                            IconColor="{DynamicResource text-100}"
+                                            IconColor="{DynamicResource primary-100}"
                                             IconContent="&#xe650;" />
                     </StackPanel>
                 </Border>
