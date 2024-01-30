@@ -144,7 +144,8 @@ namespace WubiMaster.Common
             }
             else if (leapMonth != iMonth)
             {
-                if (leapMonth != 0 && iMonth == leapMonth)
+                //if (leapMonth != 0 && iMonth == leapMonth)
+                if (leapMonth != 0 && iMonth > 12)
                 {
                     iMonth--;
                 }
