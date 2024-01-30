@@ -40,7 +40,7 @@
                     </c:SettingPanel>
 
                     <c:SettingPanel Title="关联程序目录"
-                                    IconText="&#xe620;"
+                                    IconText="&#xe6b4;"
                                     SubTitle="从 Rime 程序目录读取配置文件">
                         <c:SettingPanel.SettingContent>
                             <StackPanel Orientation="Horizontal">
@@ -55,7 +55,7 @@
                     </c:SettingPanel>
 
                     <c:SettingPanel Title="五笔方案"
-                                    IconText="&#xe620;"
+                                    IconText="&#xe992;"
                                     SubTitle="一键配置五笔方案，包含 86、98及新世纪三个版本">
                         <c:SettingPanel.SettingContent>
                             <StackPanel Orientation="Horizontal">
@@ -91,6 +91,28 @@
                                 <CheckBox Margin="10,0,0,0"
                                           VerticalContentAlignment="Center"
                                           Content="随机主题" />
+                            </StackPanel>
+                        </c:SettingPanel.SettingContent>
+                    </c:SettingPanel>
+
+                    <c:SettingPanel Title="随机诗词间隔"
+                                    IconText="&#xe692;"
+                                    SubTitle="设置随机诗词自动更换时间间隔">
+                        <c:SettingPanel.SettingContent>
+                            <StackPanel Orientation="Horizontal">
+
+                                <ComboBox Width="150"
+                                          MinHeight="24"
+                                          Foreground="{DynamicResource text-100}"
+                                          ItemsSource="{Binding ShiciIntervalList}"
+                                          SelectedIndex="{Binding ShiciIndex}"
+                                          Style="{StaticResource ComboBoxStyle}">
+                                    <b:Interaction.Triggers>
+                                        <b:EventTrigger EventName="SelectionChanged">
+                                            <b:InvokeCommandAction Command="{Binding ChangeShiciIntervalCommand}" CommandParameter="{Binding Path=SelectedItem, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ComboBox}, AncestorLevel=1}}" />
+                                        </b:EventTrigger>
+                                    </b:Interaction.Triggers>
+                                </ComboBox>
                             </StackPanel>
                         </c:SettingPanel.SettingContent>
                     </c:SettingPanel>
@@ -192,6 +214,7 @@
                             </StackPanel>
                         </c:SettingPanel.SettingContent>
                     </c:SettingPanel>
+
                 </StackPanel>
             </Grid>
         </ScrollViewer>

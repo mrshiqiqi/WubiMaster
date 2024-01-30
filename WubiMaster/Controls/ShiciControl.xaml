@@ -45,7 +45,7 @@
             <Setter Property="FontSize" Value="15" />
             <Setter Property="Foreground" Value="White" />
             <Setter Property="TextWrapping" Value="Wrap" />
-            <Setter Property="FontFamily" Value="../Fonts/#启功字体简体" />
+            <Setter Property="FontFamily" Value="../Fonts/#方正启体_GBK" />
             <Setter Property="Margin" Value="0,5" />
         </Style>
     </UserControl.Resources>
@@ -80,9 +80,8 @@
                         HorizontalAlignment="Right"
                         VerticalAlignment="Stretch"
                         Orientation="Horizontal"
-                        TextBlock.FontFamily="../Fonts/#启功字体简体"
+                        TextBlock.FontFamily="../Fonts/#方正启体_GBK"
                         TextBlock.Foreground="{DynamicResource text-100}">
-
                 <StackPanel Margin="0,20,10,0"
                             HorizontalAlignment="Left"
                             VerticalAlignment="Top">

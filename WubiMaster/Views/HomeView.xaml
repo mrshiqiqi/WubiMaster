@@ -419,7 +419,7 @@
                             CornerRadius="15"
                             Opacity="1">
                         <Grid>
-                            <c:ShiciControl />
+                            <c:ShiciControl ShiciInterval="{Binding ShiciInterval}" />
                         </Grid>
 
                         <Border.Style>

@@ -21,8 +21,11 @@ namespace WubiMaster.Controls
         public static readonly DependencyProperty ShiciImageProperty =
                             DependencyProperty.Register("ShiciImage", typeof(ImageSource), typeof(ShiciControl));
 
+        public static readonly DependencyProperty ShiciIntervalProperty =
+            DependencyProperty.Register("ShiciInterval", typeof(int), typeof(ShiciControl), new PropertyMetadata(25, new PropertyChangedCallback(OnShiciIntervalChanged)));
+
         public static readonly DependencyProperty ShiciTitleProperty =
-            DependencyProperty.Register("ShiciTitle", typeof(string), typeof(ShiciControl));
+                    DependencyProperty.Register("ShiciTitle", typeof(string), typeof(ShiciControl));
 
         public static readonly DependencyProperty Tag1Property =
                     DependencyProperty.Register("Tag1", typeof(string), typeof(ShiciControl));
@@ -37,6 +40,7 @@ namespace WubiMaster.Controls
 
         public ShiciControl()
         {
+            ShiciTimer = new DispatcherTimer();
             InitializeComponent();
             InitDefaultShici();
             InitImages();
@@ -72,6 +76,12 @@ namespace WubiMaster.Controls
             set { SetValue(ShiciImageProperty, value); }
         }
 
+        public int ShiciInterval
+        {
+            get { return (int)GetValue(ShiciIntervalProperty); }
+            set { SetValue(ShiciIntervalProperty, value); }
+        }
+
         public DispatcherTimer ShiciTimer { get; set; }
 
         public string ShiciTitle
@@ -101,6 +111,20 @@ namespace WubiMaster.Controls
         public string Token { get; set; }
 
         private HttpRequestHelper httpRequestHelper { get; set; }
+
+        private static void OnShiciIntervalChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            ShiciControl shiciControl = (ShiciControl)d;
+            int newValue = (int)e.NewValue;
+            if (shiciControl.ShiciTimer == null) return;
+            shiciControl.ShiciTimer.Stop();
+            shiciControl.ShiciTimer.Interval = TimeSpan.FromMinutes(newValue);
+
+            shiciControl.ShiciImage = shiciControl.ChangeImage();
+            shiciControl.GetJinrishici();
+
+            shiciControl.ShiciTimer.Start();
+        }
 
         private ImageSource ChangeImage()
         {
@@ -309,8 +333,8 @@ namespace WubiMaster.Controls
 
         private void InitTimer()
         {
-            ShiciTimer = new DispatcherTimer();
-            ShiciTimer.Interval = TimeSpan.FromSeconds(60 * 5);
+            ShiciTimer ??= new DispatcherTimer();
+            ShiciTimer.Interval = TimeSpan.FromMinutes(ShiciInterval > 0 ? ShiciInterval : 25);
             ShiciTimer.Tick += ShiciTimer_Tick;
             ShiciTimer.Start();
         }

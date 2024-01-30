@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -12,18 +13,36 @@ namespace WubiMaster.ViewModels
     public partial class SettingsViewModel : ObservableRecipient
     {
         [ObservableProperty]
-        public List<ThemeModel> themeList;
+        private List<ThemeModel> themeList;
 
         [ObservableProperty]
-        public int themeIndex;
+        private ObservableCollection<string> shiciIntervalList;
+
+        [ObservableProperty]
+        private int themeIndex;
+
+        [ObservableProperty]
+        private int shiciIndex;
+
+        private void InitShiciInterval()
+        {
+            ShiciIntervalList.Add("5分钟");
+            ShiciIntervalList.Add("25分钟");
+            ShiciIntervalList.Add("1小时");
+            ShiciIntervalList.Add("1天");
+        }
 
         public SettingsViewModel()
         {
-            themeList = new List<ThemeModel>();
+            ThemeList = new List<ThemeModel>();
+            ShiciIntervalList = new ObservableCollection<string>();
+
             InitThemes();
+            InitShiciInterval();
 
             var currentTheme = ThemeList.FirstOrDefault(t => t.Name == "DefultBlue");
-            themeIndex = themeList.IndexOf(currentTheme);
+            ThemeIndex = themeList.IndexOf(currentTheme);
+            ShiciIndex = 1;
         }
 
         [RelayCommand]
@@ -41,6 +60,31 @@ namespace WubiMaster.ViewModels
             {
                 MessageBox.Show(ex.ToString());
             }
+        }
+
+        [RelayCommand]
+        public void ChangeShiciInterval(string value)
+        {
+            string interval = "25";
+            int index = ShiciIntervalList.IndexOf(value);
+            switch (index)
+            {
+                case 0:
+                    interval = "5";
+                    break;
+                case 1:
+                    interval = "25";
+                    break;
+                case 2:
+                    interval = "60";
+                    break;
+                case 3:
+                    interval = "1440";
+                    break;
+                default:
+                    break;
+            }
+            WeakReferenceMessenger.Default.Send<string, string>(interval, "ChangeShiciInterval");
         }
 
         private void InitThemes()
