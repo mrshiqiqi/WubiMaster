@@ -9,8 +9,25 @@ namespace WubiMaster.Common
     {
         private static ChineseLunisolarCalendar china = new ChineseLunisolarCalendar();
         private static Hashtable gHoliday = new Hashtable();
-        private static string[] JQ = { "小寒", "大寒", "立春", "雨水", "惊蛰", "春分", "清明", "谷雨", "立夏", "小满", "芒种", "夏至", "小暑", "大暑", "立秋", "处暑", "白露", "秋分", "寒露", "霜降", "立冬", "小雪", "大雪", "冬至" };
-        private static int[] JQData = { 0, 21208, 43467, 63836, 85337, 107014, 128867, 150921, 173149, 195551, 218072, 240693, 263343, 285989, 308563, 331033, 353350, 375494, 397447, 419210, 440795, 462224, 483532, 504758 };
+        private static string[] JQ = {
+            "小寒", "大寒", "立春",
+            "雨水", "惊蛰", "春分",
+            "清明", "谷雨", "立夏",
+            "小满", "芒种", "夏至",
+            "小暑", "大暑", "立秋",
+            "处暑", "白露", "秋分",
+            "寒露", "霜降", "立冬",
+            "小雪", "大雪", "冬至" };
+        private static int[] JQData = {
+            0, 21208, 43467,
+            63836, 85337, 107014,
+            128867, 150921, 173149,
+            195551, 218072, 240693,
+            263343, 285989, 308563,
+            331033, 353350, 375494,
+            397447, 419210, 440795,
+            462224, 483532, 504758 };
+        private static string[] Jijie = { "春", "夏", "秋", "冬" };
         private static string[] JQMonth = {
             "季冬", "孟春", "仲春",
             "季春", "孟夏", "仲夏",
@@ -165,7 +182,7 @@ namespace WubiMaster.Common
                     }
                 }
             }
-           
+
             return strReturn;
         }
 
@@ -335,21 +352,13 @@ namespace WubiMaster.Common
             }
             int jieqiIndex = jieqiList.IndexOf(jieqiLast);
 
-            if (jieqiIndex >= 2 && jieqiIndex <= 7)
+            if (jieqiIndex >= 2 && jieqiIndex <= 19)
             {
-                jijieStr = "春";
-            }
-            else if (jieqiIndex >= 8 && jieqiIndex <= 13)
-            {
-                jijieStr = "夏";
-            }
-            else if (jieqiIndex >= 14 && jieqiIndex <= 19)
-            {
-                jijieStr = "秋";
+                jijieStr = Jijie[(jieqiIndex - 2) / 5];
             }
             else
             {
-                jijieStr = "冬";
+                jijieStr = Jijie[^1];
             }
 
             return jijieStr;
