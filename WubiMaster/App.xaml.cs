@@ -18,11 +18,6 @@ namespace WubiMaster
         private void Application_Startup(object sender, StartupEventArgs e)
         {
             LogHelper.Info("程序启动");
-            LogHelper.Fatal("测试");
-            LogHelper.Debug("测试");
-            LogHelper.Info("信息");
-            LogHelper.Error("错误");
-            LogHelper.Warn("警告");
 
             this.DispatcherUnhandledException += new DispatcherUnhandledExceptionEventHandler(App_DispatcherUnhandledException);
             TaskScheduler.UnobservedTaskException += TaskScheduler_UnobservedTaskException;
