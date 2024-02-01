@@ -39,6 +39,7 @@ namespace WubiMaster.ViewModels
         [RelayCommand]
         public void ChangePage(object pageName)
         {
+            this.ShowMessage("错误提示", "这是一个错误", DialogType.Warring);
             if (pageName == null) return;
 
             string pName = pageName.ToString();

@@ -8,7 +8,7 @@
         x:Name="message_winow"
         Title="MessageView"
         Width="300"
-        Height="220"
+        Height="200"
         Style="{StaticResource PopViewBaseStyle}"
         WindowStartupLocation="CenterScreen"
         mc:Ignorable="d">
@@ -18,82 +18,8 @@
     </Window.DataContext>
 
     <Grid Margin="10">
-
-        <c:CancelButton Width="15"
-                        Height="15"
-                        Margin="0,-5,-5,0"
-                        HorizontalAlignment="Right"
-                        VerticalAlignment="Top"
-                        Panel.ZIndex="100"
-                        CBBackground="White"
-                        CBBorderBrush="#FDB201"
-                        CBBorderThinckness="1"
-                        CBCommand="{Binding CloseCommand}"
-                        CBCommandParameter="{Binding ElementName=message_winow}"
-                        CBForeground="{DynamicResource BackColor}" />
-
-        <Border Background="{DynamicResource BackColor}"
-                BorderBrush="#FDB201"
-                BorderThickness="1"
-                CornerRadius="5">
-
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="2*" />
-                    <RowDefinition Height="*" />
-                </Grid.RowDefinitions>
-
-                <Border CornerRadius="5 5 0 0">
-                    <Border.Background>
-                        <LinearGradientBrush StartPoint="0.3,0" EndPoint="1,0.7">
-                            <GradientStop Offset="0" Color="#FDC500" />
-                            <GradientStop Offset="1" Color="#FDB201" />
-                        </LinearGradientBrush>
-                    </Border.Background>
-
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="2*" />
-                            <RowDefinition Height="2*" />
-                            <RowDefinition Height="*" />
-                        </Grid.RowDefinitions>
-
-                        <TextBlock HorizontalAlignment="Center"
-                                   VerticalAlignment="Center"
-                                   FontFamily="../../Fonts/#iconfont"
-                                   FontSize="50"
-                                   Foreground="White"
-                                   Text="&#xe616;" />
-
-                        <TextBlock Grid.Row="1"
-                                   HorizontalAlignment="Center"
-                                   VerticalAlignment="Center"
-                                   FontSize="35"
-                                   Text="{Binding MessageDialogModel.Title}" />
-
-                        <TextBlock Grid.Row="2"
-                                   HorizontalAlignment="Center"
-                                   Text="{Binding MessageDialogModel.Message}" />
-                    </Grid>
-                </Border>
-
-                <TextBlock Grid.Row="1"
-                           Margin="0,-5,0,0"
-                           HorizontalAlignment="Center"
-                           VerticalAlignment="Top"
-                           FontFamily="../../Fonts/#iconfont"
-                           FontSize="20"
-                           Foreground="#FDB201"
-                           Text="&#xe615;">
-                    <TextBlock.RenderTransform>
-                        <RotateTransform Angle="180" CenterX="10" CenterY="10" />
-                    </TextBlock.RenderTransform>
-                </TextBlock>
-
-                <Button Grid.Row="1"
-                        MaxWidth="110"
-                        MaxHeight="35" />
-            </Grid>
-        </Border>
+        <c:MessageBoxControl IconColor="Orange"
+                             IconText="&#xe61f;"
+                             Message="有一条错误发生" />
     </Grid>
 </Window>
