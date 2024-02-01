@@ -1,4 +1,5 @@
 ﻿using log4net;
+using System;
 using System.Diagnostics;
 using System.IO;
 
@@ -6,25 +7,76 @@ namespace WubiMaster.Common
 {
     public class LogHelper
     {
-        private static ILog LogError = LogManager.GetLogger("logerror");
-        private static ILog LogInfo = LogManager.GetLogger("loginfo");
+        private static ILog Log = LogManager.GetLogger(typeof(LogHelper));
 
-        public static void Error(string errorStr, bool addTrace = false)
+        public static void Fatal(string msg, bool addTrace = false)
         {
-            if (string.IsNullOrEmpty(errorStr)) return;
+            string message = "";
+
+            if (string.IsNullOrEmpty(msg)) return;
             if (addTrace)
-                LogError.Error(AppendClassLine(errorStr));
+                message = AppendClassLine(msg);
             else
-                LogError.Error(errorStr);
+                message = msg;
+
+            string htmlStr = ToHtmlStr(message, "FATAL", "blue");
+            Log.Fatal(htmlStr);
         }
 
-        public static void Info(string infoStr, bool addTrace = false)
+        public static void Error(string msg, bool addTrace = false)
         {
-            if (string.IsNullOrEmpty(infoStr)) return;
+            string message = "";
+
+            if (string.IsNullOrEmpty(msg)) return;
             if (addTrace)
-                LogInfo.Info(AppendClassLine(infoStr));
+                message = AppendClassLine(msg);
             else
-                LogInfo.Info(infoStr);
+                message = msg;
+
+            string htmlStr = ToHtmlStr(message, "ERROR", "red");
+            Log.Error(htmlStr);
+        }
+
+        public static void Warn(string msg, bool addTrace = false)
+        {
+            string message = "";
+
+            if (string.IsNullOrEmpty(msg)) return;
+            if (addTrace)
+                message = AppendClassLine(msg);
+            else
+                message = msg;
+
+            string htmlStr = ToHtmlStr(message, "WARN", "orange");
+            Log.Warn(htmlStr);
+        }
+
+        public static void Info(string msg, bool addTrace = false)
+        {
+            string message = "";
+
+            if (string.IsNullOrEmpty(msg)) return;
+            if (addTrace)
+                message = AppendClassLine(msg);
+            else
+                message = msg;
+
+            string htmlStr = ToHtmlStr(message, "INFO", "black");
+            Log.Error(htmlStr);
+        }
+
+        public static void Debug(string msg, bool addTrace = false)
+        {
+            string message = "";
+
+            if (string.IsNullOrEmpty(msg)) return;
+            if (addTrace)
+                message = AppendClassLine(msg);
+            else
+                message = msg;
+
+            string htmlStr = ToHtmlStr(message, "DEBUG", "green");
+            Log.Debug(htmlStr);
         }
 
         private static string AppendClassLine(string msg)
@@ -40,6 +92,12 @@ namespace WubiMaster.Common
             catch { }
 
             return logStr;
+        }
+
+        private static string ToHtmlStr(string mesg, string type, string color = "black")
+        {
+            string htmlStr = $"<p style='color:{color}'>{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")} [{type}] - {mesg}</p>";
+            return htmlStr;
         }
     }
 }

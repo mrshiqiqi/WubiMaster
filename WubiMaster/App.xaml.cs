@@ -15,8 +15,12 @@ namespace WubiMaster
 
         private void Application_Startup(object sender, StartupEventArgs e)
         {
-            LogHelper.Info("【书中君】启动");
-            LogHelper.Error("你好，世界", true);
+            LogHelper.Info("程序启动");
+        }
+
+        private void Application_Exit(object sender, ExitEventArgs e)
+        {
+            LogHelper.Info("程序退出");
         }
     }
 }
