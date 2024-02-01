@@ -19,7 +19,7 @@ namespace WubiMaster.Common
             else
                 message = msg;
 
-            string htmlStr = ToHtmlStr(message, "FATAL", "blue");
+            string htmlStr = ToHtmlStr(message, "FATAL", "fuchsia");
             Log.Fatal(htmlStr);
         }
 
