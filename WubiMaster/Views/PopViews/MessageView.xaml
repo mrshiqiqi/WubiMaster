@@ -18,8 +18,6 @@
     </Window.DataContext>
 
     <Grid Margin="10">
-        <c:MessageBoxControl IconColor="Orange"
-                             IconText="&#xe61f;"
-                             Message="有一条错误发生" />
+        <ContentControl Content="{Binding MessageBox}" />
     </Grid>
 </Window>

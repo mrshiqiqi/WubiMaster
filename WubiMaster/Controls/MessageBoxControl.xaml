@@ -9,6 +9,12 @@
              d:DesignWidth="300"
              mc:Ignorable="d">
 
+    <UserControl.Resources>
+        <TextBlock x:Key="warn_tbk"
+                   FontFamily="../Fonts/#iconfont"
+                   Text="&#xe61f;" />
+    </UserControl.Resources>
+
     <Grid>
 
         <c:CancelButton Width="15"
@@ -21,7 +27,7 @@
                         CBBorderBrush="{DynamicResource accent-100}"
                         CBBorderThinckness="1"
                         CBCommand="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=CloseCommand}"
-                        CBCommandParameter="{Binding ElementName=message_winow}"
+                        CBCommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=CommandParameter}"
                         CBForeground="{DynamicResource text-100}" />
 
         <Border Background="{DynamicResource bg-100}"
@@ -51,9 +57,24 @@
 
                         <Border>
                             <Viewbox Margin="8">
-                                <TextBlock FontFamily="../Fonts/#iconfont"
-                                           Foreground="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=IconColor}"
-                                           Text="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=IconText}" />
+                                <Grid TextBlock.FontFamily="../Fonts/#iconfont">
+
+                                    <TextBlock Foreground="{DynamicResource text-100}"
+                                               Text="&#xeb65;"
+                                               Visibility="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=NormalVisible}" />
+                                    <TextBlock Foreground="Orange"
+                                               Text="&#xe61f;"
+                                               Visibility="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=WarnVisible}" />
+                                    <TextBlock Foreground="Red"
+                                               Text="&#xe625;"
+                                               Visibility="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=ErrorVisible}" />
+                                    <TextBlock Foreground="IndianRed"
+                                               Text="&#xe61c;"
+                                               Visibility="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=FailVisible}" />
+                                    <TextBlock Foreground="DarkOliveGreen"
+                                               Text="&#xe604;"
+                                               Visibility="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=SucceedVisible}" />
+                                </Grid>
                             </Viewbox>
                         </Border>
 
@@ -73,6 +94,7 @@
                         MaxWidth="110"
                         MaxHeight="35"
                         Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=CloseCommand}"
+                        CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=CommandParameter}"
                         Content="确认"
                         Foreground="{DynamicResource text-100}" />
             </Grid>

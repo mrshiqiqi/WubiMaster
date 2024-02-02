@@ -5,22 +5,21 @@ using CommunityToolkit.Mvvm.Messaging;
 using System.Windows;
 using WubiMaster.Common;
 using WubiMaster.Models;
+using WubiMaster.Controls;
+using WubiMaster.Views.PopViews;
 
 namespace WubiMaster.ViewModels
 {
     public partial class PopViewModel : ObservableObject
     {
+
         [ObservableProperty]
-        public MessageDialogModel messageDialogModel;
+        private MessageBoxControl messageBox;
 
         [RelayCommand]
         public void Close(object obj)
-        {
-            if (obj == null) return;
-
-            Window pop = obj as Window;
-            pop.ClosePop();
-            WeakReferenceMessenger.Default.Send<ValueChangedMessage<bool>, string>(new ValueChangedMessage<bool>(false), "ShowMaskLayer");
+        {      
+            this.CloseMessage(obj);
         }
     }
 }

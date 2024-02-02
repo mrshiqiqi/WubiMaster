@@ -22,14 +22,6 @@ namespace WubiMaster.ViewModels
         public HomeViewModel()
         {
             WeakReferenceMessenger.Default.Register<string, string>(this, "ChangeShiciInterval", ChangeShiciInterval);
-            //Messenger.Register<HomeViewModel, ValueChangedMessage<bool>, int>(this, "ChangeShiciInterval", ChangeShiciInterval);
-        }
-
-        [RelayCommand]
-        public void ShowEtymon()
-        {
-            WeakReferenceMessenger.Default.Send<ValueChangedMessage<bool>, string>(new ValueChangedMessage<bool>(true), "ShowMaskLayer");
-            this.ShowMessage("提示", "找不到该页面", DialogType.Warring);
         }
 
         [RelayCommand]

@@ -1,13 +1,8 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
-using CommunityToolkit.Mvvm.Messaging.Messages;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using WubiMaster.Models;
+using System.Windows.Media;
+using WubiMaster.Controls;
 using WubiMaster.ViewModels;
 using WubiMaster.Views.PopViews;
 
@@ -17,62 +12,85 @@ namespace WubiMaster.Common
     {
         Normal,
         Warring,
-        Success,
         Error,
+        Fail,
+        Success,
     }
 
     public static class ObjectExtend
     {
-        public static void ShowMessage(this object obj, string title, string message, DialogType type = DialogType.Normal)
+        public static void CloseMessage(this object obj, object msgView)
+        {
+            if (msgView == null) return;
+            WeakReferenceMessenger.Default.Send<string, string>("false", "ShowMaskLayer");
+
+            try
+            {
+                MessageView view = (MessageView)msgView;
+                view.DialogResult = true;
+            }
+            catch (System.Exception ex)
+            {
+                MessageView view = (MessageView)msgView;
+                view.Close();
+
+                LogHelper.Warn("提示窗口未正常关闭");
+                LogHelper.Error(ex.Message);
+            }
+        }
+
+        public static void ShowMessage(this object obj, string message, DialogType type = DialogType.Normal)
         {
             Window mainWindow = App.Current.MainWindow;
+
+            WeakReferenceMessenger.Default.Send<string, string>("true", "ShowMaskLayer");
 
             switch (type)
             {
                 case DialogType.Normal:
-                    NormaDialog(message, mainWindow);
+                    NewMessageBox(message, mainWindow, "Normal");
                     break;
+
                 case DialogType.Warring:
-                    WarringDialog(message, mainWindow);
+                    NewMessageBox(message, mainWindow, "Warn");
                     break;
-                case DialogType.Success:
-                    SuccessDialog(message, mainWindow);
-                    break;
+
                 case DialogType.Error:
-                    ErrorDialog(message, mainWindow);
+                    NewMessageBox(message, mainWindow, "Error");
                     break;
+
+                case DialogType.Fail:
+                    NewMessageBox(message, mainWindow, "Fail");
+                    break;
+
+                case DialogType.Success:
+                    NewMessageBox(message, mainWindow, "Succeed");
+                    break;
+
                 default:
                     break;
             }
         }
 
-        private static void NormaDialog(string message, Window owner)
+        private static void NewMessageBox(string message, Window owner, string type)
         {
-            MessageView messageView = new MessageView();
-            PopViewModel messageDataContent = messageView.DataContext as PopViewModel;
-            MessageDialogModel dialogModel = new MessageDialogModel();
-            dialogModel.Title = "提示";
-            dialogModel.Message = message;
-            messageDataContent.MessageDialogModel = dialogModel;
-            messageView.ShowPop();
+            MessageView msgView = new MessageView();
+            MessageBoxControl msgControl = new MessageBoxControl();
+            PopViewModel dataContent = (PopViewModel)msgView.DataContext;
 
+            dataContent.MessageBox = msgControl;
+
+            msgControl.Message = message;
+            msgControl.Type = type;
+            msgControl.IconColor = Brushes.Orange;
+            msgControl.CloseCommand = (RelayCommand<object>)dataContent.CloseCommand;
+            msgControl.CommandParameter = msgView;
+
+            msgView.Owner = owner;
+            msgView.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+            msgView.DataContext = dataContent;
+
+            msgView.ShowPop();
         }
-
-        private static void WarringDialog(string message, Window owner)
-        {
-            MessageView messageView = new MessageView();
-            messageView.Owner = owner;
-            messageView.WindowStartupLocation = WindowStartupLocation.CenterOwner;
-            PopViewModel messageDataContent = messageView.DataContext as PopViewModel;
-            MessageDialogModel dialogModel = new MessageDialogModel();
-            dialogModel.Title = "警告";
-            dialogModel.Message = message;
-            messageDataContent.MessageDialogModel = dialogModel;
-            messageView.ShowPop();
-        }
-
-        private static void SuccessDialog(string message, Window owner) { }
-
-        private static void ErrorDialog(string message, Window owner) { }
     }
 }

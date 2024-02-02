@@ -39,6 +39,8 @@ namespace WubiMaster
             catch (Exception ex)
             {
                 LogHelper.Fatal("程序发生致命错误，将终止，请联系开发人员！" + ex.Message);
+                this.ShowMessage("程序发生致命错误，将终止，请联系开发人员！", DialogType.Error);
+                Environment.Exit(0);
             }
 
         }
@@ -59,7 +61,7 @@ namespace WubiMaster
             {
                 sbEx.Append(e.ExceptionObject);
             }
-            MessageBox.Show(sbEx.ToString());
+            this.ShowMessage(sbEx.ToString(), DialogType.Error);
         }
 
         void TaskScheduler_UnobservedTaskException(object sender, UnobservedTaskExceptionEventArgs e)

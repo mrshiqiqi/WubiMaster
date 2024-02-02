@@ -10,6 +10,7 @@ using WubiMaster.Views;
 using Newtonsoft.Json;
 using WubiMaster.Models;
 using Newtonsoft.Json.Linq;
+using CommunityToolkit.Mvvm.Messaging;
 
 namespace WubiMaster.ViewModels
 {
@@ -29,9 +30,20 @@ namespace WubiMaster.ViewModels
             IsActive = true;
             pageDict = new Dictionary<string, object>();
 
-            Messenger.Register<MainViewModel, ValueChangedMessage<bool>, string>(this, "ShowMaskLayer", ShowMaskLayer);
+            //Register<string, string>：消息类型、token类型
+            WeakReferenceMessenger.Default.Register<string, string>(this, "ShowMaskLayer", ShowMaskLayer);
 
             SetDefultTheme();
+        }
+
+        private void ShowMaskLayer(object recipient, string message)
+        {
+            bool isShow = bool.Parse(message);
+
+            if (isShow)
+                MaskLayerVisable = Visibility.Visible;
+            else
+                MaskLayerVisable = Visibility.Collapsed;
         }
 
         private Dictionary<string, object> pageDict { get; set; }
@@ -39,7 +51,6 @@ namespace WubiMaster.ViewModels
         [RelayCommand]
         public void ChangePage(object pageName)
         {
-            //this.ShowMessage("错误提示", "这是一个错误", DialogType.Warring);
             if (pageName == null) return;
 
             string pName = pageName.ToString();
@@ -128,14 +139,5 @@ namespace WubiMaster.ViewModels
             Application.Current.Resources.MergedDictionaries[0].Source = new Uri(defultPack);
         }
 
-        private void ShowMaskLayer(MainViewModel vm, ValueChangedMessage<bool> vcm)
-        {
-            bool isShow = vcm.Value;
-
-            if (isShow)
-                MaskLayerVisable = Visibility.Visible;
-            else
-                MaskLayerVisable = Visibility.Collapsed;
-        }
     }
 }
