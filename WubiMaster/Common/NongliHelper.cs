@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Runtime.InteropServices;
 
 namespace WubiMaster.Common
 {
@@ -19,7 +20,7 @@ namespace WubiMaster.Common
             "寒露", "霜降", "立冬",
             "小雪", "大雪", "冬至" };
         private static int[] JQData = {
-            0, 21208, 43467,
+            0, 21208, 42808,
             63836, 85337, 107014,
             128867, 150921, 173149,
             195551, 218072, 240693,
@@ -291,6 +292,35 @@ namespace WubiMaster.Common
         }
 
         /// <summary>
+        /// 获取节气
+        /// </summary>
+        /// <param name="dt"></param>
+        /// <returns></returns>
+        public static string GetNextSolarTerm(DateTime dt)
+        {
+            DateTime dtBase = new DateTime(1900, 1, 6, 2, 5, 0);
+            DateTime dtNew;
+            double num;
+            int y;
+            string strReturn = "";
+
+            y = dt.Year;
+            for (int i = 1; i <= 24; i++)
+            {
+                num = 525948.76 * (y - 1900) + JQData[i - 1];
+                dtNew = dtBase.AddMinutes(num);
+                if (dtNew.DayOfYear == dt.DayOfYear)
+                {
+                    int index = i;
+                    if (i == 24) index = 0;
+                    strReturn = JQ[index];
+                }
+            }
+
+            return strReturn;
+        }
+
+        /// <summary>
         /// 获取节气（按节气阶段，即最近一个节气）
         /// </summary>
         /// <param name="dt"></param>
@@ -372,7 +402,6 @@ namespace WubiMaster.Common
         public static string GetJiejieMonth(DateTime dt)
         {
             string monthName = "";
-            int jieqiHouIndex = -1;
 
             string jieqiLast = NongliHelper.GetSolarTermLast(dt);
 
@@ -411,6 +440,7 @@ namespace WubiMaster.Common
 
             int dateSpan = dt.DayOfYear - dtJieqi.DayOfYear;
             int value = dateSpan / 5;
+            if (value == 3 &&GetSolarTerm(dt).Length <= 0) value --;
             jieqiHouIndex = jieqiIndex * 3 + value;
 
             jieqiHouStr = JQHou[jieqiHouIndex];
