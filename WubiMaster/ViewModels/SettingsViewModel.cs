@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
+using WubiMaster.Common;
 using WubiMaster.Models;
 
 namespace WubiMaster.ViewModels
@@ -13,7 +14,13 @@ namespace WubiMaster.ViewModels
     public partial class SettingsViewModel : ObservableRecipient
     {
         [ObservableProperty]
-        private List<ThemeModel> themeList;
+        private bool cobboxThemesEnable;
+
+        [ObservableProperty]
+        private bool isRandomThemes;
+
+        [ObservableProperty]
+        private int shiciIndex;
 
         [ObservableProperty]
         private ObservableCollection<string> shiciIntervalList;
@@ -22,15 +29,10 @@ namespace WubiMaster.ViewModels
         private int themeIndex;
 
         [ObservableProperty]
-        private int shiciIndex;
+        private List<ThemeModel> themeList;
 
-        private void InitShiciInterval()
-        {
-            ShiciIntervalList.Add("5分钟");
-            ShiciIntervalList.Add("25分钟");
-            ShiciIntervalList.Add("1小时");
-            ShiciIntervalList.Add("1天");
-        }
+        [ObservableProperty]
+        private string userFilePath;
 
         public SettingsViewModel()
         {
@@ -40,26 +42,9 @@ namespace WubiMaster.ViewModels
             InitThemes();
             InitShiciInterval();
 
-            var currentTheme = ThemeList.FirstOrDefault(t => t.Name == "DefultBlue");
-            ThemeIndex = themeList.IndexOf(currentTheme);
             ShiciIndex = 1;
-        }
 
-        [RelayCommand]
-        public void ChangeTheme(string theme)
-        {
-            if (theme == null || theme.Length == 0) { return; }
-            try
-            {
-                string pack = $"pack://application:,,,/WubiMaster;component/Themes/{theme}.xaml";
-                ResourceDictionary themeResource = new ResourceDictionary();
-                themeResource.Source = new Uri(pack);
-                Application.Current.Resources.MergedDictionaries[0].Source = themeResource.Source;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-            }
+            LoadConfig();
         }
 
         [RelayCommand]
@@ -72,19 +57,67 @@ namespace WubiMaster.ViewModels
                 case 0:
                     interval = "5";
                     break;
+
                 case 1:
                     interval = "25";
                     break;
+
                 case 2:
                     interval = "60";
                     break;
+
                 case 3:
                     interval = "1440";
                     break;
+
                 default:
                     break;
             }
             WeakReferenceMessenger.Default.Send<string, string>(interval, "ChangeShiciInterval");
+        }
+
+        [RelayCommand]
+        public void ChangeTheme(string theme)
+        {
+            if (theme == null || theme.Length == 0) { return; }
+            try
+            {
+                string pack = $"pack://application:,,,/WubiMaster;component/Themes/{theme}.xaml";
+                ResourceDictionary themeResource = new ResourceDictionary();
+                themeResource.Source = new Uri(pack);
+                Application.Current.Resources.MergedDictionaries[0].Source = themeResource.Source;
+
+                ConfigHelper.WriteConfigByString("theme_value", theme);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        [RelayCommand]
+        public void RandomThemes()
+        {
+            if (IsRandomThemes)
+            {
+                CobboxThemesEnable = false;
+                Random random = new Random();
+                int index = random.Next(0, ThemeList.Count);
+                ChangeTheme(ThemeList[index].Value);
+            }
+            else
+            {
+                CobboxThemesEnable = true;
+            }
+            ConfigHelper.WriteConfigByBool("is_random_themes", IsRandomThemes);
+        }
+
+        private void InitShiciInterval()
+        {
+            ShiciIntervalList.Add("5分钟");
+            ShiciIntervalList.Add("25分钟");
+            ShiciIntervalList.Add("1小时");
+            ShiciIntervalList.Add("1天");
         }
 
         private void InitThemes()
@@ -107,6 +140,23 @@ namespace WubiMaster.ViewModels
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
+            }
+        }
+
+        private void LoadConfig()
+        {
+            IsRandomThemes = ConfigHelper.ReadConfigByBool("is_random_themes", false);
+            if (IsRandomThemes)
+            {
+                CobboxThemesEnable = false;
+                RandomThemes();
+            }
+            else
+            {
+                CobboxThemesEnable = true;
+                string themeValue = ConfigHelper.ReadConfigByString("theme_value");
+                if (!string.IsNullOrEmpty(themeValue)) ChangeTheme(themeValue);
+                else ChangeTheme("DefultBlueTheme");
             }
         }
     }

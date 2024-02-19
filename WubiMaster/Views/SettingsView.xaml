@@ -31,7 +31,7 @@
                             <StackPanel Orientation="Horizontal">
                                 <TextBox MinWidth="150"
                                          VerticalContentAlignment="Center"
-                                         Text="C:\Users\mrshi\AppData\Roaming\Rime" />
+                                         Text="{Binding UserFilePath}" />
                                 <Button Width="50"
                                         Margin="10,0,0,0"
                                         Content="打开" />
@@ -80,6 +80,7 @@
                                           ItemsSource="{Binding ThemeList}"
                                           SelectedIndex="{Binding ThemeIndex}"
                                           SelectedValuePath="Value"
+                                          IsEnabled="{Binding CobboxThemesEnable}"
                                           Style="{StaticResource ComboBoxStyle}">
                                     <b:Interaction.Triggers>
                                         <b:EventTrigger EventName="SelectionChanged">
@@ -90,7 +91,14 @@
 
                                 <CheckBox Margin="10,0,0,0"
                                           VerticalContentAlignment="Center"
-                                          Content="随机主题" />
+                                          Content="随机主题"
+                                          IsChecked="{Binding IsRandomThemes}">
+                                    <b:Interaction.Triggers>
+                                        <b:EventTrigger EventName="Click">
+                                            <b:InvokeCommandAction Command="{Binding RandomThemesCommand}" />
+                                        </b:EventTrigger>
+                                    </b:Interaction.Triggers>
+                                </CheckBox>
                             </StackPanel>
                         </c:SettingPanel.SettingContent>
                     </c:SettingPanel>

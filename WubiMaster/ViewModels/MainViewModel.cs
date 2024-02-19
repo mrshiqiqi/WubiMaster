@@ -33,7 +33,8 @@ namespace WubiMaster.ViewModels
             //Register<string, string>：消息类型、token类型
             WeakReferenceMessenger.Default.Register<string, string>(this, "ShowMaskLayer", ShowMaskLayer);
 
-            SetDefultTheme();
+            //SetDefultTheme();
+            var model = new SettingsViewModel();
         }
 
         private void ShowMaskLayer(object recipient, string message)
