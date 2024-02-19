@@ -1,16 +1,13 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using CommunityToolkit.Mvvm.Messaging.Messages;
+using CommunityToolkit.Mvvm.Messaging;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows;
-using WubiMaster.Common;
+using System.Windows.Controls;
+using WubiMaster.Controls;
 using WubiMaster.Views;
-using Newtonsoft.Json;
-using WubiMaster.Models;
-using Newtonsoft.Json.Linq;
-using CommunityToolkit.Mvvm.Messaging;
 
 namespace WubiMaster.ViewModels
 {
@@ -32,9 +29,6 @@ namespace WubiMaster.ViewModels
 
             //Register<string, string>：消息类型、token类型
             WeakReferenceMessenger.Default.Register<string, string>(this, "ShowMaskLayer", ShowMaskLayer);
-
-            //SetDefultTheme();
-            var model = new SettingsViewModel();
         }
 
         private void ShowMaskLayer(object recipient, string message)
@@ -109,6 +103,45 @@ namespace WubiMaster.ViewModels
         }
 
         [RelayCommand]
+        public async void LoadedNav(object navParent)
+        {
+            StackPanel panel = (StackPanel)navParent;
+            foreach (NavButton navBtn in panel.Children)
+            {
+                string pName = navBtn.NavName;
+                if (pageDict.ContainsKey(pName)) continue;
+
+                switch (pName)
+                {
+                    case "Home":
+                        HomeView homeView = new HomeView();
+                        pageDict[pName] = homeView;
+                        break;
+
+                    case "Etymon":
+                        EtymonView etymonView = new EtymonView();
+                        pageDict[pName] = etymonView;
+                        break;
+
+                    case "Lexicon":
+                        LexiconView lexiconView = new LexiconView();
+                        pageDict[pName] = lexiconView;
+                        break;
+
+                    case "Settings":
+                        SettingsView settingsView = new SettingsView();
+                        pageDict[pName] = settingsView;
+                        break;
+
+                    default:
+                        TestView testView = new TestView();
+                        pageDict[pName] = testView;
+                        break;
+                }
+            }
+        }
+
+        [RelayCommand]
         public void MaxWindow(object obj)
         {
             if (App.IsMaximized)
@@ -139,6 +172,5 @@ namespace WubiMaster.ViewModels
             string defultPack = "Pack://application:,,,/WubiMaster;component/Themes/DefultBlueTheme.xaml";
             Application.Current.Resources.MergedDictionaries[0].Source = new Uri(defultPack);
         }
-
     }
 }

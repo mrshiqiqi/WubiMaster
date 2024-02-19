@@ -134,7 +134,14 @@
 
                             <StackPanel Grid.Row="1"
                                         Margin="5"
+                                        x:Name="navStackPanel"
                                         VerticalAlignment="Center">
+
+                                <b:Interaction.Triggers>
+                                    <b:EventTrigger EventName="Loaded">
+                                        <b:InvokeCommandAction Command="{Binding LoadedNavCommand}" CommandParameter="{Binding ElementName=navStackPanel}" />
+                                    </b:EventTrigger>
+                                </b:Interaction.Triggers>
 
                                 <c:NavButton IconText="&#xe867;"
                                              IsSelected="True"
