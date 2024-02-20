@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace WubiMaster.Models
 {
-    public class ShiciRootModel
+    public class ShiciIntervalModel
     {
-        public string status { get; set; }
-        public string data { get; set; }
+        public int Id { get; set; }
+        public string Value { get; set; }
+        public int Minutes { get; set; }
     }
 }

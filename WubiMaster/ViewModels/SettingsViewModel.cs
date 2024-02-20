@@ -26,7 +26,7 @@ namespace WubiMaster.ViewModels
         private int shiciIndex;
 
         [ObservableProperty]
-        private ObservableCollection<string> shiciIntervalList;
+        private ObservableCollection<ShiciIntervalModel> shiciIntervalList;
 
         [ObservableProperty]
         private int themeIndex;
@@ -40,7 +40,7 @@ namespace WubiMaster.ViewModels
         public SettingsViewModel()
         {
             ThemeList = new List<ThemeModel>();
-            ShiciIntervalList = new ObservableCollection<string>();
+            ShiciIntervalList = new ObservableCollection<ShiciIntervalModel>();
 
             InitThemes();
             InitShiciInterval();
@@ -48,34 +48,12 @@ namespace WubiMaster.ViewModels
         }
 
         [RelayCommand]
-        public void ChangeShiciInterval(string value)
+        public void ChangeShiciInterval(int index)
         {
-            string interval = "25";
-            int index = ShiciIntervalList.IndexOf(value);
-            switch (index)
-            {
-                case 0:
-                    interval = "5";
-                    break;
-
-                case 1:
-                    interval = "25";
-                    break;
-
-                case 2:
-                    interval = "60";
-                    break;
-
-                case 3:
-                    interval = "1440";
-                    break;
-
-                default:
-                    break;
-            }
+            string interval = ShiciIntervalList.First(i => i.Id == index).Minutes.ToString();
             WeakReferenceMessenger.Default.Send<string, string>(interval, "ChangeShiciInterval");
 
-            ConfigHelper.WriteConfigByInt("shici_interval", index);
+            ConfigHelper.WriteConfigByString("shici_interval", interval);
         }
 
         [RelayCommand]
@@ -146,10 +124,10 @@ namespace WubiMaster.ViewModels
 
         private void InitShiciInterval()
         {
-            ShiciIntervalList.Add("5分钟");
-            ShiciIntervalList.Add("25分钟");
-            ShiciIntervalList.Add("1小时");
-            ShiciIntervalList.Add("1天");
+            ShiciIntervalList.Add(new ShiciIntervalModel() { Id = 0, Value = "5分钟", Minutes = 5 });
+            ShiciIntervalList.Add(new ShiciIntervalModel() { Id = 1, Value = "25分钟", Minutes = 25 });
+            ShiciIntervalList.Add(new ShiciIntervalModel() { Id = 2, Value = "1小时", Minutes = 60 });
+            ShiciIntervalList.Add(new ShiciIntervalModel() { Id = 3, Value = "1天", Minutes = 1440 });
         }
 
         private void InitThemes()
@@ -171,7 +149,7 @@ namespace WubiMaster.ViewModels
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                LogHelper.Error(ex.Message);
             }
         }
 
@@ -184,7 +162,11 @@ namespace WubiMaster.ViewModels
             ProcessFilePath = ConfigHelper.ReadConfigByString("process_file_path");
 
             // 加载今日诗词更换时间
-            ShiciIndex = ConfigHelper.ReadConfigByInt("shici_interval", 1);
+            string interval = ConfigHelper.ReadConfigByString("shici_interval", "25");
+            var _list = ShiciIntervalList.Select(i => i.Minutes).ToList();
+            if (_list.IndexOf(int.Parse(interval)) == -1) { ShiciIndex = 1; interval = "25"; }
+            else ShiciIndex = _list.IndexOf(int.Parse(interval));
+            WeakReferenceMessenger.Default.Send<string, string>(interval, "ChangeShiciInterval");
 
             // 加载主题配置
             IsRandomThemes = ConfigHelper.ReadConfigByBool("is_random_themes", false);

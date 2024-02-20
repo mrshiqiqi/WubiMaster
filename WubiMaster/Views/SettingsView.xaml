@@ -114,13 +114,15 @@
 
                                 <ComboBox Width="150"
                                           MinHeight="24"
+                                          DisplayMemberPath="Value"
                                           Foreground="{DynamicResource text-100}"
                                           ItemsSource="{Binding ShiciIntervalList}"
-                                          SelectedIndex="{Binding ShiciIndex}"
+                                          SelectedIndex="{Binding ShiciIndex, Mode=TwoWay}"
+                                          SelectedValuePath="Id"
                                           Style="{StaticResource ComboBoxStyle}">
                                     <b:Interaction.Triggers>
                                         <b:EventTrigger EventName="SelectionChanged">
-                                            <b:InvokeCommandAction Command="{Binding ChangeShiciIntervalCommand}" CommandParameter="{Binding Path=SelectedItem, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ComboBox}, AncestorLevel=1}}" />
+                                            <b:InvokeCommandAction Command="{Binding ChangeShiciIntervalCommand}" CommandParameter="{Binding Path=SelectedValue, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ComboBox}, AncestorLevel=1}}" />
                                         </b:EventTrigger>
                                     </b:Interaction.Triggers>
                                 </ComboBox>
