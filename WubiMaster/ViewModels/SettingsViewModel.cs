@@ -44,9 +44,6 @@ namespace WubiMaster.ViewModels
 
             InitThemes();
             InitShiciInterval();
-
-            ShiciIndex = 1;
-
             LoadConfig();
         }
 
@@ -77,6 +74,8 @@ namespace WubiMaster.ViewModels
                     break;
             }
             WeakReferenceMessenger.Default.Send<string, string>(interval, "ChangeShiciInterval");
+
+            ConfigHelper.WriteConfigByInt("shici_interval", index);
         }
 
         [RelayCommand]
@@ -183,6 +182,9 @@ namespace WubiMaster.ViewModels
 
             // 加载程序目录配置
             ProcessFilePath = ConfigHelper.ReadConfigByString("process_file_path");
+
+            // 加载今日诗词更换时间
+            ShiciIndex = ConfigHelper.ReadConfigByInt("shici_interval", 1);
 
             // 加载主题配置
             IsRandomThemes = ConfigHelper.ReadConfigByBool("is_random_themes", false);
