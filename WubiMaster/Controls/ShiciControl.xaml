@@ -56,11 +56,11 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
-        <Grid>
+        <Grid UseLayoutRounding="True">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
-                <RowDefinition Height="2.5*" />
+                <RowDefinition Height="3*" />
             </Grid.RowDefinitions>
 
             <Image x:Name="imagexx"
@@ -68,6 +68,8 @@
                    Margin="10,0,0,20"
                    HorizontalAlignment="Center"
                    VerticalAlignment="Bottom"
+                   RenderOptions.BitmapScalingMode="HighQuality"
+                   SnapsToDevicePixels="True"
                    Source="{Binding ElementName=shici_control, Path=ShiciImage}" />
         </Grid>
 
