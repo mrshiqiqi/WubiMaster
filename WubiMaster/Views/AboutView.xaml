@@ -1,0 +1,60 @@
+﻿<UserControl x:Class="WubiMaster.Views.AboutView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:c="clr-namespace:WubiMaster.Controls"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:WubiMaster.Views"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             d:Background="{DynamicResource bg-100}"
+             d:DesignHeight="450"
+             d:DesignWidth="800"
+             mc:Ignorable="d">
+
+    <UserControl.Resources>
+        <Style x:Key="grid_style" TargetType="Grid">
+            <Setter Property="Margin" Value="10,15" />
+        </Style>
+
+        <Style x:Key="title_style" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="Foreground" Value="{DynamicResource primary-100}" />
+        </Style>
+
+        <Style x:Key="info_style" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="15" />
+            <Setter Property="Foreground" Value="{DynamicResource primary-200}" />
+        </Style>
+    </UserControl.Resources>
+
+    <Grid>
+        <StackPanel>
+            <Grid Style="{StaticResource grid_style}">
+                <StackPanel>
+                    <TextBlock Style="{StaticResource title_style}" Text="软件版本号" />
+                    <TextBlock Style="{StaticResource info_style}" Text="v1.0.0.1" />
+                </StackPanel>
+            </Grid>
+
+            <Grid Style="{StaticResource grid_style}">
+                <StackPanel>
+                    <TextBlock Style="{StaticResource title_style}" Text="作者" />
+                    <TextBlock Style="{StaticResource info_style}" Text="空山明月" />
+                </StackPanel>
+            </Grid>
+
+            <Grid Style="{StaticResource grid_style}">
+                <StackPanel>
+                    <TextBlock Style="{StaticResource title_style}" Text="联系邮箱" />
+                    <TextBlock Style="{StaticResource info_style}" Text="mrshiqiqi@126.com" />
+                </StackPanel>
+            </Grid>
+
+            <Grid Style="{StaticResource grid_style}">
+                <StackPanel>
+                    <TextBlock Style="{StaticResource title_style}" Text="项目地址" />
+                    <TextBlock Style="{StaticResource info_style}" Text="https://gitee.com/hi-coder/WubiMaster" />
+                </StackPanel>
+            </Grid>
+        </StackPanel>
+    </Grid>
+</UserControl>

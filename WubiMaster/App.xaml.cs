@@ -68,6 +68,7 @@ namespace WubiMaster
         {
             LogHelper.Fatal(e.Exception.Message);
             e.SetObserved();
+            this.ShowMessage(e.Exception.Message, DialogType.Error);
         }
     }
 }

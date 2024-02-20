@@ -80,6 +80,12 @@ namespace WubiMaster.ViewModels
                         CurrentView = settingsView;
                         break;
 
+                    case "About":
+                        AboutView aboutView = new AboutView();
+                        pageDict[pName] = aboutView;
+                        CurrentView = aboutView;
+                        break;
+
                     default:
                         TestView testView = new TestView();
                         pageDict[pName] = testView;
@@ -131,6 +137,11 @@ namespace WubiMaster.ViewModels
                     case "Settings":
                         SettingsView settingsView = new SettingsView();
                         pageDict[pName] = settingsView;
+                        break;
+
+                    case "About":
+                        AboutView aboutView = new AboutView();
+                        pageDict[pName] = aboutView;
                         break;
 
                     default:
