@@ -117,7 +117,7 @@
                                 <TextBlock Margin="0,5,0,0"
                                            HorizontalAlignment="Center"
                                            VerticalAlignment="Bottom"
-                                           FontSize="16"
+                                           FontSize="18"
                                            FontWeight="Bold"
                                            Foreground="{DynamicResource text-100}"
                                            Text="书中君" />
@@ -125,16 +125,16 @@
                                 <TextBlock Margin="0,5,0,0"
                                            HorizontalAlignment="Center"
                                            VerticalAlignment="Bottom"
-                                           FontSize="13"
+                                           FontSize="16"
+                                           FontWeight="Normal"
                                            Foreground="{DynamicResource text-200}"
-                                           Text="五笔管理器"
-                                           TextOptions.TextFormattingMode="Display" />
+                                           Text="五笔管理器" />
 
                             </StackPanel>
 
-                            <StackPanel Grid.Row="1"
+                            <StackPanel x:Name="navStackPanel"
+                                        Grid.Row="1"
                                         Margin="5"
-                                        x:Name="navStackPanel"
                                         VerticalAlignment="Center">
 
                                 <b:Interaction.Triggers>
