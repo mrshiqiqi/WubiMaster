@@ -31,9 +31,11 @@
                             <StackPanel Orientation="Horizontal">
                                 <TextBox MinWidth="150"
                                          VerticalContentAlignment="Center"
+                                         IsReadOnly="True"
                                          Text="{Binding UserFilePath}" />
                                 <Button Width="50"
                                         Margin="10,0,0,0"
+                                        Command="{Binding OpenUserFilePathCommand}"
                                         Content="打开" />
                             </StackPanel>
                         </c:SettingPanel.SettingContent>
@@ -46,9 +48,10 @@
                             <StackPanel Orientation="Horizontal">
                                 <TextBox MinWidth="150"
                                          IsReadOnly="True"
-                                         Text="D:\Program Files (x86)\Rime\weasel-1.0.0" />
+                                         Text="{Binding ProcessFilePath}" />
                                 <Button Width="50"
                                         Margin="10,0,0,0"
+                                        Command="{Binding OpenProcessFilePathCommand}"
                                         Content="打开" />
                             </StackPanel>
                         </c:SettingPanel.SettingContent>
@@ -77,10 +80,10 @@
                                           MinHeight="24"
                                           DisplayMemberPath="Name"
                                           Foreground="{DynamicResource text-100}"
+                                          IsEnabled="{Binding CobboxThemesEnable}"
                                           ItemsSource="{Binding ThemeList}"
                                           SelectedIndex="{Binding ThemeIndex}"
                                           SelectedValuePath="Value"
-                                          IsEnabled="{Binding CobboxThemesEnable}"
                                           Style="{StaticResource ComboBoxStyle}">
                                     <b:Interaction.Triggers>
                                         <b:EventTrigger EventName="SelectionChanged">

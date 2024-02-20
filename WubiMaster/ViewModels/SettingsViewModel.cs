@@ -20,6 +20,9 @@ namespace WubiMaster.ViewModels
         private bool isRandomThemes;
 
         [ObservableProperty]
+        private string processFilePath;
+
+        [ObservableProperty]
         private int shiciIndex;
 
         [ObservableProperty]
@@ -96,6 +99,36 @@ namespace WubiMaster.ViewModels
         }
 
         [RelayCommand]
+        public void OpenProcessFilePath()
+        {
+            System.Windows.Forms.FolderBrowserDialog dialog = new System.Windows.Forms.FolderBrowserDialog();
+            System.Windows.Forms.DialogResult result = dialog.ShowDialog();
+
+            if (result == System.Windows.Forms.DialogResult.Cancel)
+            {
+                return;
+            }
+            ProcessFilePath = dialog.SelectedPath;
+
+            ConfigHelper.WriteConfigByString("process_file_path", ProcessFilePath);
+        }
+
+        [RelayCommand]
+        public void OpenUserFilePath()
+        {
+            System.Windows.Forms.FolderBrowserDialog dialog = new System.Windows.Forms.FolderBrowserDialog();
+            System.Windows.Forms.DialogResult result = dialog.ShowDialog();
+
+            if (result == System.Windows.Forms.DialogResult.Cancel)
+            {
+                return;
+            }
+            UserFilePath = dialog.SelectedPath;
+
+            ConfigHelper.WriteConfigByString("user_file_path", UserFilePath);
+        }
+
+        [RelayCommand]
         public void RandomThemes()
         {
             if (IsRandomThemes)
@@ -145,6 +178,13 @@ namespace WubiMaster.ViewModels
 
         private void LoadConfig()
         {
+            // 加载用户目录配置
+            UserFilePath = ConfigHelper.ReadConfigByString("user_file_path");
+
+            // 加载程序目录配置
+            ProcessFilePath = ConfigHelper.ReadConfigByString("process_file_path");
+
+            // 加载主题配置
             IsRandomThemes = ConfigHelper.ReadConfigByBool("is_random_themes", false);
             if (IsRandomThemes)
             {
