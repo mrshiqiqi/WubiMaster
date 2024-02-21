@@ -17,11 +17,8 @@
     </UserControl.DataContext>
 
     <Grid>
-
         <ScrollViewer>
-
             <Grid>
-
                 <StackPanel>
 
                     <c:SettingPanel Title="关联用户目录"
@@ -251,7 +248,6 @@
                             </StackPanel>
                         </c:SettingPanel.SettingContent>
                     </c:SettingPanel>
-
                 </StackPanel>
             </Grid>
         </ScrollViewer>
