@@ -78,7 +78,7 @@
               HorizontalAlignment="Right"
               VerticalAlignment="Stretch">
 
-            <StackPanel Margin="30,20"
+            <StackPanel Margin="0,20,30,20"
                         HorizontalAlignment="Right"
                         VerticalAlignment="Stretch"
                         Orientation="Horizontal"

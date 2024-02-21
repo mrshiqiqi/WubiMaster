@@ -245,6 +245,8 @@ namespace WubiMaster.Controls
                 JinriShici = model.content;
                 ShiciTitle = model.origin;
                 ShiciAuthor = model.author;
+
+                LogHelper.Error(ex.Message);
             }
         }
 
