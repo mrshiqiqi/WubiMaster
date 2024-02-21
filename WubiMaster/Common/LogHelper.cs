@@ -9,6 +9,39 @@ namespace WubiMaster.Common
     {
         private static ILog Log = LogManager.GetLogger(typeof(LogHelper));
 
+        static LogHelper()
+        {
+            LogHelper.RemoveLogs();
+        }
+
+        public static void Debug(string msg, bool addTrace = false)
+        {
+            string message = "";
+
+            if (string.IsNullOrEmpty(msg)) return;
+            if (addTrace)
+                message = AppendClassLine(msg);
+            else
+                message = msg;
+
+            string htmlStr = ToHtmlStr(message, "DEBUG", "green");
+            Log.Debug(htmlStr);
+        }
+
+        public static void Error(string msg, bool addTrace = false)
+        {
+            string message = "";
+
+            if (string.IsNullOrEmpty(msg)) return;
+            if (addTrace)
+                message = AppendClassLine(msg);
+            else
+                message = msg;
+
+            string htmlStr = ToHtmlStr(message, "ERROR", "red");
+            Log.Error(htmlStr);
+        }
+
         public static void Fatal(string msg, bool addTrace = false)
         {
             string message = "";
@@ -23,7 +56,7 @@ namespace WubiMaster.Common
             Log.Fatal(htmlStr);
         }
 
-        public static void Error(string msg, bool addTrace = false)
+        public static void Info(string msg, bool addTrace = false)
         {
             string message = "";
 
@@ -33,7 +66,7 @@ namespace WubiMaster.Common
             else
                 message = msg;
 
-            string htmlStr = ToHtmlStr(message, "ERROR", "red");
+            string htmlStr = ToHtmlStr(message, "INFO", "black");
             Log.Error(htmlStr);
         }
 
@@ -51,34 +84,6 @@ namespace WubiMaster.Common
             Log.Warn(htmlStr);
         }
 
-        public static void Info(string msg, bool addTrace = false)
-        {
-            string message = "";
-
-            if (string.IsNullOrEmpty(msg)) return;
-            if (addTrace)
-                message = AppendClassLine(msg);
-            else
-                message = msg;
-
-            string htmlStr = ToHtmlStr(message, "INFO", "black");
-            Log.Error(htmlStr);
-        }
-
-        public static void Debug(string msg, bool addTrace = false)
-        {
-            string message = "";
-
-            if (string.IsNullOrEmpty(msg)) return;
-            if (addTrace)
-                message = AppendClassLine(msg);
-            else
-                message = msg;
-
-            string htmlStr = ToHtmlStr(message, "DEBUG", "green");
-            Log.Debug(htmlStr);
-        }
-
         private static string AppendClassLine(string msg)
         {
             string logStr = msg;
@@ -92,6 +97,27 @@ namespace WubiMaster.Common
             catch { }
 
             return logStr;
+        }
+
+        private static void RemoveLogs()
+        {
+            try
+            {
+                string logPath = AppDomain.CurrentDomain.BaseDirectory + "Logs\\";
+                DirectoryInfo root = new DirectoryInfo(logPath);
+                FileInfo[] logFiles = root.GetFiles();
+
+                string logBackDays = ConfigHelper.ReadConfigByString("log_back_days", "30");
+                int backDays = int.Parse(logBackDays);
+
+                foreach (var log in logFiles)
+                    if ((DateTime.Today - log.LastWriteTime).Days >= backDays)
+                        log.Delete();
+            }
+            catch (Exception ex)
+            { 
+                LogHelper.Error(ex.Message);
+            }
         }
 
         private static string ToHtmlStr(string mesg, string type, string color = "black")

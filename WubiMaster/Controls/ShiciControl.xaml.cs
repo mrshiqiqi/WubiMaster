@@ -246,7 +246,7 @@ namespace WubiMaster.Controls
                 ShiciTitle = model.origin;
                 ShiciAuthor = model.author;
 
-                LogHelper.Error(ex.Message);
+                LogHelper.Warn(ex.Message);
             }
         }
 

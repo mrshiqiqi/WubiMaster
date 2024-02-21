@@ -20,6 +20,12 @@ namespace WubiMaster.ViewModels
         private bool isRandomThemes;
 
         [ObservableProperty]
+        private int logBackIndex;
+
+        [ObservableProperty]
+        private ObservableCollection<LogBackModel> logBackList;
+
+        [ObservableProperty]
         private string processFilePath;
 
         [ObservableProperty]
@@ -41,10 +47,18 @@ namespace WubiMaster.ViewModels
         {
             ThemeList = new List<ThemeModel>();
             ShiciIntervalList = new ObservableCollection<ShiciIntervalModel>();
+            LogBackList = new ObservableCollection<LogBackModel>();
 
             InitThemes();
             InitShiciInterval();
+            InitLogBackList();
             LoadConfig();
+        }
+
+        [RelayCommand]
+        public void ChangeLogBackDays(string days)
+        {
+            ConfigHelper.WriteConfigByString("log_back_days", days);
         }
 
         [RelayCommand]
@@ -122,6 +136,18 @@ namespace WubiMaster.ViewModels
             ConfigHelper.WriteConfigByBool("is_random_themes", IsRandomThemes);
         }
 
+        private void InitLogBackList()
+        {
+            int[] backDays = new int[] { 5, 15, 30, 100 };
+            foreach (int day in backDays)
+            {
+                LogBackModel backModel = new LogBackModel();
+                backModel.Value = day.ToString();
+                backModel.Text = day.ToString() + "天";
+                LogBackList.Add(backModel);
+            }
+        }
+
         private void InitShiciInterval()
         {
             ShiciIntervalList.Add(new ShiciIntervalModel() { Id = 0, Value = "5分钟", Minutes = 5 });
@@ -167,6 +193,10 @@ namespace WubiMaster.ViewModels
             if (_list.IndexOf(int.Parse(interval)) == -1) { ShiciIndex = 1; interval = "25"; }
             else ShiciIndex = _list.IndexOf(int.Parse(interval));
             WeakReferenceMessenger.Default.Send<string, string>(interval, "ChangeShiciInterval");
+
+            // 加载日志备份时长
+            string logBackDays = ConfigHelper.ReadConfigByString("log_back_days", "30");
+            LogBackIndex = LogBackList.Select(l => l.Value).ToList().IndexOf(logBackDays);
 
             // 加载主题配置
             IsRandomThemes = ConfigHelper.ReadConfigByBool("is_random_themes", false);
