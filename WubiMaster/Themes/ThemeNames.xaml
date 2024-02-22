@@ -22,4 +22,5 @@
     <sys:String x:Key="BlackWhite">BlackWhiteTheme</sys:String>
     <sys:String x:Key="Red">RedTheme</sys:String>
     <sys:String x:Key="NeonLights">NeonLightsTheme</sys:String>
+    <sys:String x:Key="CeladonLilac">CeladonLilacTheme</sys:String>
 </ResourceDictionary>

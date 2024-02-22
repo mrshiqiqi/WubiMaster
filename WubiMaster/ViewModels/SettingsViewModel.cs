@@ -126,8 +126,8 @@ namespace WubiMaster.ViewModels
             {
                 CobboxThemesEnable = false;
                 Random random = new Random();
-                int index = random.Next(0, ThemeList.Count);
-                ChangeTheme(ThemeList[index].Value);
+                ThemeIndex = random.Next(0, ThemeList.Count);
+                ChangeTheme(ThemeList[ThemeIndex].Value);
             }
             else
             {
