@@ -8,9 +8,9 @@
     <sys:String x:Key="KellyGreen">KellyGreenTheme</sys:String>
     <sys:String x:Key="DefultNight">DefultNightTheme</sys:String>
     <sys:String x:Key="PurpleDark">PurpleDarkTheme</sys:String>
-    <sys:String x:Key="DullBlue">DullBlueTheme</sys:String>
+    <!--<sys:String x:Key="DullBlue">DullBlueTheme</sys:String>-->
     <sys:String x:Key="TickTok">TickTokTheme</sys:String>
-    <sys:String x:Key="Lavendar">LavendarTheme</sys:String>
+    <!--<sys:String x:Key="Lavendar">LavendarTheme</sys:String>-->
     <sys:String x:Key="HackerNews">HackerNewsTheme</sys:String>
     <sys:String x:Key="SummerMeadow">SummerMeadowTheme</sys:String>
     <sys:String x:Key="Cyberpunk">CyberpunkTheme</sys:String>
