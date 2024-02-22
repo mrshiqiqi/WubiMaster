@@ -18,15 +18,17 @@ namespace WubiMaster.ViewModels
         [ObservableProperty]
         public ObservableCollection<CikuModel> cikuList;
 
-        private string cikuPath = ConfigHelper.ReadConfigByString("user_file_path")+ "\\wubi06_ci.dict.yaml";
+        private string cikuPath = ConfigHelper.ReadConfigByString("user_file_path")+ "\\wubi86_ci.dict.yaml";
 
-        private void ReadCikuData()
+        private void ReadWubiDictData()
         {
-
+            var x = YamlHelper.DeserializeFromFile<WubiDictModel>(cikuPath);
         }
 
         public LexiconViewModel()
         {
+            ReadWubiDictData();
+            return;
             ObservableCollection<CikuModel> temp = new ObservableCollection<CikuModel>();
             for (int i = 0; i < 100; i++)
             {
