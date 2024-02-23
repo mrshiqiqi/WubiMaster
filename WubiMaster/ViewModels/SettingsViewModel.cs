@@ -82,6 +82,7 @@ namespace WubiMaster.ViewModels
             DefaultCikuFile = Path.GetFileName(fullPath);
 
             ConfigHelper.WriteConfigByString("default_ciku_file", DefaultCikuFile);
+            WeakReferenceMessenger.Default.Send<string, string>("20", "ReLoadCikuData"); // todo: 参数设置成显示条数吧
         }
 
         [RelayCommand]
