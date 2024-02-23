@@ -23,6 +23,8 @@ namespace WubiMaster.ViewModels
         private void ReadWubiDictData()
         {
             var x = YamlHelper.DeserializeFromFile<WubiDictModel>(cikuPath);
+
+
         }
 
         public LexiconViewModel()
