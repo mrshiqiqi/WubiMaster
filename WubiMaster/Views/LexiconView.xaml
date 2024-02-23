@@ -77,16 +77,19 @@
                         </DataGridCheckBoxColumn.HeaderTemplate>
                     </DataGridCheckBoxColumn>
 
-                    <DataGridTextColumn Width="50"
+                    <DataGridTextColumn Width="80"
                                         Binding="{Binding Id}"
                                         Header="ID" />
                     <DataGridTextColumn Width="100"
                                         Binding="{Binding Code}"
                                         Header="编码" />
                     <DataGridTextColumn Width="*"
-                                        Binding="{Binding Worlds}"
+                                        Binding="{Binding Text}"
                                         Header="词" />
                     <DataGridTextColumn Width="100"
+                                        Binding="{Binding Weight}"
+                                        Header="权重" />
+                    <DataGridTextColumn Width="120"
                                         Binding="{Binding Group}"
                                         Header="分组" />
                     <DataGridTemplateColumn Header="操作">

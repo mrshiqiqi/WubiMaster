@@ -18,7 +18,7 @@ namespace WubiMaster.Controls
             DependencyProperty.Register("VisibilityFor98", typeof(Visibility), typeof(ZigenPanel));
 
         public static readonly DependencyProperty WorldsProperty =
-            DependencyProperty.Register("Worlds", typeof(string), typeof(ZigenPanel));
+            DependencyProperty.Register("Text", typeof(string), typeof(ZigenPanel));
 
         public ZigenPanel()
         {
