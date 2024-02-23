@@ -15,7 +15,7 @@ namespace WubiMaster.ViewModels
         [ObservableProperty]
         public ObservableCollection<CikuModel> cikuList;
 
-        private string cikuPath = ConfigHelper.ReadConfigByString("user_file_path") + "\\wubi9_ci.dict.yaml";
+        private string cikuPath = ConfigHelper.ReadConfigByString("user_file_path") + "\\wubi98_ci.dict.yaml";
 
         public LexiconViewModel()
         {

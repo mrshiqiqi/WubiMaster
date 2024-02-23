@@ -1,9 +1,11 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Windows;
 using WubiMaster.Common;
@@ -27,6 +29,12 @@ namespace WubiMaster.ViewModels
 
         [ObservableProperty]
         private string processFilePath;
+
+        [ObservableProperty]
+        private string defaultCikuFile;
+
+        [ObservableProperty]
+        private string userCikuFile;
 
         [ObservableProperty]
         private int shiciIndex;
@@ -59,6 +67,36 @@ namespace WubiMaster.ViewModels
         public void ChangeLogBackDays(string days)
         {
             ConfigHelper.WriteConfigByString("log_back_days", days);
+        }
+
+        [RelayCommand]
+        public void SetDefaultCikuFile()
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.InitialDirectory = UserFilePath;
+            openFileDialog.Filter = "Yaml|*.dict.yaml";
+            openFileDialog.FilterIndex = 0;
+            openFileDialog.RestoreDirectory = true;
+            openFileDialog.ShowDialog();
+            string fullPath = openFileDialog.FileName;
+            DefaultCikuFile = Path.GetFileName(fullPath);
+
+            ConfigHelper.WriteConfigByString("default_ciku_file", DefaultCikuFile);
+        }
+
+        [RelayCommand]
+        public void SetUserCikuFile()
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.InitialDirectory = UserFilePath;
+            openFileDialog.Filter = "Yaml|*.dict.yaml";
+            openFileDialog.FilterIndex = 0;
+            openFileDialog.RestoreDirectory = true;
+            openFileDialog.ShowDialog();
+            string fullPath = openFileDialog.FileName;
+            UserCikuFile = Path.GetFileName(fullPath);
+
+            ConfigHelper.WriteConfigByString("user_ciku_file", UserCikuFile);
         }
 
         [RelayCommand]
@@ -186,6 +224,12 @@ namespace WubiMaster.ViewModels
 
             // 加载程序目录配置
             ProcessFilePath = ConfigHelper.ReadConfigByString("process_file_path");
+
+            // 加载默认词库
+            DefaultCikuFile = ConfigHelper.ReadConfigByString("default_ciku_file");
+
+            // 加载扩展词库
+            UserCikuFile = ConfigHelper.ReadConfigByString("user_ciku_file");
 
             // 加载今日诗词更换时间
             string interval = ConfigHelper.ReadConfigByString("shici_interval", "25");

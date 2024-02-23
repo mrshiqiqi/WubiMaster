@@ -26,14 +26,10 @@
                                     SubTitle="从 Rime 用户目录读取配置文件">
                         <c:SettingPanel.SettingContent>
                             <StackPanel Orientation="Horizontal">
-                                <TextBox MinWidth="150"
-                                         VerticalContentAlignment="Center"
-                                         IsReadOnly="True"
-                                         Text="{Binding UserFilePath}" />
-                                <Button Width="50"
-                                        Margin="10,0,0,0"
-                                        Command="{Binding OpenUserFilePathCommand}"
-                                        Content="打开" />
+                                <TextBox Style="{StaticResource SettingTextBoxStyle}" Text="{Binding UserFilePath}" />
+                                <Button Command="{Binding OpenUserFilePathCommand}"
+                                        Content="打开"
+                                        Style="{StaticResource SettingButtonStyle}" />
                             </StackPanel>
                         </c:SettingPanel.SettingContent>
                     </c:SettingPanel>
@@ -43,13 +39,36 @@
                                     SubTitle="从 Rime 程序目录读取配置文件">
                         <c:SettingPanel.SettingContent>
                             <StackPanel Orientation="Horizontal">
-                                <TextBox MinWidth="150"
-                                         IsReadOnly="True"
-                                         Text="{Binding ProcessFilePath}" />
-                                <Button Width="50"
-                                        Margin="10,0,0,0"
-                                        Command="{Binding OpenProcessFilePathCommand}"
-                                        Content="打开" />
+                                <TextBox Style="{StaticResource SettingTextBoxStyle}" Text="{Binding ProcessFilePath}" />
+                                <Button Command="{Binding OpenProcessFilePathCommand}"
+                                        Content="打开"
+                                        Style="{StaticResource SettingButtonStyle}" />
+                            </StackPanel>
+                        </c:SettingPanel.SettingContent>
+                    </c:SettingPanel>
+
+                    <c:SettingPanel Title="默认词库"
+                                    IconText="&#xe610;"
+                                    SubTitle="关联以 .yaml 为后缀的默认词库文件">
+                        <c:SettingPanel.SettingContent>
+                            <StackPanel Margin="0,4" Orientation="Horizontal">
+                                <TextBox Style="{StaticResource SettingTextBoxStyle}" Text="{Binding DefaultCikuFile}" />
+                                <Button Command="{Binding SetDefaultCikuFileCommand}"
+                                        Content="自选"
+                                        Style="{StaticResource SettingButtonStyle}" />
+                            </StackPanel>
+                        </c:SettingPanel.SettingContent>
+                    </c:SettingPanel>
+
+                    <c:SettingPanel Title="扩展词库"
+                                    IconText="&#xe610;"
+                                    SubTitle="关联以 .yaml 为后缀的扩展词库文件">
+                        <c:SettingPanel.SettingContent>
+                            <StackPanel Margin="0,4" Orientation="Horizontal">
+                                <TextBox Style="{StaticResource SettingTextBoxStyle}" Text="{Binding UserCikuFile}" />
+                                <Button Command="{Binding SetUserCikuFileCommand}"
+                                        Content="自选"
+                                        Style="{StaticResource SettingButtonStyle}" />
                             </StackPanel>
                         </c:SettingPanel.SettingContent>
                     </c:SettingPanel>
@@ -156,19 +175,6 @@
                                     SubTitle="打开或关闭同步功能">
                         <c:SettingPanel.SettingContent>
                             <ToggleButton HorizontalAlignment="Left" VerticalAlignment="Center" />
-                        </c:SettingPanel.SettingContent>
-                    </c:SettingPanel>
-
-                    <c:SettingPanel Title="自定义词库文件"
-                                    IconText="&#xe610;"
-                                    SubTitle="关联 Rime 扩展词库文件">
-                        <c:SettingPanel.SettingContent>
-                            <StackPanel Margin="0,4" Orientation="Horizontal">
-                                <TextBox Width="150" IsReadOnly="True" />
-                                <Button Width="50"
-                                        Margin="10,0,0,0"
-                                        Content="打开" />
-                            </StackPanel>
                         </c:SettingPanel.SettingContent>
                     </c:SettingPanel>
 
