@@ -15,8 +15,6 @@ namespace WubiMaster.ViewModels
         [ObservableProperty]
         public ObservableCollection<CikuModel> cikuList;
 
-        private string cikuPath = ConfigHelper.ReadConfigByString("user_file_path") + "\\wubi98_ci.dict.yaml";
-
         public LexiconViewModel()
         {
             ReadWubiDictData();
@@ -24,16 +22,20 @@ namespace WubiMaster.ViewModels
 
         private void ReadWubiDictData()
         {
+            string defaultCikuFile = ConfigHelper.ReadConfigByString("default_ciku_file");
+            if (string.IsNullOrEmpty(defaultCikuFile))
+                return;
+
             try
             {
-                //var values = YamlHelper.DeserializeFromFile<WubiDictModel>(cikuPath);
+                string defaultCikuPath = ConfigHelper.ReadConfigByString("user_file_path") + "\\" + defaultCikuFile;
 
                 // 按行读，找到 yaml 的结尾符 ...
                 string yamlText = "";
                 int yamlEndLine = -1;
                 ConcurrentQueue<CikuModel> wubiDictList = new ConcurrentQueue<CikuModel>();
 
-                string[] wubiDictStrs = File.ReadAllLines(cikuPath);
+                string[] wubiDictStrs = File.ReadAllLines(defaultCikuPath);
 
                 for (int i = 0; i < wubiDictStrs.Length; i++)
                 {
