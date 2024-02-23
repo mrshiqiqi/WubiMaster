@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
 using WubiMaster.Controls;
@@ -45,31 +46,33 @@ namespace WubiMaster.Common
 
             WeakReferenceMessenger.Default.Send<string, string>("true", "ShowMaskLayer");
 
-            switch (type)
-            {
-                case DialogType.Normal:
-                    NewMessageBox(message, mainWindow, "Normal");
-                    break;
+            App.Current.Dispatcher.BeginInvoke(() => {
+                switch (type)
+                {
+                    case DialogType.Normal:
+                        NewMessageBox(message, mainWindow, "Normal");
+                        break;
 
-                case DialogType.Warring:
-                    NewMessageBox(message, mainWindow, "Warn");
-                    break;
+                    case DialogType.Warring:
+                        NewMessageBox(message, mainWindow, "Warn");
+                        break;
 
-                case DialogType.Error:
-                    NewMessageBox(message, mainWindow, "Error");
-                    break;
+                    case DialogType.Error:
+                        NewMessageBox(message, mainWindow, "Error");
+                        break;
 
-                case DialogType.Fail:
-                    NewMessageBox(message, mainWindow, "Fail");
-                    break;
+                    case DialogType.Fail:
+                        NewMessageBox(message, mainWindow, "Fail");
+                        break;
 
-                case DialogType.Success:
-                    NewMessageBox(message, mainWindow, "Succeed");
-                    break;
+                    case DialogType.Success:
+                        NewMessageBox(message, mainWindow, "Succeed");
+                        break;
 
-                default:
-                    break;
-            }
+                    default:
+                        break;
+                }
+            });
         }
 
         private static void NewMessageBox(string message, Window owner, string type)

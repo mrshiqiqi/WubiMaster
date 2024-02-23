@@ -15,7 +15,7 @@ namespace WubiMaster.ViewModels
         [ObservableProperty]
         public ObservableCollection<CikuModel> cikuList;
 
-        private string cikuPath = ConfigHelper.ReadConfigByString("user_file_path") + "\\wubi98_ci.dict.yaml";
+        private string cikuPath = ConfigHelper.ReadConfigByString("user_file_path") + "\\wubi9_ci.dict.yaml";
 
         public LexiconViewModel()
         {
@@ -75,6 +75,7 @@ namespace WubiMaster.ViewModels
             }
             catch (Exception ex)
             {
+                this.ShowMessage($"无法加载词库信息，请检查配置信息是否正确！", DialogType.Warring);
                 LogHelper.Error(ex.Message);
             }
         }
