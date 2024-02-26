@@ -510,9 +510,12 @@
 
                             <c:IconButton ButtonCommand="{Binding ToQQSocialCommand}"
                                           IconText="&#xE882;"
-                                          Style="{StaticResource SocialIconStyle}" />
+                                          Style="{StaticResource SocialIconStyle}"
+                                          ToolTip="750379822" />
 
-                            <c:IconButton IconText="&#xe637;" Style="{StaticResource SocialIconStyle}" />
+                            <c:IconButton IconText="&#xe637;"
+                                          Style="{StaticResource SocialIconStyle}"
+                                          ToolTip="mrshiqiqi@126.com" />
 
                             <c:IconButton IconText="&#xe6a6;" Style="{StaticResource SocialIconStyle}" />
 

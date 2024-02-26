@@ -9,6 +9,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Themes/DefultBlueTheme.xaml" />
 
+                <ResourceDictionary Source="/Styles/UIElementHoverStyle.xaml" />
                 <ResourceDictionary Source="/Styles/NavButtonStyle.xaml" />
                 <ResourceDictionary Source="/Styles/CloseButtonStyle.xaml" />
                 <ResourceDictionary Source="/Styles/ThemeButtonStyle.xaml" />
@@ -17,6 +18,7 @@
                 <ResourceDictionary Source="/Styles/PopViewBaseStyle.xaml" />
                 <ResourceDictionary Source="/Styles/ToggleButtonStyle.xaml" />
                 <ResourceDictionary Source="/Styles/CheckBoxStyle.xaml" />
+                <ResourceDictionary Source="/Styles/ToolTipStyle.xaml" />
                 <ResourceDictionary Source="/Styles/ComboBoxStyle.xaml" />
                 <ResourceDictionary Source="/Styles/ScrollViewerStyle.xaml" />
                 <ResourceDictionary Source="/Styles/ButtonStyle.xaml" />
