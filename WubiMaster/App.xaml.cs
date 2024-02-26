@@ -4,6 +4,7 @@ using System.Configuration;
 using System.Data;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
@@ -13,10 +14,20 @@ namespace WubiMaster
 {
     public partial class App : Application
     {
+        Mutex mutex;
         public static bool IsMaximized { get; set; }
 
         private void Application_Startup(object sender, StartupEventArgs e)
         {
+            bool ret;
+            mutex = new Mutex(true, "WubiMaster", out ret);
+            if (!ret)
+            {
+                LogHelper.Info("禁止启用多个进程");
+                Environment.Exit(0);
+                return;
+            }
+
             LogHelper.Info("程序启动");
 
             this.DispatcherUnhandledException += new DispatcherUnhandledExceptionEventHandler(App_DispatcherUnhandledException);
