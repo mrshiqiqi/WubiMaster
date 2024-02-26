@@ -7,7 +7,6 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Forms.VisualStyles;
 using WubiMaster.Common;
 using WubiMaster.Controls;
 using WubiMaster.Views;
@@ -34,105 +33,7 @@ namespace WubiMaster.ViewModels
             WeakReferenceMessenger.Default.Register<string, string>(this, "ShowMaskLayer", ShowMaskLayer);
         }
 
-        private void ShowMaskLayer(object recipient, string message)
-        {
-            bool isShow = bool.Parse(message);
-
-            if (isShow)
-                MaskLayerVisable = Visibility.Visible;
-            else
-                MaskLayerVisable = Visibility.Collapsed;
-        }
-
         private Dictionary<string, object> pageDict { get; set; }
-
-        private bool FindProcess(string pName)
-        {
-            Process[] ps = Process.GetProcessesByName(pName);
-            if (ps.Length > 0)
-            {
-                return true;
-            }
-            return false;
-        }
-
-        private string RunCmd(string path, string cmd)
-        {
-            string CmdPath = @"C:\Windows\System32\cmd.exe";
-            cmd = cmd.Trim().TrimEnd('&') + "&exit";//说明：不管命令是否成功均执行exit命令，否则当调用ReadToEnd()方法时，会处于假死状态
-            using (Process p = new Process())
-            {
-                p.StartInfo.FileName = CmdPath;
-                p.StartInfo.WorkingDirectory = path; // 指定运行目录
-                p.StartInfo.UseShellExecute = false; //是否使用操作系统shell启动
-                p.StartInfo.RedirectStandardInput = true; //接受来自调用程序的输入信息
-                p.StartInfo.RedirectStandardOutput = true; //由调用程序获取输出信息
-                p.StartInfo.RedirectStandardError = true; //重定向标准错误输出
-                p.StartInfo.CreateNoWindow = true; //不显示程序窗口
-                p.Start();//启动程序
-
-                //向cmd窗口写入命令
-                p.StandardInput.WriteLine(cmd);
-                p.StandardInput.AutoFlush = true;
-
-                //获取cmd窗口的输出信息
-                string output = p.StandardOutput.ReadToEnd();
-                p.WaitForExit();//等待程序执行完退出进程
-                p.Close();
-
-                return output;
-            }
-        }
-
-        private void RunProcess()
-        {
-            string prcessPath = ConfigHelper.ReadConfigByString("process_file_path");
-            if (string.IsNullOrEmpty(prcessPath))
-            {
-                this.ShowMessage("请先配置程序文件目录", DialogType.Warring);
-                return;
-            }
-            RunCmd(prcessPath, "WeaselServer.exe");
-        }
-
-        private void KillProcess() 
-        {
-            string prcessPath = ConfigHelper.ReadConfigByString("process_file_path");
-            if (string.IsNullOrEmpty(prcessPath))
-            {
-                this.ShowMessage("请先配置程序文件目录", DialogType.Warring);
-                return;
-            }
-            RunCmd(prcessPath, "WeaselServer.exe /q");
-        }
-
-        [RelayCommand]
-        public void Deploy()
-        {
-            try
-            {
-                string prcessPath = ConfigHelper.ReadConfigByString("process_file_path");
-                if (string.IsNullOrEmpty(prcessPath))
-                {
-                    this.ShowMessage("请先配置程序文件目录", DialogType.Warring);
-                    return;
-                }
-
-                if (!FindProcess("WeaselServer"))
-                {
-                    this.ShowMessage("算法服务未启动，无法执行部署操作", DialogType.Warring);
-                    return;
-                }
-
-                RunCmd(prcessPath, "WeaselDeployer.exe /deploy");
-                this.ShowMessage("部署成功", DialogType.Success);
-            }
-            catch (Exception ex)
-            {
-                LogHelper.Error(ex.Message);
-                this.ShowMessage("部署失败", DialogType.Fail);
-            }
-        }
 
         [RelayCommand]
         public void ChangePage(object pageName)
@@ -193,10 +94,31 @@ namespace WubiMaster.ViewModels
         }
 
         [RelayCommand]
-        public async void LoadedWindow()
+        public void Deploy()
         {
-            await Task.Delay(500);
-            ChangePage("Home");
+            try
+            {
+                string prcessPath = ConfigHelper.ReadConfigByString("process_file_path");
+                if (string.IsNullOrEmpty(prcessPath))
+                {
+                    this.ShowMessage("请先配置程序文件目录", DialogType.Warring);
+                    return;
+                }
+
+                if (!FindProcess())
+                {
+                    this.ShowMessage("算法服务未启动，无法执行部署操作", DialogType.Warring);
+                    return;
+                }
+
+                RunCmd(prcessPath, "WeaselDeployer.exe /deploy");
+                this.ShowMessage("部署成功", DialogType.Success);
+            }
+            catch (Exception ex)
+            {
+                LogHelper.Error(ex.Message);
+                this.ShowMessage("部署失败", DialogType.Fail);
+            }
         }
 
         [RelayCommand]
@@ -244,6 +166,13 @@ namespace WubiMaster.ViewModels
         }
 
         [RelayCommand]
+        public async void LoadedWindow()
+        {
+            await Task.Delay(500);
+            ChangePage("Home");
+        }
+
+        [RelayCommand]
         public void MaxWindow(object obj)
         {
             if (App.IsMaximized)
@@ -273,6 +202,76 @@ namespace WubiMaster.ViewModels
             //Todo: 优先从配置文件里读取
             string defultPack = "Pack://application:,,,/WubiMaster;component/Themes/DefultBlueTheme.xaml";
             Application.Current.Resources.MergedDictionaries[0].Source = new Uri(defultPack);
+        }
+
+        private bool FindProcess()
+        {
+            Process[] ps = Process.GetProcessesByName("WeaselServer");
+            if (ps.Length > 0)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        private void KillProcess()
+        {
+            string prcessPath = ConfigHelper.ReadConfigByString("process_file_path");
+            if (string.IsNullOrEmpty(prcessPath))
+            {
+                this.ShowMessage("请先配置程序文件目录", DialogType.Warring);
+                return;
+            }
+            RunCmd(prcessPath, "WeaselServer.exe /q");
+        }
+
+        private string RunCmd(string path, string cmd)
+        {
+            string CmdPath = @"C:\Windows\System32\cmd.exe";
+            cmd = cmd.Trim().TrimEnd('&') + "&exit";//说明：不管命令是否成功均执行exit命令，否则当调用ReadToEnd()方法时，会处于假死状态
+            using (Process p = new Process())
+            {
+                p.StartInfo.FileName = CmdPath;
+                p.StartInfo.WorkingDirectory = path; // 指定运行目录
+                p.StartInfo.UseShellExecute = false; //是否使用操作系统shell启动
+                p.StartInfo.RedirectStandardInput = true; //接受来自调用程序的输入信息
+                p.StartInfo.RedirectStandardOutput = true; //由调用程序获取输出信息
+                p.StartInfo.RedirectStandardError = true; //重定向标准错误输出
+                p.StartInfo.CreateNoWindow = true; //不显示程序窗口
+                p.Start();//启动程序
+
+                //向cmd窗口写入命令
+                p.StandardInput.WriteLine(cmd);
+                p.StandardInput.AutoFlush = true;
+
+                //获取cmd窗口的输出信息
+                string output = p.StandardOutput.ReadToEnd();
+                p.WaitForExit();//等待程序执行完退出进程
+                p.Close();
+
+                return output;
+            }
+        }
+
+        private void RunProcess()
+        {
+            string prcessPath = ConfigHelper.ReadConfigByString("process_file_path");
+            if (string.IsNullOrEmpty(prcessPath))
+            {
+                this.ShowMessage("请先配置程序文件目录", DialogType.Warring);
+                return;
+            }
+            RunCmd(prcessPath, "WeaselServer.exe");
+        }
+
+        private void ShowMaskLayer(object recipient, string message)
+        {
+            bool isShow = bool.Parse(message);
+
+            if (isShow)
+                MaskLayerVisable = Visibility.Visible;
+            else
+                MaskLayerVisable = Visibility.Collapsed;
         }
     }
 }
