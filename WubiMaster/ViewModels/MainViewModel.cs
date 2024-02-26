@@ -7,6 +7,7 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Forms.VisualStyles;
 using WubiMaster.Common;
 using WubiMaster.Controls;
 using WubiMaster.Views;
@@ -45,7 +46,17 @@ namespace WubiMaster.ViewModels
 
         private Dictionary<string, object> pageDict { get; set; }
 
-        public static string RunCmd(string path, string cmd)
+        private bool FindProcess(string pName)
+        {
+            Process[] ps = Process.GetProcessesByName(pName);
+            if (ps.Length > 0)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        private string RunCmd(string path, string cmd)
         {
             string CmdPath = @"C:\Windows\System32\cmd.exe";
             cmd = cmd.Trim().TrimEnd('&') + "&exit";//说明：不管命令是否成功均执行exit命令，否则当调用ReadToEnd()方法时，会处于假死状态
@@ -86,9 +97,14 @@ namespace WubiMaster.ViewModels
                 }
 
                 string weaselDeployerPath = prcessPath + @"\WeaselDeployer.exe /deploy";
-                RunCmd(prcessPath, "WeaselDeployer.exe /deploy");
+                if (!FindProcess("WeaselServer"))
+                {
+                    this.ShowMessage("算法服务未启动，无法执行部署操作", DialogType.Warring);
+                    return;
+                }
 
-                //this.ShowMessage("部署成功", DialogType.Success);
+                RunCmd(prcessPath, "WeaselDeployer.exe /deploy");
+                this.ShowMessage("部署成功", DialogType.Success);
             }
             catch (Exception ex)
             {
