@@ -14,6 +14,10 @@
         <vm:HomeViewModel />
     </UserControl.DataContext>
 
+    <UserControl.Resources>
+        <Popup x:Key="PopTip" />
+    </UserControl.Resources>
+
     <Grid>
         <Border Background="{DynamicResource bg-100}" CornerRadius="15" />
 
@@ -508,12 +512,15 @@
                                     VerticalAlignment="Center"
                                     Orientation="Horizontal">
 
-                            <c:IconButton ButtonCommand="{Binding ToQQSocialCommand}"
+                            <c:IconButton ButtonCommand="{Binding CopyInfoCommand}"
+                                          ButtonCommandParameter="750379822"
                                           IconText="&#xE882;"
                                           Style="{StaticResource SocialIconStyle}"
                                           ToolTip="750379822" />
 
-                            <c:IconButton IconText="&#xe637;"
+                            <c:IconButton ButtonCommand="{Binding CopyInfoCommand}"
+                                          ButtonCommandParameter="mrshiqiqi@126.com"
+                                          IconText="&#xe637;"
                                           Style="{StaticResource SocialIconStyle}"
                                           ToolTip="mrshiqiqi@126.com" />
 

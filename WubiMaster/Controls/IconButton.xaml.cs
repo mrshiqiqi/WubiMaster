@@ -10,8 +10,11 @@ namespace WubiMaster.Controls
         public static readonly DependencyProperty ButtonBackgroundProperty =
             DependencyProperty.Register("ButtonBackground", typeof(SolidColorBrush), typeof(IconButton));
 
+        public static readonly DependencyProperty ButtonCommandParameterProperty =
+            DependencyProperty.Register("ButtonCommandParameter", typeof(object), typeof(IconButton));
+
         public static readonly DependencyProperty ButtonCommandProperty =
-            DependencyProperty.Register("ButtonCommand", typeof(RelayCommand), typeof(IconButton));
+                    DependencyProperty.Register("ButtonCommand", typeof(RelayCommand<object>), typeof(IconButton));
 
         public static readonly DependencyProperty ButtonForegroundProperty =
                     DependencyProperty.Register("ButtonForeground", typeof(Brush), typeof(IconButton));
@@ -36,10 +39,16 @@ namespace WubiMaster.Controls
             set { SetValue(ButtonBackgroundProperty, value); }
         }
 
-        public RelayCommand ButtonCommand
+        public RelayCommand<object> ButtonCommand
         {
-            get { return (RelayCommand)GetValue(ButtonCommandProperty); }
+            get { return (RelayCommand<object>)GetValue(ButtonCommandProperty); }
             set { SetValue(ButtonCommandProperty, value); }
+        }
+
+        public object ButtonCommandParameter
+        {
+            get { return (object)GetValue(ButtonCommandParameterProperty); }
+            set { SetValue(ButtonCommandParameterProperty, value); }
         }
 
         public Brush ButtonForeground

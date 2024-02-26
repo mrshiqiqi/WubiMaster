@@ -43,6 +43,7 @@
         <Button Width="{Binding ElementName=icon_button, Path=ButtonWidth}"
                 Height="{Binding ElementName=icon_button, Path=ButtonHeight}"
                 Command="{Binding ElementName=icon_button, Path=ButtonCommand}"
+                CommandParameter="{Binding ElementName=icon_button, Path=ButtonCommandParameter}"
                 Template="{StaticResource icon_button_template}" />
     </Grid>
 </UserControl>

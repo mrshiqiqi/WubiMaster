@@ -25,9 +25,10 @@ namespace WubiMaster.ViewModels
         }
 
         [RelayCommand]
-        public void ToQQSocial()
+        public void CopyInfo(object info)
         {
-            MessageBox.Show("Hello");
+            Clipboard.SetDataObject(info);
+            this.ShowMessage("已复制到剪贴板");
         }
 
         private void ChangeShiciInterval(object recipient, string message)
@@ -45,8 +46,7 @@ namespace WubiMaster.ViewModels
             }
             catch (Exception ex)
             {
-
-                MessageBox.Show(ex.Message);
+                LogHelper.Error(ex.Message);
             }
 
         }
