@@ -84,6 +84,28 @@ namespace WubiMaster.ViewModels
             }
         }
 
+        private void RunProcess()
+        {
+            string prcessPath = ConfigHelper.ReadConfigByString("process_file_path");
+            if (string.IsNullOrEmpty(prcessPath))
+            {
+                this.ShowMessage("请先配置程序文件目录", DialogType.Warring);
+                return;
+            }
+            RunCmd(prcessPath, "WeaselServer.exe");
+        }
+
+        private void KillProcess() 
+        {
+            string prcessPath = ConfigHelper.ReadConfigByString("process_file_path");
+            if (string.IsNullOrEmpty(prcessPath))
+            {
+                this.ShowMessage("请先配置程序文件目录", DialogType.Warring);
+                return;
+            }
+            RunCmd(prcessPath, "WeaselServer.exe /q");
+        }
+
         [RelayCommand]
         public void Deploy()
         {
@@ -96,7 +118,6 @@ namespace WubiMaster.ViewModels
                     return;
                 }
 
-                string weaselDeployerPath = prcessPath + @"\WeaselDeployer.exe /deploy";
                 if (!FindProcess("WeaselServer"))
                 {
                     this.ShowMessage("算法服务未启动，无法执行部署操作", DialogType.Warring);
