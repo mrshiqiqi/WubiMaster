@@ -6,7 +6,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:vm="clr-namespace:WubiMaster.ViewModels"
-        Title="MainView"
+        Title="书中君"
         Width="1000"
         Height="700"
         AllowsTransparency="True"
