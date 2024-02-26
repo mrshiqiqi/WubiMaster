@@ -10,6 +10,10 @@ using System.Threading.Tasks;
 using WubiMaster.Common;
 using WubiMaster.Views.PopViews;
 using System.Windows;
+using System.Diagnostics;
+using System.Runtime.InteropServices;
+using System.Security.Policy;
+using System.Windows.Controls;
 
 namespace WubiMaster.ViewModels
 {
@@ -25,10 +29,26 @@ namespace WubiMaster.ViewModels
         }
 
         [RelayCommand]
-        public void CopyInfo(object info)
+        public void CopyInfo(object obj)
         {
-            Clipboard.SetDataObject(info);
+            Clipboard.SetDataObject(obj);
             this.ShowMessage("已复制到剪贴板");
+        }
+
+        [RelayCommand]
+        public void ToWebPage(object obj)
+        {
+            try
+            {
+                string url = obj?.ToString();
+                Process.Start("explorer.exe", url);
+            }
+            catch (Exception ex)
+            {
+                this.ShowMessage("无法打开网址", DialogType.Error);
+                LogHelper.Error(ex.Message);
+            }
+
         }
 
         private void ChangeShiciInterval(object recipient, string message)
