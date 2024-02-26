@@ -199,14 +199,35 @@
                                              Text="关于" />
                             </StackPanel>
 
-                            <c:NavButton Grid.Row="2"
-                                         Margin="0,0,0,30"
-                                         VerticalAlignment="Bottom"
-                                         IconText="&#xe97e;"
-                                         NavCommand="{Binding}"
-                                         NavName="Deploy"
-                                         Style="{StaticResource NavButtonStyle}"
-                                         Text="部署" />
+                            <Button Grid.Row="2"
+                                    Height="35"
+                                    Margin="10,0,10,30"
+                                    Command="{Binding DeployCommand}"
+                                    Background="{DynamicResource primary-200}">
+                                <Button.Content>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition />
+                                            <ColumnDefinition Width="10" />
+                                            <ColumnDefinition />
+                                        </Grid.ColumnDefinitions>
+
+                                        <TextBlock Margin="0"
+                                                   Padding="0"
+                                                   HorizontalAlignment="Right"
+                                                   VerticalAlignment="Center"
+                                                   FontFamily="../Fonts/#iconfont"
+                                                   FontSize="18"
+                                                   Foreground="{DynamicResource bg-100}"
+                                                   Text="&#xe97e;" />
+
+                                        <TextBlock Grid.Column="2"
+                                                   FontSize="16"
+                                                   Foreground="{DynamicResource bg-100}"
+                                                   Text="部署" />
+                                    </Grid>
+                                </Button.Content>
+                            </Button>
                         </Grid>
                     </Border>
 
