@@ -15,6 +15,10 @@ namespace WubiMaster.ViewModels
 {
     public partial class SettingsViewModel : ObservableRecipient
     {
+
+        [ObservableProperty]
+        private bool serviceIsRun;
+
         [ObservableProperty]
         private bool cobboxThemesEnable;
 
@@ -61,6 +65,29 @@ namespace WubiMaster.ViewModels
             InitShiciInterval();
             InitLogBackList();
             LoadConfig();
+        }
+
+
+        [RelayCommand]
+        public void SwicthService()
+        {
+            try
+            {
+                if (ServiceIsRun)
+                    ServiceHelper.RunService();
+                else
+                    ServiceHelper.KillService();
+            }
+            catch (Exception ex)
+            {
+                this.ShowMessage(ex.Message, DialogType.Warring);
+            }
+        }
+
+        [RelayCommand]
+        public void CheckService()
+        {
+            ServiceIsRun = ServiceHelper.FindService();
         }
 
         [RelayCommand]
@@ -257,6 +284,9 @@ namespace WubiMaster.ViewModels
                 if (!string.IsNullOrEmpty(themeValue)) ChangeTheme(themeValue);
                 else ChangeTheme("DefultBlueTheme");
             }
+
+            // 检测算法服务状态
+            CheckService();
         }
     }
 }

@@ -121,6 +121,11 @@
 
                         <Trigger Property="IsChecked" Value="True">
                             <Setter TargetName="grid" Property="HorizontalAlignment" Value="Right" />
+                            <Setter TargetName="text" Property="TextBlock.Text" Value="{StaticResource OpenStr}" />
+                        </Trigger>
+
+                        <Trigger Property="IsChecked" Value="False">
+                            <Setter TargetName="grid" Property="HorizontalAlignment" Value="Left" />
                             <Setter TargetName="text" Property="TextBlock.Text" Value="{StaticResource CloseStr}" />
                         </Trigger>
 
