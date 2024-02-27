@@ -25,16 +25,24 @@
         <Grid>
 
             <c:SearchTextbox Width="300"
-                             Height="40"
+                             Height="30"
                              Margin="18,0,0,0"
                              HorizontalAlignment="Left"
-                             VerticalAlignment="Top" />
+                             VerticalAlignment="Top"
+                             BorderCornerRadius="15"
+                             ShowComboBox="Collapsed"
+                             TextFontSize="15"
+                             TextMargin="20 0 0 0"
+                             WaterMarkText="查询..." />
 
-            <c:IconButton ButtonBackground="{DynamicResource accent-100}"
+            <c:IconButton HorizontalAlignment="Right"
+                          VerticalAlignment="Top"
+                          ButtonBackground="{DynamicResource accent-100}"
                           ButtonForeground="{DynamicResource bg-100}"
-                          ButtonHeight="35"
-                          ButtonWidth="35"
-                          IconText="&#xe978;"
+                          ButtonHeight="25"
+                          ButtonMargin="4"
+                          ButtonWidth="25"
+                          IconText="&#xe60f;"
                           ToolTip="自造词" />
         </Grid>
 

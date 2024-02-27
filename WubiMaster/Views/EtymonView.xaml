@@ -22,7 +22,13 @@
                 <RowDefinition />
             </Grid.RowDefinitions>
 
-            <c:SearchTextbox Width="400" Height="40" />
+            <c:SearchTextbox Width="400"
+                             Height="40"
+                             BorderCornerRadius="18"
+                             CombCornerRadius="15"
+                             TextFontSize="16"
+                             TextMargin="5 0 0 0"
+                             WaterMarkText="字根查询..." />
 
             <ItemsControl Grid.Row="1"
                           ItemsSource="{Binding ZigenList}"

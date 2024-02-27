@@ -25,12 +25,13 @@
                             <Grid>
 
                                 <TextBlock x:Name="water_mark"
-                                           Margin="5,0,0,0"
+                                           Margin="{Binding ElementName=search_textbox, Path=TextMargin}"
                                            HorizontalAlignment="Left"
                                            VerticalAlignment="Center"
-                                           Foreground="{DynamicResource text-200}"
+                                           FontSize="{Binding ElementName=search_textbox, Path=TextFontSize}"
+                                           Foreground="{DynamicResource bg-100}"
                                            Opacity="0.6"
-                                           Text="字根查询..."
+                                           Text="{Binding ElementName=search_textbox, Path=WaterMarkText}"
                                            Visibility="{Binding ElementName=searchTextBox, Path=Text, Converter={StaticResource SearchTextToVisible}}" />
 
                                 <ScrollViewer x:Name="PART_ContentHost"
@@ -99,7 +100,7 @@
                                 Background="{TemplateBinding Background}"
                                 BorderBrush="{TemplateBinding BorderBrush}"
                                 BorderThickness="{TemplateBinding BorderThickness}"
-                                CornerRadius="16"
+                                CornerRadius="{Binding ElementName=search_textbox, Path=CombCornerRadius}"
                                 SnapsToDevicePixels="True">
 
                             <Grid>
@@ -199,7 +200,7 @@
                                        VerticalAlignment="Center"
                                        FontFamily="../Fonts/#iconfont"
                                        FontSize="15"
-                                       Foreground="{DynamicResource text-100}"
+                                       Foreground="{DynamicResource bg-100}"
                                        Text="&#xe7c6;" />
                         </Border>
 
@@ -219,7 +220,7 @@
         </Style>
     </UserControl.Resources>
 
-    <Border Background="{DynamicResource primary-300}" CornerRadius="17">
+    <Border Background="{DynamicResource primary-300}" CornerRadius="{Binding ElementName=search_textbox, Path=BorderCornerRadius}">
 
         <Grid>
             <Grid.ColumnDefinitions>
@@ -230,7 +231,8 @@
 
             <ComboBox Width="70"
                       SelectedIndex="0"
-                      Style="{StaticResource combo_box_style}">
+                      Style="{StaticResource combo_box_style}"
+                      Visibility="{Binding ElementName=search_textbox, Path=ShowComboBox}">
                 <ComboBoxItem>全部</ComboBoxItem>
                 <ComboBoxItem>86</ComboBoxItem>
                 <ComboBoxItem>98</ComboBoxItem>
@@ -239,11 +241,15 @@
 
             <TextBox x:Name="searchTextBox"
                      Grid.Column="1"
-                     FontSize="16"
+                     Padding="{Binding ElementName=search_textbox, Path=TextMargin}"
+                     FontSize="{Binding ElementName=search_textbox, Path=TextFontSize}"
+                     Foreground="{DynamicResource bg-100}"
                      Style="{StaticResource textbox_style}"
                      Text="{Binding ElementName=search_textbox, Path=SecrchContent}" />
 
-            <Button Grid.Column="2" Style="{StaticResource search_button_style}" />
+            <Button Grid.Column="2"
+                    Style="{StaticResource search_button_style}"
+                    Visibility="{Binding ElementName=search_textbox, Path=ShowSearchButton}" />
         </Grid>
     </Border>
 </UserControl>
