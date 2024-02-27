@@ -43,7 +43,7 @@
             <Setter Property="HorizontalAlignment" Value="Center" />
             <Setter Property="VerticalAlignment" Value="Center" />
             <Setter Property="FontSize" Value="16" />
-            <Setter Property="Foreground" Value="White" />
+            <Setter Property="Foreground" Value="{DynamicResource bg-100}" />
             <Setter Property="TextWrapping" Value="Wrap" />
             <Setter Property="FontFamily" Value="../Fonts/#方正启体_GBK" />
             <Setter Property="Margin" Value="0,5" />
@@ -88,7 +88,9 @@
                             HorizontalAlignment="Left"
                             VerticalAlignment="Top">
                     <Border Background="IndianRed" Style="{StaticResource tag_border_style}">
-                        <TextBlock Style="{StaticResource tag_text_style}" Text="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=Tag1}" />
+                        <TextBlock Foreground="White"
+                                   Style="{StaticResource tag_text_style}"
+                                   Text="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=Tag1}" />
                     </Border>
 
                     <Border Background="{DynamicResource accent-100}" Style="{StaticResource tag_border_style}">

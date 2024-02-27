@@ -5,7 +5,7 @@
         <Setter Property="VerticalAlignment" Value="Stretch" />
         <Setter Property="MinWidth" Value="55" />
         <Setter Property="Background" Value="{DynamicResource primary-200}" />
-        <Setter Property="Foreground" Value="{DynamicResource text-100}" />
+        <Setter Property="Foreground" Value="{DynamicResource bg-100}" />
         <Setter Property="BorderBrush" Value="{DynamicResource primary-100}" />
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="FontSize" Value="13" />

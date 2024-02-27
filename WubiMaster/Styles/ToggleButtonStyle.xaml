@@ -9,7 +9,7 @@
         <Setter Property="Background" Value="{DynamicResource primary-100}" />
         <Setter Property="BorderBrush" Value="{DynamicResource primary-100}" />
         <Setter Property="BorderThickness" Value="0" />
-        <Setter Property="Foreground" Value="{DynamicResource text-100}" />
+        <Setter Property="Foreground" Value="{DynamicResource bg-100}" />
         <Setter Property="FontSize" Value="11" />
         <Setter Property="IsEnabled" Value="True" />
         <Setter Property="IsChecked" Value="True" />

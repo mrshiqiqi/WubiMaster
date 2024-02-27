@@ -119,16 +119,8 @@
                                     <ColumnDefinition Width="auto" />
                                 </Grid.ColumnDefinitions>
 
-                                <Border Width="45"
-                                        Height="45"
-                                        Margin="10,0,10,0"
-                                        Background="{DynamicResource accent-200}"
-                                        CornerRadius="10">
-                                    <TextBlock HorizontalAlignment="Center"
-                                               VerticalAlignment="Center"
-                                               FontSize="22"
-                                               Foreground="{DynamicResource accent-100}"
-                                               Text="86" />
+                                <Border Style="{StaticResource WubiIocnStyle}">
+                                    <TextBlock Style="{StaticResource WubiTitleStyle}" Text="86" />
                                 </Border>
 
                                 <Grid Grid.Column="1"
@@ -142,12 +134,7 @@
                                         <ColumnDefinition />
                                     </Grid.ColumnDefinitions>
 
-                                    <TextBlock HorizontalAlignment="Center"
-                                               VerticalAlignment="Center"
-                                               FontSize="20"
-                                               FontWeight="Bold"
-                                               Foreground="{DynamicResource text-100}"
-                                               Text="钱" />
+                                    <TextBlock Style="{StaticResource WubiWordsStyle}" Text="钱" />
 
                                     <TextBlock Grid.Column="1"
                                                HorizontalAlignment="Center"
@@ -199,16 +186,8 @@
                                     <ColumnDefinition Width="auto" />
                                 </Grid.ColumnDefinitions>
 
-                                <Border Width="45"
-                                        Height="45"
-                                        Margin="10,0,10,0"
-                                        Background="{DynamicResource accent-200}"
-                                        CornerRadius="10">
-                                    <TextBlock HorizontalAlignment="Center"
-                                               VerticalAlignment="Center"
-                                               FontSize="22"
-                                               Foreground="{DynamicResource accent-100}"
-                                               Text="98" />
+                                <Border Style="{StaticResource WubiIocnStyle}">
+                                    <TextBlock Style="{StaticResource WubiTitleStyle}" Text="98" />
                                 </Border>
 
                                 <Grid Grid.Column="1"
@@ -222,12 +201,7 @@
                                         <ColumnDefinition />
                                     </Grid.ColumnDefinitions>
 
-                                    <TextBlock HorizontalAlignment="Center"
-                                               VerticalAlignment="Center"
-                                               FontSize="20"
-                                               FontWeight="Bold"
-                                               Foreground="{DynamicResource text-100}"
-                                               Text="钱" />
+                                    <TextBlock Style="{StaticResource WubiWordsStyle}" Text="钱" />
 
                                     <TextBlock Grid.Column="1"
                                                HorizontalAlignment="Center"
@@ -279,16 +253,8 @@
                                     <ColumnDefinition Width="auto" />
                                 </Grid.ColumnDefinitions>
 
-                                <Border Width="45"
-                                        Height="45"
-                                        Margin="10,0,10,0"
-                                        Background="{DynamicResource accent-200}"
-                                        CornerRadius="10">
-                                    <TextBlock HorizontalAlignment="Center"
-                                               VerticalAlignment="Center"
-                                               FontSize="22"
-                                               Foreground="{DynamicResource accent-100}"
-                                               Text="06" />
+                                <Border Style="{StaticResource WubiIocnStyle}">
+                                    <TextBlock Style="{StaticResource WubiTitleStyle}" Text="06" />
                                 </Border>
 
                                 <Grid Grid.Column="1"
@@ -302,12 +268,7 @@
                                         <ColumnDefinition />
                                     </Grid.ColumnDefinitions>
 
-                                    <TextBlock HorizontalAlignment="Center"
-                                               VerticalAlignment="Center"
-                                               FontSize="20"
-                                               FontWeight="Bold"
-                                               Foreground="{DynamicResource text-100}"
-                                               Text="钱" />
+                                    <TextBlock Style="{StaticResource WubiWordsStyle}" Text="钱" />
 
                                     <TextBlock Grid.Column="1"
                                                HorizontalAlignment="Center"
