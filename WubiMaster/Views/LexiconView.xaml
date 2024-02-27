@@ -33,6 +33,7 @@
                              ShowComboBox="Collapsed"
                              TextFontSize="15"
                              TextMargin="20 0 0 0"
+                             TextMaxLength="25"
                              WaterMarkText="查询..." />
 
             <c:IconButton HorizontalAlignment="Right"
@@ -160,6 +161,7 @@
 
             <TextBlock Margin="10,0,0,0"
                        VerticalAlignment="Center"
+                       Foreground="{DynamicResource text-100}"
                        Text="分组" />
         </StackPanel>
 

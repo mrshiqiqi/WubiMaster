@@ -22,6 +22,7 @@
         <Setter Property="Background" Value="{DynamicResource bg-200}" />
         <Setter Property="BorderBrush" Value="{DynamicResource primary-200}" />
         <Setter Property="BorderThickness" Value="2" />
+        <Setter Property="Foreground" Value="{DynamicResource text-100}" />
         <Setter Property="HorizontalContentAlignment" Value="Left" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
 

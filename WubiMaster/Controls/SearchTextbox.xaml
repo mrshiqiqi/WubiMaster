@@ -14,7 +14,7 @@
         <com:SearchTextToVisible x:Key="SearchTextToVisible" />
 
         <Style x:Key="textbox_style" TargetType="TextBox">
-            <Setter Property="MaxLength" Value="10" />
+            <Setter Property="MaxLength" Value="{Binding ElementName=search_textbox, Path=TextMaxLength}" />
 
             <Setter Property="Template">
                 <Setter.Value>
@@ -29,8 +29,8 @@
                                            HorizontalAlignment="Left"
                                            VerticalAlignment="Center"
                                            FontSize="{Binding ElementName=search_textbox, Path=TextFontSize}"
-                                           Foreground="{DynamicResource bg-100}"
-                                           Opacity="0.6"
+                                           Foreground="{DynamicResource text-200}"
+                                           Opacity="0.8"
                                            Text="{Binding ElementName=search_textbox, Path=WaterMarkText}"
                                            Visibility="{Binding ElementName=searchTextBox, Path=Text, Converter={StaticResource SearchTextToVisible}}" />
 
@@ -47,7 +47,7 @@
                         </Border>
 
                         <ControlTemplate.Triggers>
-                            <DataTrigger Binding="{Binding Path=Text, RelativeSource={RelativeSource Mode=TemplatedParent}}" Value="你">
+                            <DataTrigger Binding="{Binding Path=Text, RelativeSource={RelativeSource Mode=TemplatedParent}}" Value="1">
                                 <Setter TargetName="border" Property="Background" Value="Red" />
                             </DataTrigger>
                         </ControlTemplate.Triggers>
@@ -79,6 +79,7 @@
             <Setter Property="Background" Value="{DynamicResource primary-200}" />
             <Setter Property="BorderBrush" Value="{DynamicResource primary-200}" />
             <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Foreground" Value="{DynamicResource bg-100}" />
             <Setter Property="HorizontalContentAlignment" Value="Center" />
             <Setter Property="VerticalContentAlignment" Value="Center" />
             <Setter Property="Margin" Value="2" />
@@ -159,7 +160,7 @@
                                               VerticalAlignment="Center"
                                               Points="1,1 10,10 20,1"
                                               RenderTransformOrigin="0.5, 0.5"
-                                              Stroke="{DynamicResource text-200}"
+                                              Stroke="{DynamicResource bg-100}"
                                               StrokeEndLineCap="Round"
                                               StrokeLineJoin="Round"
                                               StrokeStartLineCap="Round"
@@ -243,7 +244,7 @@
                      Grid.Column="1"
                      Padding="{Binding ElementName=search_textbox, Path=TextMargin}"
                      FontSize="{Binding ElementName=search_textbox, Path=TextFontSize}"
-                     Foreground="{DynamicResource bg-100}"
+                     Foreground="{DynamicResource text-100}"
                      Style="{StaticResource textbox_style}"
                      Text="{Binding ElementName=search_textbox, Path=SecrchContent}" />
 
