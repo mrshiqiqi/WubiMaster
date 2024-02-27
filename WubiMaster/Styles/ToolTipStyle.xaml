@@ -3,7 +3,7 @@
     <Style x:Key="ToolTipStyle" TargetType="ToolTip">
         <Setter Property="OverridesDefaultStyle" Value="true" />
         <Setter Property="HasDropShadow" Value="True" />
-        <Setter Property="Foreground" Value="{DynamicResource text-100}" />
+        <Setter Property="Foreground" Value="{DynamicResource bg-200}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="ToolTip">

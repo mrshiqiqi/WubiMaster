@@ -17,7 +17,7 @@
                     Height="{TemplateBinding Height}"
                     Background="{Binding ElementName=icon_button, Path=ButtonBackground}"
                     CornerRadius="100">
-                <Viewbox Margin="10">
+                <Viewbox Margin="{Binding ElementName=icon_button, Path=ButtonMargin}">
                     <TextBlock x:Name="text"
                                FontFamily="../Fonts/#iconfont"
                                Foreground="{Binding ElementName=icon_button, Path=ButtonForeground}"
