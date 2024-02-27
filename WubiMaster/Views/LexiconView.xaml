@@ -39,6 +39,7 @@
             <c:IconButton HorizontalAlignment="Right"
                           VerticalAlignment="Top"
                           ButtonBackground="{DynamicResource accent-100}"
+                          ButtonCommand="{Binding CreateWordsCommand}"
                           ButtonForeground="{DynamicResource bg-100}"
                           ButtonHeight="25"
                           ButtonMargin="4"

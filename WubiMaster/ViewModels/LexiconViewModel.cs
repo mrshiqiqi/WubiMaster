@@ -1,14 +1,17 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using WubiMaster.Common;
 using WubiMaster.Models;
+using WubiMaster.Views.PopViews;
 
 namespace WubiMaster.ViewModels
 {
@@ -24,6 +27,13 @@ namespace WubiMaster.ViewModels
             LoadCikuData();
         }
 
+
+        [RelayCommand]
+        public void CreateWords(object obj)
+        {
+            CreateWordsView createWordsView = new CreateWordsView();
+            createWordsView.ShowPop();
+        }
         private void ReLoadCikuData(object recipient, string message)
         {
             CikuList?.Clear();

@@ -221,7 +221,7 @@
         </Style>
     </UserControl.Resources>
 
-    <Border Background="{DynamicResource primary-300}" CornerRadius="{Binding ElementName=search_textbox, Path=BorderCornerRadius}">
+    <Border Background="{DynamicResource bg-200}" CornerRadius="{Binding ElementName=search_textbox, Path=BorderCornerRadius}">
 
         <Grid>
             <Grid.ColumnDefinitions>

@@ -32,22 +32,41 @@
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
-            <Border Grid.Row="0"
-                    Grid.Column="0"
-                    Grid.ColumnSpan="2"
-                    Width="250"
-                    Height="30"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Top"
-                    Background="{DynamicResource bg-200}"
-                    CornerRadius="15">
+            <StackPanel Grid.Row="0"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="2"
+                        VerticalAlignment="Top"
+                        Orientation="Horizontal">
 
-                <TextBlock Margin="20,0,0,0"
-                           HorizontalAlignment="Left"
+                <c:SearchTextbox Width="150"
+                                 Height="30"
+                                 Margin="10,0,0,0"
+                                 HorizontalAlignment="Left"
+                                 VerticalAlignment="Center"
+                                 BorderCornerRadius="10"
+                                 ShowComboBox="Collapsed"
+                                 ShowSearchButton="Visible"
+                                 TextMargin="10 0 0 0"
+                                 WaterMarkText="快速查询字根" />
+
+                <TextBlock Margin="10,0,0,0"
                            VerticalAlignment="Center"
-                           Foreground="{DynamicResource text-200}"
-                           Text="快速查询字根" />
-            </Border>
+                           FontSize="15"
+                           Foreground="{DynamicResource primary-100}"
+                           Text="扌 巴 土 勹" />
+
+                <TextBlock VerticalAlignment="Center"
+                           FontSize="15"
+                           Foreground="{DynamicResource primary-100}"
+                           Text="・" />
+
+                <TextBlock VerticalAlignment="Center"
+                           FontSize="15"
+                           Foreground="{DynamicResource primary-100}"
+                           Text="xyzs" />
+            </StackPanel>
+
+
 
             <Grid Grid.Row="1">
                 <Grid.RowDefinitions>
