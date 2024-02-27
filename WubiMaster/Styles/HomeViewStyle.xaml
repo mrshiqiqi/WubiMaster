@@ -37,7 +37,7 @@
         <Setter Property="Width" Value="40" />
         <Setter Property="Height" Value="40" />
         <Setter Property="Margin" Value="10,0,10,0" />
-        <Setter Property="Background" Value="{DynamicResource accent-100}" />
+        <Setter Property="Background" Value="{DynamicResource accent-200}" />
         <Setter Property="CornerRadius" Value="10" />
     </Style>
 
@@ -53,7 +53,7 @@
         <Setter Property="VerticalAlignment" Value="Center" />
         <Setter Property="FontSize" Value="20" />
         <Setter Property="FontWeight" Value="Bold" />
-        <Setter Property="Foreground" Value="{DynamicResource accent-200}" />
+        <Setter Property="Foreground" Value="{DynamicResource text-100}" />
     </Style>
 
     <Style x:Key="WubiButtonStyle" TargetType="c:IconButton">

@@ -23,12 +23,12 @@
                         HorizontalAlignment="Right"
                         VerticalAlignment="Top"
                         Panel.ZIndex="100"
-                        CBBackground="{DynamicResource bg-100}"
-                        CBBorderBrush="{DynamicResource accent-100}"
+                        CBBackground="{DynamicResource primary-200}"
+                        CBBorderBrush="{DynamicResource primary-100}"
                         CBBorderThinckness="1"
                         CBCommand="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=CloseCommand}"
                         CBCommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=CommandParameter}"
-                        CBForeground="{DynamicResource text-100}" />
+                        CBForeground="{DynamicResource bg-100}" />
 
         <Border Background="{DynamicResource bg-100}"
                 BorderBrush="{DynamicResource primary-100}"
@@ -59,19 +59,19 @@
                             <Viewbox Margin="8">
                                 <Grid TextBlock.FontFamily="../Fonts/#iconfont">
 
-                                    <TextBlock Foreground="{DynamicResource text-100}"
+                                    <TextBlock Foreground="{DynamicResource primary-100}"
                                                Text="&#xeb65;"
                                                Visibility="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=NormalVisible}" />
-                                    <TextBlock Foreground="Orange"
+                                    <TextBlock Foreground="{DynamicResource primary-100}"
                                                Text="&#xe61f;"
                                                Visibility="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=WarnVisible}" />
-                                    <TextBlock Foreground="Red"
+                                    <TextBlock Foreground="{DynamicResource primary-100}"
                                                Text="&#xe625;"
                                                Visibility="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=ErrorVisible}" />
-                                    <TextBlock Foreground="IndianRed"
+                                    <TextBlock Foreground="{DynamicResource primary-100}"
                                                Text="&#xe61c;"
                                                Visibility="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=FailVisible}" />
-                                    <TextBlock Foreground="DarkOliveGreen"
+                                    <TextBlock Foreground="{DynamicResource primary-100}"
                                                Text="&#xe604;"
                                                Visibility="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=SucceedVisible}" />
                                 </Grid>
@@ -84,7 +84,7 @@
                                    VerticalAlignment="Center"
                                    FontSize="15"
                                    FontWeight="Light"
-                                   Foreground="{DynamicResource text-100}"
+                                   Foreground="{DynamicResource bg-100}"
                                    Text="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=Message}"
                                    TextWrapping="Wrap" />
                     </Grid>
@@ -96,7 +96,7 @@
                         Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=CloseCommand}"
                         CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=CommandParameter}"
                         Content="确认"
-                        Foreground="{DynamicResource text-100}" />
+                        Foreground="{DynamicResource bg-100}" />
             </Grid>
         </Border>
     </Grid>
