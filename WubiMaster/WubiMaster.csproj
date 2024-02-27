@@ -20,20 +20,7 @@
   <ItemGroup>
     <None Remove="Fonts\iconfont.ttf" />
     <None Remove="Fonts\zigen.ttf" />
-    <None Remove="Fonts\启功字体简体.ttf" />
     <None Remove="Fonts\方正启体_GBK.ttf" />
-    <None Remove="Fonts\颜真卿颜体.ttf" />
-    <None Remove="Images\Jieqi\Jieqi10.png" />
-    <None Remove="Images\Jieqi\Jieqi11.png" />
-    <None Remove="Images\Jieqi\Jieqi12.png" />
-    <None Remove="Images\Jieqi\Jieqi2.png" />
-    <None Remove="Images\Jieqi\Jieqi3.png" />
-    <None Remove="Images\Jieqi\Jieqi4.png" />
-    <None Remove="Images\Jieqi\Jieqi5.png" />
-    <None Remove="Images\Jieqi\Jieqi6.png" />
-    <None Remove="Images\Jieqi\Jieqi7.png" />
-    <None Remove="Images\Jieqi\Jieqi8.png" />
-    <None Remove="Images\Jieqi\Jieqi9.png" />
     <None Remove="Images\JinriShici\低头.png" />
     <None Remove="Images\JinriShici\侧脸.png" />
     <None Remove="Images\JinriShici\侧身微笑.png" />
@@ -73,21 +60,7 @@
   <ItemGroup>
     <Resource Include="Fonts\iconfont.ttf" />
     <Resource Include="Fonts\zigen.ttf" />
-    <Resource Include="Fonts\启功字体简体.ttf" />
     <Resource Include="Fonts\方正启体_GBK.ttf" />
-    <Resource Include="Fonts\颜真卿颜体.ttf" />
-    <Resource Include="Images\Jieqi\Jieqi1.png" />
-    <Resource Include="Images\Jieqi\Jieqi10.png" />
-    <Resource Include="Images\Jieqi\Jieqi11.png" />
-    <Resource Include="Images\Jieqi\Jieqi12.png" />
-    <Resource Include="Images\Jieqi\Jieqi2.png" />
-    <Resource Include="Images\Jieqi\Jieqi3.png" />
-    <Resource Include="Images\Jieqi\Jieqi4.png" />
-    <Resource Include="Images\Jieqi\Jieqi5.png" />
-    <Resource Include="Images\Jieqi\Jieqi6.png" />
-    <Resource Include="Images\Jieqi\Jieqi7.png" />
-    <Resource Include="Images\Jieqi\Jieqi8.png" />
-    <Resource Include="Images\Jieqi\Jieqi9.png" />
     <Resource Include="Images\JinriShici\低头.png" />
     <Resource Include="Images\JinriShici\侧脸.png" />
     <Resource Include="Images\JinriShici\侧身微笑.png" />
