@@ -35,6 +35,7 @@
     <None Remove="Images\JinriShici\青花瓷衣服.png" />
     <None Remove="Images\logo.ico" />
     <None Remove="Images\wubi_demo.png" />
+    <None Remove="Images\wubi_demo1.png" />
     <None Remove="Images\低头的人.png" />
     <None Remove="Images\节气1.png" />
   </ItemGroup>
@@ -74,6 +75,7 @@
     <Resource Include="Images\JinriShici\青花瓷少女.png" />
     <Resource Include="Images\JinriShici\青花瓷衣服.png" />
     <Resource Include="Images\wubi_demo.png" />
+    <Resource Include="Images\wubi_demo1.png" />
     <Resource Include="Images\JinriShici\低头的人.png" />
   </ItemGroup>
 
