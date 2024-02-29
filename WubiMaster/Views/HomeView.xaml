@@ -38,32 +38,27 @@
                         VerticalAlignment="Top"
                         Orientation="Horizontal">
 
-                <c:SearchTextbox Width="150"
+                <c:SearchTextbox x:Name="search_box"
+                                 Width="130"
                                  Height="30"
                                  Margin="10,0,0,0"
                                  HorizontalAlignment="Left"
                                  VerticalAlignment="Center"
-                                 BorderCornerRadius="10"
+                                 BorderCornerRadius="15"
+                                 SearchButtonCommand="{Binding ZingenSearchCommand}"
+                                 SearchButtonParameter="{Binding ElementName=search_box, Path=SecrchContent}"
                                  ShowComboBox="Collapsed"
                                  ShowSearchButton="Visible"
-                                 TextMargin="10 0 0 0"
+                                 TextMargin="15 0 0 0"
+                                 TextMaxLength="1"
                                  WaterMarkText="快速查询字根" />
 
                 <TextBlock Margin="10,0,0,0"
                            VerticalAlignment="Center"
+                           FontFamily="../Fonts/#黑体字根"
                            FontSize="15"
                            Foreground="{DynamicResource primary-100}"
-                           Text="扌 巴 土 勹" />
-
-                <TextBlock VerticalAlignment="Center"
-                           FontSize="15"
-                           Foreground="{DynamicResource primary-100}"
-                           Text="・" />
-
-                <TextBlock VerticalAlignment="Center"
-                           FontSize="15"
-                           Foreground="{DynamicResource primary-100}"
-                           Text="xyzs" />
+                           Text="{Binding SpellingText}" />
             </StackPanel>
 
 

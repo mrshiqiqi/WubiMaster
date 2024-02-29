@@ -8,4 +8,5 @@
     <Style BasedOn="{StaticResource ScrollBarStyle}" TargetType="ScrollBar" />
     <Style BasedOn="{StaticResource ScrollViewerStyle}" TargetType="ScrollViewer" />
     <Style BasedOn="{StaticResource ToolTipStyle}" TargetType="ToolTip" />
+    <Style BasedOn="{StaticResource RadioButtonStyle}" TargetType="RadioButton" />
 </ResourceDictionary>

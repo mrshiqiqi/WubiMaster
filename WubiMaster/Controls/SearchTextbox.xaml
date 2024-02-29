@@ -249,6 +249,9 @@
                      Text="{Binding ElementName=search_textbox, Path=SecrchContent}" />
 
             <Button Grid.Column="2"
+                    Command="{Binding ElementName=search_textbox, Path=SearchButtonCommand}"
+                    CommandParameter="{Binding ElementName=search_textbox, Path=SearchButtonParameter}"
+                    IsDefault="True"
                     Style="{StaticResource search_button_style}"
                     Visibility="{Binding ElementName=search_textbox, Path=ShowSearchButton}" />
         </Grid>

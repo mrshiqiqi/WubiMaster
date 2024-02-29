@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using CommunityToolkit.Mvvm.Input;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace WubiMaster.Controls
@@ -11,8 +12,14 @@ namespace WubiMaster.Controls
         public static readonly DependencyProperty CombCornerRadiusProperty =
             DependencyProperty.Register("CombCornerRadius", typeof(CornerRadius), typeof(SearchTextbox));
 
+        public static readonly DependencyProperty SearchButtonCommandProperty =
+            DependencyProperty.Register("SearchButtonCommand", typeof(RelayCommand<object>), typeof(SearchTextbox));
+
+        public static readonly DependencyProperty SearchButtonParameterProperty =
+            DependencyProperty.Register("SearchButtonParameter", typeof(object), typeof(SearchTextbox));
+
         public static readonly DependencyProperty SecrchContentProperty =
-                            DependencyProperty.Register("SecrchContent", typeof(string), typeof(SearchTextbox));
+                                            DependencyProperty.Register("SecrchContent", typeof(string), typeof(SearchTextbox));
 
         public static readonly DependencyProperty ShowComboBoxProperty =
             DependencyProperty.Register("ShowComboBox", typeof(Visibility), typeof(SearchTextbox));
@@ -47,6 +54,18 @@ namespace WubiMaster.Controls
         {
             get { return (CornerRadius)GetValue(CombCornerRadiusProperty); }
             set { SetValue(CombCornerRadiusProperty, value); }
+        }
+
+        public RelayCommand<object> SearchButtonCommand
+        {
+            get { return (RelayCommand<object>)GetValue(SearchButtonCommandProperty); }
+            set { SetValue(SearchButtonCommandProperty, value); }
+        }
+
+        public object SearchButtonParameter
+        {
+            get { return (object)GetValue(SearchButtonParameterProperty); }
+            set { SetValue(SearchButtonParameterProperty, value); }
         }
 
         public string SecrchContent

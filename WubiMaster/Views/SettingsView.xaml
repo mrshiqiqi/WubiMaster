@@ -220,9 +220,36 @@
                                     SubTitle="选择首页字根快速查询版本">
                         <c:SettingPanel.SettingContent>
                             <StackPanel Orientation="Horizontal">
-                                <CheckBox Content="86" />
-                                <CheckBox Content="98" />
-                                <CheckBox Content="新世纪" />
+                                <RadioButton Content="86"
+                                             GroupName="QuickSpellingGroup"
+                                             IsChecked="{Binding QuickSpllType86}"
+                                             Style="{StaticResource RadioButtonStyle}">
+                                    <b:Interaction.Triggers>
+                                        <b:EventTrigger EventName="Click">
+                                            <b:InvokeCommandAction Command="{Binding QuickSpellChangeCommand}" />
+                                        </b:EventTrigger>
+                                    </b:Interaction.Triggers>
+                                </RadioButton>
+                                <RadioButton Content="98"
+                                             GroupName="QuickSpellingGroup"
+                                             IsChecked="{Binding QuickSpllType98}"
+                                             Style="{StaticResource RadioButtonStyle}">
+                                    <b:Interaction.Triggers>
+                                        <b:EventTrigger EventName="Click">
+                                            <b:InvokeCommandAction Command="{Binding QuickSpellChangeCommand}" />
+                                        </b:EventTrigger>
+                                    </b:Interaction.Triggers>
+                                </RadioButton>
+                                <RadioButton Content="新世纪"
+                                             GroupName="QuickSpellingGroup"
+                                             IsChecked="{Binding QuickSpllType06}"
+                                             Style="{StaticResource RadioButtonStyle}">
+                                    <b:Interaction.Triggers>
+                                        <b:EventTrigger EventName="Click">
+                                            <b:InvokeCommandAction Command="{Binding QuickSpellChangeCommand}" />
+                                        </b:EventTrigger>
+                                    </b:Interaction.Triggers>
+                                </RadioButton>
                             </StackPanel>
                         </c:SettingPanel.SettingContent>
                     </c:SettingPanel>

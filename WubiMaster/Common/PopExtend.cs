@@ -15,6 +15,7 @@ namespace WubiMaster.Common
             }
             catch (Exception ex)
             {
+                LogHelper.Error(ex.Message);
                 pop.Close();
             }
         }

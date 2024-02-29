@@ -15,12 +15,11 @@ namespace WubiMaster.ViewModels
 {
     public partial class SettingsViewModel : ObservableRecipient
     {
-
-        [ObservableProperty]
-        private bool serviceIsRun;
-
         [ObservableProperty]
         private bool cobboxThemesEnable;
+
+        [ObservableProperty]
+        private string defaultCikuFile;
 
         [ObservableProperty]
         private bool isRandomThemes;
@@ -35,10 +34,16 @@ namespace WubiMaster.ViewModels
         private string processFilePath;
 
         [ObservableProperty]
-        private string defaultCikuFile;
+        private bool quickSpllType06;
 
         [ObservableProperty]
-        private string userCikuFile;
+        private bool quickSpllType86;
+
+        [ObservableProperty]
+        private bool quickSpllType98;
+
+        [ObservableProperty]
+        private bool serviceIsRun;
 
         [ObservableProperty]
         private int shiciIndex;
@@ -51,6 +56,9 @@ namespace WubiMaster.ViewModels
 
         [ObservableProperty]
         private List<ThemeModel> themeList;
+
+        [ObservableProperty]
+        private string userCikuFile;
 
         [ObservableProperty]
         private string userFilePath;
@@ -67,20 +75,37 @@ namespace WubiMaster.ViewModels
             LoadConfig();
         }
 
+        [RelayCommand]
+        public void ChangeLogBackDays(string days)
+        {
+            ConfigHelper.WriteConfigByString("log_back_days", days);
+        }
 
         [RelayCommand]
-        public void SwicthService()
+        public void ChangeShiciInterval(int index)
         {
+            string interval = ShiciIntervalList.First(i => i.Id == index).Minutes.ToString();
+            WeakReferenceMessenger.Default.Send<string, string>(interval, "ChangeShiciInterval");
+
+            ConfigHelper.WriteConfigByString("shici_interval", interval);
+        }
+
+        [RelayCommand]
+        public void ChangeTheme(string theme)
+        {
+            if (theme == null || theme.Length == 0) { return; }
             try
             {
-                if (ServiceIsRun)
-                    ServiceHelper.RunService();
-                else
-                    ServiceHelper.KillService();
+                string pack = $"pack://application:,,,/WubiMaster;component/Themes/{theme}.xaml";
+                ResourceDictionary themeResource = new ResourceDictionary();
+                themeResource.Source = new Uri(pack);
+                Application.Current.Resources.MergedDictionaries[0].Source = themeResource.Source;
+
+                ConfigHelper.WriteConfigByString("theme_value", theme);
             }
             catch (Exception ex)
             {
-                this.ShowMessage(ex.Message, DialogType.Warring);
+                MessageBox.Show(ex.ToString());
             }
         }
 
@@ -91,9 +116,81 @@ namespace WubiMaster.ViewModels
         }
 
         [RelayCommand]
-        public void ChangeLogBackDays(string days)
+        public void OpenProcessFilePath()
         {
-            ConfigHelper.WriteConfigByString("log_back_days", days);
+            System.Windows.Forms.FolderBrowserDialog dialog = new System.Windows.Forms.FolderBrowserDialog();
+            System.Windows.Forms.DialogResult result = dialog.ShowDialog();
+
+            if (result == System.Windows.Forms.DialogResult.Cancel)
+            {
+                return;
+            }
+            ProcessFilePath = dialog.SelectedPath;
+
+            ConfigHelper.WriteConfigByString("process_file_path", ProcessFilePath);
+        }
+
+        [RelayCommand]
+        public void OpenUserFilePath()
+        {
+            System.Windows.Forms.FolderBrowserDialog dialog = new System.Windows.Forms.FolderBrowserDialog();
+            System.Windows.Forms.DialogResult result = dialog.ShowDialog();
+
+            if (result == System.Windows.Forms.DialogResult.Cancel)
+            {
+                return;
+            }
+            UserFilePath = dialog.SelectedPath;
+
+            ConfigHelper.WriteConfigByString("user_file_path", UserFilePath);
+        }
+
+        [RelayCommand]
+        public void QuickSpellChange()
+        {
+            try
+            {
+                string quickSpllType = ConfigHelper.ReadConfigByString("spelling_rk_type");
+                if (string.IsNullOrEmpty(quickSpllType)) quickSpllType = "86";
+
+                if (QuickSpllType86)
+                    ConfigHelper.WriteConfigByString("spelling_rk_type", "86");
+                else if (QuickSpllType98)
+                    ConfigHelper.WriteConfigByString("spelling_rk_type", "98");
+                else if (QuickSpllType06)
+                    ConfigHelper.WriteConfigByString("spelling_rk_type", "06");
+                else
+                    ConfigHelper.WriteConfigByString("spelling_rk_type", "86");
+
+                string newValue = ConfigHelper.ReadConfigByString("spelling_rk_type");
+                if (string.IsNullOrEmpty(newValue)) newValue = "86";
+
+                if (quickSpllType != newValue)
+                {
+                    WeakReferenceMessenger.Default.Send<string, string>(newValue, "ChangeQuickSpellType");
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowMessage(ex.Message, DialogType.Warring);
+            }
+        }
+
+        [RelayCommand]
+        public void RandomThemes()
+        {
+            if (IsRandomThemes)
+            {
+                CobboxThemesEnable = false;
+                Random random = new Random();
+                ThemeIndex = random.Next(0, ThemeList.Count);
+                ChangeTheme(ThemeList[ThemeIndex].Value);
+            }
+            else
+            {
+                CobboxThemesEnable = true;
+            }
+            ConfigHelper.WriteConfigByBool("is_random_themes", IsRandomThemes);
         }
 
         [RelayCommand]
@@ -128,78 +225,19 @@ namespace WubiMaster.ViewModels
         }
 
         [RelayCommand]
-        public void ChangeShiciInterval(int index)
+        public void SwicthService()
         {
-            string interval = ShiciIntervalList.First(i => i.Id == index).Minutes.ToString();
-            WeakReferenceMessenger.Default.Send<string, string>(interval, "ChangeShiciInterval");
-
-            ConfigHelper.WriteConfigByString("shici_interval", interval);
-        }
-
-        [RelayCommand]
-        public void ChangeTheme(string theme)
-        {
-            if (theme == null || theme.Length == 0) { return; }
             try
             {
-                string pack = $"pack://application:,,,/WubiMaster;component/Themes/{theme}.xaml";
-                ResourceDictionary themeResource = new ResourceDictionary();
-                themeResource.Source = new Uri(pack);
-                Application.Current.Resources.MergedDictionaries[0].Source = themeResource.Source;
-
-                ConfigHelper.WriteConfigByString("theme_value", theme);
+                if (ServiceIsRun)
+                    ServiceHelper.RunService();
+                else
+                    ServiceHelper.KillService();
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                this.ShowMessage(ex.Message, DialogType.Warring);
             }
-        }
-
-        [RelayCommand]
-        public void OpenProcessFilePath()
-        {
-            System.Windows.Forms.FolderBrowserDialog dialog = new System.Windows.Forms.FolderBrowserDialog();
-            System.Windows.Forms.DialogResult result = dialog.ShowDialog();
-
-            if (result == System.Windows.Forms.DialogResult.Cancel)
-            {
-                return;
-            }
-            ProcessFilePath = dialog.SelectedPath;
-
-            ConfigHelper.WriteConfigByString("process_file_path", ProcessFilePath);
-        }
-
-        [RelayCommand]
-        public void OpenUserFilePath()
-        {
-            System.Windows.Forms.FolderBrowserDialog dialog = new System.Windows.Forms.FolderBrowserDialog();
-            System.Windows.Forms.DialogResult result = dialog.ShowDialog();
-
-            if (result == System.Windows.Forms.DialogResult.Cancel)
-            {
-                return;
-            }
-            UserFilePath = dialog.SelectedPath;
-
-            ConfigHelper.WriteConfigByString("user_file_path", UserFilePath);
-        }
-
-        [RelayCommand]
-        public void RandomThemes()
-        {
-            if (IsRandomThemes)
-            {
-                CobboxThemesEnable = false;
-                Random random = new Random();
-                ThemeIndex = random.Next(0, ThemeList.Count);
-                ChangeTheme(ThemeList[ThemeIndex].Value);
-            }
-            else
-            {
-                CobboxThemesEnable = true;
-            }
-            ConfigHelper.WriteConfigByBool("is_random_themes", IsRandomThemes);
         }
 
         private void InitLogBackList()
@@ -284,6 +322,17 @@ namespace WubiMaster.ViewModels
                 if (!string.IsNullOrEmpty(themeValue)) ChangeTheme(themeValue);
                 else ChangeTheme("DefultBlueTheme");
             }
+
+            // 加载首页快速查询字根版本类型
+            string quickSpllType = ConfigHelper.ReadConfigByString("spelling_rk_type");
+            if (quickSpllType == "86")
+                QuickSpllType86 = true;
+            else if (quickSpllType == "98")
+                QuickSpllType98 = true;
+            else if (quickSpllType == "06")
+                QuickSpllType06 = true;
+            else
+                QuickSpllType86 = true;
 
             // 检测算法服务状态
             CheckService();

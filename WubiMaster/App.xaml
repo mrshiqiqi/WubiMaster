@@ -10,6 +10,7 @@
                 <ResourceDictionary Source="/Themes/DefultBlueTheme.xaml" />
 
                 <ResourceDictionary Source="/Styles/UIElementHoverStyle.xaml" />
+                <ResourceDictionary Source="/Styles/RadioButtonStyle.xaml" />
                 <ResourceDictionary Source="/Styles/NavButtonStyle.xaml" />
                 <ResourceDictionary Source="/Styles/CloseButtonStyle.xaml" />
                 <ResourceDictionary Source="/Styles/ThemeButtonStyle.xaml" />
