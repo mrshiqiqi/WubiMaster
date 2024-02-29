@@ -28,7 +28,6 @@
     <None Remove="Assets\Spelling\wubi98_spelling.txt" />
     <None Remove="Assets\Spelling\wubi98_spelling_rk.txt" />
     <None Remove="Fonts\iconfont.ttf" />
-    <None Remove="Fonts\zigen.ttf" />
     <None Remove="Fonts\方正启体_GBK.ttf" />
     <None Remove="Fonts\黑体字根.ttf" />
     <None Remove="Images\JinriShici\低头.png" />
@@ -93,7 +92,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Resource Include="Fonts\iconfont.ttf" />
-    <Resource Include="Fonts\zigen.ttf" />
     <Resource Include="Fonts\方正启体_GBK.ttf" />
     <Resource Include="Fonts\黑体字根.ttf" />
     <Resource Include="Images\JinriShici\低头.png" />
