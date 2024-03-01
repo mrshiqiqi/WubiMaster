@@ -150,9 +150,6 @@ namespace WubiMaster.ViewModels
         {
             try
             {
-                string quickSpllType = ConfigHelper.ReadConfigByString("spelling_rk_type");
-                if (string.IsNullOrEmpty(quickSpllType)) quickSpllType = "86";
-
                 if (QuickSpllType86)
                     ConfigHelper.WriteConfigByString("spelling_rk_type", "86");
                 else if (QuickSpllType98)
@@ -161,17 +158,10 @@ namespace WubiMaster.ViewModels
                     ConfigHelper.WriteConfigByString("spelling_rk_type", "06");
                 else
                     ConfigHelper.WriteConfigByString("spelling_rk_type", "86");
-
-                string newValue = ConfigHelper.ReadConfigByString("spelling_rk_type");
-                if (string.IsNullOrEmpty(newValue)) newValue = "86";
-
-                if (quickSpllType != newValue)
-                {
-                    WeakReferenceMessenger.Default.Send<string, string>(newValue, "ChangeQuickSpellType");
-                }
             }
             catch (Exception ex)
             {
+                LogHelper.Error(ex.Message);
                 this.ShowMessage(ex.Message, DialogType.Warring);
             }
         }

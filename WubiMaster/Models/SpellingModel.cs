@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WubiMaster.Models
 {
-    public class SpellingRKModel
+    public class SpellingModel
     {
         public string Text { get; set; }
         public string Spelling { get; set; }

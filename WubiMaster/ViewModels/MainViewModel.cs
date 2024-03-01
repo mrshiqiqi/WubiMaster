@@ -32,6 +32,16 @@ namespace WubiMaster.ViewModels
 
             //Register<string, string>：消息类型、token类型
             WeakReferenceMessenger.Default.Register<string, string>(this, "ShowMaskLayer", ShowMaskLayer);
+
+            LaodAllSpellingDataAsync();
+        }
+
+        private async void LaodAllSpellingDataAsync()
+        {
+            await Task.Run(() =>
+            {
+                SpellingWorker.LoadAllSpellingData();
+            });
         }
 
         private Dictionary<string, object> pageDict { get; set; }
@@ -65,6 +75,12 @@ namespace WubiMaster.ViewModels
                         LexiconView lexiconView = new LexiconView();
                         pageDict[pName] = lexiconView;
                         CurrentView = lexiconView;
+                        break;
+
+                    case "Themes":
+                        ThemeView themeView = new ThemeView();
+                        pageDict[pName] = themeView;
+                        CurrentView = themeView;
                         break;
 
                     case "Settings":
@@ -154,6 +170,11 @@ namespace WubiMaster.ViewModels
                     case "Lexicon":
                         LexiconView lexiconView = new LexiconView();
                         pageDict[pName] = lexiconView;
+                        break;
+
+                    case "Themes":
+                        ThemeView themeView = new ThemeView();
+                        pageDict[pName] = themeView;
                         break;
 
                     case "Settings":

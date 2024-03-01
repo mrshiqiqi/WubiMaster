@@ -18,7 +18,7 @@ namespace WubiMaster.ViewModels
         [ObservableProperty]
         private int shiciInterval = 25;
 
-        private ConcurrentQueue<SpellingRKModel> SpellingRKQueue = new ConcurrentQueue<SpellingRKModel>();
+        private ConcurrentQueue<SpellingModel> QuickSpellingQueue = new ConcurrentQueue<SpellingModel>();
 
         [ObservableProperty]
         private string spellingText;
@@ -26,9 +26,6 @@ namespace WubiMaster.ViewModels
         public HomeViewModel()
         {
             WeakReferenceMessenger.Default.Register<string, string>(this, "ChangeShiciInterval", ChangeShiciInterval);
-            WeakReferenceMessenger.Default.Register<string, string>(this, "ChangeQuickSpellType", ReLoadSpellingRKList);
-
-            LoadSpellingRKList();
         }
 
         [RelayCommand]
@@ -65,7 +62,8 @@ namespace WubiMaster.ViewModels
             try
             {
                 string keyWord = obj.ToString().Trim();
-                var result = SpellingRKQueue.AsParallel().FirstOrDefault(s => s.Text == keyWord);
+                string type = ConfigHelper.ReadConfigByString("spelling_rk_type");
+                var result = SpellingWorker.ZingenSearch(keyWord, type);
                 if (result == null)
                 {
                     SpellingText = "";
@@ -99,49 +97,6 @@ namespace WubiMaster.ViewModels
             {
                 LogHelper.Error(ex.Message);
             }
-        }
-
-        private void LoadSpellingRKList()
-        {
-            Task.Run(() =>
-            {
-                try
-                {
-                    string spellingFile;
-                    string typeValue;
-                    string spellingRKType = ConfigHelper.ReadConfigByString("spelling_rk_type");
-
-                    if (string.IsNullOrEmpty(spellingRKType)) typeValue = "86";
-                    else typeValue = spellingRKType;
-                    spellingFile = AppDomain.CurrentDomain.BaseDirectory + @$"Assets\Spelling\wubi{typeValue}_spelling_rk.txt";
-
-                    string[] spellingDatas = File.ReadAllLines(spellingFile);
-                    Parallel.For(0, spellingDatas.Length,
-                      index =>
-                      {
-                          SpellingRKModel model = new SpellingRKModel();
-                          string dataStr = spellingDatas[index];
-                          string[] dataKeyValue = dataStr.Split('\t');
-                          string _tempStr = dataKeyValue[1].Replace('〔', ' ').Replace('〕', ' ').Replace('※', ' ');
-                          string[] spellAndCode = _tempStr.Split('☯');
-                          model.Text = dataKeyValue[0].Trim();
-                          model.Spelling = spellAndCode[0].Trim();
-                          model.Code = spellAndCode[1].Trim();
-                          SpellingRKQueue.Enqueue(model);
-                      });
-                }
-                catch (Exception ex)
-                {
-                    LogHelper.Error(ex.Message);
-                    this.ShowMessage("Can not find spelling_rk file", DialogType.Error);
-                }
-            });
-        }
-
-        private void ReLoadSpellingRKList(object recipient, string message)
-        {
-            SpellingRKQueue.Clear();
-            LoadSpellingRKList();
         }
     }
 }
