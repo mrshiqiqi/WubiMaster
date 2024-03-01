@@ -145,11 +145,11 @@
                                         <ColumnDefinition />
                                     </Grid.ColumnDefinitions>
 
-                                    <TextBlock Style="{StaticResource WubiWordsStyle}" Text="钱" />
+                                    <TextBlock Style="{StaticResource WubiWordsStyle}" Text="{Binding SpellingKeytText}" />
 
                                     <TextBlock Grid.Column="1"
                                                Style="{StaticResource SpellTextShowStyle}"
-                                               Text="   ・ q g a" />
+                                               Text="{Binding SpellTextShow86}" />
                                 </Grid>
 
                                 <Grid Grid.Column="2">
@@ -177,11 +177,11 @@
                                         <ColumnDefinition />
                                     </Grid.ColumnDefinitions>
 
-                                    <TextBlock Style="{StaticResource WubiWordsStyle}" Text="钱" />
+                                    <TextBlock Style="{StaticResource WubiWordsStyle}" Text="{Binding SpellingKeytText}" />
 
                                     <TextBlock Grid.Column="1"
                                                Style="{StaticResource SpellTextShowStyle}"
-                                               Text="    ・ q g a y" />
+                                               Text="{Binding SpellTextShow98}" />
                                 </Grid>
 
                                 <Grid Grid.Column="2">
@@ -209,11 +209,11 @@
                                         <ColumnDefinition />
                                     </Grid.ColumnDefinitions>
 
-                                    <TextBlock Style="{StaticResource WubiWordsStyle}" Text="钱" />
+                                    <TextBlock Style="{StaticResource WubiWordsStyle}" Text="{Binding SpellingKeytText}" />
 
                                     <TextBlock Grid.Column="1"
                                                Style="{StaticResource SpellTextShowStyle}"
-                                               Text="    ・ q f x y" />
+                                               Text="{Binding SpellTextShow06}" />
                                 </Grid>
 
                                 <Grid Grid.Column="2">

@@ -18,15 +18,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Assets\Spelling\wb06_schema.txt" />
-    <None Remove="Assets\Spelling\wb86_schema.txt" />
-    <None Remove="Assets\Spelling\wb98_schema.txt" />
-    <None Remove="Assets\Spelling\wubi06_spelling.txt" />
-    <None Remove="Assets\Spelling\wubi06_spelling_rk.txt" />
-    <None Remove="Assets\Spelling\wubi86_spelling.txt" />
-    <None Remove="Assets\Spelling\wubi86_spelling_rk.txt" />
-    <None Remove="Assets\Spelling\wubi98_spelling.txt" />
-    <None Remove="Assets\Spelling\wubi98_spelling_rk.txt" />
+    <None Remove="Assets\Spelling\wb06_spelling.txt" />
+    <None Remove="Assets\Spelling\wb86_spelling.txt" />
+    <None Remove="Assets\Spelling\wb98_spelling.txt" />
     <None Remove="Fonts\iconfont.ttf" />
     <None Remove="Fonts\方正启体_GBK.ttf" />
     <None Remove="Fonts\黑体字根.ttf" />
@@ -64,31 +58,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Assets\Spelling\wb06_schema.txt">
+    <Content Include="Assets\Spelling\wb06_spelling.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Spelling\wb86_schema.txt">
+    <Content Include="Assets\Spelling\wb86_spelling.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Spelling\wb98_schema.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\Spelling\wubi06_spelling.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\Spelling\wubi06_spelling_rk.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\Spelling\wubi86_spelling.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\Spelling\wubi86_spelling_rk.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\Spelling\wubi98_spelling.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\Spelling\wubi98_spelling_rk.txt">
+    <Content Include="Assets\Spelling\wb98_spelling.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Resource Include="Fonts\iconfont.ttf" />

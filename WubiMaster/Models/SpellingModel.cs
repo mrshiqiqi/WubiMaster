@@ -11,5 +11,7 @@ namespace WubiMaster.Models
         public string Text { get; set; }
         public string Spelling { get; set; }
         public string Code { get; set; }
+        public string[] Pinyin { get; set; }
+        public string GBType { get; set;}
     }
 }

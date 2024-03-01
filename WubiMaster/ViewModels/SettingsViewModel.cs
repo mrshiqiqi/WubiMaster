@@ -151,13 +151,13 @@ namespace WubiMaster.ViewModels
             try
             {
                 if (QuickSpllType86)
-                    ConfigHelper.WriteConfigByString("spelling_rk_type", "86");
+                    ConfigHelper.WriteConfigByString("quick_search_type", "86");
                 else if (QuickSpllType98)
-                    ConfigHelper.WriteConfigByString("spelling_rk_type", "98");
+                    ConfigHelper.WriteConfigByString("quick_search_type", "98");
                 else if (QuickSpllType06)
-                    ConfigHelper.WriteConfigByString("spelling_rk_type", "06");
+                    ConfigHelper.WriteConfigByString("quick_search_type", "06");
                 else
-                    ConfigHelper.WriteConfigByString("spelling_rk_type", "86");
+                    ConfigHelper.WriteConfigByString("quick_search_type", "86");
             }
             catch (Exception ex)
             {
@@ -314,7 +314,7 @@ namespace WubiMaster.ViewModels
             }
 
             // 加载首页快速查询字根版本类型
-            string quickSpllType = ConfigHelper.ReadConfigByString("spelling_rk_type");
+            string quickSpllType = ConfigHelper.ReadConfigByString("quick_search_type");
             if (quickSpllType == "86")
                 QuickSpllType86 = true;
             else if (quickSpllType == "98")

@@ -19,11 +19,44 @@ namespace WubiMaster.ViewModels
         private int shiciInterval = 25;
 
         [ObservableProperty]
+        private string spellTextShow86;
+
+        [ObservableProperty]
+        private string spellTextShow98;
+
+        [ObservableProperty]
+        private string spellTextShow06;
+
+        [ObservableProperty]
         private string spellingText;
+
+        [ObservableProperty]
+        private string spellingKeytText = "钱";
 
         public HomeViewModel()
         {
             WeakReferenceMessenger.Default.Register<string, string>(this, "ChangeShiciInterval", ChangeShiciInterval);
+
+            LoadSpellTextShow();
+        }
+
+        private void LoadSpellTextShow()
+        {
+            try
+            {
+                string keyWord = SpellingKeytText;
+                var result86 = SpellingWorker.ZingenSearch(keyWord, "86");
+                SpellTextShow86 = result86.Spelling + "・" + result86.Code;
+                var result98 = SpellingWorker.ZingenSearch(keyWord, "98");
+                SpellTextShow98 = result98.Spelling + "・" + result98.Code;
+                var result06 = SpellingWorker.ZingenSearch(keyWord, "06");
+                SpellTextShow06 = result06.Spelling + "・" + result06.Code;
+            }
+            catch (Exception ex)
+            {
+                LogHelper.Error(ex.Message);
+                this.ShowMessage("无法加载字根版本示例", DialogType.Error);
+            }
         }
 
         [RelayCommand]
@@ -60,7 +93,7 @@ namespace WubiMaster.ViewModels
             try
             {
                 string keyWord = obj.ToString().Trim();
-                string type = ConfigHelper.ReadConfigByString("spelling_rk_type");
+                string type = ConfigHelper.ReadConfigByString("quick_search_type");
                 var result = SpellingWorker.ZingenSearch(keyWord, type);
                 if (result == null)
                 {

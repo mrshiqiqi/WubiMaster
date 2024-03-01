@@ -78,25 +78,7 @@ namespace WubiMaster.Common
                         break;
                 }
 
-                ConcurrentQueue<SpellingModel> tempQueue = new ConcurrentQueue<SpellingModel>();
-                string spellingFile = AppDomain.CurrentDomain.BaseDirectory + @$"Assets\Spelling\wubi{typeStr}_spelling_rk.txt";
-
-                string[] spellingDatas = File.ReadAllLines(spellingFile);
-                Parallel.For(0, spellingDatas.Length,
-                  index =>
-                  {
-                      SpellingModel model = new SpellingModel();
-                      string dataStr = spellingDatas[index];
-                      string[] dataKeyValue = dataStr.Split('\t');
-                      string _tempStr = dataKeyValue[1].Replace('〔', ' ').Replace('〕', ' ').Replace('※', ' ');
-                      string[] spellAndCode = _tempStr.Split('☯');
-                      model.Text = dataKeyValue[0].Trim();
-                      model.Spelling = spellAndCode[0].Trim();
-                      model.Code = spellAndCode[1].Trim();
-                      tempQueue.Enqueue(model);
-                  });
-
-                return tempQueue;
+                return ReadSpellingText(typeStr);
             }
             catch (Exception)
             {
@@ -109,31 +91,40 @@ namespace WubiMaster.Common
             try
             {
                 if (string.IsNullOrEmpty(type)) throw new ArgumentNullException(nameof(type), "参数不可为空");
-
-                ConcurrentQueue<SpellingModel> tempQueue = new ConcurrentQueue<SpellingModel>();
-                string spellingFile = AppDomain.CurrentDomain.BaseDirectory + @$"Assets\Spelling\wubi{type}_spelling_rk.txt";
-
-                string[] spellingDatas = File.ReadAllLines(spellingFile);
-                Parallel.For(0, spellingDatas.Length,
-                  index =>
-                  {
-                      SpellingModel model = new SpellingModel();
-                      string dataStr = spellingDatas[index];
-                      string[] dataKeyValue = dataStr.Split('\t');
-                      string _tempStr = dataKeyValue[1].Replace('〔', ' ').Replace('〕', ' ').Replace('※', ' ');
-                      string[] spellAndCode = _tempStr.Split('☯');
-                      model.Text = dataKeyValue[0].Trim();
-                      model.Spelling = spellAndCode[0].Trim();
-                      model.Code = spellAndCode[1].Trim();
-                      tempQueue.Enqueue(model);
-                  });
-
-                return tempQueue;
+                return ReadSpellingText(type);
             }
             catch (Exception)
             {
                 throw;
             }
+        }
+
+        private static ConcurrentQueue<SpellingModel> ReadSpellingText(string type)
+        {
+            ConcurrentQueue<SpellingModel> tempQueue = new ConcurrentQueue<SpellingModel>();
+            string spellingFile = AppDomain.CurrentDomain.BaseDirectory + @$"Assets\Spelling\wb{type}_spelling.txt";
+
+            string[] spellingDatas = File.ReadAllLines(spellingFile);
+            Parallel.For(0, spellingDatas.Length,
+              index =>
+              {
+                  string[] tempArray = new string[] { "", "", "", "" };
+                  SpellingModel model = new SpellingModel();
+                  string dataStr = spellingDatas[index];
+                  string[] dataKeyValue = dataStr.Split('\t');
+                  string _tempStr = dataKeyValue[1].Replace('[', ' ').Replace(']', ' ').Replace('※', ' ').Trim();
+                  string[] spelldata = _tempStr.Split(',');
+
+                  model.Text = dataKeyValue[0];
+                  model.Spelling = spelldata[0];
+                  model.Code = spelldata[1];
+                  if (spelldata.Length > 3)
+                      model.Pinyin = spelldata[2].Split('_').Where(p => p.Trim().Length > 0).ToArray();
+                  model.GBType = spelldata[^1];
+                  tempQueue.Enqueue(model);
+              });
+
+            return tempQueue;
         }
 
         public static void LoadAllSpellingData()
