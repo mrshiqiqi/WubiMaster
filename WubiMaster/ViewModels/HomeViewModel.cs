@@ -18,8 +18,6 @@ namespace WubiMaster.ViewModels
         [ObservableProperty]
         private int shiciInterval = 25;
 
-        private ConcurrentQueue<SpellingModel> QuickSpellingQueue = new ConcurrentQueue<SpellingModel>();
-
         [ObservableProperty]
         private string spellingText;
 
