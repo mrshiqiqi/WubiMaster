@@ -83,6 +83,12 @@ namespace WubiMaster.ViewModels
                         CurrentView = lexiconView;
                         break;
 
+                    case "EtymonKey":
+                        EtymonKeyView etymonKeyView = new EtymonKeyView();
+                        pageDict[pName] = etymonKeyView;
+                        CurrentView = etymonKeyView;
+                        break;
+
                     case "Themes":
                         ThemeView themeView = new ThemeView();
                         pageDict[pName] = themeView;
@@ -186,6 +192,11 @@ namespace WubiMaster.ViewModels
                     case "Themes":
                         ThemeView themeView = new ThemeView();
                         pageDict[pName] = themeView;
+                        break;
+
+                    case "EtymonKey":
+                        EtymonKeyView etymonKeyView = new EtymonKeyView();
+                        pageDict[pName] = etymonKeyView;
                         break;
 
                     case "Settings":
