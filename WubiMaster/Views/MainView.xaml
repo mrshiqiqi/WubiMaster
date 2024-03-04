@@ -168,17 +168,17 @@
                                              Style="{StaticResource NavButtonStyle}"
                                              Text="词库管理" />
 
-                                <!--<c:NavButton IconText="&#xe63c;"
+                                <c:NavButton IconText="&#xe670;"
                                              NavCommand="{Binding ChangePageCommand}"
-                                             NavName="Import"
+                                             NavName="EtymonKey"
                                              Style="{StaticResource NavButtonStyle}"
-                                             Text="导入导出" />-->
+                                             Text="字根表" />
 
-                                <c:NavButton IconText="&#xe647;"
+                                <!--<c:NavButton IconText="&#xe647;"
                                              NavCommand="{Binding ChangePageCommand}"
                                              NavName="Synchronous"
                                              Style="{StaticResource NavButtonStyle}"
-                                             Text="云同步" />
+                                             Text="云同步" />-->
 
                                 <c:NavButton IconText="&#xe654;"
                                              NavCommand="{Binding ChangePageCommand}"
@@ -202,8 +202,8 @@
                             <Button Grid.Row="2"
                                     Height="35"
                                     Margin="10,0,10,30"
-                                    Command="{Binding DeployCommand}"
-                                    Background="{DynamicResource primary-200}">
+                                    Background="{DynamicResource primary-200}"
+                                    Command="{Binding DeployCommand}">
                                 <Button.Content>
                                     <Grid>
                                         <Grid.ColumnDefinitions>

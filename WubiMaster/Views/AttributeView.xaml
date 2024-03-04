@@ -174,7 +174,7 @@
                                 <TextBlock VerticalAlignment="Center"
                                            FontSize="15"
                                            Foreground="{DynamicResource text-100}"
-                                           Text="动态高频：近近期输入排序" />
+                                           Text="动态高频：按近期输入排序" />
 
                                 <ToggleButton Width="30"
                                               Height="25"
