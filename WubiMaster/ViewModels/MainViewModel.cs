@@ -65,6 +65,12 @@ namespace WubiMaster.ViewModels
                         CurrentView = homeView;
                         break;
 
+                    case "Attribute":
+                        AttributeView attributeView = new AttributeView();
+                        pageDict[pName] = attributeView;
+                        CurrentView = attributeView;
+                        break;
+
                     case "Etymon":
                         EtymonView etymonView = new EtymonView();
                         pageDict[pName] = etymonView;
@@ -160,6 +166,11 @@ namespace WubiMaster.ViewModels
                     case "Home":
                         HomeView homeView = new HomeView();
                         pageDict[pName] = homeView;
+                        break;
+
+                    case "Attribute":
+                        AttributeView attributeView = new AttributeView();
+                        pageDict[pName] = attributeView;
                         break;
 
                     case "Etymon":

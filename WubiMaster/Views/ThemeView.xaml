@@ -403,7 +403,7 @@
                                 <Slider Width="400"
                                         HorizontalAlignment="Right"
                                         Maximum="100"
-                                        Value="50" />
+                                        Value="40" />
                             </Grid>
 
                             <Grid Grid.Row="4" Margin="0,10,0,0">
@@ -414,7 +414,7 @@
                                 <Slider Width="400"
                                         HorizontalAlignment="Right"
                                         Maximum="100"
-                                        Value="50" />
+                                        Value="60" />
                             </Grid>
                         </Grid>
                     </Grid>
