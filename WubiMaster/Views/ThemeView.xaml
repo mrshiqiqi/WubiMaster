@@ -157,6 +157,7 @@
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
                             <RowDefinition />
+                            <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
 
                         <TextBlock Margin="0,15"
@@ -172,18 +173,25 @@
 
                             <Button HorizontalAlignment="Right" Content="保存" />
                         </Grid>
+
+                        <Separator Grid.Row="2"
+                                   Margin="0,10"
+                                   BorderBrush="{DynamicResource bg-300}"
+                                   BorderThickness="2" />
                     </Grid>
 
                     <Grid Grid.Row="1">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
                             <RowDefinition />
+                            <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
 
                         <TextBlock Margin="0,15"
                                    FontSize="16"
                                    Foreground="{DynamicResource accent-100}"
                                    Text="候选显示" />
+
                         <Grid Grid.Row="1">
                             <Grid.RowDefinitions>
                                 <RowDefinition />
@@ -246,18 +254,25 @@
                                               Content="" />
                             </Grid>
                         </Grid>
+
+                        <Separator Grid.Row="2"
+                                   Margin="0,10"
+                                   BorderBrush="{DynamicResource bg-300}"
+                                   BorderThickness="2" />
                     </Grid>
 
                     <Grid Grid.Row="2">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
                             <RowDefinition />
+                            <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
 
                         <TextBlock Margin="0,15"
                                    FontSize="16"
                                    Foreground="{DynamicResource accent-100}"
                                    Text="皮肤设置" />
+
                         <Grid Grid.Row="1">
                             <Grid.RowDefinitions>
                                 <RowDefinition />
@@ -417,6 +432,11 @@
                                         Value="60" />
                             </Grid>
                         </Grid>
+
+                        <Separator Grid.Row="2"
+                                   Margin="0,10"
+                                   BorderBrush="{DynamicResource bg-300}"
+                                   BorderThickness="2" />
                     </Grid>
                 </Grid>
             </Grid>

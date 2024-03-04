@@ -5,13 +5,292 @@
              xmlns:local="clr-namespace:WubiMaster.Views"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="clr-namespace:WubiMaster.ViewModels"
-             d:DesignHeight="450"
+             d:Background="{DynamicResource bg-100}"
              d:DesignWidth="800"
              mc:Ignorable="d">
 
     <UserControl.DataContext>
         <vm:AttributeViewModel />
     </UserControl.DataContext>
-    
-    <Grid />
+
+    <ScrollViewer>
+
+        <Grid Margin="0,0,15,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+
+                <TextBlock FontSize="16"
+                           Foreground="{DynamicResource primary-100}"
+                           Text="默认状态" />
+
+                <Grid Grid.Row="1">
+                    <Border Padding="10"
+                            BorderBrush="{DynamicResource bg-300}"
+                            BorderThickness="0,0,0,2"
+                            CornerRadius="0">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+
+                            <Grid Margin="0,5">
+                                <TextBlock VerticalAlignment="Center"
+                                           FontSize="15"
+                                           Foreground="{DynamicResource text-100}"
+                                           Text="简体/繁体" />
+
+                                <Button Width="50"
+                                        Height="25"
+                                        Margin="0,0,60,0"
+                                        HorizontalAlignment="Right"
+                                        Content="简体" />
+
+                                <Button Width="50"
+                                        Height="25"
+                                        HorizontalAlignment="Right"
+                                        Background="{DynamicResource bg-300}"
+                                        Content="繁体" />
+                            </Grid>
+
+                            <Grid Grid.Row="1" Margin="0,5">
+                                <TextBlock VerticalAlignment="Center"
+                                           FontSize="15"
+                                           Foreground="{DynamicResource text-100}"
+                                           Text="半角/倒角" />
+
+                                <Button Width="50"
+                                        Height="25"
+                                        Margin="0,0,60,0"
+                                        HorizontalAlignment="Right"
+                                        Content="半角" />
+
+                                <Button Width="50"
+                                        Height="25"
+                                        HorizontalAlignment="Right"
+                                        Background="{DynamicResource bg-300}"
+                                        Content="倒角" />
+                            </Grid>
+
+                            <Grid Grid.Row="2" Margin="0,5">
+                                <TextBlock VerticalAlignment="Center"
+                                           FontSize="15"
+                                           Foreground="{DynamicResource text-100}"
+                                           Text="中文/英文" />
+
+                                <Button Width="50"
+                                        Height="25"
+                                        Margin="0,0,60,0"
+                                        HorizontalAlignment="Right"
+                                        Content="中文" />
+
+                                <Button Width="50"
+                                        Height="25"
+                                        HorizontalAlignment="Right"
+                                        Background="{DynamicResource bg-300}"
+                                        Content="英文" />
+                            </Grid>
+
+                            <Grid Grid.Row="3" Margin="0,5">
+                                <TextBlock VerticalAlignment="Center"
+                                           FontSize="15"
+                                           Foreground="{DynamicResource text-100}"
+                                           Text="输入方案" />
+
+                                <RadioButton Margin="0,0,200,0"
+                                             HorizontalAlignment="Right"
+                                             Content="五笔拼音输"
+                                             GroupName="xxx" />
+                                <RadioButton Margin="0,0,100,0"
+                                             HorizontalAlignment="Right"
+                                             Content="纯五笔"
+                                             GroupName="xxx"
+                                             IsChecked="True" />
+                                <RadioButton HorizontalAlignment="Right"
+                                             Content="纯拼音"
+                                             GroupName="xxx" />
+                            </Grid>
+
+                            <Grid Grid.Row="4" Margin="0,5">
+                                <TextBlock VerticalAlignment="Center"
+                                           FontSize="15"
+                                           Foreground="{DynamicResource text-100}"
+                                           Text="五笔方案" />
+
+                                <RadioButton Margin="0,0,200,0"
+                                             HorizontalAlignment="Right"
+                                             Content="86版"
+                                             GroupName="yyy" />
+                                <RadioButton Margin="0,0,100,0"
+                                             HorizontalAlignment="Right"
+                                             Content="98版"
+                                             GroupName="yyy"
+                                             IsChecked="True" />
+                                <RadioButton HorizontalAlignment="Right"
+                                             Content="新世纪版"
+                                             GroupName="yyy" />
+                            </Grid>
+                        </Grid>
+                    </Border>
+                </Grid>
+            </Grid>
+
+            <Grid Grid.Row="1" Margin="0,20">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+
+                <TextBlock FontSize="16"
+                           Foreground="{DynamicResource primary-100}"
+                           Text="输入习惯" />
+
+                <Grid Grid.Row="1">
+                    <Border Padding="10"
+                            BorderBrush="{DynamicResource bg-300}"
+                            BorderThickness="0,0,0,2"
+                            CornerRadius="0">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+
+                            <Grid Margin="0,5">
+                                <TextBlock VerticalAlignment="Center"
+                                           FontSize="15"
+                                           Foreground="{DynamicResource text-100}"
+                                           Text="动态高频：近近期输入排序" />
+
+                                <ToggleButton Width="30"
+                                              Height="25"
+                                              HorizontalAlignment="Right" />
+                            </Grid>
+
+                            <Grid Grid.Row="1" Margin="0,5">
+                                <TextBlock VerticalAlignment="Center"
+                                           FontSize="15"
+                                           Foreground="{DynamicResource text-100}"
+                                           Text="回车键取消输入" />
+
+                                <ToggleButton Width="30"
+                                              Height="25"
+                                              HorizontalAlignment="Right" />
+                            </Grid>
+
+                            <Grid Grid.Row="2" Margin="0,5">
+                                <TextBlock VerticalAlignment="Center"
+                                           FontSize="15"
+                                           Foreground="{DynamicResource text-100}"
+                                           Text="Z键复制上次上屏内容" />
+
+                                <ToggleButton Width="30"
+                                              Height="25"
+                                              HorizontalAlignment="Right" />
+                            </Grid>
+
+                            <Grid Grid.Row="3" Margin="0,5">
+                                <TextBlock VerticalAlignment="Center"
+                                           FontSize="15"
+                                           Foreground="{DynamicResource text-100}"
+                                           Text="Z键作为五笔通配按键" />
+
+                                <ToggleButton Width="30"
+                                              Height="25"
+                                              HorizontalAlignment="Right" />
+                            </Grid>
+                        </Grid>
+                    </Border>
+                </Grid>
+            </Grid>
+
+            <Grid Grid.Row="3" Margin="0,20">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+
+                <TextBlock FontSize="16"
+                           Foreground="{DynamicResource primary-100}"
+                           Text="快捷键" />
+
+                <Grid Grid.Row="1">
+                    <Border Padding="10"
+                            BorderBrush="{DynamicResource bg-300}"
+                            BorderThickness="0,0,0,2"
+                            CornerRadius="0">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+
+                            <Grid Margin="0,5">
+                                <TextBlock VerticalAlignment="Center"
+                                           FontSize="15"
+                                           Foreground="{DynamicResource text-100}"
+                                           Text="拆分提示" />
+
+                                <TextBox Width="150"
+                                         Height="30"
+                                         HorizontalAlignment="Right"
+                                         FontSize="15"
+                                         Foreground="{DynamicResource text-100}"
+                                         Text="ctrl shift h"
+                                         TextAlignment="Center" />
+                            </Grid>
+
+                            <Grid Grid.Row="1" Margin="0,5">
+                                <TextBlock VerticalAlignment="Center"
+                                           FontSize="15"
+                                           Foreground="{DynamicResource text-100}"
+                                           Text="编码提示" />
+
+                                <TextBox Width="150"
+                                         Height="30"
+                                         HorizontalAlignment="Right"
+                                         FontSize="15"
+                                         Foreground="{DynamicResource text-100}"
+                                         Text="ctrl shift j"
+                                         TextAlignment="Center" />
+                            </Grid>
+
+                            <Grid Grid.Row="2" Margin="0,5">
+                                <TextBlock VerticalAlignment="Center"
+                                           FontSize="15"
+                                           Foreground="{DynamicResource text-100}"
+                                           Text="方案选单" />
+
+                                <TextBox Width="150"
+                                         Height="30"
+                                         HorizontalAlignment="Right"
+                                         FontSize="15"
+                                         Foreground="{DynamicResource text-100}"
+                                         Text="ctrl `"
+                                         TextAlignment="Center" />
+                            </Grid>
+
+                        </Grid>
+                    </Border>
+                </Grid>
+            </Grid>
+        </Grid>
+    </ScrollViewer>
+
 </UserControl>
