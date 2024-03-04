@@ -3,11 +3,13 @@ using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using System;
 using System.Collections.Concurrent;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Documents;
 using WubiMaster.Common;
 using WubiMaster.Models;
 
@@ -37,6 +39,47 @@ namespace WubiMaster.ViewModels
         {
             WeakReferenceMessenger.Default.Register<string, string>(this, "ChangeShiciInterval", ChangeShiciInterval);
 
+            LoadSpellTextShow();
+            GetTheKeyTextAsync();
+        }
+
+        private async void GetTheKeyTextAsync()
+        {
+            ConcurrentDictionary<string, string[]> keyTextDict = new ConcurrentDictionary<string, string[]>();
+            List<string> keyTextList = new List<string>();
+
+            await Task.Run(() =>
+            {
+                SpellingWorker.SpellingQueue86.AsParallel().ForAll(s =>
+                {
+                    if (s.GBType!="GBK")
+                        keyTextDict.TryAdd(s.Text, new string[] { s.Code, "", "" });
+                });
+
+                SpellingWorker.SpellingQueue98.AsParallel().ForAll(s =>
+                {
+                    if (keyTextDict.ContainsKey(s.Text))
+                        keyTextDict[s.Text][1] = s.Code;
+                });
+
+
+                SpellingWorker.SpellingQueue06.AsParallel().ForAll(s =>
+                {
+                    if (keyTextDict.ContainsKey(s.Text))
+                        keyTextDict[s.Text][2] = s.Code;
+                });
+
+                Parallel.ForEach(keyTextDict.Keys, k =>
+                {
+                    var value = keyTextDict[k];
+                    if ((value[0] != value[1]) && (value[0] != value[2]) && (value[1] != value[2]))
+                        keyTextList.Add(k);
+                });
+            });
+
+            Random random = new Random();
+            int _keyindex = random.Next(0, keyTextList.Count);
+            SpellingKeytText = keyTextList[_keyindex];
             LoadSpellTextShow();
         }
 

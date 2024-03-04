@@ -112,15 +112,15 @@ namespace WubiMaster.Common
                   SpellingModel model = new SpellingModel();
                   string dataStr = spellingDatas[index];
                   string[] dataKeyValue = dataStr.Split('\t');
-                  string _tempStr = dataKeyValue[1].Replace('[', ' ').Replace(']', ' ').Replace('※', ' ').Trim();
+                  string _tempStr = dataKeyValue[1].Replace('[', ' ').Replace(']', ' ').Replace('※', ' ');
                   string[] spelldata = _tempStr.Split(',');
 
-                  model.Text = dataKeyValue[0];
-                  model.Spelling = spelldata[0];
-                  model.Code = spelldata[1];
+                  model.Text = dataKeyValue[0].Trim();
+                  model.Spelling = spelldata[0].Trim();
+                  model.Code = spelldata[1].Trim();
                   if (spelldata.Length > 3)
-                      model.Pinyin = spelldata[2].Split('_').Where(p => p.Trim().Length > 0).ToArray();
-                  model.GBType = spelldata[^1];
+                      model.Pinyin = spelldata[2].Split('_').Where(p => p.Trim().Length > 0).Select(p => p.Trim()).ToArray();
+                  model.GBType = spelldata[^1].Trim();
                   tempQueue.Enqueue(model);
               });
 
