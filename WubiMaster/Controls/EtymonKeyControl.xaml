@@ -4,10 +4,98 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:WubiMaster.Controls"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:WubiMaster.ViewModels"
              d:Background="{DynamicResource bg-100}"
              d:DesignHeight="450"
              d:DesignWidth="800"
              mc:Ignorable="d">
+
+    <UserControl.DataContext>
+        <vm:EtymonKeyViewModel />
+    </UserControl.DataContext>
+
+    <UserControl.Resources>
+
+        <Style x:Key="LeftStackPanelStyle" TargetType="StackPanel">
+            <Setter Property="Orientation" Value="Horizontal" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+        </Style>
+
+        <Style x:Key="RightStackPanelStyle" TargetType="StackPanel">
+            <Setter Property="Orientation" Value="Horizontal" />
+            <Setter Property="HorizontalAlignment" Value="Right" />
+        </Style>
+
+        <Style x:Key="KeyBorderStyle" TargetType="Border">
+            <Setter Property="Margin" Value="1,5" />
+            <Setter Property="Padding" Value="3,2" />
+            <Setter Property="Background" Value="{DynamicResource bg-200}" />
+            <Setter Property="CornerRadius" Value="10" />
+            <Setter Property="Width" Value="70" />
+            <Setter Property="Height" Value="73" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="BorderBrush" Value="{DynamicResource bg-300}" />
+        </Style>
+
+        <Style x:Key="FirstKeyTextStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="13" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="Foreground" Value="{DynamicResource primary-100}" />
+            <Setter Property="FontFamily" Value="../Fonts/#黑体字根" />
+        </Style>
+
+        <Style x:Key="PrimaryKeyTextStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="11" />
+            <Setter Property="FontWeight" Value="Normal" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="Foreground" Value="{DynamicResource text-100}" />
+            <Setter Property="FontFamily" Value="../Fonts/#黑体字根" />
+        </Style>
+
+        <Style x:Key="SubKeyTextStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="9" />
+            <Setter Property="FontWeight" Value="Normal" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="Foreground" Value="{DynamicResource text-200}" />
+            <Setter Property="FontFamily" Value="../Fonts/#黑体字根" />
+            <!--<Setter Property="TextOptions.TextFormattingMode" Value="Display" />
+            <Setter Property="TextOptions.TextRenderingMode" Value="ClearType" />
+            <Setter Property="TextOptions.TextHintingMode" Value="Fixed" />
+            <Setter Property="UseLayoutRounding" Value="True" />-->
+        </Style>
+
+        <Style x:Key="StructureKeyTextStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="Foreground" Value="{DynamicResource primary-200}" />
+            <Setter Property="FontFamily" Value="../Fonts/#黑体字根" />
+        </Style>
+
+        <Style x:Key="NumberKeyTextStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="HorizontalAlignment" Value="Right" />
+            <Setter Property="Foreground" Value="{DynamicResource accent-100}" />
+            <Setter Property="Margin" Value="0,0,2,0" />
+        </Style>
+
+        <Style x:Key="NameKeyTextStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="Foreground" Value="{DynamicResource accent-200}" />
+            <Setter Property="Margin" Value="2,0,0,0" />
+        </Style>
+    </UserControl.Resources>
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="80" />
@@ -34,62 +122,474 @@
                     <RowDefinition Height="90" />
                 </Grid.RowDefinitions>
 
-                <Grid.Resources>
-                    <Style TargetType="Border">
-                        <Setter Property="Margin" Value="1,5" />
-                        <Setter Property="Background" Value="{DynamicResource accent-100}" />
-                        <Setter Property="CornerRadius" Value="10" />
-                        <Setter Property="Width" Value="58" />
-                        <Setter Property="Height" Value="73" />
-                        <Setter Property="BorderThickness" Value="2" />
-                        <Setter Property="BorderBrush" Value="{DynamicResource accent-200}" />
-                    </Style>
-                </Grid.Resources>
-
                 <UniformGrid Columns="10" Rows="1">
 
                     <!--Q-->
-                    <Border Padding="3">
+                    <Border Style="{StaticResource KeyBorderStyle}">
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition />
                                 <RowDefinition />
                                 <RowDefinition />
-                                <RowDefinition />
+                                <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
 
-                            <Grid.Resources>
-                                <Style TargetType="TextBlock">
-                                    <Setter Property="FontSize" Value="11" />
-                                    <Setter Property="Foreground" Value="{DynamicResource text-100}" />
-                                    <Setter Property="VerticalAlignment" Value="Center" />
-                                    <Setter Property="FontFamily" Value="../Fonts/#黑体字根" />
-                                </Style>
-                            </Grid.Resources>
-
-                            <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
-                                <TextBlock FontSize="12"
-                                           Foreground="{DynamicResource bg-100}"
-                                           Text="金" />
-                                <TextBlock FontSize="9" Text="钅" />
+                            <StackPanel Style="{StaticResource LeftStackPanelStyle}">
+                                <TextBlock Style="{StaticResource FirstKeyTextStyle}" Text="金" />
+                                <TextBlock Style="{StaticResource SubKeyTextStyle}" Text="钅" />
                             </StackPanel>
 
-                            <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
-                                <TextBlock Text="儿" />
-                                <TextBlock FontSize="9" Text="" />
+                            <StackPanel Style="{StaticResource RightStackPanelStyle}">
+                                <TextBlock Style="{StaticResource PrimaryKeyTextStyle}" Text="" />
                             </StackPanel>
+
+                            <UniformGrid Grid.Row="1" Rows="1">
+                                <TextBlock Style="{StaticResource PrimaryKeyTextStyle}" Text="" />
+                                <TextBlock Style="{StaticResource PrimaryKeyTextStyle}" Text="" />
+                                <TextBlock Style="{StaticResource PrimaryKeyTextStyle}" Text="" />
+                                <TextBlock Style="{StaticResource PrimaryKeyTextStyle}" Text="" />
+                            </UniformGrid>
+
+                            <StackPanel Grid.Row="2" Style="{StaticResource LeftStackPanelStyle}">
+                                <TextBlock Style="{StaticResource PrimaryKeyTextStyle}" Text="儿" />
+                                <TextBlock Style="{StaticResource SubKeyTextStyle}" Text="" />
+                            </StackPanel>
+
+                            <StackPanel Grid.Row="2" Style="{StaticResource RightStackPanelStyle}">
+                                <TextBlock Style="{StaticResource SubKeyTextStyle}" Text="夕" />
+                                <TextBlock Style="{StaticResource SubKeyTextStyle}" Text="" />
+                                <TextBlock Style="{StaticResource PrimaryKeyTextStyle}" Text="" />
+                            </StackPanel>
+
+                            <UniformGrid Grid.Row="3" Rows="1">
+                                <TextBlock Style="{StaticResource NumberKeyTextStyle}" Text="35" />
+                                <TextBlock Style="{StaticResource NameKeyTextStyle}" Text="Q" />
+                            </UniformGrid>
 
                         </Grid>
                     </Border>
-                    <Border />
-                    <Border />
-                    <Border />
-                    <Border />
-                    <Border />
-                    <Border />
-                    <Border />
-                    <Border />
-                    <Border />
+                    <!--W-->
+                    <Border Style="{StaticResource KeyBorderStyle}">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+
+                            <StackPanel Style="{StaticResource LeftStackPanelStyle}">
+                                <TextBlock Style="{StaticResource FirstKeyTextStyle}" Text="人" />
+                            </StackPanel>
+
+                            <StackPanel Style="{StaticResource RightStackPanelStyle}">
+                                <TextBlock Style="{StaticResource PrimaryKeyTextStyle}" Text="八" />
+                            </StackPanel>
+
+                            <StackPanel Grid.Row="1" Style="{StaticResource RightStackPanelStyle}">
+                                <TextBlock Style="{StaticResource PrimaryKeyTextStyle}" Text="" />
+                            </StackPanel>
+
+                            <StackPanel Grid.Row="2" Style="{StaticResource LeftStackPanelStyle}">
+                                <TextBlock Style="{StaticResource PrimaryKeyTextStyle}" Text="" />
+                            </StackPanel>
+
+                            <StackPanel Grid.Row="2" Style="{StaticResource RightStackPanelStyle}">
+                                <TextBlock Style="{StaticResource PrimaryKeyTextStyle}" Text="" />
+                            </StackPanel>
+
+                            <UniformGrid Grid.Row="3" Rows="1">
+                                <TextBlock Style="{StaticResource NumberKeyTextStyle}" Text="34" />
+                                <TextBlock Style="{StaticResource NameKeyTextStyle}" Text="W" />
+                            </UniformGrid>
+
+                        </Grid>
+                    </Border>
+                    <!--E-->
+                    <Border Style="{StaticResource KeyBorderStyle}">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+
+                            <StackPanel Style="{StaticResource LeftStackPanelStyle}">
+                                <TextBlock Style="{StaticResource FirstKeyTextStyle}" Text="月" />
+                                <TextBlock Style="{StaticResource SubKeyTextStyle}" Text="" />
+                            </StackPanel>
+
+                            <StackPanel Style="{StaticResource RightStackPanelStyle}">
+                                <TextBlock Style="{StaticResource StructureKeyTextStyle}" Text="" />
+                            </StackPanel>
+
+                            <UniformGrid Grid.Row="1" Rows="1">
+                                <StackPanel Style="{StaticResource LeftStackPanelStyle}">
+                                    <TextBlock Style="{StaticResource PrimaryKeyTextStyle}" Text="用" />
+                                    <TextBlock Style="{StaticResource SubKeyTextStyle}" Text="" />
+                                </StackPanel>
+
+                                <TextBlock Style="{StaticResource PrimaryKeyTextStyle}" Text="乃" />
+
+                                <StackPanel Style="{StaticResource RightStackPanelStyle}">
+                                    <TextBlock Style="{StaticResource PrimaryKeyTextStyle}" Text="" />
+                                </StackPanel>
+                            </UniformGrid>
+
+                            <StackPanel Grid.Row="2" Style="{StaticResource LeftStackPanelStyle}">
+                                <TextBlock Style="{StaticResource PrimaryKeyTextStyle}" Text="" />
+                                <TextBlock Style="{StaticResource SubKeyTextStyle}" Text="" />
+                                <TextBlock Style="{StaticResource SubKeyTextStyle}" Text="" />
+                            </StackPanel>
+
+                            <StackPanel Grid.Row="2" Style="{StaticResource RightStackPanelStyle}">
+                                <TextBlock Style="{StaticResource SubKeyTextStyle}" Text="" />
+                                <TextBlock Style="{StaticResource SubKeyTextStyle}" Text="" />
+                                <TextBlock Style="{StaticResource PrimaryKeyTextStyle}" Text="" />
+                            </StackPanel>
+
+                            <UniformGrid Grid.Row="3" Rows="1">
+                                <TextBlock Style="{StaticResource NumberKeyTextStyle}" Text="33" />
+                                <TextBlock Style="{StaticResource NameKeyTextStyle}" Text="E" />
+                            </UniformGrid>
+
+                        </Grid>
+                    </Border>
+                    <!--R-->
+                    <Border Style="{StaticResource KeyBorderStyle}">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+
+                            <UniformGrid Columns="3" Rows="1">
+                                <StackPanel Style="{StaticResource LeftStackPanelStyle}">
+                                    <TextBlock Style="{StaticResource FirstKeyTextStyle}" Text="白" />
+                                </StackPanel>
+
+                                <TextBlock Style="{StaticResource SubKeyTextStyle}" Text="" />
+
+                                <StackPanel Style="{StaticResource RightStackPanelStyle}">
+                                    <TextBlock Style="{StaticResource StructureKeyTextStyle}" Text="" />
+                                </StackPanel>
+                            </UniformGrid>
+
+                            <UniformGrid Grid.Row="1" Rows="1">
+                                <StackPanel Style="{StaticResource LeftStackPanelStyle}">
+                                    <TextBlock Style="{StaticResource PrimaryKeyTextStyle}" Text="用" />
+                                    <TextBlock Style="{StaticResource SubKeyTextStyle}" Text="" />
+                                </StackPanel>
+
+                                <TextBlock Style="{StaticResource PrimaryKeyTextStyle}" Text="乃" />
+
+                                <StackPanel Style="{StaticResource RightStackPanelStyle}">
+                                    <TextBlock Style="{StaticResource PrimaryKeyTextStyle}" Text="" />
+                                </StackPanel>
+                            </UniformGrid>
+
+                            <StackPanel Grid.Row="2" Style="{StaticResource LeftStackPanelStyle}">
+                                <TextBlock Style="{StaticResource PrimaryKeyTextStyle}" Text="" />
+                                <TextBlock Style="{StaticResource SubKeyTextStyle}" Text="" />
+                                <TextBlock Style="{StaticResource SubKeyTextStyle}" Text="" />
+                            </StackPanel>
+
+                            <StackPanel Grid.Row="2" Style="{StaticResource RightStackPanelStyle}">
+                                <TextBlock Style="{StaticResource SubKeyTextStyle}" Text="" />
+                                <TextBlock Style="{StaticResource SubKeyTextStyle}" Text="" />
+                                <TextBlock Style="{StaticResource PrimaryKeyTextStyle}" Text="" />
+                            </StackPanel>
+
+                            <UniformGrid Grid.Row="3" Rows="1">
+                                <TextBlock Style="{StaticResource NumberKeyTextStyle}" Text="32" />
+                                <TextBlock Style="{StaticResource NameKeyTextStyle}" Text="R" />
+                            </UniformGrid>
+
+                        </Grid>
+                    </Border>
+                    <!--T-->
+                    <Border Style="{StaticResource KeyBorderStyle}">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+
+                            <StackPanel Style="{StaticResource LeftStackPanelStyle}">
+                                <TextBlock Style="{StaticResource FirstKeyTextStyle}" Text="禾" />
+                                <TextBlock Style="{StaticResource SubKeyTextStyle}" Text="" />
+
+                            </StackPanel>
+
+                            <StackPanel Style="{StaticResource RightStackPanelStyle}">
+                                <TextBlock Style="{StaticResource StructureKeyTextStyle}" Text="" />
+                            </StackPanel>
+
+                            <UniformGrid Grid.Row="1" Rows="1">
+                                <StackPanel Style="{StaticResource LeftStackPanelStyle}">
+                                    <TextBlock Style="{StaticResource PrimaryKeyTextStyle}" Text="" />
+                                    <TextBlock Style="{StaticResource SubKeyTextStyle}" Text="" />
+                                </StackPanel>
+
+                                <StackPanel Style="{StaticResource RightStackPanelStyle}">
+                                    <TextBlock Style="{StaticResource PrimaryKeyTextStyle}" Text="" />
+                                </StackPanel>
+                            </UniformGrid>
+
+                            <StackPanel Grid.Row="2" Style="{StaticResource LeftStackPanelStyle}">
+                                <TextBlock Style="{StaticResource PrimaryKeyTextStyle}" Text="" />
+                                <TextBlock Style="{StaticResource SubKeyTextStyle}" Text="" />
+                            </StackPanel>
+
+                            <StackPanel Grid.Row="2" Style="{StaticResource RightStackPanelStyle}">
+                                <TextBlock Style="{StaticResource PrimaryKeyTextStyle}" Text="" />
+                            </StackPanel>
+
+                            <UniformGrid Grid.Row="3" Rows="1">
+                                <TextBlock Style="{StaticResource NumberKeyTextStyle}" Text="31" />
+                                <TextBlock Style="{StaticResource NameKeyTextStyle}" Text="T" />
+                            </UniformGrid>
+
+                        </Grid>
+                    </Border>
+                    <!--Y-->
+                    <Border Style="{StaticResource KeyBorderStyle}">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+
+                            <UniformGrid Columns="3" Rows="1">
+                                <StackPanel Style="{StaticResource LeftStackPanelStyle}">
+                                    <TextBlock Style="{StaticResource FirstKeyTextStyle}" Text="言" />
+                                    <TextBlock Style="{StaticResource SubKeyTextStyle}" Text="" />
+                                </StackPanel>
+
+                                <TextBlock Style="{StaticResource SubKeyTextStyle}" Text="" />
+
+                                <StackPanel Style="{StaticResource RightStackPanelStyle}">
+                                    <TextBlock Style="{StaticResource StructureKeyTextStyle}" Text="" />
+                                </StackPanel>
+                            </UniformGrid>
+
+                            <UniformGrid Grid.Row="1" Rows="1">
+                                <StackPanel Style="{StaticResource LeftStackPanelStyle}">
+                                    <TextBlock Style="{StaticResource PrimaryKeyTextStyle}" Text="" />
+                                    <TextBlock Style="{StaticResource SubKeyTextStyle}" Text="" />
+                                </StackPanel>
+
+                                <StackPanel Style="{StaticResource RightStackPanelStyle}">
+                                    <TextBlock Style="{StaticResource PrimaryKeyTextStyle}" Text="" />
+                                </StackPanel>
+                            </UniformGrid>
+
+                            <UniformGrid Grid.Row="2" Rows="1">
+                                <StackPanel Style="{StaticResource LeftStackPanelStyle}">
+                                    <TextBlock Style="{StaticResource PrimaryKeyTextStyle}" Text="" />
+                                </StackPanel>
+
+                                <TextBlock Style="{StaticResource PrimaryKeyTextStyle}" Text="" />
+
+                                <StackPanel Style="{StaticResource RightStackPanelStyle}">
+                                    <TextBlock Style="{StaticResource PrimaryKeyTextStyle}" Text="" />
+                                </StackPanel>
+                            </UniformGrid>
+
+                            <UniformGrid Grid.Row="3" Rows="1">
+                                <TextBlock Style="{StaticResource NumberKeyTextStyle}" Text="41" />
+                                <TextBlock Style="{StaticResource NameKeyTextStyle}" Text="Y" />
+                            </UniformGrid>
+
+                        </Grid>
+                    </Border>
+                    <!--U-->
+                    <Border Style="{StaticResource KeyBorderStyle}">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+
+                            <UniformGrid Columns="3" Rows="1">
+                                <StackPanel Style="{StaticResource LeftStackPanelStyle}">
+                                    <TextBlock Style="{StaticResource FirstKeyTextStyle}" Text="" />
+                                </StackPanel>
+
+                                <TextBlock Style="{StaticResource PrimaryKeyTextStyle}" Text="" />
+
+                                <StackPanel Style="{StaticResource RightStackPanelStyle}">
+                                    <TextBlock Style="{StaticResource StructureKeyTextStyle}" Text="" />
+                                </StackPanel>
+                            </UniformGrid>
+
+                            <StackPanel Grid.Row="1" Style="{StaticResource LeftStackPanelStyle}">
+                                <TextBlock Style="{StaticResource PrimaryKeyTextStyle}" Text="" />
+                            </StackPanel>
+
+                            <StackPanel Grid.Row="1" Style="{StaticResource RightStackPanelStyle}">
+                                <TextBlock Style="{StaticResource SubKeyTextStyle}" Text="" />
+                                <TextBlock Style="{StaticResource SubKeyTextStyle}" Text="" />
+                                <TextBlock Style="{StaticResource SubKeyTextStyle}" Text="" />
+                                <TextBlock Style="{StaticResource SubKeyTextStyle}" Text="" />
+                                <TextBlock Style="{StaticResource PrimaryKeyTextStyle}" Text="" />
+                            </StackPanel>
+
+                            <UniformGrid Grid.Row="2" Rows="1">
+                                <StackPanel Style="{StaticResource LeftStackPanelStyle}">
+                                    <TextBlock Style="{StaticResource PrimaryKeyTextStyle}" Text="" />
+                                    <TextBlock Style="{StaticResource SubKeyTextStyle}" Text="" />
+                                </StackPanel>
+
+                                <TextBlock Style="{StaticResource PrimaryKeyTextStyle}" Text="" />
+
+                                <StackPanel Style="{StaticResource RightStackPanelStyle}">
+                                    <TextBlock Style="{StaticResource PrimaryKeyTextStyle}" Text="" />
+                                </StackPanel>
+                            </UniformGrid>
+
+                            <UniformGrid Grid.Row="3" Rows="1">
+                                <TextBlock Style="{StaticResource NumberKeyTextStyle}" Text="42" />
+                                <TextBlock Style="{StaticResource NameKeyTextStyle}" Text="U" />
+                            </UniformGrid>
+
+                        </Grid>
+                    </Border>
+                    <!--I-->
+                    <Border Style="{StaticResource KeyBorderStyle}">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+
+                            <UniformGrid Columns="3" Rows="1">
+                                <StackPanel Style="{StaticResource LeftStackPanelStyle}">
+                                    <TextBlock Style="{StaticResource FirstKeyTextStyle}" Text="" />
+                                </StackPanel>
+
+                                <TextBlock Style="{StaticResource PrimaryKeyTextStyle}" Text="" />
+
+                                <StackPanel Style="{StaticResource RightStackPanelStyle}">
+                                    <TextBlock Style="{StaticResource StructureKeyTextStyle}" Text="" />
+                                </StackPanel>
+                            </UniformGrid>
+
+                            <StackPanel Grid.Row="1" Style="{StaticResource LeftStackPanelStyle}">
+                                <TextBlock Style="{StaticResource PrimaryKeyTextStyle}" Text="" />
+                                <TextBlock Style="{StaticResource SubKeyTextStyle}" Text="" />
+                                <TextBlock Style="{StaticResource SubKeyTextStyle}" Text="" />
+                                <TextBlock Style="{StaticResource SubKeyTextStyle}" Text="" />
+                                <TextBlock Style="{StaticResource SubKeyTextStyle}" Text="" />
+                                <TextBlock Style="{StaticResource SubKeyTextStyle}" Text="" />
+                            </StackPanel>
+
+                            <StackPanel Grid.Row="2" Style="{StaticResource LeftStackPanelStyle}">
+                                <TextBlock Style="{StaticResource PrimaryKeyTextStyle}" Text="" />
+                                <TextBlock Style="{StaticResource SubKeyTextStyle}" Text="" />
+                                <TextBlock Style="{StaticResource SubKeyTextStyle}" Text="" />
+                                <TextBlock Style="{StaticResource SubKeyTextStyle}" Text="" />
+                            </StackPanel>
+
+                            <StackPanel Grid.Row="2" Style="{StaticResource RightStackPanelStyle}">
+                                <TextBlock Style="{StaticResource SubKeyTextStyle}" Text="" />
+                                <TextBlock Style="{StaticResource PrimaryKeyTextStyle}" Text="" />
+                            </StackPanel>
+
+                            <UniformGrid Grid.Row="3" Rows="1">
+                                <TextBlock Style="{StaticResource NumberKeyTextStyle}" Text="43" />
+                                <TextBlock Style="{StaticResource NameKeyTextStyle}" Text="I" />
+                            </UniformGrid>
+
+                        </Grid>
+                    </Border>
+                    <!--O-->
+                    <Border Style="{StaticResource KeyBorderStyle}">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+
+                            <StackPanel Style="{StaticResource LeftStackPanelStyle}">
+                                <TextBlock Style="{StaticResource FirstKeyTextStyle}" Text="" />
+                            </StackPanel>
+
+                            <StackPanel Style="{StaticResource RightStackPanelStyle}">
+                                <TextBlock Style="{StaticResource StructureKeyTextStyle}" Text="" />
+                            </StackPanel>
+
+                            <StackPanel Grid.Row="2" Style="{StaticResource LeftStackPanelStyle}">
+                                <TextBlock Style="{StaticResource PrimaryKeyTextStyle}" Text="" />
+                                <TextBlock Style="{StaticResource SubKeyTextStyle}" Text="" />
+                                <TextBlock Style="{StaticResource SubKeyTextStyle}" Text="" />
+                            </StackPanel>
+
+                            <StackPanel Grid.Row="2" Style="{StaticResource RightStackPanelStyle}">
+                                <TextBlock Style="{StaticResource PrimaryKeyTextStyle}" Text="" />
+                            </StackPanel>
+
+                            <UniformGrid Grid.Row="3" Rows="1">
+                                <TextBlock Style="{StaticResource NumberKeyTextStyle}" Text="44" />
+                                <TextBlock Style="{StaticResource NameKeyTextStyle}" Text="O" />
+                            </UniformGrid>
+
+                        </Grid>
+                    </Border>
+                    <!--P-->
+                    <Border Style="{StaticResource KeyBorderStyle}">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+
+                            <StackPanel Style="{StaticResource LeftStackPanelStyle}">
+                                <TextBlock Style="{StaticResource FirstKeyTextStyle}" Text="" />
+                            </StackPanel>
+
+                            <StackPanel Style="{StaticResource RightStackPanelStyle}">
+                                <TextBlock Style="{StaticResource PrimaryKeyTextStyle}" Text="" />
+                            </StackPanel>
+
+                            <StackPanel Grid.Row="1" Style="{StaticResource LeftStackPanelStyle}">
+                                <TextBlock Style="{StaticResource PrimaryKeyTextStyle}" Text="" />
+                            </StackPanel>
+
+                            <StackPanel Grid.Row="1" Style="{StaticResource RightStackPanelStyle}">
+                                <TextBlock Style="{StaticResource PrimaryKeyTextStyle}" Text="" />
+                            </StackPanel>
+
+                            <StackPanel Grid.Row="2" Style="{StaticResource LeftStackPanelStyle}">
+                                <TextBlock Style="{StaticResource PrimaryKeyTextStyle}" Text="" />
+                            </StackPanel>
+
+                            <StackPanel Grid.Row="2" Style="{StaticResource RightStackPanelStyle}">
+                                <TextBlock Style="{StaticResource PrimaryKeyTextStyle}" Text="" />
+                            </StackPanel>
+
+                            <UniformGrid Grid.Row="3" Rows="1">
+                                <TextBlock Style="{StaticResource NumberKeyTextStyle}" Text="45" />
+                                <TextBlock Style="{StaticResource NameKeyTextStyle}" Text="P" />
+                            </UniformGrid>
+
+                        </Grid>
+                    </Border>
                 </UniformGrid>
 
                 <UniformGrid Grid.Row="1"
@@ -121,7 +621,6 @@
                 </UniformGrid>
             </Grid>
         </Viewbox>
-
 
         <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
