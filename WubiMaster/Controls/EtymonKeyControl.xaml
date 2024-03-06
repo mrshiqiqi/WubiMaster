@@ -106,7 +106,7 @@
         <Style x:Key="FormulaNumberStyle" TargetType="TextBlock">
             <Setter Property="HorizontalAlignment" Value="Left" />
             <Setter Property="VerticalAlignment" Value="Center" />
-            <Setter Property="FontSize" Value="15" />
+            <Setter Property="FontSize" Value="12" />
             <Setter Property="FontWeight" Value="Bold" />
             <Setter Property="Foreground" Value="{DynamicResource primary-200}" />
             <Setter Property="Margin" Value="5,0" />
@@ -115,7 +115,7 @@
         <Style x:Key="FormulaTextStyle" TargetType="TextBlock">
             <Setter Property="HorizontalAlignment" Value="Left" />
             <Setter Property="VerticalAlignment" Value="Center" />
-            <Setter Property="FontSize" Value="15" />
+            <Setter Property="FontSize" Value="12" />
             <Setter Property="FontWeight" Value="Light" />
             <Setter Property="Foreground" Value="{DynamicResource text-100}" />
             <Setter Property="TextWrapping" Value="Wrap" />
