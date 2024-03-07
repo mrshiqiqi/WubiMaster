@@ -31,13 +31,13 @@
             <Setter Property="Background" Value="{DynamicResource bg-200}" />
             <Setter Property="CornerRadius" Value="10" />
             <Setter Property="Width" Value="70" />
-            <Setter Property="Height" Value="73" />
+            <Setter Property="Height" Value="75" />
             <Setter Property="BorderThickness" Value="1" />
             <Setter Property="BorderBrush" Value="{DynamicResource bg-300}" />
         </Style>
 
         <Style x:Key="FirstKeyTextStyle" TargetType="TextBlock">
-            <Setter Property="FontSize" Value="13" />
+            <Setter Property="FontSize" Value="14" />
             <Setter Property="FontWeight" Value="Bold" />
             <Setter Property="VerticalAlignment" Value="Center" />
             <Setter Property="HorizontalAlignment" Value="Center" />
@@ -46,7 +46,7 @@
         </Style>
 
         <Style x:Key="PrimaryKeyTextStyle" TargetType="TextBlock">
-            <Setter Property="FontSize" Value="11" />
+            <Setter Property="FontSize" Value="12" />
             <Setter Property="FontWeight" Value="Normal" />
             <Setter Property="VerticalAlignment" Value="Center" />
             <Setter Property="HorizontalAlignment" Value="Center" />
@@ -55,7 +55,7 @@
         </Style>
 
         <Style x:Key="SubKeyTextStyle" TargetType="TextBlock">
-            <Setter Property="FontSize" Value="9" />
+            <Setter Property="FontSize" Value="10" />
             <Setter Property="FontWeight" Value="Normal" />
             <Setter Property="VerticalAlignment" Value="Center" />
             <Setter Property="HorizontalAlignment" Value="Center" />
@@ -72,7 +72,7 @@
             <Setter Property="FontWeight" Value="Bold" />
             <Setter Property="VerticalAlignment" Value="Center" />
             <Setter Property="HorizontalAlignment" Value="Center" />
-            <Setter Property="Foreground" Value="{DynamicResource primary-200}" />
+            <Setter Property="Foreground" Value="{DynamicResource accent-100}" />
             <Setter Property="FontFamily" Value="../Fonts/#黑体字根" />
         </Style>
 
@@ -81,7 +81,7 @@
             <Setter Property="FontWeight" Value="Bold" />
             <Setter Property="VerticalAlignment" Value="Center" />
             <Setter Property="HorizontalAlignment" Value="Right" />
-            <Setter Property="Foreground" Value="{DynamicResource accent-100}" />
+            <Setter Property="Foreground" Value="{DynamicResource accent-200}" />
             <Setter Property="Margin" Value="0,0,2,0" />
         </Style>
 
@@ -96,49 +96,55 @@
 
         <Style x:Key="FormulaTitleStyle" TargetType="TextBlock">
             <Setter Property="HorizontalAlignment" Value="Center" />
-            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="VerticalAlignment" Value="Top" />
             <Setter Property="FontFamily" Value="../Fonts/#黑体字根" />
-            <Setter Property="FontSize" Value="15" />
-            <Setter Property="FontWeight" Value="Bold" />
-            <Setter Property="Foreground" Value="{DynamicResource primary-100}" />
+            <Setter Property="FontSize" Value="22" />
+            <Setter Property="FontWeight" Value="Normal" />
+            <Setter Property="Foreground" Value="{DynamicResource accent-100}" />
+            <Setter Property="Margin" Value="0,0,0,5" />
         </Style>
 
         <Style x:Key="FormulaNumberStyle" TargetType="TextBlock">
             <Setter Property="HorizontalAlignment" Value="Left" />
-            <Setter Property="VerticalAlignment" Value="Center" />
-            <Setter Property="FontSize" Value="12" />
-            <Setter Property="FontWeight" Value="Bold" />
-            <Setter Property="Foreground" Value="{DynamicResource primary-200}" />
+            <Setter Property="VerticalAlignment" Value="Top" />
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="FontWeight" Value="Light" />
+            <Setter Property="Foreground" Value="{DynamicResource accent-200}" />
             <Setter Property="Margin" Value="5,0" />
         </Style>
 
         <Style x:Key="FormulaTextStyle" TargetType="TextBlock">
-            <Setter Property="HorizontalAlignment" Value="Left" />
-            <Setter Property="VerticalAlignment" Value="Center" />
-            <Setter Property="FontSize" Value="12" />
-            <Setter Property="FontWeight" Value="Light" />
+            <Setter Property="HorizontalAlignment" Value="Right" />
+            <Setter Property="VerticalAlignment" Value="Top" />
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="FontWeight" Value="Normal" />
             <Setter Property="Foreground" Value="{DynamicResource text-100}" />
             <Setter Property="TextWrapping" Value="Wrap" />
+        </Style>
+
+        <Style x:Key="FormulaGridStyle" TargetType="Grid">
+            <Setter Property="VerticalAlignment" Value="Top" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="Margin" Value="10,0" />
         </Style>
     </UserControl.Resources>
 
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="80" />
+            <RowDefinition Height="2.5*" />
             <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <TextBlock HorizontalAlignment="Center"
-                   VerticalAlignment="Center"
-                   FontSize="18"
+        <TextBlock Margin="0,0,0,10"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Bottom"
+                   FontSize="25"
                    FontWeight="Bold"
                    Foreground="{DynamicResource primary-100}"
                    Text="五笔字根键位图 86版" />
 
-        <Viewbox Grid.Row="1"
-                 Margin="5,10"
-                 VerticalAlignment="Center">
+        <Viewbox Grid.Row="1" VerticalAlignment="Center">
             <Grid Margin="5"
                   HorizontalAlignment="Center"
                   VerticalAlignment="Center">
@@ -1227,7 +1233,6 @@
                             <StackPanel Grid.Row="1" Style="{StaticResource LeftStackPanelStyle}">
                                 <TextBlock Style="{StaticResource PrimaryKeyTextStyle}" Text="" />
                                 <TextBlock Style="{StaticResource SubKeyTextStyle}" Text="" />
-                                <TextBlock Style="{StaticResource SubKeyTextStyle}" Text="" />
                                 <TextBlock Style="{StaticResource SubKeyTextStyle}" Text="" />
                             </StackPanel>
 
@@ -1241,7 +1246,7 @@
 
                             <StackPanel Grid.Row="2" Style="{StaticResource RightStackPanelStyle}">
                                 <TextBlock Style="{StaticResource SubKeyTextStyle}" Text="" />
-                                <TextBlock Style="{StaticResource SubKeyTextStyle}" Text="" />
+                                <TextBlock Style="{StaticResource SubKeyTextStyle}" Text="" />
                                 <TextBlock Style="{StaticResource PrimaryKeyTextStyle}" Text="" />
                             </StackPanel>
 
@@ -1255,186 +1260,350 @@
             </Grid>
         </Viewbox>
 
-        <Grid Grid.Row="2">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition />
-                <ColumnDefinition />
-                <ColumnDefinition />
-                <ColumnDefinition />
-                <ColumnDefinition />
-            </Grid.ColumnDefinitions>
+        <UniformGrid Grid.Row="2"
+                     Margin="0,10,0,0"
+                     VerticalAlignment="Top"
+                     Rows="1">
 
-            <Grid VerticalAlignment="Top">
-                <Grid.RowDefinitions>
-                    <RowDefinition />
-                    <RowDefinition />
-                </Grid.RowDefinitions>
+            <!--一区-->
+            <Viewbox>
+                <Grid Style="{StaticResource FormulaGridStyle}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
 
-                <TextBlock Style="{StaticResource FormulaTitleStyle}" Text="1区：起笔" />
+                    <TextBlock Style="{StaticResource FormulaTitleStyle}" Text="1区：起笔" />
 
-                <Grid Grid.Row="1" VerticalAlignment="Top">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Row="1" VerticalAlignment="Top">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
 
-                    <StackPanel HorizontalAlignment="Left">
                         <TextBlock Style="{StaticResource FormulaNumberStyle}" Text="11 G" />
-                        <TextBlock Style="{StaticResource FormulaNumberStyle}" Text="12 F" />
-                        <TextBlock Style="{StaticResource FormulaNumberStyle}" Text="13 D" />
-                        <TextBlock Style="{StaticResource FormulaNumberStyle}" Text="14 S" />
-                        <TextBlock Style="{StaticResource FormulaNumberStyle}" Text="15 A" />
-                    </StackPanel>
 
-                    <StackPanel Grid.Column="1">
-                        <TextBlock Style="{StaticResource FormulaTextStyle}" Text="王旁青头戋（兼）五一" />
-                        <TextBlock Style="{StaticResource FormulaTextStyle}" Text="土士二干十寸雨" />
-                        <TextBlock Style="{StaticResource FormulaTextStyle}" Text="大犬三羊古石" />
-                        <TextBlock Style="{StaticResource FormulaTextStyle}" Text="木丁西" />
-                        <TextBlock Style="{StaticResource FormulaTextStyle}" Text="工戈草头右框七" />
-                    </StackPanel>
+                        <TextBlock Grid.Column="1"
+                                   Style="{StaticResource FormulaTextStyle}"
+                                   Text="王旁青头兼五一" />
+
+                        <TextBlock Grid.Row="1"
+                                   Style="{StaticResource FormulaNumberStyle}"
+                                   Text="12 F" />
+
+                        <TextBlock Grid.Row="1"
+                                   Grid.Column="1"
+                                   Style="{StaticResource FormulaTextStyle}"
+                                   Text="土士二干十寸雨" />
+
+                        <TextBlock Grid.Row="2"
+                                   Style="{StaticResource FormulaNumberStyle}"
+                                   Text="13 D" />
+
+                        <TextBlock Grid.Row="2"
+                                   Grid.Column="1"
+                                   Style="{StaticResource FormulaTextStyle}"
+                                   Text="大犬三羊古石厂" />
+
+                        <TextBlock Grid.Row="3"
+                                   Style="{StaticResource FormulaNumberStyle}"
+                                   Text="14 S" />
+
+                        <TextBlock Grid.Row="3"
+                                   Grid.Column="1"
+                                   Style="{StaticResource FormulaTextStyle}"
+                                   Text="木丁西边要无女" />
+
+                        <TextBlock Grid.Row="4"
+                                   Style="{StaticResource FormulaNumberStyle}"
+                                   Text="15 A" />
+
+                        <TextBlock Grid.Row="4"
+                                   Grid.Column="1"
+                                   Style="{StaticResource FormulaTextStyle}"
+                                   Text="工戈草头右框七" />
+                    </Grid>
                 </Grid>
-            </Grid>
+            </Viewbox>
 
-            <Grid Grid.Column="1" VerticalAlignment="Top">
-                <Grid.RowDefinitions>
-                    <RowDefinition />
-                    <RowDefinition />
-                </Grid.RowDefinitions>
+            <!--二区-->
+            <Viewbox>
+                <Grid Style="{StaticResource FormulaGridStyle}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
 
-                <TextBlock Style="{StaticResource FormulaTitleStyle}" Text="2区：起笔" />
+                    <TextBlock Style="{StaticResource FormulaTitleStyle}" Text="2区：起笔" />
 
-                <Grid Grid.Row="1" VerticalAlignment="Top">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Row="1" VerticalAlignment="Top">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
 
-                    <StackPanel HorizontalAlignment="Left">
                         <TextBlock Style="{StaticResource FormulaNumberStyle}" Text="21 H" />
-                        <TextBlock Style="{StaticResource FormulaNumberStyle}" Text="22 J" />
-                        <TextBlock Style="{StaticResource FormulaNumberStyle}" Text="23 K" />
-                        <TextBlock Style="{StaticResource FormulaNumberStyle}" Text="24 L" />
-                        <TextBlock Style="{StaticResource FormulaNumberStyle}" Text="25 M" />
-                    </StackPanel>
 
-                    <StackPanel Grid.Column="1">
-                        <TextBlock Style="{StaticResource FormulaTextStyle}" Text="目具上止卜虎皮" />
-                        <TextBlock Style="{StaticResource FormulaTextStyle}" Text="日早两竖与虫依" />
-                        <TextBlock Style="{StaticResource FormulaTextStyle}" Text="口与川，字根稀" />
-                        <TextBlock Style="{StaticResource FormulaTextStyle}" Text="田甲方框四车力" />
-                        <TextBlock Style="{StaticResource FormulaTextStyle}" Text="山由贝，下框几" />
-                    </StackPanel>
+                        <TextBlock Grid.Column="1"
+                                   Style="{StaticResource FormulaTextStyle}"
+                                   Text="目具上止卜虎皮" />
+
+                        <TextBlock Grid.Row="1"
+                                   Style="{StaticResource FormulaNumberStyle}"
+                                   Text="22 J" />
+
+                        <TextBlock Grid.Row="1"
+                                   Grid.Column="1"
+                                   Style="{StaticResource FormulaTextStyle}"
+                                   Text="日早两竖与虫依" />
+
+                        <TextBlock Grid.Row="2"
+                                   Style="{StaticResource FormulaNumberStyle}"
+                                   Text="23 K" />
+
+                        <TextBlock Grid.Row="2"
+                                   Grid.Column="1"
+                                   Style="{StaticResource FormulaTextStyle}"
+                                   Text="口中两川三个竖" />
+
+                        <TextBlock Grid.Row="3"
+                                   Style="{StaticResource FormulaNumberStyle}"
+                                   Text="24 L" />
+
+                        <TextBlock Grid.Row="3"
+                                   Grid.Column="1"
+                                   Style="{StaticResource FormulaTextStyle}"
+                                   Text="田甲方框四车力" />
+
+                        <TextBlock Grid.Row="4"
+                                   Style="{StaticResource FormulaNumberStyle}"
+                                   Text="25 M" />
+
+                        <TextBlock Grid.Row="4"
+                                   Grid.Column="1"
+                                   Style="{StaticResource FormulaTextStyle}"
+                                   Text="山由贝骨下框几" />
+                    </Grid>
                 </Grid>
-            </Grid>
+            </Viewbox>
 
-            <Grid Grid.Column="2" VerticalAlignment="Top">
-                <Grid.RowDefinitions>
-                    <RowDefinition />
-                    <RowDefinition />
-                </Grid.RowDefinitions>
+            <!--三区-->
+            <Viewbox>
+                <Grid Style="{StaticResource FormulaGridStyle}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
 
-                <TextBlock Style="{StaticResource FormulaTitleStyle}" Text="3区：起笔" />
+                    <TextBlock Style="{StaticResource FormulaTitleStyle}" Text="3区：起笔" />
 
-                <Grid Grid.Row="1" VerticalAlignment="Top">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Row="1" VerticalAlignment="Top">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
 
-                    <StackPanel HorizontalAlignment="Left">
                         <TextBlock Style="{StaticResource FormulaNumberStyle}" Text="31 T" />
-                        <TextBlock Style="{StaticResource FormulaNumberStyle}" Text="32 R" />
-                        <TextBlock Style="{StaticResource FormulaNumberStyle}" Text="33 E" />
-                        <TextBlock Style="{StaticResource FormulaNumberStyle}" Text="34 W" />
-                        <TextBlock Style="{StaticResource FormulaNumberStyle}" Text="35 Q" />
-                    </StackPanel>
 
-                    <StackPanel Grid.Column="1">
-                        <TextBlock Style="{StaticResource FormulaTextStyle}" Text="禾竹一撇双人立，反文条头共三一" />
-                        <TextBlock Style="{StaticResource FormulaTextStyle}" Text="白手看头三二斤" />
-                        <TextBlock Style="{StaticResource FormulaTextStyle}" Text="月彡（衫）乃用家衣底" />
-                        <TextBlock Style="{StaticResource FormulaTextStyle}" Text="人和八，三四里" />
-                        <TextBlock Style="{StaticResource FormulaTextStyle}" Text="金勺缺点无尾鱼，犬旁留乂儿一点夕，氏无七" />
-                    </StackPanel>
+                        <TextBlock Grid.Column="1"
+                                   Style="{StaticResource FormulaTextStyle}"
+                                   Text="禾竹反文双人立" />
+
+                        <TextBlock Grid.Row="1"
+                                   Style="{StaticResource FormulaNumberStyle}"
+                                   Text="32 R" />
+
+                        <TextBlock Grid.Row="1"
+                                   Grid.Column="1"
+                                   Style="{StaticResource FormulaTextStyle}"
+                                   Text="白手看斤三二里" />
+
+                        <TextBlock Grid.Row="2"
+                                   Style="{StaticResource FormulaNumberStyle}"
+                                   Text="33 E" />
+
+                        <TextBlock Grid.Row="2"
+                                   Grid.Column="1"
+                                   Style="{StaticResource FormulaTextStyle}"
+                                   Text="月用家乃衣字底" />
+
+                        <TextBlock Grid.Row="3"
+                                   Style="{StaticResource FormulaNumberStyle}"
+                                   Text="34 W" />
+
+                        <TextBlock Grid.Row="3"
+                                   Grid.Column="1"
+                                   Style="{StaticResource FormulaTextStyle}"
+                                   Text="人八登祭在一起" />
+
+                        <TextBlock Grid.Row="4"
+                                   Style="{StaticResource FormulaNumberStyle}"
+                                   Text="35 Q" />
+
+                        <TextBlock Grid.Row="4"
+                                   Grid.Column="1"
+                                   Style="{StaticResource FormulaTextStyle}"
+                                   Text="金夕犭儿包头鱼" />
+                    </Grid>
                 </Grid>
-            </Grid>
+            </Viewbox>
 
-            <Grid Grid.Column="3" VerticalAlignment="Top">
-                <Grid.RowDefinitions>
-                    <RowDefinition />
-                    <RowDefinition />
-                </Grid.RowDefinitions>
+            <!--四区-->
+            <Viewbox>
+                <Grid Style="{StaticResource FormulaGridStyle}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
 
-                <TextBlock Style="{StaticResource FormulaTitleStyle}" Text="4区：起笔" />
+                    <TextBlock Style="{StaticResource FormulaTitleStyle}" Text="4区：起笔" />
 
-                <Grid Grid.Row="1" VerticalAlignment="Top">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Row="1" VerticalAlignment="Top">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
 
-                    <StackPanel HorizontalAlignment="Left">
                         <TextBlock Style="{StaticResource FormulaNumberStyle}" Text="41 Y" />
-                        <TextBlock Style="{StaticResource FormulaNumberStyle}" Text="42 U" />
-                        <TextBlock Style="{StaticResource FormulaNumberStyle}" Text="43 I" />
-                        <TextBlock Style="{StaticResource FormulaNumberStyle}" Text="44 O" />
-                        <TextBlock Style="{StaticResource FormulaNumberStyle}" Text="45 P" />
-                    </StackPanel>
 
-                    <StackPanel Grid.Column="1">
-                        <TextBlock Style="{StaticResource FormulaTextStyle}" Text="言文方广在四一,高头一捺谁人去" />
-                        <TextBlock Style="{StaticResource FormulaTextStyle}" Text="立辛两点六门病（疒）" />
-                        <TextBlock Style="{StaticResource FormulaTextStyle}" Text="水旁兴头小倒立" />
-                        <TextBlock Style="{StaticResource FormulaTextStyle}" Text="火业头，四点米" />
-                        <TextBlock Style="{StaticResource FormulaTextStyle}" Text="之宝盖，摘 礻（示）衤（衣）" />
-                    </StackPanel>
+                        <TextBlock Grid.Column="1"
+                                   Style="{StaticResource FormulaTextStyle}"
+                                   Text="言文方广在四一" />
+
+                        <TextBlock Grid.Row="1"
+                                   Style="{StaticResource FormulaNumberStyle}"
+                                   Text="42 U" />
+
+                        <TextBlock Grid.Row="1"
+                                   Grid.Column="1"
+                                   Style="{StaticResource FormulaTextStyle}"
+                                   Text="立辛两点六门病" />
+
+                        <TextBlock Grid.Row="2"
+                                   Style="{StaticResource FormulaNumberStyle}"
+                                   Text="43 I" />
+
+                        <TextBlock Grid.Row="2"
+                                   Grid.Column="1"
+                                   Style="{StaticResource FormulaTextStyle}"
+                                   Text="水旁兴头小倒立" />
+
+                        <TextBlock Grid.Row="3"
+                                   Style="{StaticResource FormulaNumberStyle}"
+                                   Text="44 O" />
+
+                        <TextBlock Grid.Row="3"
+                                   Grid.Column="1"
+                                   Style="{StaticResource FormulaTextStyle}"
+                                   Text="火业兴头四点米" />
+
+                        <TextBlock Grid.Row="4"
+                                   Style="{StaticResource FormulaNumberStyle}"
+                                   Text="45 P" />
+
+                        <TextBlock Grid.Row="4"
+                                   Grid.Column="1"
+                                   Style="{StaticResource FormulaTextStyle}"
+                                   Text="之字宝盖补示衣" />
+                    </Grid>
                 </Grid>
-            </Grid>
+            </Viewbox>
 
-            <Grid Grid.Column="4" VerticalAlignment="Top">
-                <Grid.RowDefinitions>
-                    <RowDefinition />
-                    <RowDefinition />
-                </Grid.RowDefinitions>
+            <!--五区-->
+            <Viewbox>
+                <Grid Style="{StaticResource FormulaGridStyle}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
 
-                <TextBlock Style="{StaticResource FormulaTitleStyle}" Text="5区：起笔" />
+                    <TextBlock Style="{StaticResource FormulaTitleStyle}" Text="5区：起笔" />
 
-                <Grid Grid.Row="1" VerticalAlignment="Top">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Row="1" VerticalAlignment="Top">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
 
-                    <StackPanel HorizontalAlignment="Left">
                         <TextBlock Style="{StaticResource FormulaNumberStyle}" Text="51 N" />
-                        <TextBlock Style="{StaticResource FormulaNumberStyle}" Text="52 B" />
-                        <TextBlock Style="{StaticResource FormulaNumberStyle}" Text="53 V" />
-                        <TextBlock Style="{StaticResource FormulaNumberStyle}" Text="54 C" />
-                        <TextBlock Style="{StaticResource FormulaNumberStyle}" Text="55 X" />
-                    </StackPanel>
 
-                    <StackPanel Grid.Column="1">
-                        <TextBlock Style="{StaticResource FormulaTextStyle}" Text="已半巳满不出己，左框折尸心和羽" />
-                        <TextBlock Style="{StaticResource FormulaTextStyle}" Text="子耳了也框向上" />
-                        <TextBlock Style="{StaticResource FormulaTextStyle}" Text="女刀九臼山朝西" />
-                        <TextBlock Style="{StaticResource FormulaTextStyle}" Text="又巴马，丢矢矣" />
-                        <TextBlock Style="{StaticResource FormulaTextStyle}" Text="慈母无心弓和匕，幼无力（幺）" />
-                    </StackPanel>
+                        <TextBlock Grid.Column="1"
+                                   Style="{StaticResource FormulaTextStyle}"
+                                   Text="已类左框心尸羽" />
+
+                        <TextBlock Grid.Row="1"
+                                   Style="{StaticResource FormulaNumberStyle}"
+                                   Text="52 B" />
+
+                        <TextBlock Grid.Row="1"
+                                   Grid.Column="1"
+                                   Style="{StaticResource FormulaTextStyle}"
+                                   Text="子耳了也框向上" />
+
+                        <TextBlock Grid.Row="2"
+                                   Style="{StaticResource FormulaNumberStyle}"
+                                   Text="53 V" />
+
+                        <TextBlock Grid.Row="2"
+                                   Grid.Column="1"
+                                   Style="{StaticResource FormulaTextStyle}"
+                                   Text="女刀九臼山朝西" />
+
+                        <TextBlock Grid.Row="3"
+                                   Style="{StaticResource FormulaNumberStyle}"
+                                   Text="54 C" />
+
+                        <TextBlock Grid.Row="3"
+                                   Grid.Column="1"
+                                   Style="{StaticResource FormulaTextStyle}"
+                                   Text="又巴甬矣马上骑" />
+
+                        <TextBlock Grid.Row="4"
+                                   Style="{StaticResource FormulaNumberStyle}"
+                                   Text="55 X" />
+
+                        <TextBlock Grid.Row="4"
+                                   Grid.Column="1"
+                                   Style="{StaticResource FormulaTextStyle}"
+                                   Text="幺母绞丝弓三匕" />
+                    </Grid>
                 </Grid>
-            </Grid>
-
-            <!--<Viewbox Grid.Column="1">
-
-            <Viewbox Grid.Column="4">
-                <StackPanel TextBlock.Foreground="Red">
-                    <TextBlock Text="N 已半巳满不出己，左框折尸心和羽" />
-                    <TextBlock Text="B 子耳了也框向上" />
-                    <TextBlock Text="V 女刀九臼山朝西" />
-                    <TextBlock Text="C 又巴马，丢矢矣" />
-                    <TextBlock Text="X 慈母无心弓和匕，幼无力（幺）" />
-                </StackPanel>
-            </Viewbox>-->
-        </Grid>
+            </Viewbox>
+        </UniformGrid>
     </Grid>
 </UserControl>

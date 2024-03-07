@@ -9,6 +9,27 @@
              d:DesignWidth="800"
              mc:Ignorable="d">
     <Grid>
-        <c:EtymonKeyControl />
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <Grid>
+            <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                <ComboBox Width="80"
+                          Height="25"
+                          VerticalAlignment="Top"
+                          Text="选择版本" />
+
+                <Button Width="80"
+                        Height="25"
+                        Margin="10,0,0,0"
+                        VerticalAlignment="Top"
+                        Content="保存为图片" />
+            </StackPanel>
+
+        </Grid>
+
+        <c:EtymonKeyControl Grid.Row="1" />
     </Grid>
 </UserControl>
