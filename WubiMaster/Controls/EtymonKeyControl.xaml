@@ -1259,7 +1259,7 @@
         </Viewbox>
 
         <UniformGrid Grid.Row="2"
-                     Margin="0,10,0,0"
+                     Margin="0,10,0,10"
                      VerticalAlignment="Top"
                      Rows="1">
 
