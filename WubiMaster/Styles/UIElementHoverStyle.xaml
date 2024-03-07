@@ -11,13 +11,14 @@
 
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Panel.ZIndex" Value="100" />
                 <Trigger.EnterActions>
                     <BeginStoryboard>
                         <Storyboard>
 
                             <DoubleAnimation BeginTime="00:00:00"
                                              Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)"
-                                             To="1.2"
+                                             To="1.3"
                                              Duration="00:00:0.5">
 
                                 <DoubleAnimation.EasingFunction>
@@ -27,7 +28,7 @@
 
                             <DoubleAnimation BeginTime="00:00:00"
                                              Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)"
-                                             To="1.2"
+                                             To="1.3"
                                              Duration="00:00:0.5">
 
                                 <DoubleAnimation.EasingFunction>
@@ -44,7 +45,7 @@
 
                             <DoubleAnimation BeginTime="00:00:00"
                                              Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)"
-                                             Duration="00:00:0.5">
+                                             Duration="00:00:0.2">
 
                                 <DoubleAnimation.EasingFunction>
                                     <PowerEase EasingMode="EaseOut" Power="1" />
@@ -53,7 +54,7 @@
 
                             <DoubleAnimation BeginTime="00:00:00"
                                              Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)"
-                                             Duration="00:00:0.5">
+                                             Duration="00:00:0.2">
 
                                 <DoubleAnimation.EasingFunction>
                                     <PowerEase EasingMode="EaseOut" Power="1" />

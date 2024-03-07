@@ -25,7 +25,9 @@
             <Setter Property="HorizontalAlignment" Value="Right" />
         </Style>
 
-        <Style x:Key="KeyBorderStyle" TargetType="Border">
+        <Style x:Key="KeyBorderStyle"
+               BasedOn="{StaticResource UIElementHover}"
+               TargetType="Border">
             <Setter Property="Margin" Value="1,5" />
             <Setter Property="Padding" Value="3,2" />
             <Setter Property="Background" Value="{DynamicResource bg-200}" />
