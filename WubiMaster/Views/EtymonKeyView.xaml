@@ -5,9 +5,15 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:WubiMaster.Views"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:WubiMaster.ViewModels"
              d:DesignHeight="450"
              d:DesignWidth="800"
              mc:Ignorable="d">
+
+    <UserControl.DataContext>
+        <vm:EtymonKeyViewModel />
+    </UserControl.DataContext>
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="60" />
@@ -25,11 +31,12 @@
                         Height="25"
                         Margin="10,0,0,0"
                         VerticalAlignment="Top"
+                        Command="{Binding SaveToImageCommand}"
                         Content="保存为图片" />
             </StackPanel>
 
         </Grid>
 
-        <c:EtymonKeyControl Grid.Row="1" />
+        <ContentControl Grid.Row="1" Content="{Binding EKeyControl}" />
     </Grid>
 </UserControl>
