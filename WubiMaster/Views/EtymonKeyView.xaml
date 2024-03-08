@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:WubiMaster.Views"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="clr-namespace:WubiMaster.ViewModels"
+             d:Background="{DynamicResource bg-100}"
              d:DesignHeight="450"
              d:DesignWidth="800"
              mc:Ignorable="d">
@@ -22,17 +23,49 @@
 
         <Grid>
             <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                <TextBlock Margin="0,3,0,0"
+                           VerticalAlignment="Top"
+                           FontSize="13"
+                           Foreground="{DynamicResource text-200}"
+                           Text="繁体字根：" />
+
+                <CheckBox Margin="0,2,0,0"
+                          VerticalAlignment="Top"
+                          FontSize="12"
+                          Foreground="{DynamicResource text-100}" />
+
+                <TextBlock Margin="10,3,0,0"
+                           VerticalAlignment="Top"
+                           FontSize="13"
+                           Foreground="{DynamicResource text-200}"
+                           Text="版本：" />
+
                 <ComboBox Width="80"
                           Height="25"
+                          Margin="0,0,0,0"
                           VerticalAlignment="Top"
-                          Text="选择版本" />
+                          SelectedIndex="0"
+                          Text="选择版本">
+                    <ComboBoxItem>86版</ComboBoxItem>
+                    <ComboBoxItem>98版</ComboBoxItem>
+                    <ComboBoxItem>新世纪版</ComboBoxItem>
+                </ComboBox>
 
-                <Button Width="80"
+                <TextBlock Margin="10,3,0,0"
+                           VerticalAlignment="Top"
+                           FontSize="13"
+                           Foreground="{DynamicResource text-200}"
+                           Text="保存为图片：" />
+
+                <Button Width="30"
                         Height="25"
-                        Margin="10,0,0,0"
+                        Margin="0,0,0,0"
                         VerticalAlignment="Top"
-                        Command="{Binding SaveToImageCommand}"
-                        Content="保存为图片" />
+                        Command="{Binding SaveToImageCommand}">
+                    <Button.Content>
+                        <TextBlock FontFamily="../Fonts/#iconfont" Text="&#xe639;" />
+                    </Button.Content>
+                </Button>
             </StackPanel>
 
         </Grid>
