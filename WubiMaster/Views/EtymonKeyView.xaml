@@ -32,7 +32,8 @@
                 <CheckBox Margin="0,2,0,0"
                           VerticalAlignment="Top"
                           FontSize="12"
-                          Foreground="{DynamicResource text-100}" />
+                          Foreground="{DynamicResource text-100}"
+                          IsChecked="{Binding ShowFanKey, Mode=TwoWay}" />
 
                 <TextBlock Margin="10,3,0,0"
                            VerticalAlignment="Top"

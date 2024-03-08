@@ -3,6 +3,7 @@ using CommunityToolkit.Mvvm.Input;
 using Microsoft.Win32;
 using System;
 using System.IO;
+using System.Windows.Data;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using WubiMaster.Common;
@@ -15,9 +16,21 @@ namespace WubiMaster.ViewModels
         [ObservableProperty]
         private EtymonKeyControl eKeyControl;
 
+        [ObservableProperty]
+        private bool showFanKey=true;
+
         public EtymonKeyViewModel()
         {
+            ChangeEtymonKeyVersion();
+        }
+
+        private void ChangeEtymonKeyVersion()
+        {
             EKeyControl = new EtymonKeyControl();
+            Binding eKeyBinding = new Binding();
+            eKeyBinding.Source = this;
+            eKeyBinding.Path = new System.Windows.PropertyPath("ShowFanKey");
+            this.EKeyControl.SetBinding(EtymonKeyControl.IsShowFanKeyProperty, eKeyBinding);
         }
 
         [RelayCommand]
