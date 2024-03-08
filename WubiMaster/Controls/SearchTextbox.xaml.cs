@@ -28,7 +28,7 @@ namespace WubiMaster.Controls
             DependencyProperty.Register("ShowSearchButton", typeof(Visibility), typeof(SearchTextbox));
 
         public static readonly DependencyProperty TextFontSizeProperty =
-            DependencyProperty.Register("TextFontSize", typeof(double), typeof(SearchTextbox));
+            DependencyProperty.Register("TextFontSize", typeof(double), typeof(SearchTextbox), new PropertyMetadata(12.0));
 
         public static readonly DependencyProperty TextMarginProperty =
             DependencyProperty.Register("TextMargin", typeof(Thickness), typeof(SearchTextbox));
