@@ -26,7 +26,7 @@ namespace WubiMaster.ViewModels
 
         private void ChangeEtymonKeyVersion()
         {
-            EKeyControl = new EtymonKeyControl();
+            EKeyControl = new EtymonKeyControl() { EtymonKeyType="98"};
             Binding eKeyBinding = new Binding();
             eKeyBinding.Source = this;
             eKeyBinding.Path = new System.Windows.PropertyPath("ShowFanKey");
