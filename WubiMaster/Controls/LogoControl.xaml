@@ -16,10 +16,8 @@
               StrokeEndLineCap="Flat"
               StrokeStartLineCap="Round"
               StrokeThickness="40"
-              X1="20"
-              X2="20"
-              Y1="50"
-              Y2="100" />
+              X1="20" X2="20"
+              Y1="50" Y2="100" />
 
         <Path Stroke="{Binding ElementName=logo_control, Path=IconColor}" StrokeThickness="40">
             <Path.Data>
@@ -41,27 +39,21 @@
               StrokeEndLineCap="Round"
               StrokeStartLineCap="Flat"
               StrokeThickness="40"
-              X1="380"
-              X2="380"
-              Y1="100"
-              Y2="50" />
+              X1="380" X2="380"
+              Y1="100" Y2="50" />
 
         <Line Stroke="{Binding ElementName=logo_control, Path=IconColor}"
               StrokeEndLineCap="Flat"
               StrokeStartLineCap="Round"
               StrokeThickness="40"
-              X1="200"
-              X2="200"
-              Y1="20"
-              Y2="380" />
+              X1="200" X2="200"
+              Y1="20" Y2="380" />
 
         <Line Stroke="{Binding ElementName=logo_control, Path=IconColor}"
               StrokeEndLineCap="Round"
               StrokeStartLineCap="Round"
               StrokeThickness="40"
-              X1="20"
-              X2="380"
-              Y1="380"
-              Y2="380" />
+              X1="20" X2="380"
+              Y1="380" Y2="380" />
     </Grid>
 </UserControl>
