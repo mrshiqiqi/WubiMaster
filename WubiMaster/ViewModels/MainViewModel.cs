@@ -125,37 +125,41 @@ namespace WubiMaster.ViewModels
         [RelayCommand]
         public void Deploy()
         {
-            try
+            App.Current.Dispatcher.BeginInvoke(() =>
             {
-                string prcessPath = ConfigHelper.ReadConfigByString("process_file_path");
-                if (string.IsNullOrEmpty(prcessPath))
-                {
-                    this.ShowMessage("请先配置程序文件目录", DialogType.Warring);
-                    return;
-                }
-
                 try
                 {
-                    bool isRun = ServiceHelper.FindService();
-                    if (!isRun)
+                    string prcessPath = ConfigHelper.ReadConfigByString("process_file_path");
+                    
+                    if (string.IsNullOrEmpty(prcessPath))
                     {
-                        this.ShowMessage("算法服务未启动，无法执行部署操作", DialogType.Warring);
+                        this.ShowMessage("请先配置程序文件目录", DialogType.Warring);
                         return;
                     }
+
+                    try
+                    {
+                        bool isRun = ServiceHelper.FindService();
+                        if (!isRun)
+                        {
+                            this.ShowMessage("算法服务未启动，无法执行部署操作", DialogType.Warring);
+                            return;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        this.ShowMessage(ex.Message, DialogType.Warring);
+                    }
+
+                    CmdHelper.RunCmd(prcessPath, "WeaselDeployer.exe /deploy", false);
+                    this.ShowMessage("部署成功", DialogType.Success);
                 }
                 catch (Exception ex)
                 {
-                    this.ShowMessage(ex.Message, DialogType.Warring);
+                    LogHelper.Error(ex.Message);
+                    this.ShowMessage("部署失败", DialogType.Fail);
                 }
-
-                CmdHelper.RunCmd(prcessPath, "WeaselDeployer.exe /deploy");
-                this.ShowMessage("部署成功", DialogType.Success);
-            }
-            catch (Exception ex)
-            {
-                LogHelper.Error(ex.Message);
-                this.ShowMessage("部署失败", DialogType.Fail);
-            }
+            });
         }
 
         [RelayCommand]

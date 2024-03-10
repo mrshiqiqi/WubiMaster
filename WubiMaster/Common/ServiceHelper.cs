@@ -7,7 +7,9 @@ namespace WubiMaster.Common
     {
         public static bool FindService()
         {
-            Process[] ps = Process.GetProcessesByName("WeaselServer");
+            string serverName = ConfigHelper.ReadConfigByString("weasel_server");
+            if (string.IsNullOrEmpty(serverName)) { return false; }
+            Process[] ps = Process.GetProcessesByName(serverName.Split(".exe")[0]);
             if (ps.Length > 0)
             {
                 return true;

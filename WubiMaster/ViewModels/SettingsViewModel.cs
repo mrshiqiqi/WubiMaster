@@ -10,6 +10,7 @@ using System.Linq;
 using System.Windows;
 using WubiMaster.Common;
 using WubiMaster.Models;
+using static WubiMaster.Common.RegistryHelper;
 
 namespace WubiMaster.ViewModels
 {
@@ -63,8 +64,11 @@ namespace WubiMaster.ViewModels
         [ObservableProperty]
         private string userFilePath;
 
+        private RegistryHelper registryHelper;
+
         public SettingsViewModel()
         {
+            registryHelper = new RegistryHelper();
             ThemeList = new List<ThemeModel>();
             ShiciIntervalList = new ObservableCollection<ShiciIntervalModel>();
             LogBackList = new ObservableCollection<LogBackModel>();
@@ -73,6 +77,66 @@ namespace WubiMaster.ViewModels
             InitShiciInterval();
             InitLogBackList();
             LoadConfig();
+            ReadUserPathRegistry();
+            ReadProcessPathRegistry();
+            ReadServerRegistry();
+        }
+
+        private void ReadServerRegistry()
+        {
+
+            try
+            {
+                bool hasPath = registryHelper.IsExist(KeyType.HKEY_LOCAL_MACHINE, @"Rime\Weasel");
+                if (!hasPath) return;
+
+                string sName = registryHelper.GetValue(KeyType.HKEY_LOCAL_MACHINE, @"Rime\Weasel", "ServerExecutable");
+                if (string.IsNullOrEmpty(sName)) throw new NullReferenceException("无法找到 Rime 的注册表信息");
+                ConfigHelper.WriteConfigByString("weasel_server", sName);
+            }
+
+            catch (Exception ex)
+            {
+                LogHelper.Error(ex.Message);
+            }
+        }
+
+        private void ReadUserPathRegistry()
+        {
+            try
+            {
+                bool hasPath = registryHelper.IsExist(KeyType.HKEY_LOCAL_MACHINE, @"Rime\Weasel");
+                if (!hasPath) return;
+
+                string uPath = registryHelper.GetValue(KeyType.HKEY_LOCAL_MACHINE, @"Rime\Weasel", "InstallDir");
+                if (string.IsNullOrEmpty(uPath)) throw new NullReferenceException("无法找到 Rime 的注册表信息");
+                UserFilePath = uPath;
+                ConfigHelper.WriteConfigByString("user_file_path", UserFilePath);
+            }
+
+            catch (Exception ex)
+            {
+                LogHelper.Error(ex.Message);
+            }
+        }
+
+        private void ReadProcessPathRegistry()
+        {
+            try
+            {
+                bool hasPath = registryHelper.IsExist(KeyType.HKEY_LOCAL_MACHINE, @"Rime\Weasel");
+                if (!hasPath) return;
+
+                string pPath = registryHelper.GetValue(KeyType.HKEY_LOCAL_MACHINE, @"Rime\Weasel", "WeaselRoot");
+                if (string.IsNullOrEmpty(pPath)) throw new NullReferenceException("无法找到 Rime 的注册表信息");
+                ProcessFilePath = pPath;
+                ConfigHelper.WriteConfigByString("process_file_path", ProcessFilePath);
+            }
+
+            catch (Exception ex)
+            {
+                LogHelper.Error(ex.Message);
+            }
         }
 
         [RelayCommand]
@@ -276,10 +340,10 @@ namespace WubiMaster.ViewModels
         private void LoadConfig()
         {
             // 加载用户目录配置
-            UserFilePath = ConfigHelper.ReadConfigByString("user_file_path");
+            //UserFilePath = ConfigHelper.ReadConfigByString("user_file_path");
 
             // 加载程序目录配置
-            ProcessFilePath = ConfigHelper.ReadConfigByString("process_file_path");
+            //ProcessFilePath = ConfigHelper.ReadConfigByString("process_file_path");
 
             // 加载默认词库
             DefaultCikuFile = ConfigHelper.ReadConfigByString("default_ciku_file");
