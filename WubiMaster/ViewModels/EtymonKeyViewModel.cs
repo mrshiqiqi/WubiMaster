@@ -2,6 +2,8 @@
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.Win32;
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.IO;
 using System.Windows.Data;
 using System.Windows.Media;
@@ -17,20 +19,37 @@ namespace WubiMaster.ViewModels
         private EtymonKeyControl eKeyControl;
 
         [ObservableProperty]
-        private bool showFanKey=true;
+        private bool showFanKey = true;
+
+        private Dictionary<string, EtymonKeyControl> EtymonKeyControlDict;
 
         public EtymonKeyViewModel()
         {
-            ChangeEtymonKeyVersion();
+            EtymonKeyControlDict = new Dictionary<string, EtymonKeyControl>();
+            ChangeEtymonKeyVersion(null);
         }
 
-        private void ChangeEtymonKeyVersion()
+        [RelayCommand]
+        public void ChangeEtymonKeyVersion(object obj)
         {
-            EKeyControl = new EtymonKeyControl() { EtymonKeyType="98"};
-            Binding eKeyBinding = new Binding();
-            eKeyBinding.Source = this;
-            eKeyBinding.Path = new System.Windows.PropertyPath("ShowFanKey");
-            this.EKeyControl.SetBinding(EtymonKeyControl.IsShowFanKeyProperty, eKeyBinding);
+            string[] types = new string[] { "86", "98", "06" };
+            int index = int.Parse((obj?.ToString() ?? "0"));
+
+            if (EtymonKeyControlDict.ContainsKey(types[index]))
+            {
+                EKeyControl = EtymonKeyControlDict[types[index]];
+            }
+            else
+            {
+                var eControl = new EtymonKeyControl() { EtymonKeyType = "98" };
+                Binding eKeyBinding = new Binding();
+                eKeyBinding.Source = this;
+                eKeyBinding.Path = new System.Windows.PropertyPath("ShowFanKey");
+                eControl.SetBinding(EtymonKeyControl.IsShowFanKeyProperty, eKeyBinding);
+
+                EKeyControl = eControl;
+                EtymonKeyControlDict.Add(types[index], eControl);
+            }
         }
 
         [RelayCommand]
@@ -60,7 +79,7 @@ namespace WubiMaster.ViewModels
                 catch (Exception ex)
                 {
                     LogHelper.Error(ex.Message);
-                    this.ShowMessage("保存失败",DialogType.Fail);
+                    this.ShowMessage("保存失败", DialogType.Fail);
                 }
             });
         }
