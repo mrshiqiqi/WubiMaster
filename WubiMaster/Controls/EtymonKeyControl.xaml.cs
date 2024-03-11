@@ -73,7 +73,7 @@ namespace WubiMaster.Controls
                 etymonKeyControl.IsShowVersion98 = Visibility.Visible;
                 etymonKeyControl.IsShowVersion06 = Visibility.Collapsed;
             }
-            else if (e.NewValue.ToString() == "08")
+            else if (e.NewValue.ToString() == "06")
             {
                 etymonKeyControl.IsShowVersion86 = Visibility.Collapsed;
                 etymonKeyControl.IsShowVersion98 = Visibility.Collapsed;

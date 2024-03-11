@@ -2,7 +2,6 @@
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.Win32;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Windows.Data;
@@ -18,38 +17,42 @@ namespace WubiMaster.ViewModels
         [ObservableProperty]
         private EtymonKeyControl eKeyControl;
 
+        private Dictionary<string, EtymonKeyControl> EtymonKeyControlDict;
+
         [ObservableProperty]
         private bool showFanKey = true;
-
-        private Dictionary<string, EtymonKeyControl> EtymonKeyControlDict;
 
         public EtymonKeyViewModel()
         {
             EtymonKeyControlDict = new Dictionary<string, EtymonKeyControl>();
+
+            LoadEtymonKeyControls();
             ChangeEtymonKeyVersion(null);
         }
 
         [RelayCommand]
         public void ChangeEtymonKeyVersion(object obj)
         {
-            string[] types = new string[] { "86", "98", "06" };
-            int index = int.Parse((obj?.ToString() ?? "0"));
+            App.Current.Dispatcher.BeginInvoke(() => {
+                string[] types = new string[] { "86", "98", "06" };
+                int index = int.Parse((obj?.ToString() ?? "0"));
 
-            if (EtymonKeyControlDict.ContainsKey(types[index]))
-            {
-                EKeyControl = EtymonKeyControlDict[types[index]];
-            }
-            else
-            {
-                var eControl = new EtymonKeyControl() { EtymonKeyType = "98" };
-                Binding eKeyBinding = new Binding();
-                eKeyBinding.Source = this;
-                eKeyBinding.Path = new System.Windows.PropertyPath("ShowFanKey");
-                eControl.SetBinding(EtymonKeyControl.IsShowFanKeyProperty, eKeyBinding);
+                if (EtymonKeyControlDict.ContainsKey(types[index]))
+                {
+                    EKeyControl = EtymonKeyControlDict[types[index]];
+                }
+                else
+                {
+                    var eControl = new EtymonKeyControl() { EtymonKeyType = types[index] };
+                    Binding eKeyBinding = new Binding();
+                    eKeyBinding.Source = this;
+                    eKeyBinding.Path = new System.Windows.PropertyPath("ShowFanKey");
+                    eControl.SetBinding(EtymonKeyControl.IsShowFanKeyProperty, eKeyBinding);
 
-                EKeyControl = eControl;
-                EtymonKeyControlDict.Add(types[index], eControl);
-            }
+                    EKeyControl = eControl;
+                    EtymonKeyControlDict.Add(types[index], eControl);
+                }
+            });
         }
 
         [RelayCommand]
@@ -82,6 +85,20 @@ namespace WubiMaster.ViewModels
                     this.ShowMessage("保存失败", DialogType.Fail);
                 }
             });
+        }
+
+        private void LoadEtymonKeyControls()
+        {
+            string[] types = new string[] { "86", "98", "06" };
+            for (int i = 0; i < types.Length; i++)
+            {
+                var eControl = new EtymonKeyControl() { EtymonKeyType = types[i] };
+                Binding eKeyBinding = new Binding();
+                eKeyBinding.Source = this;
+                eKeyBinding.Path = new System.Windows.PropertyPath("ShowFanKey");
+                eControl.SetBinding(EtymonKeyControl.IsShowFanKeyProperty, eKeyBinding);
+                EtymonKeyControlDict.Add(types[i], eControl);
+            }
         }
     }
 }
