@@ -151,7 +151,7 @@ namespace WubiMaster.ViewModels
                         this.ShowMessage(ex.Message, DialogType.Warring);
                     }
 
-                    CmdHelper.RunCmd(prcessPath, "WeaselDeployer.exe /deploy", false);
+                    CmdHelper.RunCmd(prcessPath, "WeaselDeployer.exe /deploy");
                     this.ShowMessage("部署成功", DialogType.Success);
                 }
                 catch (Exception ex)

@@ -1648,7 +1648,6 @@
             </Grid>
         </Grid>
 
-
         <!--98版字根键位表-->
         <Grid Visibility="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=IsShowVersion98}">
             <Grid.RowDefinitions>
@@ -1693,22 +1692,29 @@
                                     <TextBlock Style="{StaticResource FirstKeyTextStyle}" Text="" />
                                     <TextBlock Style="{StaticResource SubKeyTextStyle}" Text="" />
                                     <TextBlock Style="{StaticResource FanKeyTextStyle}" Text="" />
+                                    <TextBlock Style="{StaticResource PrimaryKeyTextStyle}" Text="" />
                                 </StackPanel>
 
                                 <StackPanel Style="{StaticResource RightStackPanelStyle}">
                                     <TextBlock Style="{StaticResource PrimaryKeyTextStyle}" Text="" />
                                 </StackPanel>
 
-                                <UniformGrid Grid.Row="1" Rows="1">
+                                <StackPanel Grid.Row="1" Style="{StaticResource LeftStackPanelStyle}">
                                     <TextBlock Style="{StaticResource PrimaryKeyTextStyle}" Text="" />
-                                    <TextBlock Style="{StaticResource PrimaryKeyTextStyle}" Text="" />
-                                    <TextBlock Style="{StaticResource PrimaryKeyTextStyle}" Text="" />
-                                    <TextBlock Style="{StaticResource PrimaryKeyTextStyle}" Text="" />
-                                </UniformGrid>
+                                    <TextBlock Style="{StaticResource SubKeyTextStyle}" Text="" />
+                                    <TextBlock Style="{StaticResource SubKeyTextStyle}" Text="" />
+                                    <TextBlock Style="{StaticResource SubKeyTextStyle}" Text="" />
+                                </StackPanel>
+
+                                <StackPanel Grid.Row="1" Style="{StaticResource RightStackPanelStyle}">
+                                    <TextBlock Style="{StaticResource SubKeyTextStyle}" Text="" />
+                                    <TextBlock Style="{StaticResource PrimaryKeyTextStyle}" Text="儿" />
+                                </StackPanel>
 
                                 <StackPanel Grid.Row="2" Style="{StaticResource LeftStackPanelStyle}">
-                                    <TextBlock Style="{StaticResource PrimaryKeyTextStyle}" Text="儿" />
-                                    <TextBlock Style="{StaticResource SubKeyTextStyle}" Text="" />
+                                    <TextBlock Style="{StaticResource PrimaryKeyTextStyle}" Text="" />
+                                    <TextBlock Style="{StaticResource FanKeyTextStyle}" Text="" />
+                                    <TextBlock Style="{StaticResource FanKeyTextStyle}" Text="" />
                                 </StackPanel>
 
                                 <StackPanel Grid.Row="2" Style="{StaticResource RightStackPanelStyle}">
@@ -1738,7 +1744,13 @@
                                 </StackPanel>
 
                                 <StackPanel Style="{StaticResource RightStackPanelStyle}">
+                                    <TextBlock Style="{StaticResource SubKeyTextStyle}" Text="" />
                                     <TextBlock Style="{StaticResource PrimaryKeyTextStyle}" Text="八" />
+                                </StackPanel>
+
+                                <StackPanel Grid.Row="1" Style="{StaticResource LeftStackPanelStyle}">
+                                    <TextBlock Style="{StaticResource PrimaryKeyTextStyle}" Text="" />
+                                    <TextBlock Style="{StaticResource SubKeyTextStyle}" Text="" />
                                 </StackPanel>
 
                                 <StackPanel Grid.Row="1" Style="{StaticResource RightStackPanelStyle}">
@@ -1747,6 +1759,8 @@
 
                                 <StackPanel Grid.Row="2" Style="{StaticResource LeftStackPanelStyle}">
                                     <TextBlock Style="{StaticResource PrimaryKeyTextStyle}" Text="" />
+                                    <TextBlock Style="{StaticResource SubKeyTextStyle}" Text="" />
+                                    <TextBlock Style="{StaticResource FanKeyTextStyle}" Text="" />
                                 </StackPanel>
 
                                 <StackPanel Grid.Row="2" Style="{StaticResource RightStackPanelStyle}">
@@ -1772,29 +1786,28 @@
                                 <StackPanel Style="{StaticResource LeftStackPanelStyle}">
                                     <TextBlock Style="{StaticResource FirstKeyTextStyle}" Text="月" />
                                     <TextBlock Style="{StaticResource SubKeyTextStyle}" Text="" />
+                                    <TextBlock Style="{StaticResource PrimaryKeyTextStyle}" Text="" />
+                                    <TextBlock Style="{StaticResource PrimaryKeyTextStyle}" Text="" />
                                 </StackPanel>
 
                                 <StackPanel Style="{StaticResource RightStackPanelStyle}">
                                     <TextBlock Style="{StaticResource StructureKeyTextStyle}" Text="" />
                                 </StackPanel>
 
-                                <UniformGrid Grid.Row="1" Rows="1">
-                                    <StackPanel Style="{StaticResource LeftStackPanelStyle}">
-                                        <TextBlock Style="{StaticResource PrimaryKeyTextStyle}" Text="用" />
-                                        <TextBlock Style="{StaticResource SubKeyTextStyle}" Text="" />
-                                    </StackPanel>
+                                <StackPanel Grid.Row="1" Style="{StaticResource LeftStackPanelStyle}">
+                                    <TextBlock Style="{StaticResource PrimaryKeyTextStyle}" Text="用" />
+                                    <TextBlock Style="{StaticResource SubKeyTextStyle}" Text="" />
+                                    <TextBlock Style="{StaticResource PrimaryKeyTextStyle}" Text="" />
+                                </StackPanel>
 
-                                    <TextBlock Style="{StaticResource PrimaryKeyTextStyle}" Text="乃" />
-
-                                    <StackPanel Style="{StaticResource RightStackPanelStyle}">
-                                        <TextBlock Style="{StaticResource PrimaryKeyTextStyle}" Text="" />
-                                    </StackPanel>
-                                </UniformGrid>
+                                <StackPanel Grid.Row="1" Style="{StaticResource RightStackPanelStyle}">
+                                    <TextBlock Style="{StaticResource PrimaryKeyTextStyle}" Text="" />
+                                    <TextBlock Style="{StaticResource PrimaryKeyTextStyle}" Text="" />
+                                </StackPanel>
 
                                 <StackPanel Grid.Row="2" Style="{StaticResource LeftStackPanelStyle}">
-                                    <TextBlock Style="{StaticResource PrimaryKeyTextStyle}" Text="" />
+                                    <TextBlock Style="{StaticResource PrimaryKeyTextStyle}" Text="" />
                                     <TextBlock Style="{StaticResource SubKeyTextStyle}" Text="" />
-                                    <TextBlock Style="{StaticResource SubKeyTextStyle}" Text="" />
                                 </StackPanel>
 
                                 <StackPanel Grid.Row="2" Style="{StaticResource RightStackPanelStyle}">
@@ -1831,21 +1844,26 @@
                                     <TextBlock Style="{StaticResource PrimaryKeyTextStyle}" Text="" />
                                     <TextBlock Style="{StaticResource SubKeyTextStyle}" Text="" />
                                     <TextBlock Style="{StaticResource SubKeyTextStyle}" Text="" />
-                                    <TextBlock Style="{StaticResource SubKeyTextStyle}" Text="" />
                                 </StackPanel>
 
                                 <StackPanel Grid.Row="1" Style="{StaticResource RightStackPanelStyle}">
-                                    <TextBlock Style="{StaticResource PrimaryKeyTextStyle}" Text="" />
+                                    <TextBlock Style="{StaticResource SubKeyTextStyle}" Text="" />
+                                    <TextBlock Style="{StaticResource PrimaryKeyTextStyle}" Text="" />
                                 </StackPanel>
 
-                                <StackPanel Grid.Row="2" Style="{StaticResource LeftStackPanelStyle}">
-                                    <TextBlock Style="{StaticResource PrimaryKeyTextStyle}" Text="" />
-                                    <TextBlock Style="{StaticResource SubKeyTextStyle}" Text="" />
-                                </StackPanel>
+                                <UniformGrid Grid.Row="2" Rows="1">
+                                    <StackPanel Grid.Row="2" Style="{StaticResource LeftStackPanelStyle}">
+                                        <TextBlock Style="{StaticResource PrimaryKeyTextStyle}" Text="" />
+                                        <TextBlock Style="{StaticResource SubKeyTextStyle}" Text="" />
+                                    </StackPanel>
 
-                                <StackPanel Grid.Row="2" Style="{StaticResource RightStackPanelStyle}">
-                                    <TextBlock Style="{StaticResource PrimaryKeyTextStyle}" Text="" />
-                                </StackPanel>
+                                    <TextBlock Style="{StaticResource PrimaryKeyTextStyle}" Text="" />
+
+                                    <StackPanel Grid.Row="2" Style="{StaticResource RightStackPanelStyle}">
+                                        <TextBlock Style="{StaticResource PrimaryKeyTextStyle}" Text="" />
+                                    </StackPanel>
+                                </UniformGrid>
+
 
                                 <UniformGrid Grid.Row="3" Rows="1">
                                     <TextBlock Style="{StaticResource NumberKeyTextStyle}" Text="32" />
@@ -2841,7 +2859,7 @@
 
                             <TextBlock Grid.Column="1"
                                        Style="{StaticResource FormulaTextStyle}"
-                                       Text="王旁青头兼五一" />
+                                       Text="王旁青头五夫一" />
 
                             <TextBlock Grid.Row="1"
                                        Style="{StaticResource FormulaNumberStyle}"
@@ -2850,7 +2868,7 @@
                             <TextBlock Grid.Row="1"
                                        Grid.Column="1"
                                        Style="{StaticResource FormulaTextStyle}"
-                                       Text="土士二干十寸雨" />
+                                       Text="土干十寸未甘雨" />
 
                             <TextBlock Grid.Row="2"
                                        Style="{StaticResource FormulaNumberStyle}"
@@ -2859,7 +2877,7 @@
                             <TextBlock Grid.Row="2"
                                        Grid.Column="1"
                                        Style="{StaticResource FormulaTextStyle}"
-                                       Text="大犬三羊古石厂" />
+                                       Text="大犬戊其古石厂" />
 
                             <TextBlock Grid.Row="3"
                                        Style="{StaticResource FormulaNumberStyle}"
@@ -2868,7 +2886,7 @@
                             <TextBlock Grid.Row="3"
                                        Grid.Column="1"
                                        Style="{StaticResource FormulaTextStyle}"
-                                       Text="木丁西边要无女" />
+                                       Text="木丁西甫一四里" />
 
                             <TextBlock Grid.Row="4"
                                        Style="{StaticResource FormulaNumberStyle}"
@@ -2909,7 +2927,7 @@
 
                             <TextBlock Grid.Column="1"
                                        Style="{StaticResource FormulaTextStyle}"
-                                       Text="目具上止卜虎皮" />
+                                       Text="目上卜止虎头具" />
 
                             <TextBlock Grid.Row="1"
                                        Style="{StaticResource FormulaNumberStyle}"
@@ -2936,7 +2954,7 @@
                             <TextBlock Grid.Row="3"
                                        Grid.Column="1"
                                        Style="{StaticResource FormulaTextStyle}"
-                                       Text="田甲方框四车力" />
+                                       Text="田甲方框四车里" />
 
                             <TextBlock Grid.Row="4"
                                        Style="{StaticResource FormulaNumberStyle}"
@@ -2945,7 +2963,7 @@
                             <TextBlock Grid.Row="4"
                                        Grid.Column="1"
                                        Style="{StaticResource FormulaTextStyle}"
-                                       Text="山由贝骨下框几" />
+                                       Text="山由贝骨下框集" />
                         </Grid>
                     </Grid>
                 </Viewbox>
@@ -2986,7 +3004,7 @@
                             <TextBlock Grid.Row="1"
                                        Grid.Column="1"
                                        Style="{StaticResource FormulaTextStyle}"
-                                       Text="白手看斤三二里" />
+                                       Text="白斤气丘叉手提" />
 
                             <TextBlock Grid.Row="2"
                                        Style="{StaticResource FormulaNumberStyle}"
@@ -2995,7 +3013,7 @@
                             <TextBlock Grid.Row="2"
                                        Grid.Column="1"
                                        Style="{StaticResource FormulaTextStyle}"
-                                       Text="月用家乃衣字底" />
+                                       Text="月用力豸毛衣臼" />
 
                             <TextBlock Grid.Row="3"
                                        Style="{StaticResource FormulaNumberStyle}"
@@ -3004,7 +3022,7 @@
                             <TextBlock Grid.Row="3"
                                        Grid.Column="1"
                                        Style="{StaticResource FormulaTextStyle}"
-                                       Text="人八登祭在一起" />
+                                       Text="人八登头单人几" />
 
                             <TextBlock Grid.Row="4"
                                        Style="{StaticResource FormulaNumberStyle}"
@@ -3013,7 +3031,7 @@
                             <TextBlock Grid.Row="4"
                                        Grid.Column="1"
                                        Style="{StaticResource FormulaTextStyle}"
-                                       Text="金夕犭儿包头鱼" />
+                                       Text="金夕鸟儿犭边鱼" />
                         </Grid>
                     </Grid>
                 </Viewbox>
@@ -3045,7 +3063,7 @@
 
                             <TextBlock Grid.Column="1"
                                        Style="{StaticResource FormulaTextStyle}"
-                                       Text="言文方广在四一" />
+                                       Text="言文方点谁人去" />
 
                             <TextBlock Grid.Row="1"
                                        Style="{StaticResource FormulaNumberStyle}"
@@ -3054,7 +3072,7 @@
                             <TextBlock Grid.Row="1"
                                        Grid.Column="1"
                                        Style="{StaticResource FormulaTextStyle}"
-                                       Text="立辛两点六门病" />
+                                       Text="立辛六羊病门里" />
 
                             <TextBlock Grid.Row="2"
                                        Style="{StaticResource FormulaNumberStyle}"
@@ -3063,7 +3081,7 @@
                             <TextBlock Grid.Row="2"
                                        Grid.Column="1"
                                        Style="{StaticResource FormulaTextStyle}"
-                                       Text="水旁兴头小倒立" />
+                                       Text="水族三点鳖头小" />
 
                             <TextBlock Grid.Row="3"
                                        Style="{StaticResource FormulaNumberStyle}"
@@ -3072,7 +3090,7 @@
                             <TextBlock Grid.Row="3"
                                        Grid.Column="1"
                                        Style="{StaticResource FormulaTextStyle}"
-                                       Text="火业兴头四点米" />
+                                       Text="火业广鹿四点米" />
 
                             <TextBlock Grid.Row="4"
                                        Style="{StaticResource FormulaNumberStyle}"
@@ -3081,7 +3099,7 @@
                             <TextBlock Grid.Row="4"
                                        Grid.Column="1"
                                        Style="{StaticResource FormulaTextStyle}"
-                                       Text="之字宝盖补示衣" />
+                                       Text="之字宝盖补礻衤" />
                         </Grid>
                     </Grid>
                 </Viewbox>
@@ -3122,7 +3140,7 @@
                             <TextBlock Grid.Row="1"
                                        Grid.Column="1"
                                        Style="{StaticResource FormulaTextStyle}"
-                                       Text="子耳了也框向上" />
+                                       Text="子耳了也乃框皮" />
 
                             <TextBlock Grid.Row="2"
                                        Style="{StaticResource FormulaNumberStyle}"
@@ -3131,7 +3149,7 @@
                             <TextBlock Grid.Row="2"
                                        Grid.Column="1"
                                        Style="{StaticResource FormulaTextStyle}"
-                                       Text="女刀九臼山朝西" />
+                                       Text="女刀九艮山西倒" />
 
                             <TextBlock Grid.Row="3"
                                        Style="{StaticResource FormulaNumberStyle}"
@@ -3140,7 +3158,7 @@
                             <TextBlock Grid.Row="3"
                                        Grid.Column="1"
                                        Style="{StaticResource FormulaTextStyle}"
-                                       Text="又巴甬矣马上骑" />
+                                       Text="又巴牛厶马失蹄" />
 
                             <TextBlock Grid.Row="4"
                                        Style="{StaticResource FormulaNumberStyle}"
@@ -3149,7 +3167,7 @@
                             <TextBlock Grid.Row="4"
                                        Grid.Column="1"
                                        Style="{StaticResource FormulaTextStyle}"
-                                       Text="幺母绞丝弓三匕" />
+                                       Text="幺母贯头弓和匕" />
                         </Grid>
                     </Grid>
                 </Viewbox>
@@ -4665,5 +4683,4 @@
             </Grid>
         </Grid>
     </Grid>
-
 </UserControl>

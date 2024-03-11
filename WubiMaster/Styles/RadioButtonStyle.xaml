@@ -20,7 +20,7 @@
 
                         <Ellipse x:Name="ellipse"
                                  Width="{Binding ElementName=grid, Path=Height}"
-                                 Height="{Binding Width}"
+                                 Height="{Binding ElementName=grid, Path=Height}"
                                  Fill="Transparent"
                                  Stroke="{DynamicResource primary-100}"
                                  StrokeThickness="2" />
