@@ -66,6 +66,8 @@ namespace WubiMaster.ViewModels
 
         private RegistryHelper registryHelper;
 
+        private string rimeKey;
+
         public SettingsViewModel()
         {
             registryHelper = new RegistryHelper();
@@ -77,9 +79,30 @@ namespace WubiMaster.ViewModels
             InitShiciInterval();
             InitLogBackList();
             LoadConfig();
+            GetRimeRegistryKey();
             ReadUserPathRegistry();
             ReadProcessPathRegistry();
             ReadServerRegistry();
+        }
+
+        private void GetRimeRegistryKey()
+        {
+            try
+            {
+                if (registryHelper.IsExist(KeyType.HKEY_LOCAL_MACHINE, @"Rime\Weasel"))
+                {
+                    rimeKey = @"Rime\Weasel";
+                }
+                else if (registryHelper.IsExist(KeyType.HKEY_LOCAL_MACHINE, @"WOW6432Node\Rime\Weasel"))
+                {
+                    rimeKey = @"WOW6432Node\Rime\Weasel";
+                }
+            }
+
+            catch (Exception ex)
+            {
+                LogHelper.Error(ex.Message);
+            }
         }
 
         private void ReadServerRegistry()
@@ -87,10 +110,9 @@ namespace WubiMaster.ViewModels
 
             try
             {
-                bool hasPath = registryHelper.IsExist(KeyType.HKEY_LOCAL_MACHINE, @"Rime\Weasel");
-                if (!hasPath) return;
+                if (string.IsNullOrEmpty(rimeKey)) return;
 
-                string sName = registryHelper.GetValue(KeyType.HKEY_LOCAL_MACHINE, @"Rime\Weasel", "ServerExecutable");
+                string sName = registryHelper.GetValue(KeyType.HKEY_LOCAL_MACHINE, rimeKey, "ServerExecutable");
                 if (string.IsNullOrEmpty(sName)) throw new NullReferenceException("无法找到 Rime 的注册表信息");
                 ConfigHelper.WriteConfigByString("weasel_server", sName);
             }
@@ -105,10 +127,9 @@ namespace WubiMaster.ViewModels
         {
             try
             {
-                bool hasPath = registryHelper.IsExist(KeyType.HKEY_LOCAL_MACHINE, @"Rime\Weasel");
-                if (!hasPath) return;
+                if (string.IsNullOrEmpty(rimeKey)) return;
 
-                string uPath = registryHelper.GetValue(KeyType.HKEY_LOCAL_MACHINE, @"Rime\Weasel", "InstallDir");
+                string uPath = registryHelper.GetValue(KeyType.HKEY_LOCAL_MACHINE, rimeKey, "InstallDir");
                 if (string.IsNullOrEmpty(uPath)) throw new NullReferenceException("无法找到 Rime 的注册表信息");
                 UserFilePath = uPath;
                 ConfigHelper.WriteConfigByString("user_file_path", UserFilePath);
@@ -124,10 +145,9 @@ namespace WubiMaster.ViewModels
         {
             try
             {
-                bool hasPath = registryHelper.IsExist(KeyType.HKEY_LOCAL_MACHINE, @"Rime\Weasel");
-                if (!hasPath) return;
+                if (string.IsNullOrEmpty(rimeKey)) return;
 
-                string pPath = registryHelper.GetValue(KeyType.HKEY_LOCAL_MACHINE, @"Rime\Weasel", "WeaselRoot");
+                string pPath = registryHelper.GetValue(KeyType.HKEY_LOCAL_MACHINE, rimeKey, "WeaselRoot");
                 if (string.IsNullOrEmpty(pPath)) throw new NullReferenceException("无法找到 Rime 的注册表信息");
                 ProcessFilePath = pPath;
                 ConfigHelper.WriteConfigByString("process_file_path", ProcessFilePath);
