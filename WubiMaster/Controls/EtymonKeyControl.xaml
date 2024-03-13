@@ -3549,10 +3549,8 @@
 
                                 <UniformGrid Grid.Row="2" Rows="1">
                                     <StackPanel Style="{StaticResource LeftStackPanelStyle}">
-                                        <TextBlock Style="{StaticResource PrimaryKeyTextStyle}" Text="" />
+                                        <TextBlock Style="{StaticResource PrimaryKeyTextStyle}" Text="" />
                                     </StackPanel>
-
-                                    <TextBlock Style="{StaticResource PrimaryKeyTextStyle}" Text="" />
 
                                     <StackPanel Style="{StaticResource RightStackPanelStyle}">
                                         <TextBlock Style="{StaticResource FanKeyTextStyle}" Text="" />

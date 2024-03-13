@@ -34,7 +34,14 @@
                           VerticalAlignment="Top"
                           FontSize="12"
                           Foreground="{DynamicResource text-100}"
-                          IsChecked="{Binding ShowFanKey, Mode=TwoWay}" />
+                          IsChecked="{Binding ShowFanKey, Mode=TwoWay}">
+
+                    <b:Interaction.Triggers>
+                        <b:EventTrigger EventName="Click">
+                            <b:InvokeCommandAction Command="{Binding ShowFanKeyCommand}" />
+                        </b:EventTrigger>
+                    </b:Interaction.Triggers>
+                </CheckBox>
 
                 <TextBlock Margin="10,3,0,0"
                            VerticalAlignment="Top"

@@ -51,6 +51,7 @@ namespace WubiMaster.ViewModels
                 App.Current.Dispatcher.BeginInvoke(() =>
                 {
                     string defaultCikuPath = ConfigHelper.ReadConfigByString("user_file_path") + "\\" + defaultCikuFile;
+                    if (!File.Exists(defaultCikuPath)) return;
 
                     // 按行读，找到 yaml 的结尾符 ...
                     string yamlText = "";
