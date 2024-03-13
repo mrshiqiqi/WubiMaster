@@ -170,6 +170,15 @@
         <c:PagingControl Grid.Row="2"
                          Margin="0,0,25,0"
                          HorizontalAlignment="Right"
-                         VerticalAlignment="Bottom" />
+                         VerticalAlignment="Bottom"
+                         CountChangedCommand="{Binding PageControlSelectionChangedCommand}"
+                         FirstPageCommand="{Binding ToFirstPageCommand}"
+                         IsEnabled="{Binding PageControlEnable}"
+                         LastPageCommand="{Binding ToLastPageCommand}"
+                         NextPageCommand="{Binding ToNextPageCommand}"
+                         PreviousPageCommand="{Binding ToPreviousPageCommand}"
+                         SelectedIndexOfCount="{Binding PageControlSelectedIndex}"
+                         TotalPageCount="{Binding TotalPageCount}"
+                         PageIndex="{Binding PageNumber}" />
     </Grid>
 </UserControl>

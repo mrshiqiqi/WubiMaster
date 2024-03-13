@@ -3,12 +3,12 @@ using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using System;
 using System.Collections.Concurrent;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Windows;
+using System.Windows.Controls;
 using WubiMaster.Common;
 using WubiMaster.Models;
 using WubiMaster.Views.PopViews;
@@ -17,16 +17,47 @@ namespace WubiMaster.ViewModels
 {
     public partial class LexiconViewModel : ObservableObject
     {
+        private List<CikuModel> CikuAllList;
+
         [ObservableProperty]
-        public ObservableCollection<CikuModel> cikuList;
+        private bool pageControlEnable;
+
+        [ObservableProperty]
+        private bool pageControlSelectedIndex;
+
+        [ObservableProperty]
+        private ObservableCollection<CikuModel> cikuList;
+
+        [ObservableProperty]
+        private int pageCount = 10;
+
+        [ObservableProperty]
+        private int pageNumber = 1;
+
+        [ObservableProperty]
+        private int totalPageCount;
 
         public LexiconViewModel()
         {
+            CikuAllList = new List<CikuModel>();
             WeakReferenceMessenger.Default.Register<string, string>(this, "ReLoadCikuData", ReLoadCikuData);
 
             LoadCikuData();
         }
 
+        [RelayCommand]
+        public void PageControlSelectionChanged(object obj)
+        {
+            ComboBoxItem item = (ComboBoxItem)obj;
+            var content = item.Content;
+            if (content != null)
+            {
+                PageCount = int.Parse(content.ToString());
+
+                CikuList?.Clear();
+                LoadCikuData();
+            }
+        }
 
         [RelayCommand]
         public void CreateWords(object obj)
@@ -34,10 +65,68 @@ namespace WubiMaster.ViewModels
             CreateWordsView createWordsView = new CreateWordsView();
             createWordsView.ShowPop();
         }
-        private void ReLoadCikuData(object recipient, string message)
+
+        [RelayCommand]
+        public void ToFirstPage(object obj)
         {
-            CikuList?.Clear();
-            LoadCikuData();
+            App.Current.Dispatcher.BeginInvoke(() =>
+            {
+                PageNumber = 0;
+                var _list = CikuAllList.AsParallel().Where(c => c.Id >= PageCount * PageNumber && c.Id < PageCount * (PageNumber + 1)).ToList();
+                ObservableCollection<CikuModel> temp_list = new ObservableCollection<CikuModel>();
+                foreach (var item in _list)
+                    temp_list.Add(item);
+
+                PageNumber++;
+                CikuList = temp_list;
+            });
+        }
+
+        [RelayCommand]
+        public void ToLastPage(object obj)
+        {
+            App.Current.Dispatcher.BeginInvoke(() =>
+            {
+                PageNumber = TotalPageCount;
+                var _list = CikuAllList.AsParallel().Where(c => c.Id >= PageCount * (PageNumber - 1) && c.Id < PageCount * PageNumber).ToList();
+                ObservableCollection<CikuModel> temp_list = new ObservableCollection<CikuModel>();
+                foreach (var item in _list)
+                    temp_list.Add(item);
+
+                CikuList = temp_list;
+            });
+        }
+
+        [RelayCommand]
+        public void ToNextPage(object obj)
+        {
+            App.Current.Dispatcher.BeginInvoke(() =>
+            {
+                if (PageNumber == TotalPageCount) { this.ShowMessage("没有更多内容了"); return; }
+                var _list = CikuAllList.AsParallel().Where(c => c.Id >= PageCount * PageNumber && c.Id < PageCount * (PageNumber + 1)).ToList();
+                ObservableCollection<CikuModel> temp_list = new ObservableCollection<CikuModel>();
+                foreach (var item in _list)
+                    temp_list.Add(item);
+
+                CikuList = temp_list;
+                PageNumber++;
+            });
+        }
+
+        [RelayCommand]
+        public void ToPreviousPage(object obj)
+        {
+            App.Current.Dispatcher.BeginInvoke(() =>
+            {
+                if (PageNumber == 1) { this.ShowMessage("没有更多内容了"); return; }
+                PageNumber--;
+                var _list = CikuAllList.AsParallel().Where(c => c.Id >= PageCount * (PageNumber - 1) && c.Id < PageCount * PageNumber).ToList();
+                ObservableCollection<CikuModel> temp_list = new ObservableCollection<CikuModel>();
+                foreach (var item in _list)
+                    temp_list.Add(item);
+
+                CikuList = temp_list;
+            });
         }
 
         private void LoadCikuData()
@@ -46,9 +135,9 @@ namespace WubiMaster.ViewModels
             if (string.IsNullOrEmpty(defaultCikuFile))
                 return;
 
-            try
+            App.Current.Dispatcher.BeginInvoke(() =>
             {
-                App.Current.Dispatcher.BeginInvoke(() =>
+                try
                 {
                     string defaultCikuPath = ConfigHelper.ReadConfigByString("user_file_path") + "\\" + defaultCikuFile;
                     if (!File.Exists(defaultCikuPath)) return;
@@ -89,21 +178,34 @@ namespace WubiMaster.ViewModels
 
                     var _list = wubiDictList.OrderBy(d => d.Id).ToList();
 
+                    // 初始化翻页控件数据
+                    CikuAllList = _list;
+                    PageNumber = 1;
+                    TotalPageCount = (CikuAllList.Count / PageCount) + ((CikuAllList.Count % PageCount) == 0 ? 0 : 1);
+                    PageControlEnable = TotalPageCount > 0 ? true : false;
+                    //
+
                     ObservableCollection<CikuModel> temp_list = new ObservableCollection<CikuModel>();
-                    for (int i = 0; i < 20; i++)
+                    for (int i = 0; i < PageCount; i++)
                     {
                         CikuModel c = _list[i];
                         temp_list.Add(c);
                     }
 
                     CikuList = temp_list;
-                });
-            }
-            catch (Exception ex)
-            {
-                this.ShowMessage($"无法加载词库信息，请检查配置信息是否正确！", DialogType.Warring);
-                LogHelper.Error(ex.Message);
-            }
+                }
+                catch (Exception ex)
+                {
+                    this.ShowMessage($"无法加载词库信息，请检查配置信息是否正确！", DialogType.Warring);
+                    LogHelper.Error(ex.Message);
+                }
+            });
+        }
+
+        private void ReLoadCikuData(object recipient, string message)
+        {
+            CikuList?.Clear();
+            LoadCikuData();
         }
     }
 }

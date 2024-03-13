@@ -6,8 +6,11 @@ namespace WubiMaster.Controls
 {
     public partial class PagingControl : UserControl
     {
+        public static readonly DependencyProperty CountChangedCommandProperty =
+            DependencyProperty.Register("CountChangedCommand", typeof(RelayCommand<object>), typeof(PagingControl));
+
         public static readonly DependencyProperty CountOfPageProperty =
-            DependencyProperty.Register("CountOfPage", typeof(int), typeof(PagingControl));
+                    DependencyProperty.Register("CountOfPage", typeof(int), typeof(PagingControl));
 
         public static readonly DependencyProperty FirstPageCommandProperty =
             DependencyProperty.Register("FirstPageCommand", typeof(RelayCommand<object>), typeof(PagingControl));
@@ -24,12 +27,21 @@ namespace WubiMaster.Controls
         public static readonly DependencyProperty PreviousPageCommandProperty =
             DependencyProperty.Register("PreviousPageCommand", typeof(RelayCommand<object>), typeof(PagingControl));
 
+        public static readonly DependencyProperty SelectedIndexOfCountProperty =
+            DependencyProperty.Register("SelectedIndexOfCount", typeof(int), typeof(PagingControl), new PropertyMetadata(0));
+
         public static readonly DependencyProperty TotalPageCountProperty =
-                    DependencyProperty.Register("TotalPageCount", typeof(int), typeof(PagingControl));
+                            DependencyProperty.Register("TotalPageCount", typeof(int), typeof(PagingControl));
 
         public PagingControl()
         {
             InitializeComponent();
+        }
+
+        public RelayCommand<object> CountChangedCommand
+        {
+            get { return (RelayCommand<object>)GetValue(CountChangedCommandProperty); }
+            set { SetValue(CountChangedCommandProperty, value); }
         }
 
         public int CountOfPage
@@ -66,6 +78,12 @@ namespace WubiMaster.Controls
         {
             get { return (RelayCommand<object>)GetValue(PreviousPageCommandProperty); }
             set { SetValue(PreviousPageCommandProperty, value); }
+        }
+
+        public int SelectedIndexOfCount
+        {
+            get { return (int)GetValue(SelectedIndexOfCountProperty); }
+            set { SetValue(SelectedIndexOfCountProperty, value); }
         }
 
         public int TotalPageCount
