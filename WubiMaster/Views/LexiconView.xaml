@@ -177,7 +177,7 @@
                          LastPageCommand="{Binding ToLastPageCommand}"
                          NextPageCommand="{Binding ToNextPageCommand}"
                          PreviousPageCommand="{Binding ToPreviousPageCommand}"
-                         SelectedIndexOfCount="{Binding PageControlSelectedIndex}"
+                         SelectedIndexOfCount="{Binding PageControlIndex, Mode=TwoWay}"
                          TotalPageCount="{Binding TotalPageCount}"
                          PageIndex="{Binding PageNumber}" />
     </Grid>

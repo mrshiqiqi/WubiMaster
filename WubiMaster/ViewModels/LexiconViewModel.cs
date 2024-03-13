@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using WubiMaster.Common;
@@ -23,13 +24,13 @@ namespace WubiMaster.ViewModels
         private bool pageControlEnable;
 
         [ObservableProperty]
-        private bool pageControlSelectedIndex;
+        private int pageControlIndex;
 
         [ObservableProperty]
         private ObservableCollection<CikuModel> cikuList;
 
         [ObservableProperty]
-        private int pageCount = 10;
+        private int pageCount;
 
         [ObservableProperty]
         private int pageNumber = 1;
@@ -53,6 +54,9 @@ namespace WubiMaster.ViewModels
             if (content != null)
             {
                 PageCount = int.Parse(content.ToString());
+
+                ConfigHelper.WriteConfigByInt("page_control_index",PageControlIndex);
+                ConfigHelper.WriteConfigByInt("page_count", PageCount);
 
                 CikuList?.Clear();
                 LoadCikuData();
@@ -180,7 +184,9 @@ namespace WubiMaster.ViewModels
 
                     // 初始化翻页控件数据
                     CikuAllList = _list;
+                    PageControlIndex = ConfigHelper.ReadConfigByInt("page_control_index", 1);
                     PageNumber = 1;
+                    PageCount = ConfigHelper.ReadConfigByInt("page_count", 20);
                     TotalPageCount = (CikuAllList.Count / PageCount) + ((CikuAllList.Count % PageCount) == 0 ? 0 : 1);
                     PageControlEnable = TotalPageCount > 0 ? true : false;
                     //

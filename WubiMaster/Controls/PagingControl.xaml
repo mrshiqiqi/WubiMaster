@@ -67,7 +67,7 @@
                           Background="{DynamicResource bg-100}"
                           BorderBrush="{DynamicResource bg-300}"
                           Foreground="{DynamicResource text-100}"
-                          SelectedIndex="{Binding ElementName=paging_control, Path=SelectedIndexOfCount}"
+                          SelectedIndex="{Binding ElementName=paging_control, Path=SelectedIndexOfCount, Mode=TwoWay}"
                           Text="{Binding ElementName=paging_control, Path=CountOfPage, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
 
                     <ComboBoxItem>10</ComboBoxItem>
