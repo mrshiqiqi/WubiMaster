@@ -44,6 +44,7 @@ namespace WubiMaster.ViewModels
             WeakReferenceMessenger.Default.Register<string, string>(this, "ReLoadCikuData", ReLoadCikuData);
 
             LoadCikuData();
+            InitPageControl();
         }
 
         [RelayCommand]
@@ -60,6 +61,7 @@ namespace WubiMaster.ViewModels
 
                 CikuList?.Clear();
                 LoadCikuData();
+                InitPageControl();
             }
         }
 
@@ -139,7 +141,7 @@ namespace WubiMaster.ViewModels
             if (string.IsNullOrEmpty(defaultCikuFile))
                 return;
 
-            App.Current.Dispatcher.BeginInvoke(() =>
+            App.Current.Dispatcher.Invoke(() =>
             {
                 try
                 {
@@ -181,37 +183,47 @@ namespace WubiMaster.ViewModels
                     });
 
                     var _list = wubiDictList.OrderBy(d => d.Id).ToList();
-
-                    // 初始化翻页控件数据
                     CikuAllList = _list;
-                    PageControlIndex = ConfigHelper.ReadConfigByInt("page_control_index", 1);
-                    PageNumber = 1;
-                    PageCount = ConfigHelper.ReadConfigByInt("page_count", 20);
-                    TotalPageCount = (CikuAllList.Count / PageCount) + ((CikuAllList.Count % PageCount) == 0 ? 0 : 1);
-                    PageControlEnable = TotalPageCount > 0 ? true : false;
-                    //
-
-                    ObservableCollection<CikuModel> temp_list = new ObservableCollection<CikuModel>();
-                    for (int i = 0; i < PageCount; i++)
-                    {
-                        CikuModel c = _list[i];
-                        temp_list.Add(c);
-                    }
-
-                    CikuList = temp_list;
                 }
                 catch (Exception ex)
                 {
-                    this.ShowMessage($"无法加载词库信息，请检查配置信息是否正确！", DialogType.Warring);
                     LogHelper.Error(ex.Message);
                 }
             });
+        }
+
+        private void InitPageControl()
+        {
+            try
+            {
+                PageControlIndex = ConfigHelper.ReadConfigByInt("page_control_index", 1);
+                PageNumber = 1;
+                PageCount = ConfigHelper.ReadConfigByInt("page_count", 20);
+                TotalPageCount = (CikuAllList.Count / PageCount) + ((CikuAllList.Count % PageCount) == 0 ? 0 : 1);
+                PageControlEnable = TotalPageCount > 0 ? true : false;
+
+                ObservableCollection<CikuModel> temp_list = new ObservableCollection<CikuModel>();
+                for (int i = 0; i < PageCount; i++)
+                {
+                    CikuModel c = CikuAllList[i];
+                    temp_list.Add(c);
+                }
+
+                CikuList = temp_list;
+            }
+            catch (Exception ex)
+            {
+                this.ShowMessage($"无法加载词库信息，请检查配置信息是否正确！", DialogType.Warring);
+                LogHelper.Error(ex.Message);
+            }
+            
         }
 
         private void ReLoadCikuData(object recipient, string message)
         {
             CikuList?.Clear();
             LoadCikuData();
+            InitPageControl();
         }
     }
 }
