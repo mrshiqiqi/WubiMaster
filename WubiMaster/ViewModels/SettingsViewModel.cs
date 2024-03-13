@@ -127,10 +127,13 @@ namespace WubiMaster.ViewModels
         {
             try
             {
-                if (string.IsNullOrEmpty(rimeKey)) return;
+                if (!registryHelper.IsExist(KeyType.HKEY_CURRENT_USER, @"Rime\Weasel")) return;
 
-                string uPath = registryHelper.GetValue(KeyType.HKEY_LOCAL_MACHINE, rimeKey, "InstallDir");
-                if (string.IsNullOrEmpty(uPath)) throw new NullReferenceException("无法找到 Rime 的注册表信息");
+                //string uPath = registryHelper.GetValue(KeyType.HKEY_LOCAL_MACHINE, rimeKey, "InstallDir");
+                string uPath = registryHelper.GetValue(KeyType.HKEY_CURRENT_USER, @"Rime\Weasel", "RimeUserDir");
+                if(string.IsNullOrEmpty(uPath))
+                    uPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)+ @"Roaming\Rime";
+                //if (string.IsNullOrEmpty(uPath)) throw new NullReferenceException("无法找到 Rime 的注册表信息");
                 UserFilePath = uPath;
                 ConfigHelper.WriteConfigByString("user_file_path", UserFilePath);
             }
