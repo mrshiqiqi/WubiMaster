@@ -3529,8 +3529,6 @@
 
                                 <StackPanel Style="{StaticResource LeftStackPanelStyle}">
                                     <TextBlock Style="{StaticResource FirstKeyTextStyle}" Text="" />
-                                    <TextBlock Style="{StaticResource SubKeyTextStyle}" Text="" />
-                                    <TextBlock Style="{StaticResource SubKeyTextStyle}" Text="" />
                                 </StackPanel>
 
                                 <StackPanel Style="{StaticResource RightStackPanelStyle}">
@@ -3539,7 +3537,8 @@
                                 </StackPanel>
 
                                 <StackPanel Grid.Row="1" Style="{StaticResource LeftStackPanelStyle}">
-                                    <TextBlock Style="{StaticResource PrimaryKeyTextStyle}" Text="" />
+                                    <TextBlock Style="{StaticResource SubKeyTextStyle}" Text="" />
+                                    <TextBlock Style="{StaticResource SubKeyTextStyle}" Text="" />
                                 </StackPanel>
 
                                 <StackPanel Grid.Row="1" Style="{StaticResource RightStackPanelStyle}">
@@ -3721,12 +3720,12 @@
 
                                 <StackPanel Grid.Row="1" Style="{StaticResource LeftStackPanelStyle}">
                                     <TextBlock Style="{StaticResource PrimaryKeyTextStyle}" Text="" />
-                                    <TextBlock Style="{StaticResource SubKeyTextStyle}" Text="" />
                                 </StackPanel>
 
                                 <StackPanel Grid.Row="1" Style="{StaticResource RightStackPanelStyle}">
                                     <TextBlock Style="{StaticResource SubKeyTextStyle}" Text="" />
                                     <TextBlock Style="{StaticResource SubKeyTextStyle}" Text="" />
+                                    <TextBlock Style="{StaticResource SubKeyTextStyle}" Text="" />
                                     <TextBlock Style="{StaticResource PrimaryKeyTextStyle}" Text="" />
                                 </StackPanel>
 
@@ -4600,7 +4599,7 @@
                             <TextBlock Grid.Row="1"
                                        Grid.Column="1"
                                        Style="{StaticResource FormulaTextStyle}"
-                                       Text="立辛两点病门里" />
+                                       Text="立带两点病门里" />
 
                             <TextBlock Grid.Row="2"
                                        Style="{StaticResource FormulaNumberStyle}"
