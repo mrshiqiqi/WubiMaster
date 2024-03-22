@@ -42,7 +42,7 @@
                           ButtonCommand="{Binding CreateWordsCommand}"
                           ButtonForeground="{DynamicResource bg-100}"
                           ButtonHeight="25"
-                          ButtonMargin="4"
+                          ButtonPadding="4"
                           ButtonWidth="25"
                           IconText="&#xe60f;"
                           ToolTip="自造词" />

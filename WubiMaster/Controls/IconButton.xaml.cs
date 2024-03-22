@@ -22,8 +22,8 @@ namespace WubiMaster.Controls
         public static readonly DependencyProperty ButtonHeightProperty =
             DependencyProperty.Register("ButtonHeight", typeof(double), typeof(IconButton));
 
-        public static readonly DependencyProperty ButtonMarginProperty =
-            DependencyProperty.Register("ButtonMargin", typeof(Thickness), typeof(IconButton));
+        public static readonly DependencyProperty ButtonPaddingProperty =
+            DependencyProperty.Register("ButtonPadding", typeof(Thickness), typeof(IconButton));
 
         public static readonly DependencyProperty ButtonWidthProperty =
                     DependencyProperty.Register("ButtonWidth", typeof(double), typeof(IconButton));
@@ -66,10 +66,10 @@ namespace WubiMaster.Controls
             set { SetValue(ButtonHeightProperty, value); }
         }
 
-        public Thickness ButtonMargin
+        public Thickness ButtonPadding
         {
-            get { return (Thickness)GetValue(ButtonMarginProperty); }
-            set { SetValue(ButtonMarginProperty, value); }
+            get { return (Thickness)GetValue(ButtonPaddingProperty); }
+            set { SetValue(ButtonPaddingProperty, value); }
         }
 
         public double ButtonWidth

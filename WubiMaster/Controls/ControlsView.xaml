@@ -1,0 +1,35 @@
+﻿<Window x:Class="WubiMaster.Controls.ControlsView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:WubiMaster.Controls"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        Title="ControlsView"
+        Width="800"
+        Height="450"
+        mc:Ignorable="d">
+    <UniformGrid Columns="4">
+
+        <local:IconButton Background="Gray"
+                          ButtonBackground="Yellow"
+                          ButtonForeground="Green"
+                          ButtonHeight="100"
+                          ButtonPadding="5"
+                          ButtonWidth="100"
+                          IconText="&#xeca0;" />
+
+        <local:IconButton ButtonBackground="Red"
+                          ButtonForeground="Green"
+                          ButtonHeight="100"
+                          ButtonPadding="15"
+                          ButtonWidth="100"
+                          IconText="&#xeca0;" />
+
+        <local:IconButton ButtonBackground="Red"
+                          ButtonForeground="Green"
+                          ButtonHeight="100"
+                          ButtonPadding="15"
+                          ButtonWidth="100"
+                          IconText="&#xeca0;" />
+    </UniformGrid>
+</Window>

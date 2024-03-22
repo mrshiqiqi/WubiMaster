@@ -30,7 +30,7 @@
         <Setter Property="ButtonForeground" Value="{DynamicResource primary-200}" />
         <Setter Property="ButtonWidth" Value="50" />
         <Setter Property="ButtonHeight" Value="50 " />
-        <Setter Property="ButtonMargin" Value="10" />
+        <Setter Property="ButtonPadding" Value="10" />
     </Style>
 
     <Style x:Key="WubiIocnStyle" TargetType="Border">
@@ -63,7 +63,7 @@
         <Setter Property="ButtonHeight" Value="40" />
         <Setter Property="ButtonWidth" Value="40" />
         <Setter Property="IconText" Value="&#xe978;" />
-        <Setter Property="ButtonMargin" Value="8" />
+        <Setter Property="ButtonPadding" Value="8" />
     </Style>
 
     <Style x:Key="WubiZigenStyle" TargetType="TextBlock">

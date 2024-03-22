@@ -196,6 +196,8 @@ namespace WubiMaster.ViewModels
         {
             try
             {
+                if (CikuAllList.Count <= 0) return;
+
                 PageControlIndex = ConfigHelper.ReadConfigByInt("page_control_index", 1);
                 PageNumber = 1;
                 PageCount = ConfigHelper.ReadConfigByInt("page_count", 20);
