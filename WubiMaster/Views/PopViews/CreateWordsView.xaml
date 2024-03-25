@@ -13,11 +13,15 @@
         mc:Ignorable="d">
 
     <Grid Margin="10">
-        <Border Background="{DynamicResource bg-200}" CornerRadius="15">
+        <Border Background="{DynamicResource bg-200}"
+                BorderBrush="{DynamicResource primary-300}"
+                BorderThickness="2"
+                CornerRadius="15">
             <Grid Margin="5">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="30" />
                     <RowDefinition />
+                    <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
                 <TextBlock Margin="5,0,0,0"
@@ -38,12 +42,78 @@
 
                 <Grid Grid.Row="1">
                     <Grid.RowDefinitions>
-                        <RowDefinition />
-                        <RowDefinition />
-                        <RowDefinition />
-                        <RowDefinition />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="80" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
 
+                    <TextBlock HorizontalAlignment="Left"
+                               VerticalAlignment="Center"
+                               Text="新词" />
+                    <TextBox Grid.Column="1" Margin="5" />
+
+                    <TextBlock Grid.Row="1"
+                               HorizontalAlignment="Left"
+                               VerticalAlignment="Center"
+                               Text="新词编码" />
+                    <TextBox Grid.Row="1"
+                             Grid.Column="1"
+                             Margin="5"
+                             IsReadOnly="True" />
+
+                    <TextBlock Grid.Row="2"
+                               HorizontalAlignment="Left"
+                               VerticalAlignment="Center"
+                               Text="已有重码" />
+                    <TextBox Grid.Row="2"
+                             Grid.Column="1"
+                             Height="100"
+                             Margin="5"
+                             IsReadOnly="True"
+                             TextWrapping="Wrap" />
+
+                    <TextBlock Grid.Row="3"
+                               HorizontalAlignment="Left"
+                               VerticalAlignment="Center"
+                               Text="选择词库" />
+                    <ComboBox Grid.Row="3"
+                              Grid.Column="1"
+                              Margin="5"
+                              Text="???" />
+                </Grid>
+
+                <Grid Grid.Row="2" Margin="5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <Button Width="120"
+                            Height="25"
+                            Margin="3"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            Content="确认并添加下一个" />
+                    <Button Grid.Column="1"
+                            Width="60"
+                            Height="25"
+                            Margin="3"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Center"
+                            Content="确认" />
+                    <Button Grid.Column="2"
+                            Width="60"
+                            Height="25"
+                            Margin="3"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Center"
+                            Content="取消" />
                 </Grid>
             </Grid>
         </Border>
