@@ -86,7 +86,7 @@ namespace WubiMaster.Common
             msgControl.Message = message;
             msgControl.Type = type;
             msgControl.IconColor = Brushes.Orange;
-            msgControl.CloseCommand = (RelayCommand<object>)dataContent.CloseCommand;
+            msgControl.CloseCommand = (RelayCommand<object>)dataContent.CloseMessageCommand;
             msgControl.CommandParameter = msgView;
 
             msgView.Owner = owner;

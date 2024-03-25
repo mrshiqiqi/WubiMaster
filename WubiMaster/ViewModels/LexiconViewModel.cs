@@ -9,6 +9,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using WubiMaster.Common;
 using WubiMaster.Models;
@@ -68,8 +69,24 @@ namespace WubiMaster.ViewModels
         [RelayCommand]
         public void CreateWords(object obj)
         {
+            Window mainWindow = App.Current.MainWindow;
+
+            WeakReferenceMessenger.Default.Send<string, string>("true", "ShowMaskLayer");
+
             CreateWordsView createWordsView = new CreateWordsView();
+            createWordsView.Owner = mainWindow;
+            createWordsView.WindowStartupLocation = WindowStartupLocation.CenterOwner;
             createWordsView.ShowPop();
+        }
+
+        [RelayCommand]
+        public void ClosePopView(object obj)
+        {
+            Window popView = obj as Window;
+
+            WeakReferenceMessenger.Default.Send<string, string>("true", "ShowMaskLayer");
+
+            popView?.ClosePop();
         }
 
         [RelayCommand]
