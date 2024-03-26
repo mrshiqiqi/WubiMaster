@@ -26,7 +26,7 @@
                         CBBackground="{DynamicResource primary-200}"
                         CBBorderBrush="{DynamicResource primary-100}"
                         CBBorderThinckness="1"
-                        CBCommand="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=CloseCommand}"
+                        CBCommand="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=CancelCommand}"
                         CBCommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=CommandParameter}"
                         CBForeground="{DynamicResource bg-100}" />
 
@@ -90,13 +90,25 @@
                     </Grid>
                 </Border>
 
-                <Button Grid.Row="1"
-                        MaxWidth="110"
-                        MaxHeight="35"
-                        Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=CloseCommand}"
-                        CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=CommandParameter}"
-                        Content="确认"
-                        Foreground="{DynamicResource bg-100}" />
+                <UniformGrid Grid.Row="1" Rows="1">
+
+                    <Button MaxWidth="110"
+                            MaxHeight="35"
+                            Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=ConfirmCommand}"
+                            CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=CommandParameter}"
+                            Content="确认"
+                            Foreground="{DynamicResource bg-100}" />
+
+                    <Button MaxWidth="110"
+                            MaxHeight="35"
+                            Background="{DynamicResource bg-300}"
+                            Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=CancelCommand}"
+                            CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=CommandParameter}"
+                            Content="取消"
+                            Foreground="{DynamicResource bg-100}"
+                            Visibility="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=CancelButtonVisibility}" />
+                </UniformGrid>
+
             </Grid>
         </Border>
     </Grid>

@@ -174,7 +174,7 @@ namespace WubiMaster.ViewModels
         }
 
         [RelayCommand]
-        public void CreateScheme(object obj)
+        public async void CreateScheme(object obj)
         {
             if (obj == null) return;
 
@@ -183,12 +183,73 @@ namespace WubiMaster.ViewModels
             {
                 case "86":
                     // 先检测rime环境
-                    // 再将包导入进去
+                    if (string.IsNullOrEmpty(GlobalValues.UserPath) || string.IsNullOrEmpty(GlobalValues.ProcessPath))
+                    {
+                        this.ShowMessage("未检测到 Rime 引擎的安装信息，请先安装 Rime 程序！", DialogType.Warring);
+                        return;
+                    }
+
                     // 在配置前，先提示会将原有的方案覆盖
+                    bool? result = this.ShowAskMessage("请注意：本次操作将清除 Rime 用户目录下所有数据！", DialogType.Normal);
+                    if (result != true)
+                        return;
+
+                    // 再将包导入进去
+                    try
+                    {
+                        // 停止服务
+                        ServiceHelper.KillService();
+                        await Task.Delay(1000);
+
+                        // 删除用户目录中的配置
+                        if (Directory.Exists(GlobalValues.UserPath))
+                        {
+                            DirectoryInfo dir = new DirectoryInfo(GlobalValues.UserPath);
+                            FileSystemInfo[] fileinfo = dir.GetFileSystemInfos();  //返回目录中所有文件和子目录
+                            foreach (FileSystemInfo i in fileinfo)
+                            {
+                                if (i is DirectoryInfo)            //判断是否文件夹
+                                {
+                                    DirectoryInfo subdir = new DirectoryInfo(i.FullName);
+                                    subdir.Delete(true);          //删除子目录和文件
+                                }
+                                else
+                                {
+                                    File.Delete(i.FullName);      //删除指定文件
+                                }
+                            }
+                        }
+                        await Task.Delay(500);
+
+                        // 将方案解压到用户目录
+                        string scheme_zip = AppDomain.CurrentDomain.BaseDirectory + @$"Assets\Schemes\scheme86.zip";
+                        ZipHelper.DecompressZip(scheme_zip, GlobalValues.UserPath);
+
+                        // 安装字根字体
+                        if (!FontHelper.CheckFont("黑体字根.ttf"))
+                        {
+                            string heiti_font = AppDomain.CurrentDomain.BaseDirectory + @$"Assets\Fonts\黑体字根.ttf";
+                            FontHelper.InstallFont(heiti_font);
+                        }
+
+                        // 启动服务
+                        ServiceHelper.RunService();
+                    }
+                    catch (Exception ex)
+                    {
+                        LogHelper.Error(ex.Message,true);
+                        this.ShowMessage("配置失败", DialogType.Error);
+                        return;
+                    }
+
+                    this.ShowMessage("配置成功，记得重新部署哦😀");
+
                     break;
                 case "98":
+                    this.ShowMessage("该功能暂未开放", DialogType.Normal);
                     break;
                 default:
+                    this.ShowMessage("该功能暂未开放", DialogType.Normal);
                     break;
             }
         }

@@ -20,7 +20,27 @@ namespace WubiMaster.Common
 
     public static class ObjectExtend
     {
-        public static void CloseMessage(this object obj, object msgView)
+        public static void Cancel(this object obj, object msgView)
+        {
+            if (msgView == null) return;
+            WeakReferenceMessenger.Default.Send<string, string>("false", "ShowMaskLayer");
+
+            try
+            {
+                MessageView view = (MessageView)msgView;
+                view.DialogResult = false ;
+            }
+            catch (System.Exception ex)
+            {
+                MessageView view = (MessageView)msgView;
+                view.Close();
+
+                LogHelper.Warn("提示窗口未正常关闭");
+                LogHelper.Error(ex.Message);
+            }
+        }
+
+        public static void Confirm(this object obj, object msgView)
         {
             if (msgView == null) return;
             WeakReferenceMessenger.Default.Send<string, string>("false", "ShowMaskLayer");
@@ -46,7 +66,8 @@ namespace WubiMaster.Common
 
             WeakReferenceMessenger.Default.Send<string, string>("true", "ShowMaskLayer");
 
-            App.Current.Dispatcher.BeginInvoke(() => {
+            App.Current.Dispatcher.BeginInvoke(() =>
+            {
                 switch (type)
                 {
                     case DialogType.Normal:
@@ -75,7 +96,46 @@ namespace WubiMaster.Common
             });
         }
 
-        private static void NewMessageBox(string message, Window owner, string type)
+        public static bool? ShowAskMessage(this object obj, string message, DialogType type = DialogType.Normal)
+        {
+            bool? optionValue = null;
+            Window mainWindow = App.Current.MainWindow;
+
+            WeakReferenceMessenger.Default.Send<string, string>("true", "ShowMaskLayer");
+
+            App.Current.Dispatcher.Invoke(() =>
+            {
+                switch (type)
+                {
+                    case DialogType.Normal:
+                        optionValue = NewMessageBox(message, mainWindow, "Normal", true);
+                        break;
+
+                    case DialogType.Warring:
+                        optionValue = NewMessageBox(message, mainWindow, "Warn", true);
+                        break;
+
+                    case DialogType.Error:
+                        optionValue = NewMessageBox(message, mainWindow, "Error", true);
+                        break;
+
+                    case DialogType.Fail:
+                        optionValue = NewMessageBox(message, mainWindow, "Fail", true);
+                        break;
+
+                    case DialogType.Success:
+                        optionValue = NewMessageBox(message, mainWindow, "Succeed", true);
+                        break;
+
+                    default:
+                        break;
+                }
+            });
+
+            return optionValue;
+        }
+
+        private static bool? NewMessageBox(string message, Window owner, string type, bool isAsk = false)
         {
             MessageView msgView = new MessageView();
             MessageBoxControl msgControl = new MessageBoxControl();
@@ -83,17 +143,19 @@ namespace WubiMaster.Common
 
             dataContent.MessageBox = msgControl;
 
+            if (isAsk) msgControl.CancelButtonVisibility = Visibility.Visible;
             msgControl.Message = message;
             msgControl.Type = type;
             msgControl.IconColor = Brushes.Orange;
-            msgControl.CloseCommand = (RelayCommand<object>)dataContent.CloseMessageCommand;
+            msgControl.CancelCommand = (RelayCommand<object>)dataContent.CancelPopCommand;
+            msgControl.ConfirmCommand = (RelayCommand<object>)dataContent.ConfirmPopCommand;
             msgControl.CommandParameter = msgView;
 
             msgView.Owner = owner;
             msgView.WindowStartupLocation = WindowStartupLocation.CenterOwner;
             msgView.DataContext = dataContent;
 
-            msgView.ShowPop();
+            return msgView.ShowPop();
         }
     }
 }

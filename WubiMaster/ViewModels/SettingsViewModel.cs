@@ -114,7 +114,8 @@ namespace WubiMaster.ViewModels
 
                 string sName = registryHelper.GetValue(KeyType.HKEY_LOCAL_MACHINE, rimeKey, "ServerExecutable");
                 if (string.IsNullOrEmpty(sName)) throw new NullReferenceException("无法找到 Rime 的注册表信息");
-                ConfigHelper.WriteConfigByString("weasel_server", sName);
+                GlobalValues.ServerName = sName;
+                //ConfigHelper.WriteConfigByString("weasel_server", sName);
             }
 
             catch (Exception ex)
@@ -129,12 +130,14 @@ namespace WubiMaster.ViewModels
             {
                 if (!registryHelper.IsExist(KeyType.HKEY_CURRENT_USER, @"Rime\Weasel")) return;
 
-                //string uPath = registryHelper.GetValue(KeyType.HKEY_LOCAL_MACHINE, rimeKey, "InstallDir");
                 string uPath = registryHelper.GetValue(KeyType.HKEY_CURRENT_USER, @"Rime\Weasel", "RimeUserDir");
                 if(string.IsNullOrEmpty(uPath))
-                    uPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)+ @"Roaming\Rime";
-                //if (string.IsNullOrEmpty(uPath)) throw new NullReferenceException("无法找到 Rime 的注册表信息");
-                UserFilePath = uPath;
+                {
+                    uPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"Roaming\Rime";
+                    if (!Directory.Exists(uPath)) throw new NullReferenceException("UserPath: 无法找到 Rime 的注册表信息");
+                }
+
+                UserFilePath = GlobalValues.UserPath = uPath;
                 ConfigHelper.WriteConfigByString("user_file_path", UserFilePath);
             }
 
@@ -151,8 +154,8 @@ namespace WubiMaster.ViewModels
                 if (string.IsNullOrEmpty(rimeKey)) return;
 
                 string pPath = registryHelper.GetValue(KeyType.HKEY_LOCAL_MACHINE, rimeKey, "WeaselRoot");
-                if (string.IsNullOrEmpty(pPath)) throw new NullReferenceException("无法找到 Rime 的注册表信息");
-                ProcessFilePath = pPath;
+                if (string.IsNullOrEmpty(pPath)) throw new NullReferenceException("ProcessFilePath: 无法找到 Rime 的注册表信息");
+                ProcessFilePath = GlobalValues.ProcessPath = pPath;
                 ConfigHelper.WriteConfigByString("process_file_path", ProcessFilePath);
             }
 

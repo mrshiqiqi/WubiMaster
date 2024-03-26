@@ -7,8 +7,8 @@ namespace WubiMaster.Controls
 {
     public partial class MessageBoxControl : UserControl
     {
-        public static readonly DependencyProperty CloseCommandProperty =
-            DependencyProperty.Register("CloseCommand", typeof(RelayCommand<object>), typeof(MessageBoxControl));
+        public static readonly DependencyProperty CancelCommandProperty =
+            DependencyProperty.Register("CancelCommand", typeof(RelayCommand<object>), typeof(MessageBoxControl));
 
         public static readonly DependencyProperty CommandParameterProperty =
             DependencyProperty.Register("CommandParameter", typeof(object), typeof(MessageBoxControl));
@@ -45,10 +45,10 @@ namespace WubiMaster.Controls
             InitializeComponent();
         }
 
-        public RelayCommand<object> CloseCommand
+        public RelayCommand<object> CancelCommand
         {
-            get { return (RelayCommand<object>)GetValue(CloseCommandProperty); }
-            set { SetValue(CloseCommandProperty, value); }
+            get { return (RelayCommand<object>)GetValue(CancelCommandProperty); }
+            set { SetValue(CancelCommandProperty, value); }
         }
 
         public object CommandParameter
@@ -165,5 +165,27 @@ namespace WubiMaster.Controls
                     break;
             }
         }
+
+        public RelayCommand<object> ConfirmCommand
+        {
+            get { return (RelayCommand<object>)GetValue(ConfirmCommandProperty); }
+            set { SetValue(ConfirmCommandProperty, value); }
+        }
+
+        public static readonly DependencyProperty ConfirmCommandProperty =
+            DependencyProperty.Register("ConfirmCommand", typeof(RelayCommand<object>), typeof(MessageBoxControl));
+
+
+
+        public Visibility CancelButtonVisibility
+        {
+            get { return (Visibility)GetValue(CancelButtonVisibilityProperty); }
+            set { SetValue(CancelButtonVisibilityProperty, value); }
+        }
+
+        public static readonly DependencyProperty CancelButtonVisibilityProperty =
+            DependencyProperty.Register("CancelButtonVisibility", typeof(Visibility), typeof(MessageBoxControl), new PropertyMetadata(Visibility.Collapsed));
+
+
     }
 }

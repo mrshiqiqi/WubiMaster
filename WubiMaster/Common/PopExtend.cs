@@ -20,11 +20,11 @@ namespace WubiMaster.Common
             }
         }
 
-        public static void ShowPop(this Window pop)
+        public static bool? ShowPop(this Window pop)
         {
-            if (pop == null) return;
+            if (pop == null) return null;
 
-            pop.ShowDialog();
+            return pop.ShowDialog();
         }
     }
 }

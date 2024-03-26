@@ -18,7 +18,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Assets\Schemes\scheme86.7z" />
+    <None Remove="Assets\Fonts\黑体字根.ttf" />
+    <None Remove="Assets\Schemes\scheme86.zip" />
     <None Remove="Assets\Spelling\wb06_spelling.txt" />
     <None Remove="Assets\Spelling\wb86_spelling.txt" />
     <None Remove="Assets\Spelling\wb98_spelling.txt" />
@@ -44,7 +45,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Assets\Schemes\scheme86.7z">
+    <Content Include="Assets\Schemes\scheme86.zip">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="faviocn.ico">
@@ -70,9 +71,14 @@
     <Content Include="Assets\Spelling\wb98_spelling.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Assets\Fonts\黑体字根.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Resource Include="Fonts\iconfont.ttf" />
     <Resource Include="Fonts\方正启体_GBK.ttf" />
-    <Resource Include="Fonts\黑体字根.ttf" />
+    <Resource Include="Fonts\黑体字根.ttf">
+      <CopyToOutputDirectory></CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Images\JinriShici\低头.png" />
     <Resource Include="Images\JinriShici\侧脸.png" />
     <Resource Include="Images\JinriShici\侧身微笑.png" />
