@@ -222,13 +222,13 @@ namespace WubiMaster.ViewModels
                         await Task.Delay(500);
 
                         // 将方案解压到用户目录
-                        string scheme_zip = AppDomain.CurrentDomain.BaseDirectory + @$"Assets\Schemes\scheme86.zip";
+                        string scheme_zip = GlobalValues.Scheme86Zip;
                         ZipHelper.DecompressZip(scheme_zip, GlobalValues.UserPath);
 
                         // 安装字根字体
                         if (!FontHelper.CheckFont("黑体字根.ttf"))
                         {
-                            string heiti_font = AppDomain.CurrentDomain.BaseDirectory + @$"Assets\Fonts\黑体字根.ttf";
+                            string heiti_font = GlobalValues.HeitiFont;
                             FontHelper.InstallFont(heiti_font);
                         }
 

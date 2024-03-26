@@ -18,7 +18,6 @@ namespace WubiMaster.Common
     {
         private static ConcurrentQueue<SpellingModel> spellingQueue06;
         private static ConcurrentQueue<SpellingModel> spellingQueue86;
-
         private static ConcurrentQueue<SpellingModel> spellingQueue98;
 
         public static ConcurrentQueue<SpellingModel> SpellingQueue06
@@ -99,34 +98,6 @@ namespace WubiMaster.Common
             }
         }
 
-        private static ConcurrentQueue<SpellingModel> ReadSpellingText(string type)
-        {
-            ConcurrentQueue<SpellingModel> tempQueue = new ConcurrentQueue<SpellingModel>();
-            string spellingFile = AppDomain.CurrentDomain.BaseDirectory + @$"Assets\Spelling\wb{type}_spelling.txt";
-
-            string[] spellingDatas = File.ReadAllLines(spellingFile);
-            Parallel.For(0, spellingDatas.Length,
-              index =>
-              {
-                  string[] tempArray = new string[] { "", "", "", "" };
-                  SpellingModel model = new SpellingModel();
-                  string dataStr = spellingDatas[index];
-                  string[] dataKeyValue = dataStr.Split('\t');
-                  string _tempStr = dataKeyValue[1].Replace('[', ' ').Replace(']', ' ').Replace('※', ' ');
-                  string[] spelldata = _tempStr.Split(',');
-
-                  model.Text = dataKeyValue[0].Trim();
-                  model.Spelling = spelldata[0].Trim();
-                  model.Code = spelldata[1].Trim();
-                  if (spelldata.Length > 3)
-                      model.Pinyin = spelldata[2].Split('_').Where(p => p.Trim().Length > 0).Select(p => p.Trim()).ToArray();
-                  model.GBType = spelldata[^1].Trim();
-                  tempQueue.Enqueue(model);
-              });
-
-            return tempQueue;
-        }
-
         public static void LoadAllSpellingData()
         {
             _ = SpellingWorker.SpellingQueue86;
@@ -190,6 +161,34 @@ namespace WubiMaster.Common
             {
                 throw;
             }
+        }
+
+        private static ConcurrentQueue<SpellingModel> ReadSpellingText(string type)
+        {
+            ConcurrentQueue<SpellingModel> tempQueue = new ConcurrentQueue<SpellingModel>();
+            string spellingFile = AppDomain.CurrentDomain.BaseDirectory + @$"Assets\Spelling\wb{type}_spelling.txt";
+
+            string[] spellingDatas = File.ReadAllLines(spellingFile);
+            Parallel.For(0, spellingDatas.Length,
+              index =>
+              {
+                  string[] tempArray = new string[] { "", "", "", "" };
+                  SpellingModel model = new SpellingModel();
+                  string dataStr = spellingDatas[index];
+                  string[] dataKeyValue = dataStr.Split('\t');
+                  string _tempStr = dataKeyValue[1].Replace('[', ' ').Replace(']', ' ').Replace('※', ' ');
+                  string[] spelldata = _tempStr.Split(',');
+
+                  model.Text = dataKeyValue[0].Trim();
+                  model.Spelling = spelldata[0].Trim();
+                  model.Code = spelldata[1].Trim();
+                  if (spelldata.Length > 3)
+                      model.Pinyin = spelldata[2].Split('_').Where(p => p.Trim().Length > 0).Select(p => p.Trim()).ToArray();
+                  model.GBType = spelldata[^1].Trim();
+                  tempQueue.Enqueue(model);
+              });
+
+            return tempQueue;
         }
     }
 }
