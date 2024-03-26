@@ -52,7 +52,7 @@ namespace WubiMaster.ViewModels
             {
                 SpellingWorker.SpellingQueue86.AsParallel().ForAll(s =>
                 {
-                    if (s.GBType!="GBK")
+                    if (s.GBType != "GBK")
                         keyTextDict.TryAdd(s.Text, new string[] { s.Code, "", "" });
                 });
 
@@ -170,6 +170,26 @@ namespace WubiMaster.ViewModels
             catch (Exception ex)
             {
                 LogHelper.Error(ex.Message);
+            }
+        }
+
+        [RelayCommand]
+        public void CreateScheme(object obj)
+        {
+            if (obj == null) return;
+
+            string type = obj.ToString();
+            switch (type)
+            {
+                case "86":
+                    // 先检测rime环境
+                    // 再将包导入进去
+                    // 在配置前，先提示会将原有的方案覆盖
+                    break;
+                case "98":
+                    break;
+                default:
+                    break;
             }
         }
     }
