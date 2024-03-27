@@ -400,13 +400,13 @@
                                           ButtonCommandParameter="750379822"
                                           IconText="&#xE882;"
                                           Style="{StaticResource SocialIconStyle}"
-                                          ToolTip="750379822" />
+                                          ToolTip="QQ群" />
 
                             <c:IconButton ButtonCommand="{Binding CopyInfoCommand}"
                                           ButtonCommandParameter="mrshiqiqi@126.com"
                                           IconText="&#xe637;"
                                           Style="{StaticResource SocialIconStyle}"
-                                          ToolTip="mrshiqiqi@126.com" />
+                                          ToolTip="联系邮箱" />
 
                             <c:IconButton ButtonCommand="{Binding ToWebPageCommand}"
                                           ButtonCommandParameter="https://hi-coder.gitee.io/"
@@ -415,10 +415,10 @@
                                           ToolTip="博客" />
 
                             <c:IconButton ButtonCommand="{Binding ToWebPageCommand}"
-                                          ButtonCommandParameter="https://www.bilibili.com/video/BV14h4y187qs/"
+                                          ButtonCommandParameter="https://www.bilibili.com/video/BV11t421g7Xs/"
                                           IconText="&#xe849;"
                                           Style="{StaticResource SocialIconStyle}"
-                                          ToolTip="视频" />
+                                          ToolTip="视频教程" />
 
                             <c:IconButton ButtonCommand="{Binding ToWebPageCommand}"
                                           ButtonCommandParameter="https://gitee.com/hi-coder/WubiMaster"
