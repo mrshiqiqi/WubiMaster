@@ -103,6 +103,13 @@ namespace WubiMaster.ViewModels
         }
 
         [RelayCommand]
+        public void ToDownLoadRime()
+        {
+            string rimeUrl = "https://rime.im/download/";
+            ToWebPage(rimeUrl);
+        }
+
+        [RelayCommand]
         public void CopyInfo(object obj)
         {
             Clipboard.SetDataObject(obj);

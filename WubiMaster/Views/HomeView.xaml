@@ -342,7 +342,13 @@
 
                 <Grid Grid.Row="1">
 
-                    <Border Margin="10,5,5,10" Style="{StaticResource CardStyle}">
+                    <Border Margin="10,5,5,10"
+                            Cursor="Hand"
+                            Style="{StaticResource CardStyle}">
+                        <Border.InputBindings>
+                            <MouseBinding Command="{Binding ToDownLoadRimeCommand}" Gesture="LeftClick" />
+                        </Border.InputBindings>
+
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*" />
@@ -359,7 +365,7 @@
                                         HorizontalAlignment="Center"
                                         VerticalAlignment="Center">
                                 <TextBlock Style="{StaticResource CardTitleStyle}" Text="RIME | 中州韻輸入法引擎" />
-                                <TextBlock Style="{StaticResource CardSubTitleStyle}" Text="聪明的输入法懂我心意" />
+                                <TextBlock Style="{StaticResource CardSubTitleStyle}" Text="前往官网下载引擎包" />
                             </StackPanel>
 
                         </Grid>
