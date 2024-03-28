@@ -194,6 +194,10 @@
                                         </b:EventTrigger>
                                     </b:Interaction.Triggers>
                                 </ComboBox>
+
+                                <Button Command="{Binding OpenLogPathCommand}"
+                                        Content="查看"
+                                        Style="{StaticResource SettingButtonStyle}" />
                             </StackPanel>
                         </c:SettingPanel.SettingContent>
                     </c:SettingPanel>

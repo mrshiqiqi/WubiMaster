@@ -61,8 +61,6 @@
                            Text="{Binding SpellingText}" />
             </StackPanel>
 
-
-
             <Grid Grid.Row="1">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
@@ -159,7 +157,6 @@
                                                   ButtonCommandParameter="{Binding ElementName=txt_wubi86_icon, Path=Text}"
                                                   Style="{StaticResource WubiButtonStyle}" />
                                 </Grid>
-
                             </Grid>
 
                             <Grid Grid.Row="2">
@@ -193,7 +190,6 @@
                                 <Grid Grid.Column="2">
                                     <c:IconButton IsEnabled="False" Style="{StaticResource WubiButtonStyle}" />
                                 </Grid>
-
                             </Grid>
 
                             <Grid Grid.Row="3">
@@ -227,7 +223,6 @@
                                 <Grid Grid.Column="2">
                                     <c:IconButton IsEnabled="False" Style="{StaticResource WubiButtonStyle}" />
                                 </Grid>
-
                             </Grid>
                         </Grid>
                     </Border>
@@ -292,7 +287,6 @@
                                                 Viewbox="0.2, 0.3 0.6,0.6" />
                                 </Border.Background>
                             </Border>
-
                         </Grid>
                     </Border>
 
@@ -376,7 +370,6 @@
                                 <TextBlock Style="{StaticResource CardTitleStyle}" Text="RIME | 中州韻輸入法引擎" />
                                 <TextBlock Style="{StaticResource CardSubTitleStyle}" Text="前往官网下载引擎包" />
                             </StackPanel>
-
                         </Grid>
                     </Border>
                 </Grid>
