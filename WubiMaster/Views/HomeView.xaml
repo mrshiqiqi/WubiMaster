@@ -299,7 +299,14 @@
                     <Border Margin="10,5,5,10"
                             Background="{DynamicResource bg-200}"
                             CornerRadius="15"
+                            Cursor="Hand"
                             Opacity="1">
+                        <Border.InputBindings>
+                            <MouseBinding Command="{Binding ToWebPageCommand}"
+                                          CommandParameter="https://gitee.com/hi-coder/rime-86wubi"
+                                          Gesture="LeftClick" />
+                        </Border.InputBindings>
+
                         <Grid>
                             <c:ShiciControl ShiciInterval="{Binding ShiciInterval}" />
                         </Grid>
@@ -346,7 +353,9 @@
                             Cursor="Hand"
                             Style="{StaticResource CardStyle}">
                         <Border.InputBindings>
-                            <MouseBinding Command="{Binding ToDownLoadRimeCommand}" Gesture="LeftClick" />
+                            <MouseBinding Command="{Binding ToWebPageCommand}"
+                                          CommandParameter="https://rime.im/download/"
+                                          Gesture="LeftClick" />
                         </Border.InputBindings>
 
                         <Grid>
