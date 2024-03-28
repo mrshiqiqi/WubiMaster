@@ -1,6 +1,7 @@
 ﻿<UserControl x:Class="WubiMaster.Controls.ZigenPanel"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:com="clr-namespace:WubiMaster.Common"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              d:DesignWidth="800"
@@ -8,11 +9,14 @@
 
     <UserControl.Resources>
 
+        <com:Text2Visibility x:Key="Text2Visibility" />
+        <com:WubiType2Visibility x:Key="WubiType2Visibility" />
+
         <Style x:Key="zigen_border_style" TargetType="Border">
             <Setter Property="Background" Value="{DynamicResource primary-200}" />
-            <Setter Property="Width" Value="25" />
-            <Setter Property="Height" Value="25" />
-            <Setter Property="CornerRadius" Value="13" />
+            <Setter Property="Width" Value="30" />
+            <Setter Property="Height" Value="30" />
+            <Setter Property="CornerRadius" Value="15" />
             <Setter Property="Margin" Value="0,0,10,0" />
             <Setter Property="HorizontalAlignment" Value="Center" />
             <Setter Property="VerticalAlignment" Value="Center" />
@@ -26,10 +30,12 @@
         </Style>
 
         <Style x:Key="zigen_textblock_style" TargetType="TextBlock">
-            <Setter Property="Foreground" Value="{DynamicResource text-100}" />
-            <Setter Property="FontSize" Value="18" />
+            <Setter Property="Foreground" Value="{DynamicResource bg-100}" />
+            <Setter Property="FontSize" Value="15" />
+            <Setter Property="FontFamily" Value="../Fonts/#黑体字根" />
             <Setter Property="HorizontalAlignment" Value="Center" />
             <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Margin" Value="5" />
         </Style>
 
         <Style x:Key="code_border_style" TargetType="Border">
@@ -82,8 +88,8 @@
                         <TextBlock HorizontalAlignment="Center"
                                    VerticalAlignment="Center"
                                    FontSize="12"
-                                   Foreground="{DynamicResource text-100}"
-                                   Text="词" />
+                                   Foreground="{DynamicResource bg-100}"
+                                   Text="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=TypeText}" />
                     </Border>
 
                     <Border Grid.Column="1"
@@ -95,7 +101,7 @@
                                    FontSize="15"
                                    FontWeight="Bold"
                                    Foreground="{DynamicResource text-100}"
-                                   Text="五笔大师" />
+                                   Text="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=Text}" />
                     </Border>
 
                     <TextBlock Grid.Column="2"
@@ -117,7 +123,7 @@
                     </Grid.RowDefinitions>
 
                     <!--86-->
-                    <Grid>
+                    <Grid Visibility="{Binding WubiType, Converter={StaticResource WubiType2Visibility}, ConverterParameter=86}">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" SharedSizeGroup="zigen_class" />
                             <ColumnDefinition Width="Auto" />
@@ -137,20 +143,28 @@
                                     Orientation="Horizontal"
                                     TextBlock.FontFamily="../Fonts/#zigen">
 
-                            <Border Style="{StaticResource zigen_border_style}">
-                                <TextBlock Style="{StaticResource zigen_textblock_style}" Text="&#xe603;" />
+                            <Border Style="{StaticResource zigen_border_style}" Visibility="{Binding SpellingText1, Converter={StaticResource Text2Visibility}}">
+                                <Viewbox>
+                                    <TextBlock Style="{StaticResource zigen_textblock_style}" Text="{Binding SpellingText1}" />
+                                </Viewbox>
                             </Border>
 
-                            <Border Style="{StaticResource zigen_border_style}">
-                                <TextBlock Style="{StaticResource zigen_textblock_style}" Text="&#xe60b;" />
+                            <Border Style="{StaticResource zigen_border_style}" Visibility="{Binding SpellingText2, Converter={StaticResource Text2Visibility}}">
+                                <Viewbox>
+                                    <TextBlock Style="{StaticResource zigen_textblock_style}" Text="{Binding SpellingText2}" />
+                                </Viewbox>
                             </Border>
 
-                            <Border Style="{StaticResource zigen_border_style}">
-                                <TextBlock Style="{StaticResource zigen_textblock_style}" Text="&#xe60a;" />
+                            <Border Style="{StaticResource zigen_border_style}" Visibility="{Binding SpellingText3, Converter={StaticResource Text2Visibility}}">
+                                <Viewbox>
+                                    <TextBlock Style="{StaticResource zigen_textblock_style}" Text="{Binding SpellingText3}" />
+                                </Viewbox>
                             </Border>
 
-                            <Border Style="{StaticResource zigen_border_style}">
-                                <TextBlock Style="{StaticResource zigen_textblock_style}" Text="&#xe606;" />
+                            <Border Style="{StaticResource zigen_border_style}" Visibility="{Binding SpellingText4, Converter={StaticResource Text2Visibility}}">
+                                <Viewbox>
+                                    <TextBlock Style="{StaticResource zigen_textblock_style}" Text="{Binding SpellingText4}" />
+                                </Viewbox>
                             </Border>
                         </StackPanel>
 
@@ -159,17 +173,19 @@
                                     Orientation="Horizontal">
 
                             <Border Style="{StaticResource code_border_style}">
-                                <TextBlock Style="{StaticResource code_textblock_style}" Text="gtdj" />
+                                <TextBlock Style="{StaticResource code_textblock_style}" Text="{Binding CodeText}" />
                             </Border>
 
                             <Border Style="{StaticResource code_border_style}">
-                                <TextBlock Style="{StaticResource code_textblock_style}" Text="gtdj" />
+                                <TextBlock Style="{StaticResource code_textblock_style}" Text="{Binding GBKText}" />
                             </Border>
                         </StackPanel>
                     </Grid>
 
                     <!--98-->
-                    <Grid Grid.Row="1" Margin="0,10,0,0">
+                    <Grid Grid.Row="1"
+                          Margin="0,10,0,0"
+                          Visibility="{Binding WubiType, Converter={StaticResource WubiType2Visibility}, ConverterParameter=98}">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" SharedSizeGroup="zigen_class" />
                             <ColumnDefinition Width="Auto" />
@@ -223,7 +239,7 @@
                     <!--06-->
                     <Grid Grid.Row="2"
                           Margin="0,10,0,0"
-                          Visibility="Visible">
+                          Visibility="{Binding WubiType, Converter={StaticResource WubiType2Visibility}, ConverterParameter=06}">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" SharedSizeGroup="zigen_class" />
                             <ColumnDefinition Width="Auto" />

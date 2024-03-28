@@ -99,6 +99,8 @@ namespace WubiMaster.ViewModels
                 {
                     rimeKey = @"WOW6432Node\Rime\Weasel";
                 }
+
+                if (string.IsNullOrEmpty(rimeKey)) throw new NullReferenceException("无法找到Rime程序安装目录");
             }
 
             catch (Exception ex)

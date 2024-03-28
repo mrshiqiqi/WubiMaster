@@ -1,6 +1,7 @@
 ﻿<UserControl x:Class="WubiMaster.Controls.SearchTextbox"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:com="clr-namespace:WubiMaster.Common"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -233,7 +234,8 @@
             <ComboBox Width="70"
                       SelectedIndex="0"
                       Style="{StaticResource combo_box_style}"
-                      Visibility="{Binding ElementName=search_textbox, Path=ShowComboBox}">
+                      Text="{Binding ElementName=search_textbox, Path=SearchType}"
+                      Visibility="{Binding ElementName=search_textbox, Path=ShowComboBox, Mode=TwoWay}">
                 <ComboBoxItem>全部</ComboBoxItem>
                 <ComboBoxItem>86</ComboBoxItem>
                 <ComboBoxItem>98</ComboBoxItem>

@@ -109,5 +109,16 @@ namespace WubiMaster.Controls
             get { return (string)GetValue(WaterMarkTextProperty); }
             set { SetValue(WaterMarkTextProperty, value); }
         }
+
+        public string SearchType
+        {
+            get { return (string)GetValue(SearchTypeProperty); }
+            set { SetValue(SearchTypeProperty, value); }
+        }
+
+        public static readonly DependencyProperty SearchTypeProperty =
+            DependencyProperty.Register("SearchType", typeof(string), typeof(SearchTextbox), new PropertyMetadata("全部"));
+
+
     }
 }

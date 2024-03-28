@@ -26,13 +26,26 @@
                              Height="40"
                              BorderCornerRadius="18"
                              CombCornerRadius="15"
+                             SearchButtonCommand="{Binding ZigenSearchCommand}"
+                             SearchButtonParameter="{Binding RelativeSource={RelativeSource Self}, Path=SecrchContent}"
+                             SearchType="{Binding SearchType, Mode=OneWayToSource}"
                              TextFontSize="16"
                              TextMargin="5 0 0 0"
                              WaterMarkText="字根查询..." />
 
             <ItemsControl Grid.Row="1"
-                          ItemsSource="{Binding ZigenList}"
-                          Style="{StaticResource ZigenItemsControlStyle}" />
+                          ItemsSource="{Binding SpellingList}"
+                          Style="{StaticResource ZigenItemsControlStyle}">
+                <!--<ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <c:ZigenPanel Margin="0,0,0,15" Text="{Binding Text}"/>
+                        </Grid>
+
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>-->
+
+            </ItemsControl>
         </Grid>
     </ScrollViewer>
 </UserControl>

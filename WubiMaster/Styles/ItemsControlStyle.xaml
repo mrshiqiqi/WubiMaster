@@ -16,7 +16,16 @@
     </ItemsPanelTemplate>
 
     <DataTemplate x:Key="data_template">
-        <c:ZigenPanel Margin="0,0,0,15" />
+        <c:ZigenPanel Margin="0,0,0,15"
+                      CodeText="{Binding CodeText}"
+                      GBKText="{Binding GBKText}"
+                      SpellingText1="{Binding SpellingText1}"
+                      SpellingText2="{Binding SpellingText2}"
+                      SpellingText3="{Binding SpellingText3}"
+                      SpellingText4="{Binding SpellingText4}"
+                      Text="{Binding Text}"
+                      TypeText="{Binding Type}"
+                      WubiType="{Binding WubiType}" />
     </DataTemplate>
 
     <Style x:Key="ItemsControlStyle" TargetType="ItemsControl">

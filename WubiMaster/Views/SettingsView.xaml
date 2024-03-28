@@ -21,6 +21,8 @@
             <Grid>
                 <StackPanel>
 
+                    <c:SeparatorControl Header="Rime 配置" />
+
                     <c:SettingPanel Title="关联用户目录"
                                     IconText="&#xe620;"
                                     SubTitle="从 Rime 用户目录读取配置文件">
@@ -71,44 +73,7 @@
                         </c:SettingPanel.SettingContent>
                     </c:SettingPanel>
 
-                    <c:SettingPanel Title="默认词库"
-                                    IconText="&#xe610;"
-                                    SubTitle="关联以 .yaml 为后缀的默认词库文件">
-                        <c:SettingPanel.SettingContent>
-                            <StackPanel Margin="0,4" Orientation="Horizontal">
-                                <TextBox Style="{StaticResource SettingTextBoxStyle}" Text="{Binding DefaultCikuFile}" />
-                                <Button Command="{Binding SetDefaultCikuFileCommand}"
-                                        Content="自选"
-                                        Style="{StaticResource SettingButtonStyle}" />
-                            </StackPanel>
-                        </c:SettingPanel.SettingContent>
-                    </c:SettingPanel>
-
-                    <c:SettingPanel Title="扩展词库"
-                                    IconText="&#xe610;"
-                                    SubTitle="关联以 .yaml 为后缀的扩展词库文件">
-                        <c:SettingPanel.SettingContent>
-                            <StackPanel Margin="0,4" Orientation="Horizontal">
-                                <TextBox Style="{StaticResource SettingTextBoxStyle}" Text="{Binding UserCikuFile}" />
-                                <Button Command="{Binding SetUserCikuFileCommand}"
-                                        Content="自选"
-                                        Style="{StaticResource SettingButtonStyle}" />
-                            </StackPanel>
-                        </c:SettingPanel.SettingContent>
-                    </c:SettingPanel>
-
-                    <c:SettingPanel Title="五笔方案"
-                                    IconText="&#xe992;"
-                                    SubTitle="一键配置五笔方案，包含 86、98及新世纪三个版本">
-                        <c:SettingPanel.SettingContent>
-                            <StackPanel Orientation="Horizontal">
-                                <TextBox Width="150" IsReadOnly="True" />
-                                <Button Width="50"
-                                        Margin="10,0,0,0"
-                                        Content="打开" />
-                            </StackPanel>
-                        </c:SettingPanel.SettingContent>
-                    </c:SettingPanel>
+                    <c:SeparatorControl Header="书中君配置" />
 
                     <c:SettingPanel Title="主题"
                                     IconText="&#xe654;"
@@ -142,6 +107,45 @@
                                         </b:EventTrigger>
                                     </b:Interaction.Triggers>
                                 </CheckBox>
+                            </StackPanel>
+                        </c:SettingPanel.SettingContent>
+                    </c:SettingPanel>
+
+                    <c:SettingPanel Title="首页快速查询"
+                                    IconText="&#xe850;"
+                                    SubTitle="选择首页字根快速查询版本">
+                        <c:SettingPanel.SettingContent>
+                            <StackPanel Orientation="Horizontal">
+                                <RadioButton Content="86"
+                                             GroupName="QuickSpellingGroup"
+                                             IsChecked="{Binding QuickSpllType86}"
+                                             Style="{StaticResource RadioButtonStyle}">
+                                    <b:Interaction.Triggers>
+                                        <b:EventTrigger EventName="Click">
+                                            <b:InvokeCommandAction Command="{Binding QuickSpellChangeCommand}" />
+                                        </b:EventTrigger>
+                                    </b:Interaction.Triggers>
+                                </RadioButton>
+                                <RadioButton Content="98"
+                                             GroupName="QuickSpellingGroup"
+                                             IsChecked="{Binding QuickSpllType98}"
+                                             Style="{StaticResource RadioButtonStyle}">
+                                    <b:Interaction.Triggers>
+                                        <b:EventTrigger EventName="Click">
+                                            <b:InvokeCommandAction Command="{Binding QuickSpellChangeCommand}" />
+                                        </b:EventTrigger>
+                                    </b:Interaction.Triggers>
+                                </RadioButton>
+                                <RadioButton Content="新世纪"
+                                             GroupName="QuickSpellingGroup"
+                                             IsChecked="{Binding QuickSpllType06}"
+                                             Style="{StaticResource RadioButtonStyle}">
+                                    <b:Interaction.Triggers>
+                                        <b:EventTrigger EventName="Click">
+                                            <b:InvokeCommandAction Command="{Binding QuickSpellChangeCommand}" />
+                                        </b:EventTrigger>
+                                    </b:Interaction.Triggers>
+                                </RadioButton>
                             </StackPanel>
                         </c:SettingPanel.SettingContent>
                     </c:SettingPanel>
@@ -194,6 +198,47 @@
                         </c:SettingPanel.SettingContent>
                     </c:SettingPanel>
 
+                    <c:SeparatorControl Header="词库配置" />
+
+                    <c:SettingPanel Title="默认词库"
+                                    IconText="&#xe610;"
+                                    SubTitle="关联以 .yaml 为后缀的默认词库文件">
+                        <c:SettingPanel.SettingContent>
+                            <StackPanel Margin="0,4" Orientation="Horizontal">
+                                <TextBox Style="{StaticResource SettingTextBoxStyle}" Text="{Binding DefaultCikuFile}" />
+                                <Button Command="{Binding SetDefaultCikuFileCommand}"
+                                        Content="自选"
+                                        Style="{StaticResource SettingButtonStyle}" />
+                            </StackPanel>
+                        </c:SettingPanel.SettingContent>
+                    </c:SettingPanel>
+
+                    <c:SettingPanel Title="扩展词库"
+                                    IconText="&#xe610;"
+                                    SubTitle="关联以 .yaml 为后缀的扩展词库文件">
+                        <c:SettingPanel.SettingContent>
+                            <StackPanel Margin="0,4" Orientation="Horizontal">
+                                <TextBox Style="{StaticResource SettingTextBoxStyle}" Text="{Binding UserCikuFile}" />
+                                <Button Command="{Binding SetUserCikuFileCommand}"
+                                        Content="自选"
+                                        Style="{StaticResource SettingButtonStyle}" />
+                            </StackPanel>
+                        </c:SettingPanel.SettingContent>
+                    </c:SettingPanel>
+
+                    <c:SettingPanel Title="五笔方案"
+                                    IconText="&#xe992;"
+                                    SubTitle="一键配置五笔方案，包含 86、98及新世纪三个版本">
+                        <c:SettingPanel.SettingContent>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBox Width="150" IsReadOnly="True" />
+                                <Button Width="50"
+                                        Margin="10,0,0,0"
+                                        Content="打开" />
+                            </StackPanel>
+                        </c:SettingPanel.SettingContent>
+                    </c:SettingPanel>
+
                     <c:SettingPanel Title="同步"
                                     IconText="&#xe647;"
                                     SubTitle="打开或关闭同步功能">
@@ -215,44 +260,7 @@
                         </c:SettingPanel.SettingContent>
                     </c:SettingPanel>
 
-                    <c:SettingPanel Title="首页快速查询"
-                                    IconText="&#xe850;"
-                                    SubTitle="选择首页字根快速查询版本">
-                        <c:SettingPanel.SettingContent>
-                            <StackPanel Orientation="Horizontal">
-                                <RadioButton Content="86"
-                                             GroupName="QuickSpellingGroup"
-                                             IsChecked="{Binding QuickSpllType86}"
-                                             Style="{StaticResource RadioButtonStyle}">
-                                    <b:Interaction.Triggers>
-                                        <b:EventTrigger EventName="Click">
-                                            <b:InvokeCommandAction Command="{Binding QuickSpellChangeCommand}" />
-                                        </b:EventTrigger>
-                                    </b:Interaction.Triggers>
-                                </RadioButton>
-                                <RadioButton Content="98"
-                                             GroupName="QuickSpellingGroup"
-                                             IsChecked="{Binding QuickSpllType98}"
-                                             Style="{StaticResource RadioButtonStyle}">
-                                    <b:Interaction.Triggers>
-                                        <b:EventTrigger EventName="Click">
-                                            <b:InvokeCommandAction Command="{Binding QuickSpellChangeCommand}" />
-                                        </b:EventTrigger>
-                                    </b:Interaction.Triggers>
-                                </RadioButton>
-                                <RadioButton Content="新世纪"
-                                             GroupName="QuickSpellingGroup"
-                                             IsChecked="{Binding QuickSpllType06}"
-                                             Style="{StaticResource RadioButtonStyle}">
-                                    <b:Interaction.Triggers>
-                                        <b:EventTrigger EventName="Click">
-                                            <b:InvokeCommandAction Command="{Binding QuickSpellChangeCommand}" />
-                                        </b:EventTrigger>
-                                    </b:Interaction.Triggers>
-                                </RadioButton>
-                            </StackPanel>
-                        </c:SettingPanel.SettingContent>
-                    </c:SettingPanel>
+
 
                     <c:SettingPanel Title="导出词库"
                                     IconText="&#xe620;"
