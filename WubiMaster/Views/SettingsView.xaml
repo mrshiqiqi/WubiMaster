@@ -226,93 +226,93 @@
                         </c:SettingPanel.SettingContent>
                     </c:SettingPanel>
 
-                    <c:SettingPanel Title="五笔方案"
-                                    IconText="&#xe992;"
-                                    SubTitle="一键配置五笔方案，包含 86、98及新世纪三个版本">
-                        <c:SettingPanel.SettingContent>
-                            <StackPanel Orientation="Horizontal">
-                                <TextBox Width="150" IsReadOnly="True" />
-                                <Button Width="50"
-                                        Margin="10,0,0,0"
-                                        Content="打开" />
-                            </StackPanel>
-                        </c:SettingPanel.SettingContent>
-                    </c:SettingPanel>
+                    <StackPanel Visibility="Collapsed">
+                        <c:SettingPanel Title="五笔方案"
+                                        IconText="&#xe992;"
+                                        SubTitle="一键配置五笔方案，包含 86、98及新世纪三个版本">
+                            <c:SettingPanel.SettingContent>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBox Width="150" IsReadOnly="True" />
+                                    <Button Width="50"
+                                            Margin="10,0,0,0"
+                                            Content="打开" />
+                                </StackPanel>
+                            </c:SettingPanel.SettingContent>
+                        </c:SettingPanel>
 
-                    <c:SettingPanel Title="同步"
-                                    IconText="&#xe647;"
-                                    SubTitle="打开或关闭同步功能">
-                        <c:SettingPanel.SettingContent>
-                            <ToggleButton HorizontalAlignment="Left" VerticalAlignment="Center" />
-                        </c:SettingPanel.SettingContent>
-                    </c:SettingPanel>
+                        <c:SettingPanel Title="同步"
+                                        IconText="&#xe647;"
+                                        SubTitle="打开或关闭同步功能">
+                            <c:SettingPanel.SettingContent>
+                                <ToggleButton HorizontalAlignment="Left" VerticalAlignment="Center" />
+                            </c:SettingPanel.SettingContent>
+                        </c:SettingPanel>
 
-                    <c:SettingPanel Title="安全密码"
-                                    IconText="&#xe850;"
-                                    SubTitle="设置密码以保护隐私 | 默认没有密码">
-                        <c:SettingPanel.SettingContent>
-                            <StackPanel Orientation="Horizontal">
-                                <TextBox Width="150" />
-                                <Button Width="50"
-                                        Margin="10,0,0,0"
-                                        Content="保存" />
-                            </StackPanel>
-                        </c:SettingPanel.SettingContent>
-                    </c:SettingPanel>
+                        <c:SettingPanel Title="安全密码"
+                                        IconText="&#xe850;"
+                                        SubTitle="设置密码以保护隐私 | 默认没有密码">
+                            <c:SettingPanel.SettingContent>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBox Width="150" />
+                                    <Button Width="50"
+                                            Margin="10,0,0,0"
+                                            Content="保存" />
+                                </StackPanel>
+                            </c:SettingPanel.SettingContent>
+                        </c:SettingPanel>
 
+                        <c:SettingPanel Title="导出词库"
+                                        IconText="&#xe620;"
+                                        SubTitle="从 Rime 用户目录读取配置文件">
+                            <c:SettingPanel.SettingContent>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBox Width="150" IsReadOnly="True" />
+                                    <Button Width="50"
+                                            Margin="10,0,0,0"
+                                            Content="打开" />
+                                </StackPanel>
+                            </c:SettingPanel.SettingContent>
+                        </c:SettingPanel>
 
+                        <c:SettingPanel Title="导入词库"
+                                        IconText="&#xe620;"
+                                        SubTitle="从 Rime 用户目录读取配置文件">
+                            <c:SettingPanel.SettingContent>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBox Width="150" IsReadOnly="True" />
+                                    <Button Width="50"
+                                            Margin="10,0,0,0"
+                                            Content="打开" />
+                                </StackPanel>
+                            </c:SettingPanel.SettingContent>
+                        </c:SettingPanel>
 
-                    <c:SettingPanel Title="导出词库"
-                                    IconText="&#xe620;"
-                                    SubTitle="从 Rime 用户目录读取配置文件">
-                        <c:SettingPanel.SettingContent>
-                            <StackPanel Orientation="Horizontal">
-                                <TextBox Width="150" IsReadOnly="True" />
-                                <Button Width="50"
-                                        Margin="10,0,0,0"
-                                        Content="打开" />
-                            </StackPanel>
-                        </c:SettingPanel.SettingContent>
-                    </c:SettingPanel>
+                        <c:SettingPanel Title="方案备份"
+                                        IconText="&#xe620;"
+                                        SubTitle="从 Rime 用户目录读取配置文件">
+                            <c:SettingPanel.SettingContent>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBox Width="150" IsReadOnly="True" />
+                                    <Button Width="50"
+                                            Margin="10,0,0,0"
+                                            Content="打开" />
+                                </StackPanel>
+                            </c:SettingPanel.SettingContent>
+                        </c:SettingPanel>
 
-                    <c:SettingPanel Title="导入词库"
-                                    IconText="&#xe620;"
-                                    SubTitle="从 Rime 用户目录读取配置文件">
-                        <c:SettingPanel.SettingContent>
-                            <StackPanel Orientation="Horizontal">
-                                <TextBox Width="150" IsReadOnly="True" />
-                                <Button Width="50"
-                                        Margin="10,0,0,0"
-                                        Content="打开" />
-                            </StackPanel>
-                        </c:SettingPanel.SettingContent>
-                    </c:SettingPanel>
-
-                    <c:SettingPanel Title="方案备份"
-                                    IconText="&#xe620;"
-                                    SubTitle="从 Rime 用户目录读取配置文件">
-                        <c:SettingPanel.SettingContent>
-                            <StackPanel Orientation="Horizontal">
-                                <TextBox Width="150" IsReadOnly="True" />
-                                <Button Width="50"
-                                        Margin="10,0,0,0"
-                                        Content="打开" />
-                            </StackPanel>
-                        </c:SettingPanel.SettingContent>
-                    </c:SettingPanel>
-
-                    <c:SettingPanel Title="配置备份"
-                                    IconText="&#xe620;"
-                                    SubTitle="从 Rime 用户目录读取配置文件">
-                        <c:SettingPanel.SettingContent>
-                            <StackPanel Orientation="Horizontal">
-                                <TextBox Width="150" IsReadOnly="True" />
-                                <Button Width="50"
-                                        Margin="10,0,0,0"
-                                        Content="打开" />
-                            </StackPanel>
-                        </c:SettingPanel.SettingContent>
-                    </c:SettingPanel>
+                        <c:SettingPanel Title="配置备份"
+                                        IconText="&#xe620;"
+                                        SubTitle="从 Rime 用户目录读取配置文件">
+                            <c:SettingPanel.SettingContent>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBox Width="150" IsReadOnly="True" />
+                                    <Button Width="50"
+                                            Margin="10,0,0,0"
+                                            Content="打开" />
+                                </StackPanel>
+                            </c:SettingPanel.SettingContent>
+                        </c:SettingPanel>
+                    </StackPanel>
                 </StackPanel>
             </Grid>
         </ScrollViewer>
