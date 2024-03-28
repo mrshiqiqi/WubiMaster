@@ -4,6 +4,7 @@ namespace WubiMaster.Common
 {
     public class GlobalValues
     {
+        public static string AppDirectory = AppDomain.CurrentDomain.BaseDirectory;
         public static string HeitiFont = AppDomain.CurrentDomain.BaseDirectory + @$"Assets\Fonts\黑体字根.ttf";
         public static string Scheme06Zip = AppDomain.CurrentDomain.BaseDirectory + @$"Assets\Schemes\scheme06.zip";
         public static string Scheme86Zip = AppDomain.CurrentDomain.BaseDirectory + @$"Assets\Schemes\scheme86.zip";
@@ -32,5 +33,6 @@ namespace WubiMaster.Common
             get { return userPath; }
             set { userPath = value; }
         }
+
     }
 }

@@ -5,6 +5,7 @@ using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Windows;
@@ -83,6 +84,7 @@ namespace WubiMaster.ViewModels
             ReadUserPathRegistry();
             ReadProcessPathRegistry();
             ReadServerRegistry();
+            CheckService();
         }
 
         private void GetRimeRegistryKey()
@@ -131,7 +133,7 @@ namespace WubiMaster.ViewModels
                 if (!registryHelper.IsExist(KeyType.HKEY_CURRENT_USER, @"Rime\Weasel")) return;
 
                 string uPath = registryHelper.GetValue(KeyType.HKEY_CURRENT_USER, @"Rime\Weasel", "RimeUserDir");
-                if(string.IsNullOrEmpty(uPath))
+                if (string.IsNullOrEmpty(uPath))
                 {
                     uPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Rime";
                     if (!Directory.Exists(uPath)) throw new NullReferenceException("UserPath: 无法找到 Rime 的注册表信息");
@@ -208,31 +210,44 @@ namespace WubiMaster.ViewModels
         [RelayCommand]
         public void OpenProcessFilePath()
         {
-            System.Windows.Forms.FolderBrowserDialog dialog = new System.Windows.Forms.FolderBrowserDialog();
-            System.Windows.Forms.DialogResult result = dialog.ShowDialog();
-
-            if (result == System.Windows.Forms.DialogResult.Cancel)
+            if (string.IsNullOrEmpty(GlobalValues.ProcessPath))
             {
+                this.ShowMessage("找不到 Rime 程序安装目录！", DialogType.Error);
                 return;
             }
-            ProcessFilePath = dialog.SelectedPath;
+            Process.Start("explorer.exe", GlobalValues.ProcessPath);
 
-            ConfigHelper.WriteConfigByString("process_file_path", ProcessFilePath);
+            //System.Windows.Forms.FolderBrowserDialog dialog = new System.Windows.Forms.FolderBrowserDialog();
+            //System.Windows.Forms.DialogResult result = dialog.ShowDialog();
+
+            //if (result == System.Windows.Forms.DialogResult.Cancel)
+            //{
+            //    return;
+            //}
+            //ProcessFilePath = dialog.SelectedPath;
+
+            //ConfigHelper.WriteConfigByString("process_file_path", ProcessFilePath);
         }
 
         [RelayCommand]
         public void OpenUserFilePath()
         {
-            System.Windows.Forms.FolderBrowserDialog dialog = new System.Windows.Forms.FolderBrowserDialog();
-            System.Windows.Forms.DialogResult result = dialog.ShowDialog();
-
-            if (result == System.Windows.Forms.DialogResult.Cancel)
+            if (string.IsNullOrEmpty(GlobalValues.UserPath)) 
             {
+                this.ShowMessage("找不到 Rime 程序用户目录！", DialogType.Error);
                 return;
             }
-            UserFilePath = dialog.SelectedPath;
+            Process.Start("explorer.exe", GlobalValues.UserPath);
+            //System.Windows.Forms.FolderBrowserDialog dialog = new System.Windows.Forms.FolderBrowserDialog();
+            //System.Windows.Forms.DialogResult result = dialog.ShowDialog();
 
-            ConfigHelper.WriteConfigByString("user_file_path", UserFilePath);
+            //if (result == System.Windows.Forms.DialogResult.Cancel)
+            //{
+            //    return;
+            //}
+            //UserFilePath = dialog.SelectedPath;
+
+            //ConfigHelper.WriteConfigByString("user_file_path", UserFilePath);
         }
 
         [RelayCommand]
@@ -413,9 +428,6 @@ namespace WubiMaster.ViewModels
                 QuickSpllType06 = true;
             else
                 QuickSpllType86 = true;
-
-            // 检测算法服务状态
-            CheckService();
         }
     }
 }
