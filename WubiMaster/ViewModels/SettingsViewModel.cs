@@ -133,7 +133,7 @@ namespace WubiMaster.ViewModels
                 string uPath = registryHelper.GetValue(KeyType.HKEY_CURRENT_USER, @"Rime\Weasel", "RimeUserDir");
                 if(string.IsNullOrEmpty(uPath))
                 {
-                    uPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"Roaming\Rime";
+                    uPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Rime";
                     if (!Directory.Exists(uPath)) throw new NullReferenceException("UserPath: 无法找到 Rime 的注册表信息");
                 }
 
