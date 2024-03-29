@@ -6,6 +6,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="clr-namespace:WubiMaster.ViewModels"
              d:Background="{DynamicResource bg-100}"
+             Style="{StaticResource PageStyle}"
              d:DesignWidth="800"
              mc:Ignorable="d">
 
