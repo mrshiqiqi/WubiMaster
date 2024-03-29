@@ -1,26 +1,23 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using CommunityToolkit.Mvvm.Messaging.Messages;
-using CommunityToolkit.Mvvm.Messaging;
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 using WubiMaster.Common;
 using WubiMaster.Models;
-using static System.Net.Mime.MediaTypeNames;
-using System.Collections.Concurrent;
 
 namespace WubiMaster.ViewModels
 {
     public partial class EtymonViewModel : ObservableObject
     {
-        ConcurrentQueue<SpellingModel> QuickSpellingQueue86 = new ConcurrentQueue<SpellingModel>();
-        ConcurrentQueue<SpellingModel> QuickSpellingQueue98 = new ConcurrentQueue<SpellingModel>();
-        ConcurrentQueue<SpellingModel> QuickSpellingQueue06 = new ConcurrentQueue<SpellingModel>();
+        private ConcurrentQueue<SpellingModel> QuickSpellingQueue06 = new ConcurrentQueue<SpellingModel>();
+        private ConcurrentQueue<SpellingModel> QuickSpellingQueue86 = new ConcurrentQueue<SpellingModel>();
+        private ConcurrentQueue<SpellingModel> QuickSpellingQueue98 = new ConcurrentQueue<SpellingModel>();
+
+        [ObservableProperty]
+        private string searchType = "全部";
 
         [ObservableProperty]
         private ObservableCollection<ZigenModel> spellingList;
@@ -28,23 +25,12 @@ namespace WubiMaster.ViewModels
         [ObservableProperty]
         private string wubiType;
 
-        [ObservableProperty]
-        private string searchType = "全部";
-
         public EtymonViewModel()
         {
             SpellingList = new ObservableCollection<ZigenModel>();
 
             GetSpellingData();
         }
-
-        private void GetSpellingData()
-        {
-            QuickSpellingQueue86 = SpellingWorker.SpellingQueue86;
-            QuickSpellingQueue98 = SpellingWorker.SpellingQueue98;
-            QuickSpellingQueue06 = SpellingWorker.SpellingQueue06;
-        }
-
 
         [RelayCommand]
         public void ZigenSearch(object obj)
@@ -65,12 +51,15 @@ namespace WubiMaster.ViewModels
                     case "86":
                         type = "86";
                         break;
+
                     case "98":
                         type = "98";
                         break;
+
                     case "新世纪":
                         type = "06";
                         break;
+
                     default:
                         type = "全部";
                         break;
@@ -115,7 +104,36 @@ namespace WubiMaster.ViewModels
                 this.ShowMessage("查询时出现异常，无法完成指定操作", DialogType.Error);
                 LogHelper.Error(ex.Message);
             }
+        }
 
+        private List<CodeKeyModel> GetCodeKeyList(string textKey, string type)
+        {
+            ConcurrentQueue<SpellingModel> currentSpellingData = null;
+            if (type == "86") currentSpellingData = QuickSpellingQueue86;
+            else if (type == "98") currentSpellingData = QuickSpellingQueue98;
+            else currentSpellingData = QuickSpellingQueue06;
+
+            var dataModel = currentSpellingData?.FirstOrDefault(s => s.Text == textKey);
+            if (dataModel == null) return null;
+            List<CodeKeyModel> cList = new List<CodeKeyModel>();
+            cList.Add(new CodeKeyModel() { CodeKey = dataModel.Code });
+            for (int i = 0; i < dataModel.Pinyin.Length; i++)
+            {
+                var cModel = new CodeKeyModel()
+                {
+                    CodeKey = dataModel.Pinyin[i],
+                };
+                cList.Add(cModel);
+            }
+
+            return cList;
+        }
+
+        private void GetSpellingData()
+        {
+            QuickSpellingQueue86 = SpellingWorker.SpellingQueue86;
+            QuickSpellingQueue98 = SpellingWorker.SpellingQueue98;
+            QuickSpellingQueue06 = SpellingWorker.SpellingQueue06;
         }
 
         private List<SpellingKeyModel> GetSpellingKeyList(string textKey, string type)
@@ -144,29 +162,6 @@ namespace WubiMaster.ViewModels
             }
 
             return sList;
-        }
-
-        private List<CodeKeyModel> GetCodeKeyList(string textKey, string type)
-        {
-            ConcurrentQueue<SpellingModel> currentSpellingData = null;
-            if (type == "86") currentSpellingData = QuickSpellingQueue86;
-            else if (type == "98") currentSpellingData = QuickSpellingQueue98;
-            else currentSpellingData = QuickSpellingQueue06;
-
-            var dataModel = currentSpellingData?.FirstOrDefault(s => s.Text == textKey);
-            if (dataModel == null) return null;
-            List<CodeKeyModel> cList = new List<CodeKeyModel>();
-            cList.Add(new CodeKeyModel() { CodeKey = dataModel.Code });
-            for (int i = 0; i < dataModel.Pinyin.Length; i++)
-            {
-                var cModel = new CodeKeyModel()
-                {
-                    CodeKey = dataModel.Pinyin[i],
-                };
-                cList.Add(cModel);
-            }
-
-            return cList;
         }
     }
 }

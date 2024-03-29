@@ -171,8 +171,6 @@
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>
-
-
                     </Grid>
 
                     <!--98-->
