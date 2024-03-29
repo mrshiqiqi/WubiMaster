@@ -1,9 +1,5 @@
 ﻿using Microsoft.Win32;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace WubiMaster.Common
 {
@@ -15,13 +11,13 @@ namespace WubiMaster.Common
         private string baseKey = "Software";
 
         #region 构造函数
+
         /// <summary>
         /// 构造函数
         /// </summary>
         /// <param name="baseKey">基项的名称</param>
         public RegistryHelper()
         {
-
         }
 
         /// <summary>
@@ -31,52 +27,25 @@ namespace WubiMaster.Common
         public RegistryHelper(string baseKey)
         {
             this.baseKey = baseKey;
-
         }
-        #endregion
 
+        #endregion 构造函数
 
         #region 公共方法
+
         /// <summary>
-        /// 写入注册表,如果指定项已经存在,则修改指定项的值
+        /// 删除注册表中的指定项
         /// </summary>
         /// <param name="keytype">注册表基项枚举</param>
-        /// <param name="key">注册表项,不包括基项</param>
-        /// <param name="name">值名称</param>
-        /// <param name="values">值</param>
-        public void SetValue(KeyType keytype, string key, string name, string values)
+        /// <param name="key">注册表中的项,不包括基项</param>
+        /// <returns>返回布尔值,指定操作是否成功</returns>
+        public void DeleteSubKey(KeyType keytype, string key)
         {
             RegistryKey rk = (RegistryKey)GetRegistryKey(keytype);
             RegistryKey software = rk.OpenSubKey(baseKey, true);
-            RegistryKey rkt = software.CreateSubKey(key);
-            if (rkt != null)
+            if (software != null)
             {
-                rkt.SetValue(name, values);
-            }
-        }
-
-
-
-        /// <summary>
-        /// 读取注册表
-        /// </summary>
-        /// <param name="keytype">注册表基项枚举</param>
-        /// <param name="key">注册表项,不包括基项</param>
-        /// <param name="name">值名称</param>
-        /// <returns>返回字符串</returns>
-        public string GetValue(KeyType keytype, string key, string name)
-        {
-            RegistryKey rk = (RegistryKey)GetRegistryKey(keytype);
-            RegistryKey software = rk.OpenSubKey(baseKey, true);
-            RegistryKey rkt = software.OpenSubKey(key);
-
-            if (rkt != null)
-            {
-                return rkt.GetValue(name)?.ToString();
-            }
-            else
-            {
-                return string.Empty;
+                software.DeleteSubKeyTree(key);
             }
         }
 
@@ -103,39 +72,25 @@ namespace WubiMaster.Common
         }
 
         /// <summary>
-        /// 删除注册表中的指定项
+        /// 读取注册表
         /// </summary>
         /// <param name="keytype">注册表基项枚举</param>
-        /// <param name="key">注册表中的项,不包括基项</param>
-        /// <returns>返回布尔值,指定操作是否成功</returns>
-        public void DeleteSubKey(KeyType keytype, string key)
+        /// <param name="key">注册表项,不包括基项</param>
+        /// <param name="name">值名称</param>
+        /// <returns>返回字符串</returns>
+        public string GetValue(KeyType keytype, string key, string name)
         {
             RegistryKey rk = (RegistryKey)GetRegistryKey(keytype);
-            RegistryKey software = rk.OpenSubKey(baseKey, true);
-            if (software != null)
-            {
-                software.DeleteSubKeyTree(key);
-            }
-        }
-
-        /// <summary>
-        /// 判断指定项是否存在
-        /// </summary>
-        /// <param name="keytype">基项枚举</param>
-        /// <param name="key">指定项字符串</param>
-        /// <returns>返回布尔值,说明指定项是否存在</returns>
-        public bool IsExist(KeyType keytype, string key)
-        {
-            RegistryKey rk = (RegistryKey)GetRegistryKey(keytype);
-            RegistryKey software = rk.OpenSubKey(baseKey);
+            RegistryKey software = rk.OpenSubKey(baseKey, false);
             RegistryKey rkt = software.OpenSubKey(key);
+
             if (rkt != null)
             {
-                return true;
+                return rkt.GetValue(name)?.ToString();
             }
             else
             {
-                return false;
+                return string.Empty;
             }
         }
 
@@ -170,7 +125,27 @@ namespace WubiMaster.Common
 
                 return values;
             }
+        }
 
+        /// <summary>
+        /// 判断指定项是否存在
+        /// </summary>
+        /// <param name="keytype">基项枚举</param>
+        /// <param name="key">指定项字符串</param>
+        /// <returns>返回布尔值,说明指定项是否存在</returns>
+        public bool IsExist(KeyType keytype, string key)
+        {
+            RegistryKey rk = (RegistryKey)GetRegistryKey(keytype);
+            RegistryKey software = rk.OpenSubKey(baseKey);
+            RegistryKey rkt = software.OpenSubKey(key);
+            if (rkt != null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         /// <summary>
@@ -199,7 +174,25 @@ namespace WubiMaster.Common
             }
         }
 
-        #endregion
+        /// <summary>
+        /// 写入注册表,如果指定项已经存在,则修改指定项的值
+        /// </summary>
+        /// <param name="keytype">注册表基项枚举</param>
+        /// <param name="key">注册表项,不包括基项</param>
+        /// <param name="name">值名称</param>
+        /// <param name="values">值</param>
+        public void SetValue(KeyType keytype, string key, string name, string values)
+        {
+            RegistryKey rk = (RegistryKey)GetRegistryKey(keytype);
+            RegistryKey software = rk.OpenSubKey(baseKey, true);
+            RegistryKey rkt = software.CreateSubKey(key);
+            if (rkt != null)
+            {
+                rkt.SetValue(name, values);
+            }
+        }
+
+        #endregion 公共方法
 
         #region 私有方法
 
@@ -217,15 +210,19 @@ namespace WubiMaster.Common
                 case KeyType.HKEY_CLASS_ROOT:
                     rk = Registry.ClassesRoot;
                     break;
+
                 case KeyType.HKEY_CURRENT_USER:
                     rk = Registry.CurrentUser;
                     break;
+
                 case KeyType.HKEY_LOCAL_MACHINE:
                     rk = Registry.LocalMachine;
                     break;
+
                 case KeyType.HKEY_USERS:
                     rk = Registry.Users;
                     break;
+
                 case KeyType.HKEY_CURRENT_CONFIG:
                     rk = Registry.CurrentConfig;
                     break;
@@ -234,9 +231,10 @@ namespace WubiMaster.Common
             return rk;
         }
 
-        #endregion
+        #endregion 私有方法
 
         #region 枚举
+
         /// <summary>
         /// 注册表基项枚举
         /// </summary>
@@ -246,23 +244,28 @@ namespace WubiMaster.Common
             /// 注册表基项 HKEY_CLASSES_ROOT
             /// </summary>
             HKEY_CLASS_ROOT,
+
             /// <summary>
             /// 注册表基项 HKEY_CURRENT_USER
             /// </summary>
             HKEY_CURRENT_USER,
+
             /// <summary>
             /// 注册表基项 HKEY_LOCAL_MACHINE
             /// </summary>
             HKEY_LOCAL_MACHINE,
+
             /// <summary>
             /// 注册表基项 HKEY_USERS
             /// </summary>
             HKEY_USERS,
+
             /// <summary>
             /// 注册表基项 HKEY_CURRENT_CONFIG
             /// </summary>
             HKEY_CURRENT_CONFIG
         }
-        #endregion
+
+        #endregion 枚举
     }
 }

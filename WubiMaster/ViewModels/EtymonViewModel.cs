@@ -7,6 +7,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using WubiMaster.Common;
 using WubiMaster.Models;
+using static System.Net.WebRequestMethods;
 
 namespace WubiMaster.ViewModels
 {
@@ -80,7 +81,7 @@ namespace WubiMaster.ViewModels
                     List<CodeKeyModel> cList98 = GetCodeKeyList(key, "98");
                     List<CodeKeyModel> cList06 = GetCodeKeyList(key, "06");
 
-                    // add the dataModel86 to list
+                    // add the dataModel to list
                     ZigenModel zModel = new ZigenModel()
                     {
                         Text = key,
