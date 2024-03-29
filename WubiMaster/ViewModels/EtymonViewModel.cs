@@ -49,74 +49,124 @@ namespace WubiMaster.ViewModels
         [RelayCommand]
         public void ZigenSearch(object obj)
         {
-            string searchText = obj?.ToString().Trim();
-            if (string.IsNullOrEmpty(searchText)) return;
+            try
+            {
+                string searchText = obj?.ToString().Trim();
+                if (string.IsNullOrEmpty(searchText)) return;
 
-            Search(searchText, SearchType);
+                string type = "";
+                var content = searchText.Trim();
+                SpellingList.Clear();
+                ObservableCollection<ZigenModel> spellings = new ObservableCollection<ZigenModel>();
+                char[] texts = content.ToCharArray().Distinct().ToArray();
+
+                switch (SearchType)
+                {
+                    case "86":
+                        type = "86";
+                        break;
+                    case "98":
+                        type = "98";
+                        break;
+                    case "新世纪":
+                        type = "06";
+                        break;
+                    default:
+                        type = "全部";
+                        break;
+                }
+
+                foreach (var text in texts)
+                {
+                    string key = text.ToString();
+
+                    // get spelling text array
+                    List<SpellingKeyModel> sList86 = GetSpellingKeyList(key, "86");
+                    List<SpellingKeyModel> sList98 = GetSpellingKeyList(key, "98");
+                    List<SpellingKeyModel> sList06 = GetSpellingKeyList(key, "06");
+                    if (sList86 == null && sList98 == null && sList06 == null) continue;
+
+                    // get code and pinyin text
+                    List<CodeKeyModel> cList86 = GetCodeKeyList(key, "86");
+                    List<CodeKeyModel> cList98 = GetCodeKeyList(key, "98");
+                    List<CodeKeyModel> cList06 = GetCodeKeyList(key, "06");
+
+                    // add the dataModel86 to list
+                    ZigenModel zModel = new ZigenModel()
+                    {
+                        Text = key,
+                        Type = "字",
+                        SpellingKeyList86 = sList86,
+                        SpellingKeyList98 = sList98,
+                        SpellingKeyList06 = sList06,
+                        CodeKeyList86 = cList86,
+                        CodeKeyList98 = cList98,
+                        CodeKeyList06 = cList06,
+                        WubiType = type,
+                    };
+                    spellings.Add(zModel);
+                }
+
+                // update
+                SpellingList = spellings;
+            }
+            catch (Exception ex)
+            {
+                this.ShowMessage("查询时出现异常，无法完成指定操作", DialogType.Error);
+                LogHelper.Error(ex.Message);
+            }
+
         }
 
-        private void Search(string content, string type)
+        private List<SpellingKeyModel> GetSpellingKeyList(string textKey, string type)
         {
-            switch (type)
+            ConcurrentQueue<SpellingModel> currentSpellingData = null;
+            if (type == "86") currentSpellingData = QuickSpellingQueue86;
+            else if (type == "98") currentSpellingData = QuickSpellingQueue98;
+            else currentSpellingData = QuickSpellingQueue06;
+
+            var dataModel = currentSpellingData?.FirstOrDefault(s => s.Text == textKey);
+            if (dataModel == null) return null;
+            char[] spellingChars = dataModel.Spelling.ToCharArray();
+
+            List<SpellingKeyModel> sList = new List<SpellingKeyModel>();
+            for (int i = 0; i < spellingChars.Length; i++)
             {
-                case "86":
-                    WubiType = "86";
-                    break;
-                case "98":
-                    WubiType = "98";
-                    break;
-                case "新世纪":
-                    WubiType = "06";
-                    break;
-                default:
-                    WubiType = "全部";
-                    break;
-            }
-            content = content.Trim();
-            SpellingList.Clear();
-            ObservableCollection<ZigenModel> spellings = new ObservableCollection<ZigenModel>();
-
-            char[] texts = content.ToCharArray().Distinct().ToArray();
-
-            foreach (var text in texts)
-            {
-                string key = text.ToString();
-                var model = QuickSpellingQueue86.FirstOrDefault(s => s.Text == key);
-                if (model == null) continue;
-
-                char[] spellingChars = model.Spelling.ToCharArray();
-                string[] spellingArray = new string[4] { "", "", "", "" };
-                List<string> spellingStrs = new List<string>();
-                for (int i = 0; i < spellingChars.Length; i++)
+                var s = spellingChars[i].ToString().Trim();
+                if (!string.IsNullOrEmpty(s))
                 {
-                    var s = spellingChars[i].ToString().Trim();
-                    if (!string.IsNullOrEmpty(s))
+                    var sModel = new SpellingKeyModel()
                     {
-                        spellingStrs.Add(s);
-                    }
+                        SpellingKey = s,
+                    };
+                    sList.Add(sModel);
                 }
-
-                for (int i = 0; i < spellingStrs.Count; i++)
-                {
-                    spellingArray[i] = spellingStrs[i].ToString().Trim();
-                }
-
-                ZigenModel zModel = new ZigenModel()
-                {
-                    Text = model.Text,
-                    Type = "字",
-                    SpellingText1 = spellingArray[0],
-                    SpellingText2 = spellingArray[1],
-                    SpellingText3 = spellingArray[2],
-                    SpellingText4 = spellingArray[3],
-                    CodeText = model.Code,
-                    GBKText = model.GBType,
-                    WubiType = WubiType,
-                };
-                spellings.Add(zModel);
             }
 
-            SpellingList = spellings;
+            return sList;
+        }
+
+        private List<CodeKeyModel> GetCodeKeyList(string textKey, string type)
+        {
+            ConcurrentQueue<SpellingModel> currentSpellingData = null;
+            if (type == "86") currentSpellingData = QuickSpellingQueue86;
+            else if (type == "98") currentSpellingData = QuickSpellingQueue98;
+            else currentSpellingData = QuickSpellingQueue06;
+
+            var dataModel = currentSpellingData?.FirstOrDefault(s => s.Text == textKey);
+            if (dataModel == null) return null;
+            List<CodeKeyModel> cList = new List<CodeKeyModel>();
+            cList.Add(new CodeKeyModel() { CodeKey = dataModel.Code });
+            for (int i = 0; i < dataModel.Pinyin.Length; i++)
+            {
+                var cModel = new CodeKeyModel()
+                {
+                    CodeKey = dataModel.Pinyin[i],
+                };
+                cList.Add(cModel);
+            }
+
+            return cList;
         }
     }
 }

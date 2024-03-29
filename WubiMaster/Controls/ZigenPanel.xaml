@@ -13,7 +13,7 @@
         <com:WubiType2Visibility x:Key="WubiType2Visibility" />
 
         <Style x:Key="zigen_border_style" TargetType="Border">
-            <Setter Property="Background" Value="{DynamicResource primary-200}" />
+            <Setter Property="Background" Value="{DynamicResource primary-100}" />
             <Setter Property="Width" Value="30" />
             <Setter Property="Height" Value="30" />
             <Setter Property="CornerRadius" Value="15" />
@@ -39,7 +39,7 @@
         </Style>
 
         <Style x:Key="code_border_style" TargetType="Border">
-            <Setter Property="Background" Value="{DynamicResource primary-300}" />
+            <Setter Property="Background" Value="{DynamicResource primary-100}" />
             <Setter Property="Width" Value="Auto" />
             <Setter Property="Height" Value="25" />
             <Setter Property="CornerRadius" Value="3" />
@@ -57,7 +57,7 @@
         </Style>
 
         <Style x:Key="code_textblock_style" TargetType="TextBlock">
-            <Setter Property="Foreground" Value="{DynamicResource text-200}" />
+            <Setter Property="Foreground" Value="{DynamicResource bg-100}" />
             <Setter Property="FontSize" Value="15" />
             <Setter Property="HorizontalAlignment" Value="Center" />
             <Setter Property="VerticalAlignment" Value="Center" />
@@ -83,7 +83,7 @@
 
                     <Border Width=" 20"
                             Height="20"
-                            Background="{DynamicResource accent-100}"
+                            Background="{DynamicResource accent-200}"
                             CornerRadius="10">
                         <TextBlock HorizontalAlignment="Center"
                                    VerticalAlignment="Center"
@@ -123,7 +123,7 @@
                     </Grid.RowDefinitions>
 
                     <!--86-->
-                    <Grid Visibility="{Binding WubiType, Converter={StaticResource WubiType2Visibility}, ConverterParameter=86}">
+                    <Grid Margin="0,10,0,0" Visibility="{Binding WubiType, Converter={StaticResource WubiType2Visibility}, ConverterParameter=86}">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" SharedSizeGroup="zigen_class" />
                             <ColumnDefinition Width="Auto" />
@@ -138,48 +138,41 @@
                                    Opacity="0.8"
                                    Text="86五笔:" />
 
-                        <StackPanel Grid.Column="1"
-                                    Margin="20,0,0,0"
-                                    Orientation="Horizontal"
-                                    TextBlock.FontFamily="../Fonts/#zigen">
+                        <ItemsControl Grid.Column="1" ItemsSource="{Binding SpellingKeyList86}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Margin="20,0,0,0" Orientation="Horizontal" />
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
 
-                            <Border Style="{StaticResource zigen_border_style}" Visibility="{Binding SpellingText1, Converter={StaticResource Text2Visibility}}">
-                                <Viewbox>
-                                    <TextBlock Style="{StaticResource zigen_textblock_style}" Text="{Binding SpellingText1}" />
-                                </Viewbox>
-                            </Border>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Border Style="{StaticResource zigen_border_style}">
+                                        <Viewbox>
+                                            <TextBlock Style="{StaticResource zigen_textblock_style}" Text="{Binding SpellingKey}" />
+                                        </Viewbox>
+                                    </Border>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
 
-                            <Border Style="{StaticResource zigen_border_style}" Visibility="{Binding SpellingText2, Converter={StaticResource Text2Visibility}}">
-                                <Viewbox>
-                                    <TextBlock Style="{StaticResource zigen_textblock_style}" Text="{Binding SpellingText2}" />
-                                </Viewbox>
-                            </Border>
+                        <ItemsControl Grid.Column="2" ItemsSource="{Binding CodeKeyList86}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Margin="20,0,0,0" Orientation="Horizontal" />
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
 
-                            <Border Style="{StaticResource zigen_border_style}" Visibility="{Binding SpellingText3, Converter={StaticResource Text2Visibility}}">
-                                <Viewbox>
-                                    <TextBlock Style="{StaticResource zigen_textblock_style}" Text="{Binding SpellingText3}" />
-                                </Viewbox>
-                            </Border>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Border Style="{StaticResource code_border_style}">
+                                        <TextBlock Style="{StaticResource code_textblock_style}" Text="{Binding CodeKey}" />
+                                    </Border>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
 
-                            <Border Style="{StaticResource zigen_border_style}" Visibility="{Binding SpellingText4, Converter={StaticResource Text2Visibility}}">
-                                <Viewbox>
-                                    <TextBlock Style="{StaticResource zigen_textblock_style}" Text="{Binding SpellingText4}" />
-                                </Viewbox>
-                            </Border>
-                        </StackPanel>
 
-                        <StackPanel Grid.Column="2"
-                                    Margin="20,0,0,0"
-                                    Orientation="Horizontal">
-
-                            <Border Style="{StaticResource code_border_style}">
-                                <TextBlock Style="{StaticResource code_textblock_style}" Text="{Binding CodeText}" />
-                            </Border>
-
-                            <Border Style="{StaticResource code_border_style}">
-                                <TextBlock Style="{StaticResource code_textblock_style}" Text="{Binding GBKText}" />
-                            </Border>
-                        </StackPanel>
                     </Grid>
 
                     <!--98-->
@@ -200,40 +193,39 @@
                                    Opacity="0.8"
                                    Text="98五笔:" />
 
-                        <StackPanel Grid.Column="1"
-                                    Margin="20,0,0,0"
-                                    Orientation="Horizontal"
-                                    TextBlock.FontFamily="../Fonts/#zigen">
+                        <ItemsControl Grid.Column="1" ItemsSource="{Binding SpellingKeyList98}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Margin="20,0,0,0" Orientation="Horizontal" />
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
 
-                            <Border Style="{StaticResource zigen_border_style}">
-                                <TextBlock Style="{StaticResource zigen_textblock_style}" Text="&#xe603;" />
-                            </Border>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Border Style="{StaticResource zigen_border_style}">
+                                        <Viewbox>
+                                            <TextBlock Style="{StaticResource zigen_textblock_style}" Text="{Binding SpellingKey}" />
+                                        </Viewbox>
+                                    </Border>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
 
-                            <Border Style="{StaticResource zigen_border_style}">
-                                <TextBlock Style="{StaticResource zigen_textblock_style}" Text="&#xe60b;" />
-                            </Border>
+                        <ItemsControl Grid.Column="2" ItemsSource="{Binding CodeKeyList98}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Margin="20,0,0,0" Orientation="Horizontal" />
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
 
-                            <Border Style="{StaticResource zigen_border_style}">
-                                <TextBlock Style="{StaticResource zigen_textblock_style}" Text="&#xe60a;" />
-                            </Border>
-
-                            <Border Style="{StaticResource zigen_border_style}">
-                                <TextBlock Style="{StaticResource zigen_textblock_style}" Text="&#xe606;" />
-                            </Border>
-                        </StackPanel>
-
-                        <StackPanel Grid.Column="2"
-                                    Margin="20,0,0,0"
-                                    Orientation="Horizontal">
-
-                            <Border Style="{StaticResource code_border_style}">
-                                <TextBlock Style="{StaticResource code_textblock_style}" Text="gtdj" />
-                            </Border>
-
-                            <Border Style="{StaticResource code_border_style}">
-                                <TextBlock Style="{StaticResource code_textblock_style}" Text="gtdj" />
-                            </Border>
-                        </StackPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Border Style="{StaticResource code_border_style}">
+                                        <TextBlock Style="{StaticResource code_textblock_style}" Text="{Binding CodeKey}" />
+                                    </Border>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
                     </Grid>
 
                     <!--06-->
@@ -254,40 +246,39 @@
                                    Opacity="0.8"
                                    Text="新世纪五笔:" />
 
-                        <StackPanel Grid.Column="1"
-                                    Margin="20,0,0,0"
-                                    Orientation="Horizontal"
-                                    TextBlock.FontFamily="../Fonts/#zigen">
+                        <ItemsControl Grid.Column="1" ItemsSource="{Binding SpellingKeyList06}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Margin="20,0,0,0" Orientation="Horizontal" />
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
 
-                            <Border Style="{StaticResource zigen_border_style}">
-                                <TextBlock Style="{StaticResource zigen_textblock_style}" Text="&#xe603;" />
-                            </Border>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Border Style="{StaticResource zigen_border_style}">
+                                        <Viewbox>
+                                            <TextBlock Style="{StaticResource zigen_textblock_style}" Text="{Binding SpellingKey}" />
+                                        </Viewbox>
+                                    </Border>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
 
-                            <Border Style="{StaticResource zigen_border_style}">
-                                <TextBlock Style="{StaticResource zigen_textblock_style}" Text="&#xe60b;" />
-                            </Border>
+                        <ItemsControl Grid.Column="2" ItemsSource="{Binding CodeKeyList06}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Margin="20,0,0,0" Orientation="Horizontal" />
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
 
-                            <Border Style="{StaticResource zigen_border_style}">
-                                <TextBlock Style="{StaticResource zigen_textblock_style}" Text="&#xe60a;" />
-                            </Border>
-
-                            <Border Style="{StaticResource zigen_border_style}">
-                                <TextBlock Style="{StaticResource zigen_textblock_style}" Text="&#xe606;" />
-                            </Border>
-                        </StackPanel>
-
-                        <StackPanel Grid.Column="2"
-                                    Margin="20,0,0,0"
-                                    Orientation="Horizontal">
-
-                            <Border Style="{StaticResource code_border_style}">
-                                <TextBlock Style="{StaticResource code_textblock_style}" Text="gtdj" />
-                            </Border>
-
-                            <Border Style="{StaticResource code_border_style}">
-                                <TextBlock Style="{StaticResource code_textblock_style}" Text="gtdj" />
-                            </Border>
-                        </StackPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Border Style="{StaticResource code_border_style}">
+                                        <TextBlock Style="{StaticResource code_textblock_style}" Text="{Binding CodeKey}" />
+                                    </Border>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
                     </Grid>
                 </Grid>
             </Grid>

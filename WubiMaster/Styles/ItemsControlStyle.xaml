@@ -17,12 +17,14 @@
 
     <DataTemplate x:Key="data_template">
         <c:ZigenPanel Margin="0,0,0,15"
+                      CodeKeyList06="{Binding CodeKeyList06}"
+                      CodeKeyList86="{Binding CodeKeyList86}"
+                      CodeKeyList98="{Binding CodeKeyList98}"
                       CodeText="{Binding CodeText}"
                       GBKText="{Binding GBKText}"
-                      SpellingText1="{Binding SpellingText1}"
-                      SpellingText2="{Binding SpellingText2}"
-                      SpellingText3="{Binding SpellingText3}"
-                      SpellingText4="{Binding SpellingText4}"
+                      SpellingKeyList06="{Binding SpellingKeyList06}"
+                      SpellingKeyList86="{Binding SpellingKeyList86}"
+                      SpellingKeyList98="{Binding SpellingKeyList98}"
                       Text="{Binding Text}"
                       TypeText="{Binding Type}"
                       WubiType="{Binding WubiType}" />

@@ -6,16 +6,26 @@ using System.Threading.Tasks;
 
 namespace WubiMaster.Models
 {
+    public class SpellingKeyModel
+    {
+        public string SpellingKey { get; set; }
+    }
+
+    public class CodeKeyModel
+    {
+        public string CodeKey { get; set; }
+    }
+
     public class ZigenModel
     {
         public string Text { get; set; }
         public string Type { get; set; }
-        public string SpellingText1 { get; set; }
-        public string SpellingText2 { get; set; }
-        public string SpellingText3 { get; set; }
-        public string SpellingText4 { get; set; }
-        public string CodeText { get; set; }
-        public string GBKText { get; set; }
+        public List<SpellingKeyModel> SpellingKeyList86 { get; set; }
+        public List<SpellingKeyModel> SpellingKeyList98 { get; set; }
+        public List<SpellingKeyModel> SpellingKeyList06 { get; set; }
+        public List<CodeKeyModel> CodeKeyList86 { get; set; }
+        public List<CodeKeyModel> CodeKeyList98 { get; set; }
+        public List<CodeKeyModel> CodeKeyList06 { get; set; }
         public string WubiType { get; set; }
     }
 }

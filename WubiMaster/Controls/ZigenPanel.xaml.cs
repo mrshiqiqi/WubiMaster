@@ -1,5 +1,7 @@
-﻿using System.Windows;
+﻿using System.Collections.Generic;
+using System.Windows;
 using System.Windows.Controls;
+using WubiMaster.Models;
 
 namespace WubiMaster.Controls
 {
@@ -11,8 +13,17 @@ namespace WubiMaster.Controls
         public static readonly DependencyProperty GBKTextProperty =
             DependencyProperty.Register("GBKText", typeof(string), typeof(ZigenPanel), new PropertyMetadata(""));
 
+        public static readonly DependencyProperty SpellingKeyList06Property =
+            DependencyProperty.Register("SpellingKeyList06", typeof(List<SpellingKeyModel>), typeof(ZigenPanel));
+
+        public static readonly DependencyProperty SpellingKeyList86Property =
+            DependencyProperty.Register("SpellingKeyList86", typeof(List<SpellingKeyModel>), typeof(ZigenPanel));
+
+        public static readonly DependencyProperty SpellingKeyList98Property =
+            DependencyProperty.Register("SpellingKeyList98", typeof(List<SpellingKeyModel>), typeof(ZigenPanel));
+
         public static readonly DependencyProperty SpellingText1Property =
-            DependencyProperty.Register("SpellingText1", typeof(string), typeof(ZigenPanel), new PropertyMetadata(""));
+                                    DependencyProperty.Register("SpellingText1", typeof(string), typeof(ZigenPanel), new PropertyMetadata(""));
 
         public static readonly DependencyProperty SpellingText2Property =
             DependencyProperty.Register("SpellingText2", typeof(string), typeof(ZigenPanel), new PropertyMetadata(""));
@@ -56,6 +67,24 @@ namespace WubiMaster.Controls
         {
             get { return (string)GetValue(GBKTextProperty); }
             set { SetValue(GBKTextProperty, value); }
+        }
+
+        public List<SpellingKeyModel> SpellingKeyList06
+        {
+            get { return (List<SpellingKeyModel>)GetValue(SpellingKeyList06Property); }
+            set { SetValue(SpellingKeyList06Property, value); }
+        }
+
+        public List<SpellingKeyModel> SpellingKeyList86
+        {
+            get { return (List<SpellingKeyModel>)GetValue(SpellingKeyList86Property); }
+            set { SetValue(SpellingKeyList86Property, value); }
+        }
+
+        public List<SpellingKeyModel> SpellingKeyList98
+        {
+            get { return (List<SpellingKeyModel>)GetValue(SpellingKeyList98Property); }
+            set { SetValue(SpellingKeyList98Property, value); }
         }
 
         public string SpellingText1
@@ -117,5 +146,36 @@ namespace WubiMaster.Controls
             get { return (string)GetValue(WubiTypeProperty); }
             set { SetValue(WubiTypeProperty, value); }
         }
+
+
+
+        public List<object> CodeKeyList86
+        {
+            get { return (List<object>)GetValue(CodeKeyList86Property); }
+            set { SetValue(CodeKeyList86Property, value); }
+        }
+
+        public static readonly DependencyProperty CodeKeyList86Property =
+            DependencyProperty.Register("CodeKeyList86", typeof(List<object>), typeof(ZigenPanel));
+
+        public List<object> CodeKeyList98
+        {
+            get { return (List<object>)GetValue(CodeKeyList98Property); }
+            set { SetValue(CodeKeyList98Property, value); }
+        }
+
+        public static readonly DependencyProperty CodeKeyList98Property =
+            DependencyProperty.Register("CodeKeyList98", typeof(List<object>), typeof(ZigenPanel));
+
+        public List<object> CodeKeyList06
+        {
+            get { return (List<object>)GetValue(CodeKeyList06Property); }
+            set { SetValue(CodeKeyList06Property, value); }
+        }
+
+        public static readonly DependencyProperty CodeKeyList06Property =
+            DependencyProperty.Register("CodeKeyList06", typeof(List<object>), typeof(ZigenPanel));
+
+
     }
 }
