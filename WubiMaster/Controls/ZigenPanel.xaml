@@ -12,7 +12,9 @@
         <com:Text2Visibility x:Key="Text2Visibility" />
         <com:WubiType2Visibility x:Key="WubiType2Visibility" />
 
-        <Style x:Key="zigen_border_style" TargetType="Border">
+        <Style x:Key="zigen_border_style"
+               BasedOn="{StaticResource UIElementHover}"
+               TargetType="Border">
             <Setter Property="Background" Value="{DynamicResource primary-100}" />
             <Setter Property="Width" Value="30" />
             <Setter Property="Height" Value="30" />
@@ -24,7 +26,7 @@
                 <Setter.Value>
                     <DropShadowEffect BlurRadius="4"
                                       ShadowDepth="2"
-                                      Color="Gray" />
+                                      Color="{DynamicResource bg-3000}" />
                 </Setter.Value>
             </Setter>-->
         </Style>
@@ -38,7 +40,9 @@
             <Setter Property="Margin" Value="5" />
         </Style>
 
-        <Style x:Key="code_border_style" TargetType="Border">
+        <Style x:Key="code_border_style"
+               BasedOn="{StaticResource UIElementHover}"
+               TargetType="Border">
             <Setter Property="Background" Value="{DynamicResource primary-200}" />
             <Setter Property="Width" Value="Auto" />
             <Setter Property="Height" Value="25" />
@@ -51,7 +55,7 @@
                 <Setter.Value>
                     <DropShadowEffect BlurRadius="4"
                                       ShadowDepth="2"
-                                      Color="Gray" />
+                                      Color="{DynamicResource bg-3000}" />
                 </Setter.Value>
             </Setter>-->
         </Style>
