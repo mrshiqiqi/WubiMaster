@@ -48,7 +48,17 @@ namespace WubiMaster.Common
         }
         public static void WriteConfigByString(string key, string value)
         {
-            JsonConfigHelper.WriteConfig(key, value);
+            try
+            {
+                JsonConfigHelper.WriteConfig(key, value);
+            }
+            catch (Exception ex)
+            {
+                LogHelper.Error(ex.ToString());
+                if (ex is UnauthorizedAccessException)
+                    App.Current.MainWindow.ShowMessage("当前用户没有权限读取配置文件");
+            }
+            
         }
     }
 }
