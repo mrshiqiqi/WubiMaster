@@ -25,7 +25,7 @@ namespace WubiMaster.Common
         public static void KillService()
         {
             if (!ServiceHelper.FindService())
-                throw new Exception("请先配置程序文件目录");
+                return;
 
             Process[] ps = Process.GetProcessesByName(GlobalValues.ServerName.Split(".exe")[0]);
             var _p = ps.FirstOrDefault(p => GetProcessUserName(p.Id) == Environment.UserName);
@@ -46,9 +46,8 @@ namespace WubiMaster.Common
             //string prcessPath = ConfigHelper.ReadConfigByString("process_file_path");
             string processPath = GlobalValues.ProcessPath;
             if (string.IsNullOrEmpty(processPath))
-            {
                 throw new Exception("请先配置程序文件目录");
-            }
+
             CmdHelper.RunCmd(processPath, "WeaselServer.exe", false);
         }
 

@@ -238,16 +238,19 @@ namespace WubiMaster.ViewModels
                             string heiti_font = GlobalValues.HeitiFont;
                             FontHelper.InstallFont(heiti_font);
                         }
-
-                        // 启动服务
-                        ServiceHelper.RunService();
                     }
                     catch (Exception ex)
                     {
                         LogHelper.Error(ex.Message,true);
-                        this.ShowMessage("配置失败", DialogType.Error);
+                        this.ShowMessage($"配置失败: {ex.Message}", DialogType.Error);
                         return;
                     }
+                    finally
+                    {
+                        // 启动服务
+                        ServiceHelper.RunService();
+                    }
+
 
                     this.ShowMessage("配置成功，记得重新部署哦😀");
 

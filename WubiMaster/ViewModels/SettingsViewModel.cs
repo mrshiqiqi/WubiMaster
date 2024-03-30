@@ -8,6 +8,7 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows;
 using WubiMaster.Common;
 using WubiMaster.Models;
@@ -68,6 +69,9 @@ namespace WubiMaster.ViewModels
 
         [ObservableProperty]
         private string userFilePath;
+
+        [ObservableProperty]
+        private string backupPath;
 
         public SettingsViewModel()
         {
@@ -159,6 +163,53 @@ namespace WubiMaster.ViewModels
             //ProcessFilePath = dialog.SelectedPath;
 
             //ConfigHelper.WriteConfigByString("process_file_path", ProcessFilePath);
+        }
+
+        [RelayCommand]
+        public void SetBackupPath()
+        {
+            System.Windows.Forms.FolderBrowserDialog dialog = new System.Windows.Forms.FolderBrowserDialog();
+            System.Windows.Forms.DialogResult result = dialog.ShowDialog();
+
+            if (result == System.Windows.Forms.DialogResult.Cancel)
+            {
+                return;
+            }
+            BackupPath = dialog.SelectedPath;
+
+            ConfigHelper.WriteConfigByString("backup_path", BackupPath);
+        }
+
+        [RelayCommand]
+        public async void Backup()
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(GlobalValues.UserPath) || !Directory.Exists(GlobalValues.UserPath))
+                {
+                    this.ShowMessage("找不到 Rime 程序用户目录！", DialogType.Error);
+                    return;
+                }
+
+                if (string.IsNullOrEmpty(BackupPath))
+                    this.ShowMessage("请先设置备份目录");
+
+                ServiceHelper.KillService();
+                await Task.Delay(500);
+
+                string zipName = $"backup_{DateTime.Now.ToString("yyyy.MM.dd.HH.mm.ss.fff")}.zip";
+                ZipHelper.CompressDirectoryZip(GlobalValues.UserPath, BackupPath + $@"\{zipName}");
+
+                ServiceHelper.RunService();
+
+                this.ShowMessage($"备份成功：{zipName}", DialogType.Success);
+            }
+            catch (Exception ex)
+            {
+                LogHelper.Error(ex.ToString());
+                this.ShowMessage("备份失败：" + ex.Message);
+            }
+            
         }
 
         [RelayCommand]
@@ -381,6 +432,9 @@ namespace WubiMaster.ViewModels
                 QuickSpllType06 = true;
             else
                 QuickSpllType86 = true;
+
+            // 加载方案备份目录
+            BackupPath = ConfigHelper.ReadConfigByString("backup_path");
         }
 
         private void ReadProcessPathRegistry()
