@@ -128,12 +128,10 @@ namespace WubiMaster.ViewModels
                 }
 
                 this.ShowMessage("配置成功，记得重新部署哦😀");
-                UdateShcemaState(type);
                 ConfigHelper.WriteConfigByString("running_schema", type);
             }
             catch (Exception ex)
             {
-                UdateShcemaState("null");
                 LogHelper.Error(ex.Message, true);
                 this.ShowMessage($"配置失败: {ex.Message}", DialogType.Error);
                 return;
