@@ -153,7 +153,7 @@
                                 </Grid>
 
                                 <Grid Grid.Column="2">
-                                    <c:IconButton ButtonCommand="{Binding CreateSchemeCommand}"
+                                    <c:IconButton ButtonCommand="{Binding CreateSchemaCommand}"
                                                   ButtonCommandParameter="{Binding ElementName=txt_wubi86_icon, Path=Text}"
                                                   Style="{StaticResource WubiButtonStyle}" />
                                 </Grid>
@@ -188,7 +188,9 @@
                                 </Grid>
 
                                 <Grid Grid.Column="2">
-                                    <c:IconButton IsEnabled="False" Style="{StaticResource WubiButtonStyle}" />
+                                    <c:IconButton ButtonCommand="{Binding CreateSchemaCommand}"
+                                                  ButtonCommandParameter="{Binding ElementName=txt_wubi98_icon, Path=Text}"
+                                                  Style="{StaticResource WubiButtonStyle}" />
                                 </Grid>
                             </Grid>
 
@@ -315,7 +317,8 @@
                                                     <DoubleAnimation AccelerationRatio="0.3"
                                                                      DecelerationRatio="0.2"
                                                                      Storyboard.TargetProperty="(Border.Opacity)"
-                                                                     From="1" To="0"
+                                                                     From="1"
+                                                                     To="0"
                                                                      Duration="0:0:1.5" />
                                                 </Storyboard>
                                             </BeginStoryboard>
@@ -327,7 +330,8 @@
                                             <BeginStoryboard>
                                                 <Storyboard>
                                                     <DoubleAnimation Storyboard.TargetProperty="(Border.Opacity)"
-                                                                     From="0" To="1"
+                                                                     From="0"
+                                                                     To="1"
                                                                      Duration="0:0:0.5" />
                                                 </Storyboard>
                                             </BeginStoryboard>

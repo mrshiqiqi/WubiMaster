@@ -20,7 +20,8 @@
 
   <ItemGroup>
     <None Remove="Assets\Fonts\黑体字根.ttf" />
-    <None Remove="Assets\Schemes\scheme86.zip" />
+    <None Remove="Assets\Schemas\schema86.zip" />
+    <None Remove="Assets\Schemas\schema98.zip" />
     <None Remove="Assets\Spelling\wb06_spelling.txt" />
     <None Remove="Assets\Spelling\wb86_spelling.txt" />
     <None Remove="Assets\Spelling\wb98_spelling.txt" />
@@ -46,7 +47,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Assets\Schemes\scheme86.zip">
+    <Content Include="Assets\Schemas\schema86.zip">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Schemas\schema98.zip">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="faviocn.ico">
