@@ -16,6 +16,15 @@ namespace WubiMaster.ViewModels
     public partial class HomeViewModel : ObservableObject
     {
         [ObservableProperty]
+        private bool schema06State;
+
+        [ObservableProperty]
+        private bool schema86State;
+
+        [ObservableProperty]
+        private bool schema98State;
+
+        [ObservableProperty]
         private int shiciInterval = 25;
 
         [ObservableProperty]
@@ -39,6 +48,7 @@ namespace WubiMaster.ViewModels
 
             LoadSpellTextShow();
             GetTheKeyTextAsync();
+            LoadConfig();
         }
 
         [RelayCommand]
@@ -61,27 +71,28 @@ namespace WubiMaster.ViewModels
             else
                 schema_zip = GlobalValues.Schema86Zip;
 
-            // 先检测rime环境
-            if (string.IsNullOrEmpty(GlobalValues.UserPath) || string.IsNullOrEmpty(GlobalValues.ProcessPath))
-            {
-                this.ShowMessage("未检测到 Rime 引擎的安装信息，请先安装 Rime 程序！", DialogType.Warring);
-                return;
-            }
-
-            if (!File.Exists(schema_zip))
-            {
-                this.ShowMessage("找不到对应的内置方案");
-                return;
-            }
-
-            // 在配置前，先提示会将原有的方案覆盖
-            bool? result = this.ShowAskMessage("请注意：本次操作将清除 Rime 用户目录下所有数据！", DialogType.Normal);
-            if (result != true)
-                return;
-
-            // 再将包导入进去
             try
             {
+                UdateShcemaState("null");
+
+                // 先检测rime环境
+                if (string.IsNullOrEmpty(GlobalValues.UserPath) || string.IsNullOrEmpty(GlobalValues.ProcessPath))
+                {
+                    this.ShowMessage("未检测到 Rime 引擎的安装信息，请先安装 Rime 程序！", DialogType.Warring);
+                    return;
+                }
+
+                if (!File.Exists(schema_zip))
+                {
+                    this.ShowMessage("找不到对应的内置方案");
+                    return;
+                }
+
+                // 在配置前，先提示会将原有的方案覆盖
+                bool? result = this.ShowAskMessage("请注意：本次操作将清除 Rime 用户目录下所有数据！", DialogType.Normal);
+                if (result != true)
+                    return;
+
                 // 停止服务
                 ServiceHelper.KillService();
                 await Task.Delay(1000);
@@ -115,9 +126,14 @@ namespace WubiMaster.ViewModels
                     string heiti_font = GlobalValues.HeitiFont;
                     FontHelper.InstallFont(heiti_font);
                 }
+
+                this.ShowMessage("配置成功，记得重新部署哦😀");
+                UdateShcemaState(type);
+                ConfigHelper.WriteConfigByString("running_schema", type);
             }
             catch (Exception ex)
             {
+                UdateShcemaState("null");
                 LogHelper.Error(ex.Message, true);
                 this.ShowMessage($"配置失败: {ex.Message}", DialogType.Error);
                 return;
@@ -126,17 +142,10 @@ namespace WubiMaster.ViewModels
             {
                 // 启动服务
                 ServiceHelper.RunService();
+                string runningSchema = ConfigHelper.ReadConfigByString("running_schema");
+                UdateShcemaState(runningSchema);
             }
-
-            this.ShowMessage("配置成功，记得重新部署哦😀");
         }
-
-        //[RelayCommand]
-        //public void ToDownLoadRime()
-        //{
-        //    string rimeUrl = "https://rime.im/download/";
-        //    ToWebPage(rimeUrl);
-        //}
 
         [RelayCommand]
         public void ToWebPage(object obj)
@@ -153,6 +162,12 @@ namespace WubiMaster.ViewModels
             }
         }
 
+        //[RelayCommand]
+        //public void ToDownLoadRime()
+        //{
+        //    string rimeUrl = "https://rime.im/download/";
+        //    ToWebPage(rimeUrl);
+        //}
         [RelayCommand]
         public void ZingenSearch(object obj)
         {
@@ -241,6 +256,12 @@ namespace WubiMaster.ViewModels
             LoadSpellTextShow();
         }
 
+        private void LoadConfig()
+        {
+            string runningSchema = ConfigHelper.ReadConfigByString("running_schema");
+            UdateShcemaState(runningSchema);
+        }
+
         private void LoadSpellTextShow()
         {
             try
@@ -257,6 +278,36 @@ namespace WubiMaster.ViewModels
             {
                 LogHelper.Error(ex.Message);
                 this.ShowMessage("无法加载字根版本示例", DialogType.Error);
+            }
+        }
+
+        private void UdateShcemaState(string type)
+        {
+            switch (type)
+            {
+                case "86":
+                    Schema86State = true;
+                    Schema98State = false;
+                    Schema06State = false;
+                    break;
+
+                case "98":
+                    Schema86State = false;
+                    Schema98State = true;
+                    Schema06State = false;
+                    break;
+
+                case "06":
+                    Schema86State = false;
+                    Schema98State = false;
+                    Schema06State = true;
+                    break;
+
+                default:
+                    Schema86State = false;
+                    Schema98State = false;
+                    Schema06State = false;
+                    break;
             }
         }
     }
