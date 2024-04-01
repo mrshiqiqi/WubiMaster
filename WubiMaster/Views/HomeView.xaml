@@ -223,7 +223,9 @@
                                 </Grid>
 
                                 <Grid Grid.Column="2">
-                                    <c:IconButton IsEnabled="False" Style="{StaticResource WubiButtonStyle}" />
+                                    <c:IconButton ButtonCommand="{Binding CreateSchemaCommand}"
+                                                  ButtonCommandParameter="{Binding ElementName=txt_wubi06_icon, Path=Text}"
+                                                  Style="{StaticResource WubiButtonStyle}" />
                                 </Grid>
                             </Grid>
                         </Grid>
