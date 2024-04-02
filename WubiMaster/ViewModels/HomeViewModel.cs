@@ -4,7 +4,6 @@ using CommunityToolkit.Mvvm.Messaging;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.Data;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -51,20 +50,6 @@ namespace WubiMaster.ViewModels
             LoadSpellTextShow();
             GetTheKeyTextAsync();
             LoadConfig();
-        }
-
-        private void ChangeShcemaState(object recipient, string message)
-        {
-            string type = message;
-            ConfigHelper.WriteConfigByString("running_schema", type);
-            UdateShcemaState(type);
-        }
-
-        [RelayCommand]
-        public void CopyInfo(object obj)
-        {
-            Clipboard.SetDataObject(obj);
-            this.ShowMessage("已复制到剪贴板");
         }
 
         [RelayCommand]
@@ -138,6 +123,13 @@ namespace WubiMaster.ViewModels
         }
 
         [RelayCommand]
+        public void CopyInfo(object obj)
+        {
+            Clipboard.SetDataObject(obj);
+            this.ShowMessage("已复制到剪贴板");
+        }
+
+        [RelayCommand]
         public void ToWebPage(object obj)
         {
             try
@@ -186,6 +178,13 @@ namespace WubiMaster.ViewModels
             {
                 LogHelper.Error(ex.Message);
             }
+        }
+
+        private void ChangeShcemaState(object recipient, string message)
+        {
+            string type = message;
+            ConfigHelper.WriteConfigByString("running_schema", type);
+            UdateShcemaState(type);
         }
 
         private void ChangeShiciInterval(object recipient, string message)

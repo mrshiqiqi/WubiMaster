@@ -84,14 +84,12 @@
                                            Foreground="{DynamicResource text-200}"
                                            Text="{Binding WubiSchemaTip}" />
 
-
                                 <Button Command="{Binding InitializeSchemaCommand}"
                                         Content="初始化"
                                         Style="{StaticResource SettingButtonStyle}" />
                             </StackPanel>
                         </c:SettingPanel.SettingContent>
                     </c:SettingPanel>
-
 
                     <c:SettingPanel Title="方案备份"
                                     IconText="&#xe82f;"

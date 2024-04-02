@@ -19,6 +19,9 @@ namespace WubiMaster.ViewModels
     public partial class SettingsViewModel : ObservableRecipient
     {
         [ObservableProperty]
+        private string backupPath;
+
+        [ObservableProperty]
         private bool cobboxThemesEnable;
 
         [ObservableProperty]
@@ -71,9 +74,6 @@ namespace WubiMaster.ViewModels
         private string userFilePath;
 
         [ObservableProperty]
-        private string backupPath;
-
-        [ObservableProperty]
         private string wubiSchemaTip;
 
         public SettingsViewModel()
@@ -96,49 +96,75 @@ namespace WubiMaster.ViewModels
             LoadConfig();
         }
 
-        private void ChangequickSpllType(object recipient, string message)
-        {
-            string type = message;
-            switch (type)
-            {
-                case "86":
-                    QuickSpllType86 = true;
-                    break;
-                case "98":
-                    QuickSpllType98 = true;
-                    break;
-                case "06":
-                    QuickSpllType06 = true;
-                    break;
-                default:
-                    QuickSpllType86 = true;
-                    break;
-            }
-            QuickSpellChange();
-        }
-
-        private void UpdateWubiSchemaTip()
+        [RelayCommand]
+        public async void Backup()
         {
             try
             {
-                string wubi_master_key = GlobalValues.UserPath + GlobalValues.SchemaKey;
-                bool hasKey = File.Exists(wubi_master_key);
-                if (hasKey)
-                    WubiSchemaTip = "已加载五笔引擎";
-                else
+                if (string.IsNullOrEmpty(GlobalValues.UserPath) || !Directory.Exists(GlobalValues.UserPath))
                 {
-                    WubiSchemaTip = "未检测到五笔引擎";
-                    WeakReferenceMessenger.Default.Send<string, string>("", "ChangeShcemaState");
+                    this.ShowMessage("找不到 Rime 程序用户目录！", DialogType.Error);
+                    return;
                 }
-                    
+
+                if (string.IsNullOrEmpty(BackupPath))
+                    this.ShowMessage("请先设置备份目录");
+
+                ServiceHelper.KillService();
+                await Task.Delay(500);
+
+                string zipName = $"backup_{DateTime.Now.ToString("yyyy.MM.dd.HH.mm.ss.fff")}.zip";
+                ZipHelper.CompressDirectoryZip(GlobalValues.UserPath, BackupPath + $@"\{zipName}");
+
+                ServiceHelper.RunService();
+
+                this.ShowMessage($"备份成功：{zipName}", DialogType.Success);
             }
             catch (Exception ex)
             {
-                WubiSchemaTip = "未检测到五笔引擎";
-                WeakReferenceMessenger.Default.Send<string, string>("", "ChangeShcemaState");
-                LogHelper.Error(ex.Message);
+                LogHelper.Error(ex.ToString());
+                this.ShowMessage("备份失败：" + ex.Message);
             }
+        }
 
+        [RelayCommand]
+        public void ChangeLogBackDays(string days)
+        {
+            ConfigHelper.WriteConfigByString("log_back_days", days);
+        }
+
+        [RelayCommand]
+        public void ChangeShiciInterval(int index)
+        {
+            string interval = ShiciIntervalList.First(i => i.Id == index).Minutes.ToString();
+            WeakReferenceMessenger.Default.Send<string, string>(interval, "ChangeShiciInterval");
+
+            ConfigHelper.WriteConfigByString("shici_interval", interval);
+        }
+
+        [RelayCommand]
+        public void ChangeTheme(string theme)
+        {
+            if (theme == null || theme.Length == 0) { return; }
+            try
+            {
+                string pack = $"pack://application:,,,/WubiMaster;component/Themes/{theme}.xaml";
+                ResourceDictionary themeResource = new ResourceDictionary();
+                themeResource.Source = new Uri(pack);
+                Application.Current.Resources.MergedDictionaries[0].Source = themeResource.Source;
+
+                ConfigHelper.WriteConfigByString("theme_value", theme);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        [RelayCommand]
+        public void CheckService()
+        {
+            ServiceIsRun = ServiceHelper.FindService();
         }
 
         [RelayCommand]
@@ -157,7 +183,7 @@ namespace WubiMaster.ViewModels
 
                 if (!File.Exists(schema_zip))
                 {
-                    this.ShowMessage("找不到五笔引擎包！",DialogType.Error);
+                    this.ShowMessage("找不到五笔引擎包！", DialogType.Error);
                     return;
                 }
 
@@ -217,46 +243,6 @@ namespace WubiMaster.ViewModels
         }
 
         [RelayCommand]
-        public void ChangeLogBackDays(string days)
-        {
-            ConfigHelper.WriteConfigByString("log_back_days", days);
-        }
-
-        [RelayCommand]
-        public void ChangeShiciInterval(int index)
-        {
-            string interval = ShiciIntervalList.First(i => i.Id == index).Minutes.ToString();
-            WeakReferenceMessenger.Default.Send<string, string>(interval, "ChangeShiciInterval");
-
-            ConfigHelper.WriteConfigByString("shici_interval", interval);
-        }
-
-        [RelayCommand]
-        public void ChangeTheme(string theme)
-        {
-            if (theme == null || theme.Length == 0) { return; }
-            try
-            {
-                string pack = $"pack://application:,,,/WubiMaster;component/Themes/{theme}.xaml";
-                ResourceDictionary themeResource = new ResourceDictionary();
-                themeResource.Source = new Uri(pack);
-                Application.Current.Resources.MergedDictionaries[0].Source = themeResource.Source;
-
-                ConfigHelper.WriteConfigByString("theme_value", theme);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-            }
-        }
-
-        [RelayCommand]
-        public void CheckService()
-        {
-            ServiceIsRun = ServiceHelper.FindService();
-        }
-
-        [RelayCommand]
         public void OpenLogPath()
         {
             string path = GlobalValues.AppDirectory + "Logs";
@@ -288,53 +274,6 @@ namespace WubiMaster.ViewModels
             //ProcessFilePath = dialog.SelectedPath;
 
             //ConfigHelper.WriteConfigByString("process_file_path", ProcessFilePath);
-        }
-
-        [RelayCommand]
-        public void SetBackupPath()
-        {
-            System.Windows.Forms.FolderBrowserDialog dialog = new System.Windows.Forms.FolderBrowserDialog();
-            System.Windows.Forms.DialogResult result = dialog.ShowDialog();
-
-            if (result == System.Windows.Forms.DialogResult.Cancel)
-            {
-                return;
-            }
-            BackupPath = dialog.SelectedPath;
-
-            ConfigHelper.WriteConfigByString("backup_path", BackupPath);
-        }
-
-        [RelayCommand]
-        public async void Backup()
-        {
-            try
-            {
-                if (string.IsNullOrEmpty(GlobalValues.UserPath) || !Directory.Exists(GlobalValues.UserPath))
-                {
-                    this.ShowMessage("找不到 Rime 程序用户目录！", DialogType.Error);
-                    return;
-                }
-
-                if (string.IsNullOrEmpty(BackupPath))
-                    this.ShowMessage("请先设置备份目录");
-
-                ServiceHelper.KillService();
-                await Task.Delay(500);
-
-                string zipName = $"backup_{DateTime.Now.ToString("yyyy.MM.dd.HH.mm.ss.fff")}.zip";
-                ZipHelper.CompressDirectoryZip(GlobalValues.UserPath, BackupPath + $@"\{zipName}");
-
-                ServiceHelper.RunService();
-
-                this.ShowMessage($"备份成功：{zipName}", DialogType.Success);
-            }
-            catch (Exception ex)
-            {
-                LogHelper.Error(ex.ToString());
-                this.ShowMessage("备份失败：" + ex.Message);
-            }
-
         }
 
         [RelayCommand]
@@ -397,6 +336,21 @@ namespace WubiMaster.ViewModels
         }
 
         [RelayCommand]
+        public void SetBackupPath()
+        {
+            System.Windows.Forms.FolderBrowserDialog dialog = new System.Windows.Forms.FolderBrowserDialog();
+            System.Windows.Forms.DialogResult result = dialog.ShowDialog();
+
+            if (result == System.Windows.Forms.DialogResult.Cancel)
+            {
+                return;
+            }
+            BackupPath = dialog.SelectedPath;
+
+            ConfigHelper.WriteConfigByString("backup_path", BackupPath);
+        }
+
+        [RelayCommand]
         public void SetDefaultCikuFile()
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
@@ -441,6 +395,30 @@ namespace WubiMaster.ViewModels
             {
                 this.ShowMessage(ex.Message, DialogType.Warring);
             }
+        }
+
+        private void ChangequickSpllType(object recipient, string message)
+        {
+            string type = message;
+            switch (type)
+            {
+                case "86":
+                    QuickSpllType86 = true;
+                    break;
+
+                case "98":
+                    QuickSpllType98 = true;
+                    break;
+
+                case "06":
+                    QuickSpllType06 = true;
+                    break;
+
+                default:
+                    QuickSpllType86 = true;
+                    break;
+            }
+            QuickSpellChange();
         }
 
         private void GetRimeRegistryKey()
@@ -617,6 +595,28 @@ namespace WubiMaster.ViewModels
             }
             catch (Exception ex)
             {
+                LogHelper.Error(ex.Message);
+            }
+        }
+
+        private void UpdateWubiSchemaTip()
+        {
+            try
+            {
+                string wubi_master_key = GlobalValues.UserPath + GlobalValues.SchemaKey;
+                bool hasKey = File.Exists(wubi_master_key);
+                if (hasKey)
+                    WubiSchemaTip = "已加载五笔引擎";
+                else
+                {
+                    WubiSchemaTip = "未检测到五笔引擎";
+                    WeakReferenceMessenger.Default.Send<string, string>("", "ChangeShcemaState");
+                }
+            }
+            catch (Exception ex)
+            {
+                WubiSchemaTip = "未检测到五笔引擎";
+                WeakReferenceMessenger.Default.Send<string, string>("", "ChangeShcemaState");
                 LogHelper.Error(ex.Message);
             }
         }
