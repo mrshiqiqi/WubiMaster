@@ -83,7 +83,7 @@ namespace WubiMaster.ViewModels
             ShiciIntervalList = new ObservableCollection<ShiciIntervalModel>();
             LogBackList = new ObservableCollection<LogBackModel>();
 
-            WeakReferenceMessenger.Default.Register<string, string>(this, "ChangequickSpllType", ChangequickSpllType);
+            WeakReferenceMessenger.Default.Register<string, string>(this, "ChangeQuickSpllType", ChangeQuickSpllType);
 
             InitThemes();
             InitShiciInterval();
@@ -399,25 +399,33 @@ namespace WubiMaster.ViewModels
             }
         }
 
-        private void ChangequickSpllType(object recipient, string message)
+        private void ChangeQuickSpllType(object recipient, string message)
         {
             string type = message;
             switch (type)
             {
                 case "86":
                     QuickSpllType86 = true;
+                    QuickSpllType98 = false;
+                    QuickSpllType06 = false;
                     break;
 
                 case "98":
+                    QuickSpllType86 = false;
                     QuickSpllType98 = true;
+                    QuickSpllType06 = false;
                     break;
 
                 case "06":
+                    QuickSpllType86 = false;
+                    QuickSpllType98 = false;
                     QuickSpllType06 = true;
                     break;
 
                 default:
                     QuickSpllType86 = true;
+                    QuickSpllType98 = false;
+                    QuickSpllType06 = false;
                     break;
             }
             QuickSpellChange();

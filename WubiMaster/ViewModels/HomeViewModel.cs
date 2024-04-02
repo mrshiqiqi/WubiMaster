@@ -103,7 +103,7 @@ namespace WubiMaster.ViewModels
                 await Task.Delay(500);
 
                 ConfigHelper.WriteConfigByString("running_schema", type);
-                WeakReferenceMessenger.Default.Send<string, string>(type, "ChangequickSpllType");
+                WeakReferenceMessenger.Default.Send<string, string>(type, "ChangeQuickSpllType");
 
                 this.ShowMessage("配置成功，记得重新部署哦😀");
             }
