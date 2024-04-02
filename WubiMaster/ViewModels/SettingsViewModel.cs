@@ -45,6 +45,15 @@ namespace WubiMaster.ViewModels
         [ObservableProperty]
         private bool quickSpllType98;
 
+        [ObservableProperty]
+        private bool initializeType86 = true;
+
+        [ObservableProperty]
+        private bool initializeType98;
+
+        [ObservableProperty]
+        private bool initializeType06;
+
         private RegistryHelper registryHelper;
 
         private string rimeKey;
@@ -73,6 +82,9 @@ namespace WubiMaster.ViewModels
         [ObservableProperty]
         private string backupPath;
 
+        [ObservableProperty]
+        private string initializeSchemaTitle;
+
         public SettingsViewModel()
         {
             registryHelper = new RegistryHelper();
@@ -83,12 +95,146 @@ namespace WubiMaster.ViewModels
             InitThemes();
             InitShiciInterval();
             InitLogBackList();
-            LoadConfig();
             GetRimeRegistryKey();
             ReadUserPathRegistry();
             ReadProcessPathRegistry();
             ReadServerRegistry();
             CheckService();
+            LoadConfig();
+        }
+
+        private void UpdateInitializeSchemaTitle()
+        {
+            try
+            {
+                string wubi_master_key = GlobalValues.UserPath + GlobalValues.SchemaKey;
+                bool hasKey = File.Exists(wubi_master_key);
+                if (hasKey)
+                    InitializeSchemaTitle = "初始化";
+                else
+                    InitializeSchemaTitle = "初始化（检测到未初始化）";
+            }
+            catch (Exception ex)
+            {
+                InitializeSchemaTitle = "初始化（检测到未初始化）";
+                LogHelper.Error(ex.Message);
+            }
+
+        }
+
+        private void UpdateQuickSpllType(string type)
+        {
+            switch (type)
+            {
+                case "86":
+                    QuickSpllType86 = true;
+                    QuickSpellChange();
+                    break;
+                case "98":
+                    QuickSpllType98 = true;
+                    QuickSpellChange();
+                    break;
+                case "06":
+                    QuickSpllType06 = true;
+                    QuickSpellChange();
+                    break;
+                default:
+                    QuickSpllType86 = true;
+                    QuickSpellChange();
+                    break;
+            }
+        }
+
+        [RelayCommand]
+        public async Task InitializeSchema()
+        {
+            string schema_zip = GlobalValues.SchemaZip;
+            string schema_type = GlobalValues.UserPath + GlobalValues.Schema86;
+            string type = "86";
+            if (InitializeType86) { type = "86"; schema_type = GlobalValues.UserPath + GlobalValues.Schema86; }
+            else if (InitializeType98) { type = "98"; schema_type = GlobalValues.UserPath + GlobalValues.Schema98; }
+            else { type = "06"; schema_type = GlobalValues.UserPath + GlobalValues.Schema06; }
+
+            try
+            {
+                // 先检测rime环境
+                if (string.IsNullOrEmpty(GlobalValues.UserPath) || string.IsNullOrEmpty(GlobalValues.ProcessPath))
+                {
+                    this.ShowMessage("未检测到 Rime 引擎的安装信息，请先安装 Rime 程序！", DialogType.Warring);
+                    return;
+                }
+
+                if (!File.Exists(schema_zip))
+                {
+                    this.ShowMessage("找不到对应的内置方案");
+                    return;
+                }
+
+                // 在配置前，先提示会将原有的方案覆盖
+                bool? result = this.ShowAskMessage("请注意：本次操作将清除 Rime 用户目录下所有数据！", DialogType.Normal);
+                if (result != true)
+                    return;
+
+                // 停止服务
+                ServiceHelper.KillService();
+                await Task.Delay(1000);
+
+                // 删除用户目录中的配置
+                if (Directory.Exists(GlobalValues.UserPath))
+                {
+                    DirectoryInfo dir = new DirectoryInfo(GlobalValues.UserPath);
+                    FileSystemInfo[] fileinfo = dir.GetFileSystemInfos();  //返回目录中所有文件和子目录
+                    foreach (FileSystemInfo i in fileinfo)
+                    {
+                        if (i is DirectoryInfo)            //判断是否文件夹
+                        {
+                            DirectoryInfo subdir = new DirectoryInfo(i.FullName);
+                            subdir.Delete(true);          //删除子目录和文件
+                        }
+                        else
+                        {
+                            File.Delete(i.FullName);      //删除指定文件
+                        }
+                    }
+                }
+                await Task.Delay(500);
+
+                // 将方案解压到用户目录
+                ZipHelper.DecompressZip(schema_zip, GlobalValues.UserPath);
+
+                // 将对应的五笔码表复制到用户目录
+                DirectoryInfo mabiaoDir = new DirectoryInfo(schema_type);
+                FileSystemInfo[] mabiaoInfo = mabiaoDir.GetFileSystemInfos();
+                foreach (FileSystemInfo info in mabiaoInfo)
+                {
+                    if(info is not DirectoryInfo)
+                        File.Copy(info.FullName, GlobalValues.UserPath + @$"\{info.Name}", true);
+                }
+
+                // 安装字根字体
+                if (!FontHelper.CheckFont("黑体字根.ttf"))
+                {
+                    string heiti_font = GlobalValues.HeitiFont;
+                    FontHelper.InstallFont(heiti_font);
+                }
+
+                this.ShowMessage("配置成功，记得重新部署哦😀");
+                ConfigHelper.WriteConfigByString("running_schema", type);
+            }
+            catch (Exception ex)
+            {
+                LogHelper.Error(ex.Message, true);
+                this.ShowMessage($"配置失败: {ex.Message}", DialogType.Error);
+                return;
+            }
+            finally
+            {
+                // 启动服务
+                ServiceHelper.RunService();
+                string schemaType = ConfigHelper.ReadConfigByString("running_schema");
+                UpdateQuickSpllType(schemaType);
+                UpdateInitializeSchemaTitle();
+            }
         }
 
         [RelayCommand]
@@ -209,7 +355,7 @@ namespace WubiMaster.ViewModels
                 LogHelper.Error(ex.ToString());
                 this.ShowMessage("备份失败：" + ex.Message);
             }
-            
+
         }
 
         [RelayCommand]
@@ -435,6 +581,25 @@ namespace WubiMaster.ViewModels
 
             // 加载方案备份目录
             BackupPath = ConfigHelper.ReadConfigByString("backup_path");
+
+            // 加载工作方案版本
+            UpdateInitializeSchemaTitle();
+            string schemaType = ConfigHelper.ReadConfigByString("running_schema");
+            switch (schemaType)
+            {
+                case "86":
+                    InitializeType86 = true;
+                    break;
+                case "98":
+                    InitializeType98 = true;
+                    break;
+                case "06":
+                    InitializeType06 = true;
+                    break;
+                default:
+                    InitializeType86 = true;
+                    break;
+            }
         }
 
         private void ReadProcessPathRegistry()

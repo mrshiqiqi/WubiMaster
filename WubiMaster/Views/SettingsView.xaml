@@ -73,6 +73,32 @@
                         </c:SettingPanel.SettingContent>
                     </c:SettingPanel>
 
+                    <c:SettingPanel Title="{Binding InitializeSchemaTitle}"
+                                    IconText="&#xe617;"
+                                    SubTitle="将五笔方案写入 Rime 用户目录">
+                        <c:SettingPanel.SettingContent>
+                            <StackPanel Orientation="Horizontal">
+                                <RadioButton Content="86"
+                                             GroupName="InitializeGroup"
+                                             IsChecked="{Binding InitializeType86, Mode=TwoWay}"
+                                             Style="{StaticResource RadioButtonStyle}" />
+                                <RadioButton Content="98"
+                                             GroupName="InitializeGroup"
+                                             IsChecked="{Binding InitializeType98, Mode=TwoWay}"
+                                             Style="{StaticResource RadioButtonStyle}" />
+                                <RadioButton Content="新世纪"
+                                             GroupName="InitializeGroup"
+                                             IsChecked="{Binding InitializeType06, Mode=TwoWay}"
+                                             Style="{StaticResource RadioButtonStyle}" />
+
+                                <Button Command="{Binding InitializeSchemaCommand}"
+                                        Content="初始化"
+                                        Style="{StaticResource SettingButtonStyle}" />
+                            </StackPanel>
+                        </c:SettingPanel.SettingContent>
+                    </c:SettingPanel>
+
+
                     <c:SettingPanel Title="方案备份"
                                     IconText="&#xe82f;"
                                     SubTitle="从用户目录备份配置文件">
@@ -84,11 +110,13 @@
                                 <Button Width="50"
                                         Margin="10,0,0,0"
                                         Command="{Binding SetBackupPathCommand}"
-                                        Content="备份到" />
+                                        Content="备份到"
+                                        Style="{StaticResource SettingButtonStyle}" />
                                 <Button Width="50"
                                         Margin="10,0,0,0"
                                         Command="{Binding BackupCommand}"
-                                        Content="备份" />
+                                        Content="备份"
+                                        Style="{StaticResource SettingButtonStyle}" />
                             </StackPanel>
                         </c:SettingPanel.SettingContent>
                     </c:SettingPanel>

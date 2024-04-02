@@ -4,6 +4,7 @@ using CommunityToolkit.Mvvm.Messaging;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Data;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -63,13 +64,13 @@ namespace WubiMaster.ViewModels
         {
             if (obj == null) return;
             string type = obj.ToString();
-            string schema_zip = GlobalValues.Schema86Zip;
+            string schema_type = GlobalValues.UserPath + GlobalValues.Schema86;
             if (type == "06")
-                schema_zip = GlobalValues.Schema06Zip;
+                schema_type = GlobalValues.UserPath + GlobalValues.Schema06;
             else if (type == "98")
-                schema_zip = GlobalValues.Schema98Zip;
+                schema_type = GlobalValues.UserPath + GlobalValues.Schema98;
             else
-                schema_zip = GlobalValues.Schema86Zip;
+                schema_type = GlobalValues.UserPath + GlobalValues.Schema86;
 
             try
             {
@@ -82,50 +83,60 @@ namespace WubiMaster.ViewModels
                     return;
                 }
 
-                if (!File.Exists(schema_zip))
+                // 检测rime是否已初始化
+                if (!File.Exists(GlobalValues.UserPath + GlobalValues.SchemaKey))
                 {
-                    this.ShowMessage("找不到对应的内置方案");
+                    this.ShowMessage("请先初始化 Rime 配置");
                     return;
                 }
 
-                // 在配置前，先提示会将原有的方案覆盖
-                bool? result = this.ShowAskMessage("请注意：本次操作将清除 Rime 用户目录下所有数据！", DialogType.Normal);
-                if (result != true)
-                    return;
+                //// 在配置前，先提示会将原有的方案覆盖
+                //bool? result = this.ShowAskMessage("请注意：本次操作将清除 Rime 用户目录下所有数据！", DialogType.Normal);
+                //if (result != true)
+                //    return;
 
                 // 停止服务
                 ServiceHelper.KillService();
                 await Task.Delay(1000);
 
-                // 删除用户目录中的配置
-                if (Directory.Exists(GlobalValues.UserPath))
+                //// 删除用户目录中的配置
+                //if (Directory.Exists(GlobalValues.UserPath))
+                //{
+                //    DirectoryInfo dir = new DirectoryInfo(GlobalValues.UserPath);
+                //    FileSystemInfo[] fileinfo = dir.GetFileSystemInfos();  //返回目录中所有文件和子目录
+                //    foreach (FileSystemInfo i in fileinfo)
+                //    {
+                //        if (i is DirectoryInfo)            //判断是否文件夹
+                //        {
+                //            DirectoryInfo subdir = new DirectoryInfo(i.FullName);
+                //            subdir.Delete(true);          //删除子目录和文件
+                //        }
+                //        else
+                //        {
+                //            File.Delete(i.FullName);      //删除指定文件
+                //        }
+                //    }
+                //}
+
+                // 将对应的五笔码表复制到用户目录
+                DirectoryInfo mabiaoDir = new DirectoryInfo(schema_type);
+                FileSystemInfo[] mabiaoInfo = mabiaoDir.GetFileSystemInfos();
+                foreach (FileSystemInfo info in mabiaoInfo)
                 {
-                    DirectoryInfo dir = new DirectoryInfo(GlobalValues.UserPath);
-                    FileSystemInfo[] fileinfo = dir.GetFileSystemInfos();  //返回目录中所有文件和子目录
-                    foreach (FileSystemInfo i in fileinfo)
-                    {
-                        if (i is DirectoryInfo)            //判断是否文件夹
-                        {
-                            DirectoryInfo subdir = new DirectoryInfo(i.FullName);
-                            subdir.Delete(true);          //删除子目录和文件
-                        }
-                        else
-                        {
-                            File.Delete(i.FullName);      //删除指定文件
-                        }
-                    }
+                    if (info is not DirectoryInfo)
+                        File.Copy(info.FullName, GlobalValues.UserPath + @$"\{info.Name}", true);
                 }
                 await Task.Delay(500);
 
-                // 将方案解压到用户目录
-                ZipHelper.DecompressZip(schema_zip, GlobalValues.UserPath);
+                //// 将方案解压到用户目录
+                //ZipHelper.DecompressZip(schema_type, GlobalValues.UserPath);
 
-                // 安装字根字体
-                if (!FontHelper.CheckFont("黑体字根.ttf"))
-                {
-                    string heiti_font = GlobalValues.HeitiFont;
-                    FontHelper.InstallFont(heiti_font);
-                }
+                //// 安装字根字体
+                //if (!FontHelper.CheckFont("黑体字根.ttf"))
+                //{
+                //    string heiti_font = GlobalValues.HeitiFont;
+                //    FontHelper.InstallFont(heiti_font);
+                //}
 
                 this.ShowMessage("配置成功，记得重新部署哦😀");
                 ConfigHelper.WriteConfigByString("running_schema", type);
