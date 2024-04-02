@@ -73,7 +73,7 @@
                         </c:SettingPanel.SettingContent>
                     </c:SettingPanel>
 
-                    <c:SettingPanel Title="{Binding InitializeSchemaTitle}"
+                    <c:SettingPanel Title="初始化"
                                     IconText="&#xe617;"
                                     SubTitle="初始化五笔引擎">
                         <c:SettingPanel.SettingContent>
