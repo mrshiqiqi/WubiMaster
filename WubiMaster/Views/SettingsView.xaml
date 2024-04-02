@@ -75,21 +75,15 @@
 
                     <c:SettingPanel Title="{Binding InitializeSchemaTitle}"
                                     IconText="&#xe617;"
-                                    SubTitle="将五笔方案写入 Rime 用户目录">
+                                    SubTitle="初始化五笔引擎">
                         <c:SettingPanel.SettingContent>
                             <StackPanel Orientation="Horizontal">
-                                <RadioButton Content="86"
-                                             GroupName="InitializeGroup"
-                                             IsChecked="{Binding InitializeType86, Mode=TwoWay}"
-                                             Style="{StaticResource RadioButtonStyle}" />
-                                <RadioButton Content="98"
-                                             GroupName="InitializeGroup"
-                                             IsChecked="{Binding InitializeType98, Mode=TwoWay}"
-                                             Style="{StaticResource RadioButtonStyle}" />
-                                <RadioButton Content="新世纪"
-                                             GroupName="InitializeGroup"
-                                             IsChecked="{Binding InitializeType06, Mode=TwoWay}"
-                                             Style="{StaticResource RadioButtonStyle}" />
+                                <TextBlock HorizontalAlignment="Left"
+                                           VerticalAlignment="Center"
+                                           FontSize="15"
+                                           Foreground="{DynamicResource text-200}"
+                                           Text="{Binding WubiSchemaTip}" />
+
 
                                 <Button Command="{Binding InitializeSchemaCommand}"
                                         Content="初始化"

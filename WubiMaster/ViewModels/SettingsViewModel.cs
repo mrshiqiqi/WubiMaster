@@ -45,15 +45,6 @@ namespace WubiMaster.ViewModels
         [ObservableProperty]
         private bool quickSpllType98;
 
-        [ObservableProperty]
-        private bool initializeType86 = true;
-
-        [ObservableProperty]
-        private bool initializeType98;
-
-        [ObservableProperty]
-        private bool initializeType06;
-
         private RegistryHelper registryHelper;
 
         private string rimeKey;
@@ -83,7 +74,7 @@ namespace WubiMaster.ViewModels
         private string backupPath;
 
         [ObservableProperty]
-        private string initializeSchemaTitle;
+        private string wubiSchemaTip;
 
         public SettingsViewModel()
         {
@@ -91,6 +82,8 @@ namespace WubiMaster.ViewModels
             ThemeList = new List<ThemeModel>();
             ShiciIntervalList = new ObservableCollection<ShiciIntervalModel>();
             LogBackList = new ObservableCollection<LogBackModel>();
+
+            WeakReferenceMessenger.Default.Register<string, string>(this, "ChangequickSpllType", ChangequickSpllType);
 
             InitThemes();
             InitShiciInterval();
@@ -103,57 +96,55 @@ namespace WubiMaster.ViewModels
             LoadConfig();
         }
 
-        private void UpdateInitializeSchemaTitle()
+        private void ChangequickSpllType(object recipient, string message)
+        {
+            string type = message;
+            switch (type)
+            {
+                case "86":
+                    QuickSpllType86 = true;
+                    break;
+                case "98":
+                    QuickSpllType98 = true;
+                    break;
+                case "06":
+                    QuickSpllType06 = true;
+                    break;
+                default:
+                    QuickSpllType86 = true;
+                    break;
+            }
+            QuickSpellChange();
+        }
+
+        private void UpdateWubiSchemaTip()
         {
             try
             {
                 string wubi_master_key = GlobalValues.UserPath + GlobalValues.SchemaKey;
                 bool hasKey = File.Exists(wubi_master_key);
                 if (hasKey)
-                    InitializeSchemaTitle = "初始化";
+                    WubiSchemaTip = "已加载五笔引擎";
                 else
-                    InitializeSchemaTitle = "初始化（检测到未初始化）";
+                {
+                    WubiSchemaTip = "未检测到五笔引擎";
+                    WeakReferenceMessenger.Default.Send<string, string>("", "ChangeShcemaState");
+                }
+                    
             }
             catch (Exception ex)
             {
-                InitializeSchemaTitle = "初始化（检测到未初始化）";
+                WubiSchemaTip = "未检测到五笔引擎";
+                WeakReferenceMessenger.Default.Send<string, string>("", "ChangeShcemaState");
                 LogHelper.Error(ex.Message);
             }
 
-        }
-
-        private void UpdateQuickSpllType(string type)
-        {
-            switch (type)
-            {
-                case "86":
-                    QuickSpllType86 = true;
-                    QuickSpellChange();
-                    break;
-                case "98":
-                    QuickSpllType98 = true;
-                    QuickSpellChange();
-                    break;
-                case "06":
-                    QuickSpllType06 = true;
-                    QuickSpellChange();
-                    break;
-                default:
-                    QuickSpllType86 = true;
-                    QuickSpellChange();
-                    break;
-            }
         }
 
         [RelayCommand]
         public async Task InitializeSchema()
         {
             string schema_zip = GlobalValues.SchemaZip;
-            string schema_type = GlobalValues.UserPath + GlobalValues.Schema86;
-            string type = "86";
-            if (InitializeType86) { type = "86"; schema_type = GlobalValues.UserPath + GlobalValues.Schema86; }
-            else if (InitializeType98) { type = "98"; schema_type = GlobalValues.UserPath + GlobalValues.Schema98; }
-            else { type = "06"; schema_type = GlobalValues.UserPath + GlobalValues.Schema06; }
 
             try
             {
@@ -166,7 +157,7 @@ namespace WubiMaster.ViewModels
 
                 if (!File.Exists(schema_zip))
                 {
-                    this.ShowMessage("找不到对应的内置方案");
+                    this.ShowMessage("找不到五笔引擎包！",DialogType.Error);
                     return;
                 }
 
@@ -202,15 +193,6 @@ namespace WubiMaster.ViewModels
                 // 将方案解压到用户目录
                 ZipHelper.DecompressZip(schema_zip, GlobalValues.UserPath);
 
-                // 将对应的五笔码表复制到用户目录
-                DirectoryInfo mabiaoDir = new DirectoryInfo(schema_type);
-                FileSystemInfo[] mabiaoInfo = mabiaoDir.GetFileSystemInfos();
-                foreach (FileSystemInfo info in mabiaoInfo)
-                {
-                    if(info is not DirectoryInfo)
-                        File.Copy(info.FullName, GlobalValues.UserPath + @$"\{info.Name}", true);
-                }
-
                 // 安装字根字体
                 if (!FontHelper.CheckFont("黑体字根.ttf"))
                 {
@@ -218,22 +200,19 @@ namespace WubiMaster.ViewModels
                     FontHelper.InstallFont(heiti_font);
                 }
 
-                this.ShowMessage("配置成功，记得重新部署哦😀");
-                ConfigHelper.WriteConfigByString("running_schema", type);
+                this.ShowMessage("初始化成功", DialogType.Success);
             }
             catch (Exception ex)
             {
                 LogHelper.Error(ex.Message, true);
-                this.ShowMessage($"配置失败: {ex.Message}", DialogType.Error);
+                this.ShowMessage($"初始化失败: {ex.Message}", DialogType.Error);
                 return;
             }
             finally
             {
                 // 启动服务
                 ServiceHelper.RunService();
-                string schemaType = ConfigHelper.ReadConfigByString("running_schema");
-                UpdateQuickSpllType(schemaType);
-                UpdateInitializeSchemaTitle();
+                UpdateWubiSchemaTip();
             }
         }
 
@@ -583,23 +562,7 @@ namespace WubiMaster.ViewModels
             BackupPath = ConfigHelper.ReadConfigByString("backup_path");
 
             // 加载工作方案版本
-            UpdateInitializeSchemaTitle();
-            string schemaType = ConfigHelper.ReadConfigByString("running_schema");
-            switch (schemaType)
-            {
-                case "86":
-                    InitializeType86 = true;
-                    break;
-                case "98":
-                    InitializeType98 = true;
-                    break;
-                case "06":
-                    InitializeType06 = true;
-                    break;
-                default:
-                    InitializeType86 = true;
-                    break;
-            }
+            UpdateWubiSchemaTip();
         }
 
         private void ReadProcessPathRegistry()

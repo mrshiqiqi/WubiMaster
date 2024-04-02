@@ -46,10 +46,18 @@ namespace WubiMaster.ViewModels
         public HomeViewModel()
         {
             WeakReferenceMessenger.Default.Register<string, string>(this, "ChangeShiciInterval", ChangeShiciInterval);
+            WeakReferenceMessenger.Default.Register<string, string>(this, "ChangeShcemaState", ChangeShcemaState);
 
             LoadSpellTextShow();
             GetTheKeyTextAsync();
             LoadConfig();
+        }
+
+        private void ChangeShcemaState(object recipient, string message)
+        {
+            string type = message;
+            ConfigHelper.WriteConfigByString("running_schema", type);
+            UdateShcemaState(type);
         }
 
         [RelayCommand]
@@ -60,7 +68,7 @@ namespace WubiMaster.ViewModels
         }
 
         [RelayCommand]
-        public async void CreateSchema(object obj)
+        public async void ChangeSchema(object obj)
         {
             if (obj == null) return;
             string type = obj.ToString();
@@ -86,37 +94,18 @@ namespace WubiMaster.ViewModels
                 // 检测rime是否已初始化
                 if (!File.Exists(GlobalValues.UserPath + GlobalValues.SchemaKey))
                 {
-                    this.ShowMessage("请先初始化 Rime 配置");
+                    this.ShowMessage("请先初始化五笔引擎");
                     return;
                 }
 
-                //// 在配置前，先提示会将原有的方案覆盖
-                //bool? result = this.ShowAskMessage("请注意：本次操作将清除 Rime 用户目录下所有数据！", DialogType.Normal);
-                //if (result != true)
-                //    return;
+                // 在配置前，先提示会将原有的方案覆盖
+                bool? result = this.ShowAskMessage($"确认将码表切换为 {type} 版本吗？", DialogType.Normal);
+                if (result != true)
+                    return;
 
                 // 停止服务
                 ServiceHelper.KillService();
                 await Task.Delay(1000);
-
-                //// 删除用户目录中的配置
-                //if (Directory.Exists(GlobalValues.UserPath))
-                //{
-                //    DirectoryInfo dir = new DirectoryInfo(GlobalValues.UserPath);
-                //    FileSystemInfo[] fileinfo = dir.GetFileSystemInfos();  //返回目录中所有文件和子目录
-                //    foreach (FileSystemInfo i in fileinfo)
-                //    {
-                //        if (i is DirectoryInfo)            //判断是否文件夹
-                //        {
-                //            DirectoryInfo subdir = new DirectoryInfo(i.FullName);
-                //            subdir.Delete(true);          //删除子目录和文件
-                //        }
-                //        else
-                //        {
-                //            File.Delete(i.FullName);      //删除指定文件
-                //        }
-                //    }
-                //}
 
                 // 将对应的五笔码表复制到用户目录
                 DirectoryInfo mabiaoDir = new DirectoryInfo(schema_type);
@@ -128,18 +117,10 @@ namespace WubiMaster.ViewModels
                 }
                 await Task.Delay(500);
 
-                //// 将方案解压到用户目录
-                //ZipHelper.DecompressZip(schema_type, GlobalValues.UserPath);
-
-                //// 安装字根字体
-                //if (!FontHelper.CheckFont("黑体字根.ttf"))
-                //{
-                //    string heiti_font = GlobalValues.HeitiFont;
-                //    FontHelper.InstallFont(heiti_font);
-                //}
+                ConfigHelper.WriteConfigByString("running_schema", type);
+                WeakReferenceMessenger.Default.Send<string, string>(type, "ChangequickSpllType");
 
                 this.ShowMessage("配置成功，记得重新部署哦😀");
-                ConfigHelper.WriteConfigByString("running_schema", type);
             }
             catch (Exception ex)
             {
