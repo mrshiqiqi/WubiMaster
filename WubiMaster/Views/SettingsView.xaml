@@ -127,7 +127,7 @@
                                           Foreground="{DynamicResource text-100}"
                                           IsEnabled="{Binding CobboxThemesEnable}"
                                           ItemsSource="{Binding ThemeList}"
-                                          SelectedIndex="{Binding ThemeIndex}"
+                                          SelectedIndex="{Binding ThemeIndex, Mode=TwoWay}"
                                           SelectedValuePath="Value"
                                           Style="{StaticResource ComboBoxStyle}">
                                     <b:Interaction.Triggers>

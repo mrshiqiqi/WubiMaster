@@ -153,6 +153,8 @@ namespace WubiMaster.ViewModels
                 themeResource.Source = new Uri(pack);
                 Application.Current.Resources.MergedDictionaries[0].Source = themeResource.Source;
 
+                var themeModel = ThemeList.FirstOrDefault(t => t.Value == theme);
+                ThemeIndex = ThemeList.IndexOf(themeModel);
                 ConfigHelper.WriteConfigByString("theme_value", theme);
             }
             catch (Exception ex)
