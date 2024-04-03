@@ -247,7 +247,13 @@
                      FontSize="{Binding ElementName=search_textbox, Path=TextFontSize}"
                      Foreground="{DynamicResource text-100}"
                      Style="{StaticResource textbox_style}"
-                     Text="{Binding ElementName=search_textbox, Path=SecrchContent}" />
+                     Text="{Binding ElementName=search_textbox, Path=SecrchContent}">
+                <TextBox.InputBindings>
+                    <KeyBinding Key="Enter"
+                                Command="{Binding ElementName=search_textbox, Path=SearchButtonCommand}"
+                                CommandParameter="{Binding ElementName=searchTextBox, Path=Text}" />
+                </TextBox.InputBindings>
+            </TextBox>
 
             <Button Grid.Column="2"
                     Command="{Binding ElementName=search_textbox, Path=SearchButtonCommand}"
