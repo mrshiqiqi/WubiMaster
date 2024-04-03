@@ -57,13 +57,13 @@ namespace WubiMaster.ViewModels
         {
             if (obj == null) return;
             string type = obj.ToString();
-            string schema_type = GlobalValues.UserPath + GlobalValues.Schema86;
+            string schema_type = GlobalValues.UserPath + GlobalValues.Table86;
             if (type == "06")
-                schema_type = GlobalValues.UserPath + GlobalValues.Schema06;
+                schema_type = GlobalValues.UserPath + GlobalValues.Table06;
             else if (type == "98")
-                schema_type = GlobalValues.UserPath + GlobalValues.Schema98;
+                schema_type = GlobalValues.UserPath + GlobalValues.Table98;
             else
-                schema_type = GlobalValues.UserPath + GlobalValues.Schema86;
+                schema_type = GlobalValues.UserPath + GlobalValues.Table86;
 
             try
             {
@@ -144,12 +144,6 @@ namespace WubiMaster.ViewModels
             }
         }
 
-        //[RelayCommand]
-        //public void ToDownLoadRime()
-        //{
-        //    string rimeUrl = "https://rime.im/download/";
-        //    ToWebPage(rimeUrl);
-        //}
         [RelayCommand]
         public void ZingenSearch(object obj)
         {

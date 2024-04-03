@@ -241,6 +241,7 @@ namespace WubiMaster.ViewModels
                 // 启动服务
                 ServiceHelper.RunService();
                 UpdateWubiSchemaTip();
+                WeakReferenceMessenger.Default.Send<string, string>("", "ChangeShcemaState");
             }
         }
 
