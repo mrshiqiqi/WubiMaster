@@ -20,7 +20,10 @@ namespace WubiMaster.ViewModels
         private Dictionary<string, EtymonKeyControl> EtymonKeyControlDict;
 
         [ObservableProperty]
-        private bool showFanKey = true;
+        private bool showFanKey;
+
+        [ObservableProperty]
+        private int combKeyTypeIndex;
 
         public EtymonKeyViewModel()
         {
@@ -28,12 +31,30 @@ namespace WubiMaster.ViewModels
 
             LoadEtymonKeyControls();
             ChangeEtymonKeyVersion(null);
+            LoadConfig();
+        }
+
+        [RelayCommand]
+        public void ChangeShowFanKey()
+        {
+            ConfigHelper.WriteConfigByBool("show_fan_key", ShowFanKey);
+        }
+
+        private void LoadConfig()
+        {
+            // 加载是否显示繁体字根
+            ShowFanKey = ConfigHelper.ReadConfigByBool("show_fan_key");
+
+            // 加载字根版本
+            CombKeyTypeIndex = ConfigHelper.ReadConfigByInt("etymon_key_index", 0);
+            ChangeEtymonKeyVersion(CombKeyTypeIndex);
         }
 
         [RelayCommand]
         public void ChangeEtymonKeyVersion(object obj)
         {
-            App.Current.Dispatcher.BeginInvoke(() => {
+            App.Current.Dispatcher.BeginInvoke(() =>
+            {
                 string[] types = new string[] { "86", "98", "06" };
                 int index = int.Parse((obj?.ToString() ?? "0"));
 
@@ -52,6 +73,8 @@ namespace WubiMaster.ViewModels
                     EKeyControl = eControl;
                     EtymonKeyControlDict.Add(types[index], eControl);
                 }
+
+                ConfigHelper.WriteConfigByInt("etymon_key_index", index);
             });
         }
 
