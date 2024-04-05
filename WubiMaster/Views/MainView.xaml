@@ -174,12 +174,6 @@
                                              Style="{StaticResource NavButtonStyle}"
                                              Text="字根表" />
 
-                                <!--<c:NavButton IconText="&#xe647;"
-                                             NavCommand="{Binding ChangePageCommand}"
-                                             NavName="Synchronous"
-                                             Style="{StaticResource NavButtonStyle}"
-                                             Text="云同步" />-->
-
                                 <c:NavButton IconText="&#xe654;"
                                              NavCommand="{Binding ChangePageCommand}"
                                              NavName="Themes"
@@ -197,6 +191,12 @@
                                              NavName="About"
                                              Style="{StaticResource NavButtonStyle}"
                                              Text="关于" />
+
+                                <c:NavButton IconText="&#xe647;"
+                                             NavCommand="{Binding ChangePageCommand}"
+                                             NavName="Test"
+                                             Style="{StaticResource NavButtonStyle}"
+                                             Text="测试页" />
                             </StackPanel>
 
                             <Button Grid.Row="2"
