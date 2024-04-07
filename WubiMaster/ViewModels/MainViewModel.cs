@@ -3,11 +3,9 @@ using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Forms.VisualStyles;
 using WubiMaster.Common;
 using WubiMaster.Controls;
 using WubiMaster.Views;
@@ -25,8 +23,12 @@ namespace WubiMaster.ViewModels
         [ObservableProperty]
         public string pageTitle;
 
+        [ObservableProperty]
+        public bool showTestView;
+
         public MainViewModel()
         {
+            TestViewShow();
             IsActive = true;
             pageDict = new Dictionary<string, object>();
 
@@ -34,14 +36,6 @@ namespace WubiMaster.ViewModels
             WeakReferenceMessenger.Default.Register<string, string>(this, "ShowMaskLayer", ShowMaskLayer);
 
             LaodAllSpellingDataAsync();
-        }
-
-        private async void LaodAllSpellingDataAsync()
-        {
-            await Task.Run(() =>
-            {
-                SpellingWorker.LoadAllSpellingData();
-            });
         }
 
         private Dictionary<string, object> pageDict { get; set; }
@@ -130,7 +124,7 @@ namespace WubiMaster.ViewModels
                 try
                 {
                     string prcessPath = ConfigHelper.ReadConfigByString("process_file_path");
-                    
+
                     if (string.IsNullOrEmpty(prcessPath))
                     {
                         this.ShowMessage("请先配置程序文件目录", DialogType.Warring);
@@ -259,6 +253,14 @@ namespace WubiMaster.ViewModels
             Application.Current.Resources.MergedDictionaries[0].Source = new Uri(defultPack);
         }
 
+        private async void LaodAllSpellingDataAsync()
+        {
+            await Task.Run(() =>
+            {
+                SpellingWorker.LoadAllSpellingData();
+            });
+        }
+
         private void ShowMaskLayer(object recipient, string message)
         {
             bool isShow = bool.Parse(message);
@@ -267,6 +269,15 @@ namespace WubiMaster.ViewModels
                 MaskLayerVisable = Visibility.Visible;
             else
                 MaskLayerVisable = Visibility.Collapsed;
+        }
+
+        private void TestViewShow()
+        {
+#if DEBUG
+            ShowTestView = true;
+#else
+            ShowTestView = false;
+#endif
         }
     }
 }

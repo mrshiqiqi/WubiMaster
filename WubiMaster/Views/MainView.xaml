@@ -20,6 +20,10 @@
         <vm:MainViewModel />
     </Window.DataContext>
 
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="Bool2Visibility" />
+    </Window.Resources>
+
     <b:Interaction.Triggers>
         <b:EventTrigger EventName="Loaded">
             <b:InvokeCommandAction Command="{Binding LoadedWindowCommand}" />
@@ -192,11 +196,12 @@
                                              Style="{StaticResource NavButtonStyle}"
                                              Text="关于" />
 
-                                <c:NavButton IconText="&#xe647;"
+                                <c:NavButton IconText="&#xe6da;"
                                              NavCommand="{Binding ChangePageCommand}"
                                              NavName="Test"
                                              Style="{StaticResource NavButtonStyle}"
-                                             Text="测试页" />
+                                             Text="测试"
+                                             Visibility="{Binding ShowTestView, Converter={StaticResource Bool2Visibility}}" />
                             </StackPanel>
 
                             <Button Grid.Row="2"
