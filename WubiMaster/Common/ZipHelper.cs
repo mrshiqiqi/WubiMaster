@@ -64,7 +64,7 @@ namespace WubiMaster.Common
         /// </summary>
         /// <param name="zipPath">zip地址 D:/1.zip</param>
         /// <param name="folderPath">文件夹地址 D:/1/</param>
-        public static void DecompressZip(string zipPath, string folderPath)
+        public static void DecompressZip(string zipPath, string folderPath, bool overwrite=true)
         {
             DirectoryInfo directoryInfo = new(folderPath);
 
@@ -73,7 +73,7 @@ namespace WubiMaster.Common
                 directoryInfo.Create();
             }
 
-            ZipFile.ExtractToDirectory(zipPath, folderPath);
+            ZipFile.ExtractToDirectory(zipPath, folderPath, overwrite);
         }
     }
 }

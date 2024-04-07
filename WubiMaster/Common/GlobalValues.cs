@@ -6,11 +6,11 @@ namespace WubiMaster.Common
     {
         public static string AppDirectory = AppDomain.CurrentDomain.BaseDirectory;
         public static string HeitiFont = AppDomain.CurrentDomain.BaseDirectory + @$"Assets\Fonts\黑体字根.ttf";
-        public static string Table06 = @"\table06";
-        public static string Table86 = @"\table86";
-        public static string Table98 = @"\table98";
+        public static string Table06Zip = AppDomain.CurrentDomain.BaseDirectory + @"Assets\Schemas\table06.zip";
+        public static string Table86Zip = AppDomain.CurrentDomain.BaseDirectory + @"Assets\Schemas\table86.zip";
+        public static string Table98Zip = AppDomain.CurrentDomain.BaseDirectory + @"Assets\Schemas\table98.zip";
         public static string SchemaKey = @"\wubi_master.txt";
-        public static string SchemaZip = AppDomain.CurrentDomain.BaseDirectory + @$"Assets\Schemas\wubi_schema.zip";
+        public static string SchemaZip = AppDomain.CurrentDomain.BaseDirectory + @$"Assets\Schemas\schema.zip";
         public static string SpellingText06 = AppDomain.CurrentDomain.BaseDirectory + @$"Assets\Spelling\wb06_spelling.txt";
         public static string SpellingText86 = AppDomain.CurrentDomain.BaseDirectory + @$"Assets\Spelling\wb86_spelling.txt";
         public static string SpellingText98 = AppDomain.CurrentDomain.BaseDirectory + @$"Assets\Spelling\wb98_spelling.txt";

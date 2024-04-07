@@ -157,7 +157,7 @@
                                                       Height="40"
                                                       CheckState="{Binding Schema86State, Mode=TwoWay}"
                                                       CommandParameter="{Binding ElementName=txt_wubi86_icon, Path=Text}"
-                                                      RunningCommand="{Binding ChangeSchemaCommand}" />
+                                                      RunningCommand="{Binding ChangeWbTableCommand}" />
                                 </Grid>
                             </Grid>
 
@@ -194,7 +194,7 @@
                                                       Height="40"
                                                       CheckState="{Binding Schema98State, Mode=TwoWay}"
                                                       CommandParameter="{Binding ElementName=txt_wubi98_icon, Path=Text}"
-                                                      RunningCommand="{Binding ChangeSchemaCommand}" />
+                                                      RunningCommand="{Binding ChangeWbTableCommand}" />
                                 </Grid>
                             </Grid>
 
@@ -231,7 +231,7 @@
                                                       Height="40"
                                                       CheckState="{Binding Schema06State, Mode=TwoWay}"
                                                       CommandParameter="{Binding ElementName=txt_wubi06_icon, Path=Text}"
-                                                      RunningCommand="{Binding ChangeSchemaCommand}" />
+                                                      RunningCommand="{Binding ChangeWbTableCommand}" />
                                 </Grid>
                             </Grid>
                         </Grid>

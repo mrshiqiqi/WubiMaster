@@ -53,17 +53,17 @@ namespace WubiMaster.ViewModels
         }
 
         [RelayCommand]
-        public async void ChangeSchema(object obj)
+        public async void ChangeWbTable(object obj)
         {
             if (obj == null) return;
             string type = obj.ToString();
-            string schema_type = GlobalValues.UserPath + GlobalValues.Table86;
+            string tableZip = GlobalValues.Table86Zip;
             if (type == "06")
-                schema_type = GlobalValues.UserPath + GlobalValues.Table06;
+                tableZip = GlobalValues.Table06Zip;
             else if (type == "98")
-                schema_type = GlobalValues.UserPath + GlobalValues.Table98;
+                tableZip = GlobalValues.Table98Zip;
             else
-                schema_type = GlobalValues.UserPath + GlobalValues.Table86;
+                tableZip = GlobalValues.Table86Zip;
 
             try
             {
@@ -92,14 +92,18 @@ namespace WubiMaster.ViewModels
                 ServiceHelper.KillService();
                 await Task.Delay(1000);
 
-                // 将对应的五笔码表复制到用户目录
-                DirectoryInfo mabiaoDir = new DirectoryInfo(schema_type);
-                FileSystemInfo[] mabiaoInfo = mabiaoDir.GetFileSystemInfos();
-                foreach (FileSystemInfo info in mabiaoInfo)
-                {
-                    if (info is not DirectoryInfo)
-                        File.Copy(info.FullName, GlobalValues.UserPath + @$"\{info.Name}", true);
-                }
+                // 将对应的码表解压到目录中，并覆盖同名文件
+                ZipHelper.DecompressZip(tableZip, GlobalValues.UserPath, true);
+
+                //// 将对应的五笔码表复制到用户目录
+                //DirectoryInfo mabiaoDir = new DirectoryInfo(tableZip);
+                //FileSystemInfo[] mabiaoInfo = mabiaoDir.GetFileSystemInfos();
+                //foreach (FileSystemInfo info in mabiaoInfo)
+                //{
+                //    if (info is not DirectoryInfo)
+                //        File.Copy(info.FullName, GlobalValues.UserPath + @$"\{info.Name}", true);
+                //}
+
                 await Task.Delay(500);
 
                 ConfigHelper.WriteConfigByString("running_schema", type);
