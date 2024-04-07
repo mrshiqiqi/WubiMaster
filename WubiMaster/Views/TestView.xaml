@@ -3,11 +3,17 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:WubiMaster.ViewModels"
              d:DesignHeight="450"
              d:DesignWidth="800"
              Background="{DynamicResource bg-100}"
              Style="{StaticResource PageStyle}"
              mc:Ignorable="d">
+
+    <UserControl.DataContext>
+        <vm:TestViewModel />
+    </UserControl.DataContext>
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition />
@@ -37,6 +43,7 @@
                 Width="160"
                 Height="35"
                 Margin="5"
-                Content="转译" Click="Button_Click"/>
+                Click="Button_Click"
+                Content="转译" />
     </Grid>
 </UserControl>
