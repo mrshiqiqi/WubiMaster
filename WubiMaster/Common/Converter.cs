@@ -134,4 +134,30 @@ namespace WubiMaster.Common
             return value;
         }
     }
+
+    public class WinState2Angle : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            try
+            {
+                if (value == null) return 0.0;
+
+                var layoutValue = value.ToString().ToLower();
+                if (layoutValue == "right") return 180.0;
+                return 0.0;
+            }
+            catch (Exception ex)
+            {
+                LogHelper.Error(ex.ToString());
+                return 0.0;
+            }
+            
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return value;
+        }
+    }
 }

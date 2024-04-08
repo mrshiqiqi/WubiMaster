@@ -76,6 +76,9 @@ namespace WubiMaster.ViewModels
         [ObservableProperty]
         private string wubiSchemaTip;
 
+        [ObservableProperty]
+        private bool winStateChecked;
+
         public SettingsViewModel()
         {
             registryHelper = new RegistryHelper();
@@ -94,6 +97,16 @@ namespace WubiMaster.ViewModels
             ReadServerRegistry();
             CheckService();
             LoadConfig();
+        }
+
+        [RelayCommand]
+        public void WinStateLayout(object obj)
+        {
+            WinStateChecked = bool.Parse(obj?.ToString());
+            string layoutStr = "left";
+            if (WinStateChecked) layoutStr = "right";
+            else layoutStr = "left";
+            WeakReferenceMessenger.Default.Send<string, string>(layoutStr, "ChangeWinStateLayout");
         }
 
         [RelayCommand]
@@ -552,6 +565,11 @@ namespace WubiMaster.ViewModels
 
             // 加载工作方案版本
             UpdateWubiSchemaTip();
+
+            // 加载winsate布局位置
+            string layoutStr = ConfigHelper.ReadConfigByString("win_state_layout");
+            if (layoutStr == "right") WinStateChecked = true;
+            else WinStateChecked = false; ;
         }
 
         private void ReadProcessPathRegistry()

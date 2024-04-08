@@ -15,16 +15,19 @@ namespace WubiMaster.ViewModels
     public partial class MainViewModel : ObservableRecipient
     {
         [ObservableProperty]
-        public object currentView;
+        private object currentView;
 
         [ObservableProperty]
-        public Visibility maskLayerVisable = Visibility.Collapsed;
+        private Visibility maskLayerVisable = Visibility.Collapsed;
 
         [ObservableProperty]
-        public string pageTitle;
+        private string pageTitle;
 
         [ObservableProperty]
-        public bool showTestView;
+        private bool showTestView;
+
+        [ObservableProperty]
+        private HorizontalAlignment winStateLayout = HorizontalAlignment.Left;
 
         public MainViewModel()
         {
@@ -34,8 +37,28 @@ namespace WubiMaster.ViewModels
 
             //Register<string, string>：消息类型、token类型
             WeakReferenceMessenger.Default.Register<string, string>(this, "ShowMaskLayer", ShowMaskLayer);
+            WeakReferenceMessenger.Default.Register<string, string>(this, "ChangeWinStateLayout", ChangeWinStateLayout);
 
             LaodAllSpellingDataAsync();
+            LoadConfig();
+        }
+
+        private void ChangeWinStateLayout(object recipient, string message)
+        {
+            var layoutStr = message.ToString();
+            if (layoutStr == "right")
+                WinStateLayout = HorizontalAlignment.Right;
+            else
+                WinStateLayout = HorizontalAlignment.Left;
+
+            ConfigHelper.WriteConfigByString("win_state_layout", WinStateLayout == HorizontalAlignment.Right ? "right" : "left");
+        }
+
+        private void LoadConfig()
+        {
+            var layoutStr = ConfigHelper.ReadConfigByString("win_state_layout");
+            if (layoutStr == "right") WinStateLayout = HorizontalAlignment.Right;
+            else WinStateLayout = HorizontalAlignment.Left;
         }
 
         private Dictionary<string, object> pageDict { get; set; }

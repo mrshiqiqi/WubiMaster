@@ -23,9 +23,9 @@
 
                     <c:SeparatorControl Header="Rime 配置" />
 
-                    <c:SettingPanel Title="关联用户目录"
-                                    IconText="&#xe620;"
-                                    SubTitle="从 Rime 用户目录读取配置文件">
+                    <c:SettingPanel Title="用户目录"
+                                    IconText="&#xe623;"
+                                    SubTitle="查看 Rime 的用户目录">
                         <c:SettingPanel.SettingContent>
                             <StackPanel Orientation="Horizontal">
                                 <TextBox Style="{StaticResource SettingTextBoxStyle}" Text="{Binding UserFilePath}" />
@@ -36,9 +36,9 @@
                         </c:SettingPanel.SettingContent>
                     </c:SettingPanel>
 
-                    <c:SettingPanel Title="关联程序目录"
-                                    IconText="&#xe6b4;"
-                                    SubTitle="从 Rime 程序目录读取配置文件">
+                    <c:SettingPanel Title="程序目录"
+                                    IconText="&#xe8a1;"
+                                    SubTitle="查看 Rime 的安装目录">
                         <c:SettingPanel.SettingContent>
                             <StackPanel Orientation="Horizontal">
                                 <TextBox Style="{StaticResource SettingTextBoxStyle}" Text="{Binding ProcessFilePath}" />
@@ -152,7 +152,7 @@
                     </c:SettingPanel>
 
                     <c:SettingPanel Title="首页快速查询"
-                                    IconText="&#xe850;"
+                                    IconText="&#xe7c6;"
                                     SubTitle="选择首页字根快速查询版本">
                         <c:SettingPanel.SettingContent>
                             <StackPanel Orientation="Horizontal">
@@ -238,6 +238,23 @@
                                 <Button Command="{Binding OpenLogPathCommand}"
                                         Content="查看"
                                         Style="{StaticResource SettingButtonStyle}" />
+                            </StackPanel>
+                        </c:SettingPanel.SettingContent>
+                    </c:SettingPanel>
+
+                    <c:SettingPanel Title="窗体状态按钮"
+                                    IconText="&#xe686;"
+                                    SubTitle="设置窗体关闭、最大化与最小化按钮的位置">
+                        <c:SettingPanel.SettingContent>
+                            <StackPanel Orientation="Horizontal">
+
+                                <c:StateToggleButton Width="120"
+                                                     Height="28"
+                                                     CheckedState="左"
+                                                     Command="{Binding WinStateLayoutCommand}"
+                                                     CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=IsChecked}"
+                                                     IsChecked="{Binding WinStateChecked}"
+                                                     UnCheckedState="右" />
                             </StackPanel>
                         </c:SettingPanel.SettingContent>
                     </c:SettingPanel>

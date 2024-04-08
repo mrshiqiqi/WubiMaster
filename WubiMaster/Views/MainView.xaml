@@ -6,6 +6,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:vm="clr-namespace:WubiMaster.ViewModels"
+        xmlns:com="clr-namespace:WubiMaster.Common"
         Title="书中君"
         Width="1000"
         Height="700"
@@ -22,6 +23,7 @@
 
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="Bool2Visibility" />
+        <com:WinState2Angle x:Key="WinState2Angle"/>
     </Window.Resources>
 
     <b:Interaction.Triggers>
@@ -53,6 +55,7 @@
                 <Border Grid.ColumnSpan="2"
                         Height="30"
                         Margin="-2,-2,-2,0"
+                        Padding="6,0"
                         VerticalAlignment="Top"
                         Panel.ZIndex="100"
                         Background="{DynamicResource bg-300}"
@@ -60,10 +63,13 @@
                         MouseDown="Border_MouseDown"
                         MouseLeftButtonDown="Border_MouseLeftButtonDown">
 
-                    <StackPanel Margin="6,0,0,0"
-                                HorizontalAlignment="Left"
+                    <StackPanel HorizontalAlignment="{Binding WinStateLayout}"
                                 VerticalAlignment="Center"
-                                Orientation="Horizontal">
+                                Orientation="Horizontal"
+                                RenderTransformOrigin="0.5,0.5">
+                        <StackPanel.RenderTransform>
+                            <RotateTransform Angle="{Binding WinStateLayout, Converter={StaticResource WinState2Angle}}" />
+                        </StackPanel.RenderTransform>
 
                         <c:WinowStateButton Width="15"
                                             Height="15"
