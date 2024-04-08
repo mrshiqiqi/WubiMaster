@@ -1955,10 +1955,8 @@
                                         <TextBlock Style="{StaticResource FanKeyTextStyle}" Text="" />
                                     </StackPanel>
 
-                                    <TextBlock Style="{StaticResource PrimaryKeyTextStyle}" Text="" />
-
                                     <StackPanel Style="{StaticResource RightStackPanelStyle}">
-                                        <TextBlock Style="{StaticResource PrimaryKeyTextStyle}" Text="" />
+                                        <TextBlock Style="{StaticResource PrimaryKeyTextStyle}" Text="" />
                                     </StackPanel>
                                 </UniformGrid>
 
