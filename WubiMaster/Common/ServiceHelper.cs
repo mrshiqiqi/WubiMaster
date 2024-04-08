@@ -1,13 +1,25 @@
 ﻿using System;
 using System.Diagnostics;
-using System.IO;
 using System.Linq;
 using System.Management;
+using System.Timers;
 
 namespace WubiMaster.Common
 {
     public class ServiceHelper
     {
+        public static bool DaemonRun = false;
+        private static Timer DaemonTimer;
+
+        static ServiceHelper()
+        {
+            int interval = 3000;
+            DaemonTimer ??= new Timer(interval);
+            DaemonTimer.AutoReset = true;
+            DaemonTimer.Enabled = true;
+            DaemonTimer.Elapsed += DaemonTimer_Elapsed;
+        }
+
         public static bool FindService()
         {
             //string serverName = ConfigHelper.ReadConfigByString("weasel_server");
@@ -49,6 +61,36 @@ namespace WubiMaster.Common
                 throw new Exception("请先配置程序文件目录");
 
             CmdHelper.RunCmd(processPath, "WeaselServer.exe", false);
+        }
+
+        public static void StartDaemon()
+        {
+            DaemonTimer.Start();
+            LogHelper.Info("开启守护进程");
+        }
+
+        public static void StopDaemon()
+        {
+            DaemonTimer.Stop();
+            LogHelper.Info("关闭守护进程");
+        }
+
+        private static void DaemonTimer_Elapsed(object? sender, ElapsedEventArgs e)
+        {
+            try
+            {
+                bool isRun = FindService();
+                if (!isRun)
+                {
+                    RunService();
+                    LogHelper.Warn("监测到Rime服务异常退出，已守护重启！");
+                }
+            }
+            catch (Exception ex)
+            {
+                LogHelper.Error(ex.ToString());
+                DaemonTimer.Stop();
+            }
         }
 
         /// <summary>

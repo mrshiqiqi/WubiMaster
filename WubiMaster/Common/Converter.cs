@@ -23,7 +23,6 @@ namespace WubiMaster.Common
             if (value == null) return Visibility.Visible;
             else if (value.ToString().Length == 0) return Visibility.Visible;
             else return Visibility.Collapsed;
-
         }
     }
 
@@ -36,7 +35,7 @@ namespace WubiMaster.Common
             try
             {
                 string shici_text = (string)value;
-                string[] shici_texts = shici_text.Split(new char[4] { '，', '。', '！', '？'});
+                string[] shici_texts = shici_text.Split(new char[4] { '，', '。', '！', '？' });
                 string result_text = shici_texts[0];
                 return result_text;
             }
@@ -44,7 +43,6 @@ namespace WubiMaster.Common
             {
                 return "";
             }
-           
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
@@ -70,7 +68,6 @@ namespace WubiMaster.Common
             {
                 return "";
             }
-
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
@@ -120,21 +117,6 @@ namespace WubiMaster.Common
         }
     }
 
-    public class WubiType2Visibility : IValueConverter
-    {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            if (value == null) return Visibility.Collapsed;
-            if (value.ToString() == parameter.ToString() || value.ToString() == "全部") return Visibility.Visible;
-            return Visibility.Collapsed;
-        }
-
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            return value;
-        }
-    }
-
     public class WinState2Angle : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
@@ -152,7 +134,21 @@ namespace WubiMaster.Common
                 LogHelper.Error(ex.ToString());
                 return 0.0;
             }
-            
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return value;
+        }
+    }
+
+    public class WubiType2Visibility : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value == null) return Visibility.Collapsed;
+            if (value.ToString() == parameter.ToString() || value.ToString() == "全部") return Visibility.Visible;
+            return Visibility.Collapsed;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

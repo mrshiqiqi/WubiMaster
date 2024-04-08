@@ -25,6 +25,9 @@ namespace WubiMaster.ViewModels
         private bool cobboxThemesEnable;
 
         [ObservableProperty]
+        private bool daemonIsRun;
+
+        [ObservableProperty]
         private string defaultCikuFile;
 
         [ObservableProperty]
@@ -74,10 +77,10 @@ namespace WubiMaster.ViewModels
         private string userFilePath;
 
         [ObservableProperty]
-        private string wubiSchemaTip;
+        private bool winStateChecked;
 
         [ObservableProperty]
-        private bool winStateChecked;
+        private string wubiSchemaTip;
 
         public SettingsViewModel()
         {
@@ -97,16 +100,6 @@ namespace WubiMaster.ViewModels
             ReadServerRegistry();
             CheckService();
             LoadConfig();
-        }
-
-        [RelayCommand]
-        public void WinStateLayout(object obj)
-        {
-            WinStateChecked = bool.Parse(obj?.ToString());
-            string layoutStr = "left";
-            if (WinStateChecked) layoutStr = "right";
-            else layoutStr = "left";
-            WeakReferenceMessenger.Default.Send<string, string>(layoutStr, "ChangeWinStateLayout");
         }
 
         [RelayCommand]
@@ -138,6 +131,17 @@ namespace WubiMaster.ViewModels
                 LogHelper.Error(ex.ToString());
                 this.ShowMessage("备份失败：" + ex.Message);
             }
+        }
+
+        [RelayCommand]
+        public void ChagedDaemonState()
+        {
+            if (DaemonIsRun)
+                ServiceHelper.StartDaemon();
+            else
+                ServiceHelper.StartDaemon();
+
+            ConfigHelper.WriteConfigByBool("daemon_state", DaemonIsRun);
         }
 
         [RelayCommand]
@@ -413,6 +417,16 @@ namespace WubiMaster.ViewModels
             }
         }
 
+        [RelayCommand]
+        public void WinStateLayout(object obj)
+        {
+            WinStateChecked = bool.Parse(obj?.ToString());
+            string layoutStr = "left";
+            if (WinStateChecked) layoutStr = "right";
+            else layoutStr = "left";
+            WeakReferenceMessenger.Default.Send<string, string>(layoutStr, "ChangeWinStateLayout");
+        }
+
         private void ChangeQuickSpllType(object recipient, string message)
         {
             string type = message;
@@ -570,6 +584,10 @@ namespace WubiMaster.ViewModels
             string layoutStr = ConfigHelper.ReadConfigByString("win_state_layout");
             if (layoutStr == "right") WinStateChecked = true;
             else WinStateChecked = false; ;
+
+            // 加载守护进程状态
+            DaemonIsRun = ConfigHelper.ReadConfigByBool("daemon_state");
+            ChagedDaemonState();
         }
 
         private void ReadProcessPathRegistry()

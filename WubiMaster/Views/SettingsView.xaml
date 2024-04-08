@@ -113,6 +113,27 @@
                         </c:SettingPanel.SettingContent>
                     </c:SettingPanel>
 
+                    <c:SettingPanel Title="守护进程"
+                                    IconText="&#xe645;"
+                                    SubTitle="开启守护进程，以防止 Rime 服务失联">
+                        <c:SettingPanel.SettingContent>
+                            <StackPanel Orientation="Horizontal">
+                                <ToggleButton HorizontalAlignment="Left"
+                                              VerticalAlignment="Center"
+                                              IsChecked="{Binding DaemonIsRun, Mode=TwoWay}">
+                                    <b:Interaction.Triggers>
+                                        <b:EventTrigger EventName="Checked">
+                                            <b:InvokeCommandAction Command="{Binding ChagedDaemonStateCommand}" />
+                                        </b:EventTrigger>
+                                        <b:EventTrigger EventName="Unchecked">
+                                            <b:InvokeCommandAction Command="{Binding ChagedDaemonStateCommand}" />
+                                        </b:EventTrigger>
+                                    </b:Interaction.Triggers>
+                                </ToggleButton>
+                            </StackPanel>
+                        </c:SettingPanel.SettingContent>
+                    </c:SettingPanel>
+
                     <c:SeparatorControl Header="书中君配置" />
 
                     <c:SettingPanel Title="主题"

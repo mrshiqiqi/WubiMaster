@@ -43,24 +43,6 @@ namespace WubiMaster.ViewModels
             LoadConfig();
         }
 
-        private void ChangeWinStateLayout(object recipient, string message)
-        {
-            var layoutStr = message.ToString();
-            if (layoutStr == "right")
-                WinStateLayout = HorizontalAlignment.Right;
-            else
-                WinStateLayout = HorizontalAlignment.Left;
-
-            ConfigHelper.WriteConfigByString("win_state_layout", WinStateLayout == HorizontalAlignment.Right ? "right" : "left");
-        }
-
-        private void LoadConfig()
-        {
-            var layoutStr = ConfigHelper.ReadConfigByString("win_state_layout");
-            if (layoutStr == "right") WinStateLayout = HorizontalAlignment.Right;
-            else WinStateLayout = HorizontalAlignment.Left;
-        }
-
         private Dictionary<string, object> pageDict { get; set; }
 
         [RelayCommand]
@@ -276,12 +258,30 @@ namespace WubiMaster.ViewModels
             Application.Current.Resources.MergedDictionaries[0].Source = new Uri(defultPack);
         }
 
+        private void ChangeWinStateLayout(object recipient, string message)
+        {
+            var layoutStr = message.ToString();
+            if (layoutStr == "right")
+                WinStateLayout = HorizontalAlignment.Right;
+            else
+                WinStateLayout = HorizontalAlignment.Left;
+
+            ConfigHelper.WriteConfigByString("win_state_layout", WinStateLayout == HorizontalAlignment.Right ? "right" : "left");
+        }
+
         private async void LaodAllSpellingDataAsync()
         {
             await Task.Run(() =>
             {
                 SpellingWorker.LoadAllSpellingData();
             });
+        }
+
+        private void LoadConfig()
+        {
+            var layoutStr = ConfigHelper.ReadConfigByString("win_state_layout");
+            if (layoutStr == "right") WinStateLayout = HorizontalAlignment.Right;
+            else WinStateLayout = HorizontalAlignment.Left;
         }
 
         private void ShowMaskLayer(object recipient, string message)

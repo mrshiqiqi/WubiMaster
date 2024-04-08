@@ -3,10 +3,10 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:c="clr-namespace:WubiMaster.Controls"
+        xmlns:com="clr-namespace:WubiMaster.Common"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:vm="clr-namespace:WubiMaster.ViewModels"
-        xmlns:com="clr-namespace:WubiMaster.Common"
         Title="书中君"
         Width="1000"
         Height="700"
@@ -23,7 +23,7 @@
 
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="Bool2Visibility" />
-        <com:WinState2Angle x:Key="WinState2Angle"/>
+        <com:WinState2Angle x:Key="WinState2Angle" />
     </Window.Resources>
 
     <b:Interaction.Triggers>
@@ -121,7 +121,6 @@
                                                    Text="&#xe66a;" />
                                         <!--<c:LogoControl IconColor="{DynamicResource primary-100}" />-->
                                     </Viewbox>
-
                                 </Border>
 
                                 <TextBlock Margin="0,5,0,0"
@@ -139,7 +138,6 @@
                                            FontWeight="Normal"
                                            Foreground="{DynamicResource text-200}"
                                            Text="五笔管理器" />
-
                             </StackPanel>
 
                             <StackPanel x:Name="navStackPanel"

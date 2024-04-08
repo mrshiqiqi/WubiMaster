@@ -28,7 +28,6 @@
                                            FontSize="15"
                                            Foreground="{DynamicResource bg-100}"
                                            Text="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=CheckedState}" />
-
                             </Border>
 
                             <Border x:Name="bd_unchecked"
@@ -42,7 +41,6 @@
                                            FontSize="15"
                                            Foreground="{DynamicResource bg-100}"
                                            Text="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=UnCheckedState}" />
-
                             </Border>
                         </Grid>
 
