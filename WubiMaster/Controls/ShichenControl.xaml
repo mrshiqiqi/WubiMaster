@@ -1,0 +1,76 @@
+﻿<UserControl x:Class="WubiMaster.Controls.ShichenControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:WubiMaster.Controls"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             d:Background="{DynamicResource bg-100}"
+             d:DesignHeight="450"
+             d:DesignWidth="400"
+             FontFamily="../Fonts/#方正启体_GBK"
+             mc:Ignorable="d">
+    <Viewbox>
+
+        <Grid>
+
+            <Grid x:Name="shichen_grid" Margin="20">
+
+                <Border Background="{DynamicResource bg-200}" CornerRadius="1000">
+                    <TextBlock />
+                </Border>
+
+                <Grid HorizontalAlignment="Center">
+                    <Border Grid.Column="1"
+                            Width="70"
+                            Height="240"
+                            Margin="10"
+                            Background="{DynamicResource primary-100}"
+                            CornerRadius="20">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+
+                            <Ellipse Width="25"
+                                     Height="25"
+                                     Margin="0,10"
+                                     HorizontalAlignment="Center"
+                                     VerticalAlignment="Top"
+                                     Fill="{DynamicResource bg-300}" />
+
+                            <TextBlock Grid.Row="1"
+                                       Width="60"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       FontSize="60"
+                                       Foreground="{DynamicResource bg-100}"
+                                       Text="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=ShichenText}"
+                                       TextWrapping="Wrap" />
+                        </Grid>
+                    </Border>
+                </Grid>
+
+                <Canvas x:Name="AnalogCanvs"
+                        Width="360"
+                        Height="360">
+
+                    <Ellipse x:Name="HourEllipse"
+                             Canvas.Left="165"
+                             Canvas.Top="10"
+                             Width="40"
+                             Height="40"
+                             Panel.ZIndex="-1"
+                             Fill="{DynamicResource accent-100}" />
+                </Canvas>
+            </Grid>
+
+            <Grid x:Name="MinutesGrid" RenderTransformOrigin="0.5, 0.5">
+                <Ellipse Width="20"
+                         Height="20"
+                         VerticalAlignment="Top"
+                         Fill="{DynamicResource accent-200}" />
+            </Grid>
+        </Grid>
+    </Viewbox>
+</UserControl>

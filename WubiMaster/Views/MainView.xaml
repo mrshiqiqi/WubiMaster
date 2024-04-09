@@ -108,10 +108,12 @@
                                 <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
 
+                            <c:ShichenControl Margin="30 10 30 0" />
                             <!--Logo Icon-->
                             <StackPanel Grid.Row="0"
                                         Margin="0,30,0,0"
-                                        TextBlock.FontFamily="../Fonts/#方正启体_GBK">
+                                        TextBlock.FontFamily="../Fonts/#方正启体_GBK"
+                                        Visibility="Collapsed">
 
                                 <Border Style="{StaticResource LogoStyle}">
 

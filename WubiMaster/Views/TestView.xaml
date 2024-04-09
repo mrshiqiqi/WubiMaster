@@ -1,6 +1,7 @@
 ﻿<UserControl x:Class="WubiMaster.Views.TestView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:c="clr-namespace:WubiMaster.Controls"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="clr-namespace:WubiMaster.ViewModels"
@@ -15,35 +16,39 @@
     </UserControl.DataContext>
 
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
 
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition />
-                <ColumnDefinition />
-            </Grid.ColumnDefinitions>
+        <c:ShichenControl />
 
-            <TextBox Name="tbMultiLine1"
-                     AcceptsReturn="True"
-                     TextWrapping="Wrap"
-                     VerticalScrollBarVisibility="Visible" />
+        <Grid Visibility="Collapsed">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
 
-            <TextBox Name="tbMultiLine2"
-                     Grid.Column="1"
-                     AcceptsReturn="True"
-                     TextWrapping="Wrap"
-                     VerticalScrollBarVisibility="Visible" />
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <TextBox Name="tbMultiLine1"
+                         AcceptsReturn="True"
+                         TextWrapping="Wrap"
+                         VerticalScrollBarVisibility="Visible" />
+
+                <TextBox Name="tbMultiLine2"
+                         Grid.Column="1"
+                         AcceptsReturn="True"
+                         TextWrapping="Wrap"
+                         VerticalScrollBarVisibility="Visible" />
+            </Grid>
+
+            <Button Grid.Row="1"
+                    Width="160"
+                    Height="35"
+                    Margin="5"
+                    Click="Button_Click"
+                    Content="转译" />
         </Grid>
-
-
-        <Button Grid.Row="1"
-                Width="160"
-                Height="35"
-                Margin="5"
-                Click="Button_Click"
-                Content="转译" />
     </Grid>
 </UserControl>
