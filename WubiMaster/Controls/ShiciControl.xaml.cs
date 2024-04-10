@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -38,6 +40,8 @@ namespace WubiMaster.Controls
 
         private List<ShiciContentModel> defaultShiciList;
 
+        private bool IsFirstOpen = true;
+
         public ShiciControl()
         {
             ShiciTimer = new DispatcherTimer();
@@ -47,7 +51,8 @@ namespace WubiMaster.Controls
             InitTimer();
 
             ShiciImage = ChangeImage();
-            GetJinrishici();
+
+            GetJinrishiciAsync();
         }
 
         public List<ShiciContentModel> DefaultShiciList
@@ -121,7 +126,7 @@ namespace WubiMaster.Controls
             shiciControl.ShiciTimer.Interval = TimeSpan.FromMinutes(newValue);
 
             shiciControl.ShiciImage = shiciControl.ChangeImage();
-            shiciControl.GetJinrishici();
+            shiciControl.GetJinrishiciAsync();
 
             shiciControl.ShiciTimer.Start();
         }
@@ -133,7 +138,7 @@ namespace WubiMaster.Controls
             return Images[index];
         }
 
-        private void GetJinrishici()
+        private async Task GetJinrishiciAsync()
         {
             try
             {
@@ -233,6 +238,17 @@ namespace WubiMaster.Controls
 
                 ShiciContentModel model = ShiciHelper.GetShiciByType(type);
 
+                // 给中书君诗句添加出现的随机概率
+                if (type == ShiciType.Defualt)
+                {
+                    Random defaultRD = new Random();
+                    var rdValue = defaultRD.Next(0, 5);
+                    if (rdValue == 0)
+                    {
+                        model = DefaultShiciList[^1];
+                    }
+                }
+
                 JinriShici = model.content;
                 ShiciTitle = model.origin.Split(new char[] { '·', '/' })[0].Trim();
                 ShiciAuthor = model.author;
@@ -313,6 +329,12 @@ namespace WubiMaster.Controls
             model10.origin = "江城子";
             model10.author = "秦观";
             DefaultShiciList.Add(model10);
+
+            ShiciContentModel model11 = new ShiciContentModel();
+            model11.content = "多谢中书君，伴我此幽栖";
+            model11.origin = "自笑";
+            model11.author = "苏轼";
+            DefaultShiciList.Add(model11);
         }
 
         private void InitImages()
@@ -344,7 +366,7 @@ namespace WubiMaster.Controls
         private void ShiciTimer_Tick(object? sender, EventArgs e)
         {
             ShiciImage = ChangeImage();
-            GetJinrishici();
+            GetJinrishiciAsync();
         }
     }
 }

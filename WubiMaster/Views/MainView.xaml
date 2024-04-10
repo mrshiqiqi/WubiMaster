@@ -108,12 +108,11 @@
                                 <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
 
-                            <c:ShichenControl Margin="30 10 30 0" />
+                            <!--<c:ShichenControl Margin="30 10 30 0" />-->
                             <!--Logo Icon-->
                             <StackPanel Grid.Row="0"
                                         Margin="0,30,0,0"
-                                        TextBlock.FontFamily="../Fonts/#方正启体_GBK"
-                                        Visibility="Collapsed">
+                                        TextBlock.FontFamily="../Fonts/#方正启体_GBK">
 
                                 <Border Style="{StaticResource LogoStyle}">
 
@@ -131,7 +130,7 @@
                                            FontSize="18"
                                            FontWeight="Bold"
                                            Foreground="{DynamicResource text-100}"
-                                           Text="书中君" />
+                                           Text="中书君" />
 
                                 <TextBlock Margin="0,5,0,0"
                                            HorizontalAlignment="Center"
@@ -139,7 +138,7 @@
                                            FontSize="16"
                                            FontWeight="Normal"
                                            Foreground="{DynamicResource text-200}"
-                                           Text="五笔管理器" />
+                                           Text="多谢中书君，伴我此幽栖" />
                             </StackPanel>
 
                             <StackPanel x:Name="navStackPanel"
