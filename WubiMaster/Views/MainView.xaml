@@ -109,7 +109,7 @@
                             </Grid.RowDefinitions>
 
                             <!--Logo-->
-                            <Grid Grid.Row="0" Margin="15 25 15 10">
+                            <Grid Grid.Row="0" Margin="15,25,15,0">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="*" />
                                     <RowDefinition Height="Auto" />
@@ -119,9 +119,9 @@
                                       MaxHeight="100"
                                       HorizontalAlignment="Center"
                                       VerticalAlignment="Center">
+
+                                    <!--插件-->
                                     <ContentControl Content="{Binding PluginControl}" />
-                                    <!--<c:LogoControl Width="50" Height="60" />-->
-                                    <!--<c:ShichenControl />-->
                                 </Grid>
 
                                 <StackPanel Grid.Row="1"
@@ -141,14 +141,13 @@
                                                FontSize="16"
                                                FontWeight="Normal"
                                                Foreground="{DynamicResource text-200}"
-                                               Text="中州韵管理器" />
+                                               Text="中州韻管理器" />
                                 </StackPanel>
                             </Grid>
 
                             <StackPanel x:Name="navStackPanel"
                                         Grid.Row="1"
-                                        Margin="5,10,5,0"
-                                        VerticalAlignment="Top">
+                                        VerticalAlignment="Center">
 
                                 <b:Interaction.Triggers>
                                     <b:EventTrigger EventName="Loaded">

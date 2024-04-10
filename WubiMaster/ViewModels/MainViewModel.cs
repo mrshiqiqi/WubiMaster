@@ -304,8 +304,8 @@ namespace WubiMaster.ViewModels
             {
                 case "Logo":
                     var logo = new LogoControl();
-                    logo.Width = 60;
-                    logo.Height = 70;
+                    //logo.Width = 60;
+                    //logo.Height = 70;
                     PluginControl = logo;
                     break;
 
@@ -316,8 +316,8 @@ namespace WubiMaster.ViewModels
 
                 default:
                     var defaultPlugin = new LogoControl();
-                    defaultPlugin.Width = 60;
-                    defaultPlugin.Height = 70;
+                    //defaultPlugin.Width = 60;
+                    //defaultPlugin.Height = 70;
                     PluginControl = defaultPlugin;
                     break;
             }

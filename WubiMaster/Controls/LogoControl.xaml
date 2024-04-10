@@ -85,7 +85,7 @@
 
     <Grid>
         <Viewbox>
-            <Border Style="{StaticResource LogoStyle}">
+            <Border Margin="10" Style="{StaticResource LogoStyle}">
                 <Border.Effect>
                     <DropShadowEffect BlurRadius="10"
                                       Direction="-45"
