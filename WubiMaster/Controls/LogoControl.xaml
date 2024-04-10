@@ -86,13 +86,27 @@
     <Grid>
         <Viewbox>
             <Border Style="{StaticResource LogoStyle}">
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="10"
+                                      Direction="-45"
+                                      ShadowDepth="5"
+                                      Color="{DynamicResource bg-3000}" />
+                </Border.Effect>
 
                 <TextBlock HorizontalAlignment="Center"
                            VerticalAlignment="Center"
                            FontFamily="../Fonts/#iconfont"
                            FontSize="30"
                            Foreground="{DynamicResource primary-100}"
-                           Text="&#xe66a;" />
+                           Text="&#xe66a;">
+                    <TextBlock.Effect>
+                        <DropShadowEffect BlurRadius="5"
+                                          Direction="-45"
+                                          ShadowDepth="5"
+                                          Color="{DynamicResource bg-3000}" />
+                    </TextBlock.Effect>
+                </TextBlock>
+
             </Border>
         </Viewbox>
     </Grid>

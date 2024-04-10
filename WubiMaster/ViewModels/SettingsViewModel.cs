@@ -40,6 +40,12 @@ namespace WubiMaster.ViewModels
         private ObservableCollection<LogBackModel> logBackList;
 
         [ObservableProperty]
+        private int pluginIndex;
+
+        [ObservableProperty]
+        private ObservableCollection<string> pluginsList;
+
+        [ObservableProperty]
         private string processFilePath;
 
         [ObservableProperty]
@@ -88,6 +94,9 @@ namespace WubiMaster.ViewModels
             ThemeList = new List<ThemeModel>();
             ShiciIntervalList = new ObservableCollection<ShiciIntervalModel>();
             LogBackList = new ObservableCollection<LogBackModel>();
+            PluginsList = new ObservableCollection<string>();
+            PluginsList.Add("Logo");
+            PluginsList.Add("时辰");
 
             WeakReferenceMessenger.Default.Register<string, string>(this, "ChangeQuickSpllType", ChangeQuickSpllType);
 
@@ -148,6 +157,16 @@ namespace WubiMaster.ViewModels
         public void ChangeLogBackDays(string days)
         {
             ConfigHelper.WriteConfigByString("log_back_days", days);
+        }
+
+        [RelayCommand]
+        public void ChangePlugins(object obj)
+        {
+            if (obj == null) return;
+
+            string plugName = obj.ToString();
+            ConfigHelper.WriteConfigByString("plugin_name", plugName);
+            WeakReferenceMessenger.Default.Send<string, string>(plugName, "ChangePluginControl");
         }
 
         [RelayCommand]
@@ -588,6 +607,10 @@ namespace WubiMaster.ViewModels
             // 加载守护进程状态
             DaemonIsRun = ConfigHelper.ReadConfigByBool("daemon_state");
             ChagedDaemonState();
+
+            // 加载插件名称
+            string plugName = ConfigHelper.ReadConfigByString("plugin_name");
+            PluginIndex = PluginsList.IndexOf(plugName);
         }
 
         private void ReadProcessPathRegistry()

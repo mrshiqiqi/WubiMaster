@@ -84,7 +84,7 @@
                         </Grid.RowDefinitions>
                         <TextBlock HorizontalAlignment="Left"
                                    Style="{StaticResource CardTitleStyle}"
-                                   Text="书中君" />
+                                   Text="中书君" />
 
                         <StackPanel Grid.Row="1"
                                     HorizontalAlignment="Center"

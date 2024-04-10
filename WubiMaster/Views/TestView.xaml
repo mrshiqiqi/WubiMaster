@@ -17,7 +17,8 @@
 
     <Grid>
 
-        <c:ShichenControl />
+        <c:LogoControl Width="60" Height="70" />
+        <!--<c:ShichenControl />-->
 
         <Grid Visibility="Collapsed">
             <Grid.RowDefinitions>

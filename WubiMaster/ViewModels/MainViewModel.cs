@@ -24,6 +24,9 @@ namespace WubiMaster.ViewModels
         private string pageTitle;
 
         [ObservableProperty]
+        private UserControl pluginControl;
+
+        [ObservableProperty]
         private bool showTestView;
 
         [ObservableProperty]
@@ -38,6 +41,7 @@ namespace WubiMaster.ViewModels
             //Register<string, string>：消息类型、token类型
             WeakReferenceMessenger.Default.Register<string, string>(this, "ShowMaskLayer", ShowMaskLayer);
             WeakReferenceMessenger.Default.Register<string, string>(this, "ChangeWinStateLayout", ChangeWinStateLayout);
+            WeakReferenceMessenger.Default.Register<string, string>(this, "ChangePluginControl", ChangePluginControl);
 
             LaodAllSpellingDataAsync();
             LoadConfig();
@@ -258,6 +262,12 @@ namespace WubiMaster.ViewModels
             Application.Current.Resources.MergedDictionaries[0].Source = new Uri(defultPack);
         }
 
+        private void ChangePluginControl(object recipient, string message)
+        {
+            string pluginName = message;
+            LoadPluginControl(pluginName);
+        }
+
         private void ChangeWinStateLayout(object recipient, string message)
         {
             var layoutStr = message.ToString();
@@ -282,6 +292,35 @@ namespace WubiMaster.ViewModels
             var layoutStr = ConfigHelper.ReadConfigByString("win_state_layout");
             if (layoutStr == "right") WinStateLayout = HorizontalAlignment.Right;
             else WinStateLayout = HorizontalAlignment.Left;
+
+            // 加载logo插件
+            string pluginName = ConfigHelper.ReadConfigByString("plugin_name");
+            LoadPluginControl(pluginName);
+        }
+
+        private void LoadPluginControl(string pName = "Logo")
+        {
+            switch (pName)
+            {
+                case "Logo":
+                    var logo = new LogoControl();
+                    logo.Width = 60;
+                    logo.Height = 70;
+                    PluginControl = logo;
+                    break;
+
+                case "时辰":
+                    var shichen = new ShichenControl();
+                    PluginControl = shichen;
+                    break;
+
+                default:
+                    var defaultPlugin = new LogoControl();
+                    defaultPlugin.Width = 60;
+                    defaultPlugin.Height = 70;
+                    PluginControl = defaultPlugin;
+                    break;
+            }
         }
 
         private void ShowMaskLayer(object recipient, string message)

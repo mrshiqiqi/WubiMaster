@@ -7,7 +7,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:vm="clr-namespace:WubiMaster.ViewModels"
-        Title="书中君"
+        Title="中书君"
         Width="1000"
         Height="700"
         AllowsTransparency="True"
@@ -109,7 +109,7 @@
                             </Grid.RowDefinitions>
 
                             <!--Logo-->
-                            <Grid Grid.Row="0" Margin="15">
+                            <Grid Grid.Row="0" Margin="15 25 15 10">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="*" />
                                     <RowDefinition Height="Auto" />
@@ -119,8 +119,9 @@
                                       MaxHeight="100"
                                       HorizontalAlignment="Center"
                                       VerticalAlignment="Center">
+                                    <ContentControl Content="{Binding PluginControl}" />
                                     <!--<c:LogoControl Width="50" Height="60" />-->
-                                    <c:ShichenControl />
+                                    <!--<c:ShichenControl />-->
                                 </Grid>
 
                                 <StackPanel Grid.Row="1"
