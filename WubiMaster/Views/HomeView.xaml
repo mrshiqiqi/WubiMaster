@@ -371,7 +371,7 @@
                             <Viewbox Width="30"
                                      Margin="5"
                                      HorizontalAlignment="Right">
-                                <c:LogoControl IconColor="{DynamicResource primary-200}" Opacity="0.8" />
+                                <c:RimeLogo IconColor="{DynamicResource primary-200}" Opacity="0.8" />
                             </Viewbox>
 
                             <StackPanel Grid.Column="1"

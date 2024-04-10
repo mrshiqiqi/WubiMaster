@@ -4,64 +4,96 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:WubiMaster.Controls"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             Name="logo_control"
-             d:DesignHeight="400"
-             d:DesignWidth="400"
+             d:DesignHeight="200"
+             d:DesignWidth="200"
              mc:Ignorable="d">
 
+    <UserControl.Resources>
+        <Style x:Key="LogoStyle" TargetType="Border">
+            <Setter Property="Width" Value="55" />
+            <Setter Property="Height" Value="60" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="VerticalAlignment" Value="Top" />
+            <Setter Property="Background" Value="{DynamicResource bg-200}" />
+            <Setter Property="CornerRadius" Value="22" />
+            <Setter Property="RenderTransformOrigin" Value="0.5, 0.5" />
+            <Setter Property="RenderTransform">
+                <Setter.Value>
+                    <TransformGroup>
+                        <RotateTransform />
+                        <ScaleTransform />
+                    </TransformGroup>
+                </Setter.Value>
+            </Setter>
+
+            <Style.Triggers>
+                <EventTrigger RoutedEvent="Border.MouseEnter">
+                    <EventTrigger.Actions>
+                        <BeginStoryboard>
+                            <Storyboard>
+
+                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.Children[1].ScaleX"
+                                                 To="1.1"
+                                                 Duration="0:0:0.5">
+                                    <DoubleAnimation.EasingFunction>
+                                        <CircleEase EasingMode="EaseOut" />
+                                    </DoubleAnimation.EasingFunction>
+                                </DoubleAnimation>
+
+                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.Children[1].ScaleY"
+                                                 To="1.1"
+                                                 Duration="0:0:0.5">
+                                    <DoubleAnimation.EasingFunction>
+                                        <CircleEase EasingMode="EaseOut" />
+                                    </DoubleAnimation.EasingFunction>
+                                </DoubleAnimation>
+
+                                <DoubleAnimation RepeatBehavior="Forever"
+                                                 Storyboard.TargetProperty="RenderTransform.Children[0].Angle"
+                                                 To="360"
+                                                 Duration="0:0:2" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger.Actions>
+                </EventTrigger>
+
+                <EventTrigger RoutedEvent="Border.MouseLeave">
+                    <EventTrigger.Actions>
+                        <BeginStoryboard>
+                            <Storyboard>
+
+                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.Children[1].ScaleX" Duration="0:0:0.5">
+                                    <DoubleAnimation.EasingFunction>
+                                        <CircleEase EasingMode="EaseOut" />
+                                    </DoubleAnimation.EasingFunction>
+                                </DoubleAnimation>
+
+                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.Children[1].ScaleY" Duration="0:0:0.5">
+                                    <DoubleAnimation.EasingFunction>
+                                        <CircleEase EasingMode="EaseOut" />
+                                    </DoubleAnimation.EasingFunction>
+                                </DoubleAnimation>
+
+                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.Children[0].Angle" Duration="0:0:0.5" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger.Actions>
+                </EventTrigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+
     <Grid>
+        <Viewbox>
+            <Border Style="{StaticResource LogoStyle}">
 
-        <Line Panel.ZIndex="100"
-              Stroke="{Binding ElementName=logo_control, Path=IconColor}"
-              StrokeEndLineCap="Flat"
-              StrokeStartLineCap="Round"
-              StrokeThickness="40"
-              X1="20"
-              X2="20"
-              Y1="50"
-              Y2="100" />
-
-        <Path Stroke="{Binding ElementName=logo_control, Path=IconColor}" StrokeThickness="40">
-            <Path.Data>
-                <PathGeometry>
-                    <PathFigure IsClosed="False" StartPoint="20, 50">
-
-                        <LineSegment Point="20, 150" />
-                        <ArcSegment Point="380, 150"
-                                    Size="180, 120"
-                                    SweepDirection="Counterclockwise" />
-                        <LineSegment Point="380, 50" />
-                    </PathFigure>
-                </PathGeometry>
-            </Path.Data>
-        </Path>
-
-        <Line Panel.ZIndex="100"
-              Stroke="{Binding ElementName=logo_control, Path=IconColor}"
-              StrokeEndLineCap="Round"
-              StrokeStartLineCap="Flat"
-              StrokeThickness="40"
-              X1="380"
-              X2="380"
-              Y1="100"
-              Y2="50" />
-
-        <Line Stroke="{Binding ElementName=logo_control, Path=IconColor}"
-              StrokeEndLineCap="Flat"
-              StrokeStartLineCap="Round"
-              StrokeThickness="40"
-              X1="200"
-              X2="200"
-              Y1="20"
-              Y2="380" />
-
-        <Line Stroke="{Binding ElementName=logo_control, Path=IconColor}"
-              StrokeEndLineCap="Round"
-              StrokeStartLineCap="Round"
-              StrokeThickness="40"
-              X1="20"
-              X2="380"
-              Y1="380"
-              Y2="380" />
+                <TextBlock HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           FontFamily="../Fonts/#iconfont"
+                           FontSize="30"
+                           Foreground="{DynamicResource primary-100}"
+                           Text="&#xe66a;" />
+            </Border>
+        </Viewbox>
     </Grid>
 </UserControl>

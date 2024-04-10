@@ -108,43 +108,46 @@
                                 <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
 
-                            <!--<c:ShichenControl Margin="30 10 30 0" />-->
-                            <!--Logo Icon-->
-                            <StackPanel Grid.Row="0"
-                                        Margin="0,30,0,0"
-                                        TextBlock.FontFamily="../Fonts/#方正启体_GBK">
+                            <!--Logo-->
+                            <Grid Grid.Row="0" Margin="15">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
 
-                                <Border Style="{StaticResource LogoStyle}">
+                                <Grid MaxWidth="100"
+                                      MaxHeight="100"
+                                      HorizontalAlignment="Center"
+                                      VerticalAlignment="Center">
+                                    <!--<c:LogoControl Width="50" Height="60" />-->
+                                    <c:ShichenControl />
+                                </Grid>
 
-                                    <Viewbox Margin="10">
-                                        <TextBlock FontFamily="../Fonts/#iconfont"
-                                                   Foreground="{DynamicResource primary-100}"
-                                                   Text="&#xe66a;" />
-                                        <!--<c:LogoControl IconColor="{DynamicResource primary-100}" />-->
-                                    </Viewbox>
-                                </Border>
+                                <StackPanel Grid.Row="1"
+                                            Margin="0,5,0,0"
+                                            TextBlock.FontFamily="../Fonts/#方正启体_GBK">
+                                    <TextBlock Margin="0,5,0,0"
+                                               HorizontalAlignment="Center"
+                                               VerticalAlignment="Bottom"
+                                               FontSize="18"
+                                               FontWeight="Bold"
+                                               Foreground="{DynamicResource text-100}"
+                                               Text="中书君" />
 
-                                <TextBlock Margin="0,5,0,0"
-                                           HorizontalAlignment="Center"
-                                           VerticalAlignment="Bottom"
-                                           FontSize="18"
-                                           FontWeight="Bold"
-                                           Foreground="{DynamicResource text-100}"
-                                           Text="中书君" />
-
-                                <TextBlock Margin="0,5,0,0"
-                                           HorizontalAlignment="Center"
-                                           VerticalAlignment="Bottom"
-                                           FontSize="16"
-                                           FontWeight="Normal"
-                                           Foreground="{DynamicResource text-200}"
-                                           Text="多谢中书君，伴我此幽栖" />
-                            </StackPanel>
+                                    <TextBlock Margin="0,5,0,0"
+                                               HorizontalAlignment="Center"
+                                               VerticalAlignment="Bottom"
+                                               FontSize="16"
+                                               FontWeight="Normal"
+                                               Foreground="{DynamicResource text-200}"
+                                               Text="中州韵管理器" />
+                                </StackPanel>
+                            </Grid>
 
                             <StackPanel x:Name="navStackPanel"
                                         Grid.Row="1"
-                                        Margin="5"
-                                        VerticalAlignment="Center">
+                                        Margin="5,10,5,0"
+                                        VerticalAlignment="Top">
 
                                 <b:Interaction.Triggers>
                                     <b:EventTrigger EventName="Loaded">

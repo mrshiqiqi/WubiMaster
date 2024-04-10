@@ -13,7 +13,7 @@
 
         <Grid>
 
-            <Grid x:Name="shichen_grid" Margin="20">
+            <Grid x:Name="shichen_grid" Margin="35">
 
                 <Border Background="{DynamicResource bg-200}" CornerRadius="1000">
                     <TextBlock />
@@ -21,9 +21,11 @@
 
                 <Grid HorizontalAlignment="Center">
                     <Border Grid.Column="1"
-                            Width="70"
+                            Width="100"
                             Height="240"
                             Margin="10"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
                             Background="{DynamicResource primary-100}"
                             CornerRadius="20">
                         <Grid>
@@ -40,10 +42,10 @@
                                      Fill="{DynamicResource bg-300}" />
 
                             <TextBlock Grid.Row="1"
-                                       Width="60"
+                                       Width="80"
                                        HorizontalAlignment="Center"
                                        VerticalAlignment="Center"
-                                       FontSize="60"
+                                       FontSize="80"
                                        Foreground="{DynamicResource bg-100}"
                                        Text="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=ShichenText}"
                                        TextWrapping="Wrap" />
@@ -51,23 +53,26 @@
                     </Border>
                 </Grid>
 
-                <Canvas x:Name="AnalogCanvs"
-                        Width="360"
-                        Height="360">
+                <Grid x:Name="HourGrid"
+                      Width="360"
+                      Height="360"
+                      Margin="5"
+                      RenderTransformOrigin="0.5,0.5">
 
                     <Ellipse x:Name="HourEllipse"
-                             Canvas.Left="165"
-                             Canvas.Top="10"
                              Width="40"
                              Height="40"
+                             HorizontalAlignment="Center"
+                             VerticalAlignment="Top"
                              Panel.ZIndex="-1"
                              Fill="{DynamicResource accent-100}" />
-                </Canvas>
+                </Grid>
             </Grid>
 
             <Grid x:Name="MinutesGrid" RenderTransformOrigin="0.5, 0.5">
-                <Ellipse Width="20"
-                         Height="20"
+                <Ellipse Width="30"
+                         Height="30"
+                         HorizontalAlignment="Center"
                          VerticalAlignment="Top"
                          Fill="{DynamicResource accent-200}" />
             </Grid>

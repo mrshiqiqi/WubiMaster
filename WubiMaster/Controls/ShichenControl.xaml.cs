@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using WubiMaster.Common;
 
 namespace WubiMaster.Controls
 {
@@ -27,9 +28,7 @@ namespace WubiMaster.Controls
 
         private DateTime CurrTime = DateTime.Now;
 
-        private Point Opos = new Point();
-
-        private double radius;
+        private double last_angle;
 
         private Dictionary<int, string> shichenDict;
 
@@ -47,9 +46,7 @@ namespace WubiMaster.Controls
             InitializeComponent();
 
             shichenDict = new Dictionary<int, string>();
-            radius = AnalogCanvs.Width / 2;
-            Opos = new Point(AnalogCanvs.Width / 2, AnalogCanvs.Height / 2);
-            timer.Interval = TimeSpan.FromMilliseconds(100);
+            timer.Interval = TimeSpan.FromMilliseconds(1000*5);
             timer.Tick += Timer_Tick;
 
             InitShichenDict();
@@ -88,24 +85,26 @@ namespace WubiMaster.Controls
         /// </summary>
         private void DrawHour()
         {
-            int hour = CurrTime.Hour;
-            int minu = CurrTime.Minute;
-            double dminu = minu / 60.0; // 根据分钟数增加时针偏移
-            double dhour = hour + dminu;
-
-            double hour_angle = WrapAngle(dhour * (360.0 / 12.0) - 90.0);
-            hour_angle = ConvertDegreesToRadians(hour_angle);
-
-            double x = Opos.X + Math.Cos(hour_angle) * (radius - 36);
-            double y = Opos.Y + Math.Sin(hour_angle) * (radius - 36);
-
-            Canvas.SetLeft(HourEllipse, x);
-            Canvas.SetTop(HourEllipse, y);
-            if (AnalogCanvs.Children.Contains(HourEllipse))
+            try
             {
-                AnalogCanvs.Children.Remove(HourEllipse);
+                int hour = CurrTime.Hour;
+                int minu = CurrTime.Minute;
+                double dminu = minu / 60.0; // 根据分钟数增加时针偏移
+                double dhour = hour + dminu;
+
+                double hour_angle = WrapAngle(dhour * (360.0 / 12.0));
+
+                RotateTransform rtf1 = new RotateTransform();
+                HourGrid.RenderTransform = rtf1;
+                DoubleAnimation dbAscending1 = new DoubleAnimation(last_angle, hour_angle, new Duration(TimeSpan.FromSeconds(0.5)));
+                dbAscending1.RepeatBehavior = RepeatBehavior.Forever;
+                rtf1.BeginAnimation(RotateTransform.AngleProperty, dbAscending1);
+                last_angle = hour_angle;
             }
-            AnalogCanvs.Children.Add(HourEllipse);
+            catch (Exception ex)
+            {
+                LogHelper.Error(ex.ToString());
+            }
         }
 
         private void InitShichenDict()
