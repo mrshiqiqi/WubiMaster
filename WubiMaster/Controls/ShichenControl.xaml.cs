@@ -31,6 +31,7 @@ namespace WubiMaster.Controls
 
         private DateTime CurrTime = DateTime.Now;
 
+        private bool IsFirstOpen = true;
         private double last_angle;
 
         private Dictionary<int, string> shichenDict;
@@ -58,11 +59,13 @@ namespace WubiMaster.Controls
 
             shichenDict = new Dictionary<int, string>();
             tipDict = new Dictionary<int, string>();
-            timer.Interval = TimeSpan.FromMilliseconds(100);
+            timer.Interval = TimeSpan.FromMilliseconds(1000);
             timer.Tick += Timer_Tick;
 
             InitShichenDict();
-            StartMinutesAnimation();
+            ChangeShichenText();
+            StartSecondAnimation();
+            StartHourAnimation();
 
             timer.Start();
         }
@@ -99,33 +102,6 @@ namespace WubiMaster.Controls
             return radians;
         }
 
-        /// <summary>
-        /// 画时针圆
-        /// </summary>
-        private void DrawHour()
-        {
-            try
-            {
-                int hour = CurrTime.Hour;
-                int minu = CurrTime.Minute;
-                double dminu = minu / 60.0; // 根据分钟数增加时针偏移
-                double dhour = hour + dminu;
-
-                double hour_angle = WrapAngle(dhour * (360.0 / 12.0));
-
-                RotateTransform rtf1 = new RotateTransform();
-                HourGrid.RenderTransform = rtf1;
-                DoubleAnimation dbAscending1 = new DoubleAnimation(last_angle, hour_angle, new Duration(TimeSpan.FromSeconds(0.5)));
-                dbAscending1.RepeatBehavior = RepeatBehavior.Forever;
-                rtf1.BeginAnimation(RotateTransform.AngleProperty, dbAscending1);
-                last_angle = hour_angle;
-            }
-            catch (Exception ex)
-            {
-                LogHelper.Error(ex.ToString());
-            }
-        }
-
         private void InitShichenDict()
         {
             for (int i = 0; i < 24; i++)
@@ -143,15 +119,46 @@ namespace WubiMaster.Controls
             }
         }
 
-        private void StartMinutesAnimation()
+        /// <summary>
+        /// 画时针圆
+        /// </summary>
+        private void StartHourAnimation()
+        {
+            try
+            {
+                int hour = CurrTime.Hour;
+                int minu = CurrTime.Minute;
+                double dminu = minu / 60.0; // 根据分钟数增加时针偏移
+                double dhour = hour + dminu;
+
+                double hour_angle = WrapAngle(dhour * (360.0 / 12.0));
+                if (IsFirstOpen)
+                {
+                    last_angle = hour_angle;
+                    IsFirstOpen = false;
+                }
+                RotateTransform hour_trans = new RotateTransform();
+                HourGrid.RenderTransform = hour_trans;
+                DoubleAnimation hour_animation = new DoubleAnimation(last_angle, hour_angle, new Duration(TimeSpan.FromSeconds(0.5)));
+                hour_animation.RepeatBehavior = RepeatBehavior.Forever;
+                hour_trans.BeginAnimation(RotateTransform.AngleProperty, hour_animation);
+                last_angle = hour_angle;
+            }
+            catch (Exception ex)
+            {
+                LogHelper.Error(ex.ToString());
+            }
+        }
+
+        private void StartSecondAnimation()
         {
             double dsec = DateTime.Now.Second / 60.0;
             double sec_angle = dsec * 360;
-            RotateTransform rtf = new RotateTransform();
-            MinutesGrid.RenderTransform = rtf;
-            DoubleAnimation dbAscending = new DoubleAnimation(sec_angle, 360 + sec_angle, new Duration(TimeSpan.FromMinutes(1)));
-            dbAscending.RepeatBehavior = RepeatBehavior.Forever;
-            rtf.BeginAnimation(RotateTransform.AngleProperty, dbAscending);
+            RotateTransform sec_trans = new RotateTransform();
+            MinutesGrid.RenderTransform = sec_trans;
+            DoubleAnimation sec_animation = new DoubleAnimation(sec_angle, 360 + sec_angle, new Duration(TimeSpan.FromMinutes(1)));
+            sec_animation.RepeatBehavior = RepeatBehavior.Forever;
+            sec_trans.BeginAnimation(RotateTransform.AngleProperty, sec_animation);
         }
 
         private void Timer_Tick(object? sender, EventArgs e)
@@ -163,7 +170,7 @@ namespace WubiMaster.Controls
 
         private void Update()
         {
-            DrawHour();
+            StartHourAnimation();
             ChangeShichenText();
         }
 
