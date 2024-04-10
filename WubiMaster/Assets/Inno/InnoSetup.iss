@@ -3,7 +3,7 @@
 ; 将本文件放置于发布目录下！
 
 #define MyAppName "中书君"
-#define MyAppVersion "1.0.0.2"
+#define MyAppVersion "0.2.19.202404010-alpha"
 #define MyAppPublisher "空山明月"
 #define MyAppExeName "WubiMaster.exe"
 #define MyAppAssocName MyAppName + ""
@@ -23,7 +23,7 @@ ChangesAssociations=yes
 DisableProgramGroupPage=yes
 ; Uncomment the following line to run in non administrative install mode (install for current user only.)
 ;PrivilegesRequired=lowest
-OutputBaseFilename=中书君
+OutputBaseFilename={#MyAppName} - {#MyAppVersion}
 SetupIconFile=win-x64\faviocn.ico
 Compression=lzma
 SolidCompression=yes
