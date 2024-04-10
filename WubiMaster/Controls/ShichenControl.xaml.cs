@@ -24,6 +24,9 @@ namespace WubiMaster.Controls
         public static readonly DependencyProperty ShichenTextProperty =
             DependencyProperty.Register("ShichenText", typeof(string), typeof(ShichenControl), new PropertyMetadata(""));
 
+        public static readonly DependencyProperty ShichenTipProperty =
+            DependencyProperty.Register("ShichenTip", typeof(string), typeof(ShichenControl), new PropertyMetadata(""));
+
         private double angle = 360;
 
         private DateTime CurrTime = DateTime.Now;
@@ -39,14 +42,23 @@ namespace WubiMaster.Controls
             "申","酉","戌","亥",
         };
 
+        private string[] ShichenTips = new string[]
+                                                                                                {
+            "睡觉","熟睡","熟睡","排便",
+            "早餐","创造","午休","喝水",
+            "活动","少食","散步","泡脚",
+        };
+
         private DispatcherTimer timer = new DispatcherTimer();
+        private Dictionary<int, string> tipDict;
 
         public ShichenControl()
         {
             InitializeComponent();
 
             shichenDict = new Dictionary<int, string>();
-            timer.Interval = TimeSpan.FromMilliseconds(1000*5);
+            tipDict = new Dictionary<int, string>();
+            timer.Interval = TimeSpan.FromMilliseconds(100);
             timer.Tick += Timer_Tick;
 
             InitShichenDict();
@@ -61,10 +73,17 @@ namespace WubiMaster.Controls
             set { SetValue(ShichenTextProperty, value); }
         }
 
+        public string ShichenTip
+        {
+            get { return (string)GetValue(ShichenTipProperty); }
+            set { SetValue(ShichenTipProperty, value); }
+        }
+
         private void ChangeShichenText()
         {
-            var hour = CurrTime.Hour;
+            var hour = DateTime.Now.Hour;
             ShichenText = shichenDict[hour] + "时";
+            ShichenTip = tipDict[hour];
         }
 
         // 计时器
@@ -114,19 +133,23 @@ namespace WubiMaster.Controls
                 if (i == 0 || i == 23)
                 {
                     shichenDict.Add(i, ShichenStrs[0]);
+                    tipDict.Add(i, ShichenTips[0]);
                     continue;
                 }
 
                 int shichenIndex = (i / 2) + (i % 2);
                 shichenDict.Add(i, ShichenStrs[shichenIndex]);
+                tipDict.Add(i, ShichenTips[shichenIndex]);
             }
         }
 
         private void StartMinutesAnimation()
         {
+            double dsec = DateTime.Now.Second / 60.0;
+            double sec_angle = dsec * 360;
             RotateTransform rtf = new RotateTransform();
             MinutesGrid.RenderTransform = rtf;
-            DoubleAnimation dbAscending = new DoubleAnimation(0, 360, new Duration(TimeSpan.FromMinutes(1)));
+            DoubleAnimation dbAscending = new DoubleAnimation(sec_angle, 360 + sec_angle, new Duration(TimeSpan.FromMinutes(1)));
             dbAscending.RepeatBehavior = RepeatBehavior.Forever;
             rtf.BeginAnimation(RotateTransform.AngleProperty, dbAscending);
         }
