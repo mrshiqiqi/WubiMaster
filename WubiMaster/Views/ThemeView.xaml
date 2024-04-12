@@ -137,11 +137,9 @@
                                                Text="mmmm" />
                                 </Grid>
                             </Border>
-
                         </StackPanel>
                     </Grid>
                 </Border>
-
             </Grid>
 
             <Grid Grid.Row="1">
@@ -168,11 +166,15 @@
 
                         <Grid Grid.Row="1">
                             <ComboBox Width="100"
-                                      Margin="0,0,75,0"
+                                      Height="30"
+                                      Margin="0,0,120,0"
                                       HorizontalAlignment="Right"
                                       Text="兰亭序-华采" />
 
-                            <Button HorizontalAlignment="Right" Content="保存" />
+                            <Button Width="100"
+                                    Height="35"
+                                    HorizontalAlignment="Right"
+                                    Content="保存" />
                         </Grid>
 
                         <Separator Grid.Row="2"
@@ -206,11 +208,13 @@
                                 <TextBlock FontSize="15"
                                            Foreground="{DynamicResource text-100}"
                                            Text="横排/竖排" />
-                                <Button Height="25"
+                                <Button Width="100"
+                                        Height="35"
                                         HorizontalAlignment="Right"
                                         Content="横排" />
-                                <Button Height="25"
-                                        Margin="0,0,60,0"
+                                <Button Width="100"
+                                        Height="35"
+                                        Margin="0,0,120,0"
                                         HorizontalAlignment="Right"
                                         Background="{DynamicResource bg-300}"
                                         Content="竖排" />
@@ -443,5 +447,4 @@
             </Grid>
         </Grid>
     </ScrollViewer>
-
 </UserControl>
