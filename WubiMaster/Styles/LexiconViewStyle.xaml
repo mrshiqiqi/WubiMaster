@@ -6,6 +6,7 @@
         <Setter Property="MinWidth" Value="150" />
         <Setter Property="MaxWidth" Value="500" />
         <Setter Property="IsReadOnly" Value="True" />
+        <Setter Property="Height" Value="25" />
     </Style>
 
     <Style x:Key="SettingButtonStyle"
@@ -15,5 +16,7 @@
         <Setter Property="MaxWidth" Value="150" />
         <Setter Property="MinHeight" Value="25" />
         <Setter Property="Margin" Value="10,0,0,0" />
+        <Setter Property="Height" Value="30" />
+        <Setter Property="Width" Value="80" />
     </Style>
 </ResourceDictionary>

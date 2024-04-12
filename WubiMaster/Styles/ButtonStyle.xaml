@@ -15,13 +15,30 @@
                 <ControlTemplate TargetType="Button">
 
                     <Border x:Name="border"
-                            Background="{TemplateBinding Background}"
+                            Padding="1"
+                            Background="Transparent"
                             BorderBrush="{TemplateBinding BorderBrush}"
-                            CornerRadius="5">
+                            CornerRadius="1">
+                        <Grid>
+                            <Viewbox Stretch="Fill">
+                                <Border Width="100"
+                                        Height="35"
+                                        Margin="0">
+                                    <Grid>
+                                        <TextBlock HorizontalAlignment="Center"
+                                                   VerticalAlignment="Center"
+                                                   FontFamily="../Fonts/#iconfont"
+                                                   FontSize="100"
+                                                   Foreground="{DynamicResource primary-100}"
+                                                   Text="&#xe656;" />
+                                    </Grid>
+                                </Border>
+                            </Viewbox>
 
-                        <ContentPresenter HorizontalAlignment="Center"
-                                          VerticalAlignment="Center"
-                                          Content="{TemplateBinding Content}" />
+                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"
+                                              Content="{TemplateBinding Content}" />
+                        </Grid>
                     </Border>
 
                     <ControlTemplate.Triggers>

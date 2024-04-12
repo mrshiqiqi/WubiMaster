@@ -213,7 +213,7 @@
                             </StackPanel>
 
                             <Button Grid.Row="2"
-                                    Height="35"
+                                    Height="40"
                                     Margin="10,0,10,30"
                                     Background="{DynamicResource primary-200}"
                                     Command="{Binding DeployCommand}">

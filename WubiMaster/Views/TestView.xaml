@@ -17,7 +17,22 @@
 
     <Grid>
 
-        <c:LogoControl Width="60" Height="70" />
+        <Button Width="150"
+                Height="40"
+                Content="Hello" />
+        <!--<Viewbox>
+            <Border Width="100" Height="35">
+                <Grid>
+                    <TextBlock HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               FontFamily="../Fonts/#iconfont"
+                               FontSize="100"
+                               Foreground="{DynamicResource primary-100}"
+                               Text="&#xe656;" />
+                </Grid>
+            </Border>
+        </Viewbox>-->
+        <!--<c:LogoControl Width="60" Height="70" />-->
         <!--<c:ShichenControl />-->
 
         <Grid Visibility="Collapsed">
