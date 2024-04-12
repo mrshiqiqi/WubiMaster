@@ -52,14 +52,14 @@
 
     <Grid>
 
-        <Border Padding="30">
+        <!--<Border Padding="30">
             <Viewbox>
                 <TextBlock FontFamily="../Fonts/#iconfont"
                            Foreground="{DynamicResource primary-300}"
                            Opacity="0.2"
                            Text="&#xe609;" />
             </Viewbox>
-        </Border>
+        </Border>-->
 
         <Grid>
             <Grid.ColumnDefinitions>

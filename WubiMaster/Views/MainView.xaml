@@ -162,13 +162,13 @@
                                              Style="{StaticResource NavButtonStyle}"
                                              Text="主页" />
 
-                                <c:NavButton IconText="&#xe614;"
+                                <c:NavButton IconText="&#xe638;"
                                              NavCommand="{Binding ChangePageCommand}"
                                              NavName="Attribute"
                                              Style="{StaticResource NavButtonStyle}"
                                              Text="属性设置" />
 
-                                <c:NavButton IconText="&#xe62f;"
+                                <c:NavButton IconText="&#xe899;"
                                              NavCommand="{Binding ChangePageCommand}"
                                              NavName="Etymon"
                                              Style="{StaticResource NavButtonStyle}"
@@ -180,7 +180,7 @@
                                              Style="{StaticResource NavButtonStyle}"
                                              Text="词库管理" />
 
-                                <c:NavButton IconText="&#xe630;"
+                                <c:NavButton IconText="&#xe605;"
                                              NavCommand="{Binding ChangePageCommand}"
                                              NavName="EtymonKey"
                                              Style="{StaticResource NavButtonStyle}"

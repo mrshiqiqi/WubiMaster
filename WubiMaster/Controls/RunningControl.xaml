@@ -9,8 +9,8 @@
              mc:Ignorable="d">
 
     <UserControl.Resources>
-        <sys:String x:Key="stopStr">&#xe6c1;</sys:String>
-        <sys:String x:Key="runningStr">&#xe6e9;</sys:String>
+        <sys:String x:Key="stopStr">&#xe646;</sys:String>
+        <sys:String x:Key="runningStr">&#xe646;</sys:String>
 
         <Style x:Key="running_control_style" TargetType="ToggleButton">
             <Setter Property="Padding" Value="5" />

@@ -107,9 +107,11 @@
 
                             <Trigger Property="IsChecked" Value="True">
                                 <Setter TargetName="txt_icon" Property="Foreground" Value="{DynamicResource primary-100}" />
+                                <Setter TargetName="txt_icon" Property="FontWeight" Value="Bold" />
                                 <Setter TargetName="bg" Property="Background" Value="{DynamicResource bg-300}" />
                                 <Setter TargetName="bd_left" Property="Visibility" Value="Visible" />
                                 <Setter TargetName="txt_content" Property="Foreground" Value="{DynamicResource text-100}" />
+                                <Setter TargetName="txt_content" Property="FontWeight" Value="Bold" />
 
                                 <Trigger.EnterActions>
                                     <BeginStoryboard>

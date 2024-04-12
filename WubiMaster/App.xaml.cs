@@ -14,33 +14,10 @@ namespace WubiMaster
 {
     public partial class App : Application
     {
-        Mutex mutex;
+        private Mutex mutex;
         public static bool IsMaximized { get; set; }
 
-        private void Application_Startup(object sender, StartupEventArgs e)
-        {
-            bool ret;
-            mutex = new Mutex(true, "WubiMaster", out ret);
-            if (!ret)
-            {
-                LogHelper.Info("禁止启用多个进程");
-                Environment.Exit(0);
-                return;
-            }
-
-            LogHelper.Info("程序启动");
-
-            this.DispatcherUnhandledException += new DispatcherUnhandledExceptionEventHandler(App_DispatcherUnhandledException);
-            TaskScheduler.UnobservedTaskException += TaskScheduler_UnobservedTaskException;
-            AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(CurrentDomain_UnhandledException);
-        }
-
-        private void Application_Exit(object sender, ExitEventArgs e)
-        {
-            LogHelper.Info("程序退出");
-        }
-
-        void App_DispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
+        private void App_DispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
         {
             try
             {
@@ -53,10 +30,32 @@ namespace WubiMaster
                 this.ShowMessage("程序发生致命错误，将终止，请联系开发人员！", DialogType.Error);
                 Environment.Exit(0);
             }
-
         }
 
-        void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
+        private void Application_Exit(object sender, ExitEventArgs e)
+        {
+            LogHelper.Info("程序退出");
+        }
+
+        private void Application_Startup(object sender, StartupEventArgs e)
+        {
+            //bool ret;
+            //mutex = new Mutex(true, "WubiMaster", out ret);
+            //if (!ret)
+            //{
+            //    LogHelper.Info("禁止启用多个进程");
+            //    Environment.Exit(0);
+            //    return;
+            //}
+
+            LogHelper.Info("程序启动");
+
+            this.DispatcherUnhandledException += new DispatcherUnhandledExceptionEventHandler(App_DispatcherUnhandledException);
+            TaskScheduler.UnobservedTaskException += TaskScheduler_UnobservedTaskException;
+            AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(CurrentDomain_UnhandledException);
+        }
+
+        private void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
             StringBuilder sbEx = new StringBuilder();
             if (e.IsTerminating)
@@ -75,7 +74,7 @@ namespace WubiMaster
             this.ShowMessage(sbEx.ToString(), DialogType.Error);
         }
 
-        void TaskScheduler_UnobservedTaskException(object sender, UnobservedTaskExceptionEventArgs e)
+        private void TaskScheduler_UnobservedTaskException(object sender, UnobservedTaskExceptionEventArgs e)
         {
             LogHelper.Fatal(e.Exception.Message);
             e.SetObserved();
