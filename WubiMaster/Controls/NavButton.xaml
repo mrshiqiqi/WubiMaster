@@ -56,6 +56,7 @@
 
                                     <TextBlock x:Name="txt_content"
                                                Grid.Column="1"
+                                               Margin="-15,0,0,0"
                                                HorizontalAlignment="Left"
                                                VerticalAlignment="Center"
                                                FontSize="{Binding ElementName=nav_button, Path=TextFontSize}"
