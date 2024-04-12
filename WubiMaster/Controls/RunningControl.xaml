@@ -13,7 +13,7 @@
         <sys:String x:Key="runningStr">&#xe646;</sys:String>
 
         <Style x:Key="running_control_style" TargetType="ToggleButton">
-            <Setter Property="Padding" Value="5" />
+            <Setter Property="Padding" Value="0" />
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="ToggleButton">
@@ -21,7 +21,7 @@
                             <Viewbox>
                                 <Border Width="50"
                                         Height="50"
-                                        Background="{DynamicResource bg-300}"
+                                        Background="{DynamicResource bg-200}"
                                         CornerRadius="25">
                                     <Viewbox>
                                         <TextBlock x:Name="tblk_content"
@@ -48,7 +48,7 @@
 
                             <Trigger Property="IsChecked" Value="True">
                                 <Setter TargetName="tblk_content" Property="Text" Value="{StaticResource runningStr}" />
-                                <Setter Property="Padding" Value="3" />
+                                <!--<Setter Property="Padding" Value="3" />-->
 
                                 <Trigger.EnterActions>
                                     <BeginStoryboard>

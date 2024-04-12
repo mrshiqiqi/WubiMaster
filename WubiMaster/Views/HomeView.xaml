@@ -132,9 +132,19 @@
                                 </Grid.ColumnDefinitions>
 
                                 <Border Style="{StaticResource WubiIocnStyle}">
-                                    <TextBlock x:Name="txt_wubi86_icon"
-                                               Style="{StaticResource WubiTitleStyle}"
-                                               Text="86" />
+                                    <Grid>
+                                        <Viewbox>
+                                            <TextBlock HorizontalAlignment="Center"
+                                                       VerticalAlignment="Center"
+                                                       FontFamily="../Fonts/#iconfont"
+                                                       Foreground="{DynamicResource accent-200}"
+                                                       Text="&#xe747;" />
+                                        </Viewbox>
+
+                                        <TextBlock x:Name="txt_wubi86_icon"
+                                                   Style="{StaticResource WubiTitleStyle}"
+                                                   Text="86" />
+                                    </Grid>
                                 </Border>
 
                                 <Grid Grid.Column="1"
@@ -169,9 +179,19 @@
                                 </Grid.ColumnDefinitions>
 
                                 <Border Style="{StaticResource WubiIocnStyle}">
-                                    <TextBlock x:Name="txt_wubi98_icon"
-                                               Style="{StaticResource WubiTitleStyle}"
-                                               Text="98" />
+                                    <Grid>
+                                        <Viewbox>
+                                            <TextBlock HorizontalAlignment="Center"
+                                                       VerticalAlignment="Center"
+                                                       FontFamily="../Fonts/#iconfont"
+                                                       Foreground="{DynamicResource accent-200}"
+                                                       Text="&#xe747;" />
+                                        </Viewbox>
+
+                                        <TextBlock x:Name="txt_wubi98_icon"
+                                                   Style="{StaticResource WubiTitleStyle}"
+                                                   Text="98" />
+                                    </Grid>
                                 </Border>
 
                                 <Grid Grid.Column="1"
@@ -206,9 +226,19 @@
                                 </Grid.ColumnDefinitions>
 
                                 <Border Style="{StaticResource WubiIocnStyle}">
-                                    <TextBlock x:Name="txt_wubi06_icon"
-                                               Style="{StaticResource WubiTitleStyle}"
-                                               Text="06" />
+                                    <Grid>
+                                        <Viewbox>
+                                            <TextBlock HorizontalAlignment="Center"
+                                                       VerticalAlignment="Center"
+                                                       FontFamily="../Fonts/#iconfont"
+                                                       Foreground="{DynamicResource accent-200}"
+                                                       Text="&#xe747;" />
+                                        </Viewbox>
+
+                                        <TextBlock x:Name="txt_wubi06_icon"
+                                                   Style="{StaticResource WubiTitleStyle}"
+                                                   Text="06" />
+                                    </Grid>
                                 </Border>
 
                                 <Grid Grid.Column="1"
