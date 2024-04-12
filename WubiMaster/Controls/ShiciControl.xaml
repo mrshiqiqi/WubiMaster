@@ -115,12 +115,6 @@
 
                     <TextBlock Style="{StaticResource auther_text_style}" Text="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=ShiciTitle}" />
 
-                    <!--<TextBlock Style="{StaticResource shici_text_style}" Text="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=JinriShici, Converter={StaticResource ShiciToThrid}}" />
-
-                    <TextBlock Style="{StaticResource shici_text_style}" Text="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=JinriShici, Converter={StaticResource ShiciToSecond}}" />
-
-                    <TextBlock Style="{StaticResource shici_text_style}" Text="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=JinriShici, Converter={StaticResource ShiciToFirst}}" />-->
-
                     <ItemsControl ItemsSource="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=ShiciTexts}">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>

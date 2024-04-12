@@ -95,7 +95,7 @@
                                      HorizontalAlignment="Left">
                                 <TextBlock FontFamily="../Fonts/#iconfont"
                                            Foreground="{DynamicResource primary-200}"
-                                           Text="&#xe8fe;" />
+                                           Text="&#xe619;" />
                             </Viewbox>
 
                             <TextBlock Margin="20,0,0,0"

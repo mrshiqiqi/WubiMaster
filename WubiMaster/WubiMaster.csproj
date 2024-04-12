@@ -29,7 +29,6 @@
     <None Remove="Assets\Spelling\wb98_spelling.txt" />
     <None Remove="Fonts\iconfont.ttf" />
     <None Remove="Fonts\方正启体_GBK.ttf" />
-    <None Remove="Fonts\方正苏新诗柳楷简体.TTF" />
     <None Remove="Fonts\演示佛系体.ttf" />
     <None Remove="Fonts\黑体字根.ttf" />
     <None Remove="Images\JinriShici\低头.png" />
@@ -92,7 +91,6 @@
     </Content>
     <Resource Include="Fonts\iconfont.ttf" />
     <Resource Include="Fonts\方正启体_GBK.ttf" />
-    <Resource Include="Fonts\方正苏新诗柳楷简体.TTF" />
     <Resource Include="Fonts\演示佛系体.ttf" />
     <Resource Include="Fonts\黑体字根.ttf">
       <CopyToOutputDirectory></CopyToOutputDirectory>

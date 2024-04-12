@@ -14,8 +14,6 @@ namespace WubiMaster.Controls
 {
     public partial class ShiciControl : UserControl
     {
-        public static readonly DependencyProperty JinriShiciProperty =
-            DependencyProperty.Register("JinriShici", typeof(string), typeof(ShiciControl));
 
         public static readonly DependencyProperty ShiciAuthorProperty =
             DependencyProperty.Register("ShiciAuthor", typeof(string), typeof(ShiciControl));
@@ -65,12 +63,6 @@ namespace WubiMaster.Controls
         }
 
         public List<ImageSource> Images { get; set; }
-
-        public string JinriShici
-        {
-            get { return (string)GetValue(JinriShiciProperty); }
-            set { SetValue(JinriShiciProperty, value); }
-        }
 
         public string ShiciAuthor
         {

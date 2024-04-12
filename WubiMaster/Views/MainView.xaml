@@ -155,50 +155,50 @@
                                     </b:EventTrigger>
                                 </b:Interaction.Triggers>
 
-                                <c:NavButton IconText="&#xe867;"
+                                <c:NavButton IconText="&#xe627;"
                                              IsSelected="True"
                                              NavCommand="{Binding ChangePageCommand}"
                                              NavName="Home"
                                              Style="{StaticResource NavButtonStyle}"
                                              Text="主页" />
 
-                                <c:NavButton IconText="&#xe657;"
+                                <c:NavButton IconText="&#xe614;"
                                              NavCommand="{Binding ChangePageCommand}"
                                              NavName="Attribute"
                                              Style="{StaticResource NavButtonStyle}"
                                              Text="属性设置" />
 
-                                <c:NavButton IconText="&#xe694;"
+                                <c:NavButton IconText="&#xe62f;"
                                              NavCommand="{Binding ChangePageCommand}"
                                              NavName="Etymon"
                                              Style="{StaticResource NavButtonStyle}"
                                              Text="字根反查" />
 
-                                <c:NavButton IconText="&#xe636;"
+                                <c:NavButton IconText="&#xe614;"
                                              NavCommand="{Binding ChangePageCommand}"
                                              NavName="Lexicon"
                                              Style="{StaticResource NavButtonStyle}"
                                              Text="词库管理" />
 
-                                <c:NavButton IconText="&#xe670;"
+                                <c:NavButton IconText="&#xe630;"
                                              NavCommand="{Binding ChangePageCommand}"
                                              NavName="EtymonKey"
                                              Style="{StaticResource NavButtonStyle}"
                                              Text="字根表" />
 
-                                <c:NavButton IconText="&#xe654;"
+                                <c:NavButton IconText="&#xe875;"
                                              NavCommand="{Binding ChangePageCommand}"
                                              NavName="Themes"
                                              Style="{StaticResource NavButtonStyle}"
                                              Text="皮肤" />
 
-                                <c:NavButton IconText="&#xe8b8;"
+                                <c:NavButton IconText="&#xe603;"
                                              NavCommand="{Binding ChangePageCommand}"
                                              NavName="Settings"
                                              Style="{StaticResource NavButtonStyle}"
                                              Text="设置" />
 
-                                <c:NavButton IconText="&#xe622;"
+                                <c:NavButton IconText="&#xe613;"
                                              NavCommand="{Binding ChangePageCommand}"
                                              NavName="About"
                                              Style="{StaticResource NavButtonStyle}"
@@ -232,7 +232,7 @@
                                                    FontFamily="../Fonts/#iconfont"
                                                    FontSize="18"
                                                    Foreground="{DynamicResource bg-100}"
-                                                   Text="&#xe97e;" />
+                                                   Text="&#xe61a;" />
 
                                         <TextBlock Grid.Column="2"
                                                    FontSize="16"
