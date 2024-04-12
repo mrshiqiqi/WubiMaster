@@ -2,7 +2,6 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:local="clr-namespace:WubiMaster.Controls"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              Name="nav_button"
              mc:Ignorable="d">
@@ -15,56 +14,64 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="RadioButton">
 
-                        <Grid Margin="3">
+                        <Border Background="{DynamicResource bg-100}">
+                            <Grid Margin="3">
 
-                            <Border Name="bg"
-                                    Background="Transparent"
-                                    CornerRadius="5"
-                                    Visibility="Visible" />
+                                <Border Name="bg" Visibility="Collapsed">
+                                    <Grid>
+                                        <Viewbox Stretch="Fill">
+                                            <Border>
+                                                <Grid>
+                                                    <TextBlock x:Name="bg_tblk"
+                                                               HorizontalAlignment="Center"
+                                                               VerticalAlignment="Center"
+                                                               FontFamily="../Fonts/#iconfont"
+                                                               FontSize="100"
+                                                               Foreground="{DynamicResource primary-100}"
+                                                               Text="&#xe663;" />
+                                                </Grid>
+                                            </Border>
+                                        </Viewbox>
+                                    </Grid>
+                                </Border>
 
-                            <Grid Margin="5">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="*" />
-                                </Grid.ColumnDefinitions>
+                                <Grid Margin="5">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
 
-                                <TextBlock x:Name="txt_icon"
-                                           Margin="18,0"
-                                           VerticalAlignment="Center"
-                                           FontFamily="../Fonts/#iconfont"
-                                           FontSize="{Binding ElementName=nav_button, Path=IcontFontSize}"
-                                           Foreground="{Binding ElementName=nav_button, Path=IconColor}"
-                                           Text="{Binding ElementName=nav_button, Path=IconText}" />
+                                    <TextBlock x:Name="txt_icon"
+                                               Margin="30,0"
+                                               HorizontalAlignment="Left"
+                                               VerticalAlignment="Center"
+                                               FontFamily="../Fonts/#iconfont"
+                                               FontSize="{Binding ElementName=nav_button, Path=IcontFontSize}"
+                                               Foreground="{Binding ElementName=nav_button, Path=IconColor}"
+                                               Text="{Binding ElementName=nav_button, Path=IconText}">
+                                        <TextBlock.RenderTransform>
+                                            <TranslateTransform />
+                                        </TextBlock.RenderTransform>
+                                    </TextBlock>
 
-                                <TextBlock x:Name="txt_content"
-                                           Grid.Column="1"
-                                           HorizontalAlignment="Left"
-                                           VerticalAlignment="Center"
-                                           FontSize="{Binding ElementName=nav_button, Path=TextFontSize}"
-                                           Foreground="{Binding ElementName=nav_button, Path=TextColor}"
-                                           Text="{TemplateBinding Content}" />
+                                    <TextBlock x:Name="txt_content"
+                                               Grid.Column="1"
+                                               HorizontalAlignment="Left"
+                                               VerticalAlignment="Center"
+                                               FontSize="{Binding ElementName=nav_button, Path=TextFontSize}"
+                                               Foreground="{Binding ElementName=nav_button, Path=TextColor}"
+                                               Text="{TemplateBinding Content}" />
+                                </Grid>
                             </Grid>
-
-                            <Border Name="bd_left"
-                                    Width="4"
-                                    Height="18"
-                                    HorizontalAlignment="Left"
-                                    VerticalAlignment="Center"
-                                    Background="{DynamicResource primary-100}"
-                                    CornerRadius="0 4 4 0"
-                                    Visibility="Collapsed">
-                                <Border.RenderTransform>
-                                    <TranslateTransform />
-                                </Border.RenderTransform>
-                            </Border>
-                        </Grid>
+                        </Border>
 
                         <ControlTemplate.Triggers>
 
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="txt_icon" Property="Foreground" Value="{DynamicResource primary-100}" />
-                                <Setter TargetName="bg" Property="Background" Value="{DynamicResource bg-300}" />
-                                <Setter TargetName="txt_content" Property="Foreground" Value="{DynamicResource text-100}" />
+                                <Setter TargetName="txt_icon" Property="Foreground" Value="{DynamicResource bg-100}" />
+                                <Setter TargetName="bg" Property="Visibility" Value="Visible" />
+                                <Setter TargetName="bg_tblk" Property="Foreground" Value="{DynamicResource bg-300}" />
+                                <Setter TargetName="txt_content" Property="Foreground" Value="{DynamicResource bg-100}" />
 
                                 <Trigger.EnterActions>
                                     <BeginStoryboard>
@@ -87,11 +94,10 @@
                             </Trigger>
 
                             <Trigger Property="IsPressed" Value="True">
-                                <Setter TargetName="txt_icon" Property="Foreground" Value="{DynamicResource primary-100}" />
-                                <Setter TargetName="bg" Property="Background" Value="{DynamicResource bg-300}" />
-                                <Setter TargetName="txt_content" Property="Foreground" Value="{DynamicResource text-100}" />
-                                <Setter TargetName="bd_left" Property="Visibility" Value="Visible" />
-
+                                <Setter TargetName="txt_icon" Property="Foreground" Value="{DynamicResource bg-100}" />
+                                <Setter TargetName="bg" Property="Visibility" Value="Visible" />
+                                <Setter TargetName="bg_tblk" Property="Foreground" Value="{DynamicResource primary-200}" />
+                                <Setter TargetName="txt_content" Property="Foreground" Value="{DynamicResource bg-100}" />
                                 <Trigger.EnterActions>
                                     <BeginStoryboard>
                                         <Storyboard>
@@ -106,17 +112,17 @@
                             </Trigger>
 
                             <Trigger Property="IsChecked" Value="True">
-                                <Setter TargetName="txt_icon" Property="Foreground" Value="{DynamicResource primary-100}" />
+                                <Setter TargetName="txt_icon" Property="Foreground" Value="{DynamicResource bg-100}" />
                                 <Setter TargetName="txt_icon" Property="FontWeight" Value="Bold" />
-                                <Setter TargetName="bg" Property="Background" Value="{DynamicResource bg-300}" />
-                                <Setter TargetName="bd_left" Property="Visibility" Value="Visible" />
-                                <Setter TargetName="txt_content" Property="Foreground" Value="{DynamicResource text-100}" />
+                                <Setter TargetName="bg" Property="Visibility" Value="Visible" />
+                                <Setter TargetName="bg_tblk" Property="Foreground" Value="{DynamicResource primary-100}" />
+                                <Setter TargetName="txt_content" Property="Foreground" Value="{DynamicResource bg-100}" />
                                 <Setter TargetName="txt_content" Property="FontWeight" Value="Bold" />
 
                                 <Trigger.EnterActions>
                                     <BeginStoryboard>
                                         <Storyboard>
-                                            <DoubleAnimation Storyboard.TargetName="bd_left"
+                                            <DoubleAnimation Storyboard.TargetName="txt_icon"
                                                              Storyboard.TargetProperty="RenderTransform.X"
                                                              From="10"
                                                              To="0"

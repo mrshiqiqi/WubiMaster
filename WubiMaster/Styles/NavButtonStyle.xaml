@@ -4,6 +4,7 @@
 
     <Style x:Key="NavButtonStyle" TargetType="c:NavButton">
         <Setter Property="Height" Value="45" />
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
         <Setter Property="IconColor" Value="{DynamicResource bg-300}" />
         <Setter Property="IcontFontSize" Value="24" />
         <Setter Property="TextColor" Value="{DynamicResource text-200}" />
