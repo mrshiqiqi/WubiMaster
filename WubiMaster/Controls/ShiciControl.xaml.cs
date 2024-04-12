@@ -26,8 +26,11 @@ namespace WubiMaster.Controls
         public static readonly DependencyProperty ShiciIntervalProperty =
             DependencyProperty.Register("ShiciInterval", typeof(int), typeof(ShiciControl), new PropertyMetadata(25, new PropertyChangedCallback(OnShiciIntervalChanged)));
 
+        public static readonly DependencyProperty ShiciTextsProperty =
+            DependencyProperty.Register("ShiciTexts", typeof(List<string>), typeof(ShiciControl));
+
         public static readonly DependencyProperty ShiciTitleProperty =
-                    DependencyProperty.Register("ShiciTitle", typeof(string), typeof(ShiciControl));
+                            DependencyProperty.Register("ShiciTitle", typeof(string), typeof(ShiciControl));
 
         public static readonly DependencyProperty Tag1Property =
                     DependencyProperty.Register("Tag1", typeof(string), typeof(ShiciControl));
@@ -85,6 +88,12 @@ namespace WubiMaster.Controls
         {
             get { return (int)GetValue(ShiciIntervalProperty); }
             set { SetValue(ShiciIntervalProperty, value); }
+        }
+
+        public List<string> ShiciTexts
+        {
+            get { return (List<string>)GetValue(ShiciTextsProperty); }
+            set { SetValue(ShiciTextsProperty, value); }
         }
 
         public DispatcherTimer ShiciTimer { get; set; }
@@ -249,19 +258,19 @@ namespace WubiMaster.Controls
                     }
                 }
 
-                JinriShici = model.content;
                 ShiciTitle = model.origin.Split(new char[] { '·', '/' })[0].Trim();
                 ShiciAuthor = model.author;
+                ShiciTexts = ShiciToArray(model.content);
             }
             catch (Exception ex)
             {
                 Random random = new Random();
                 int index = random.Next(0, DefaultShiciList.Count);
                 ShiciContentModel model = DefaultShiciList[index];
-                JinriShici = model.content;
+
                 ShiciTitle = model.origin;
                 ShiciAuthor = model.author;
-
+                ShiciTexts = ShiciToArray(model.content);
                 LogHelper.Warn(ex.Message);
             }
         }
@@ -367,6 +376,29 @@ namespace WubiMaster.Controls
         {
             ShiciImage = ChangeImage();
             GetJinrishiciAsync();
+        }
+
+        private List<string> ShiciToArray(string text)
+        {
+            List<string> strList = new List<string>();
+
+            try
+            {
+                var strs = text.Split(new char[] { ',', '.', ';', '/', '?', '!', '，', '。', '；', '、', '？', '！' });
+                for (int i = strs.Length - 1; i >= 0; i--)
+                {
+                    if (!string.IsNullOrEmpty(strs[i].Trim()))
+                    {
+                        strList.Add(strs[i].Trim());
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                LogHelper.Error(ex.Message);
+            }
+
+            return strList;
         }
     }
 }

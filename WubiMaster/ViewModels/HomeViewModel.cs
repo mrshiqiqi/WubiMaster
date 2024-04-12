@@ -79,7 +79,7 @@ namespace WubiMaster.ViewModels
                 // 检测rime是否已初始化
                 if (!File.Exists(GlobalValues.UserPath + GlobalValues.SchemaKey))
                 {
-                    this.ShowMessage("请先初始化五笔引擎");
+                    this.ShowMessage("请先到设置中心初始化引擎");
                     return;
                 }
 

@@ -126,7 +126,7 @@
 
                                 <StackPanel Grid.Row="1"
                                             Margin="0,5,0,0"
-                                            TextBlock.FontFamily="../Fonts/#方正启体_GBK">
+                                            TextBlock.FontFamily="../Fonts/#演示佛系体">
                                     <TextBlock Margin="0,5,0,0"
                                                HorizontalAlignment="Center"
                                                VerticalAlignment="Bottom"
@@ -141,7 +141,7 @@
                                                FontSize="16"
                                                FontWeight="Normal"
                                                Foreground="{DynamicResource text-200}"
-                                               Text="中州韻管理器" />
+                                               Text="中州韵管理器" />
                                 </StackPanel>
                             </Grid>
 

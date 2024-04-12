@@ -58,7 +58,7 @@
                                                              Storyboard.TargetProperty="(RotateTransform.Angle)"
                                                              From="0.0"
                                                              To="360"
-                                                             Duration="0:0:2" />
+                                                             Duration="0:0:3" />
                                         </Storyboard>
                                     </BeginStoryboard>
                                 </Trigger.EnterActions>
