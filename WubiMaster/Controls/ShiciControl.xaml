@@ -68,10 +68,10 @@
                        SnapsToDevicePixels="True"
                        Source="{Binding ElementName=shici_control, Path=ShiciImage}">
                     <Image.Effect>
-                        <DropShadowEffect BlurRadius="15"
+                        <DropShadowEffect BlurRadius="20"
                                           Direction="0"
-                                          ShadowDepth="100"
-                                          Color="{DynamicResource text-1000}" />
+                                          ShadowDepth="0"
+                                          Color="White" />
                     </Image.Effect>
                 </Image>
             </Grid>
