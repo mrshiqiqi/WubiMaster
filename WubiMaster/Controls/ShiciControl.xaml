@@ -14,10 +14,6 @@
 
     <UserControl.Resources>
 
-        <com:ShiciTextToFirst x:Key="ShiciToFirst" />
-        <com:ShiciTextToSecond x:Key="ShiciToSecond" />
-        <com:ShiciTextToThrid x:Key="ShiciToThrid" />
-
         <Style x:Key="shici_text_style" TargetType="TextBlock">
             <Setter Property="MaxWidth" Value="22" />
             <Setter Property="Margin" Value="10,20,0,0" />
