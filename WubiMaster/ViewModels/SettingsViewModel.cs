@@ -482,13 +482,13 @@ namespace WubiMaster.ViewModels
         {
             try
             {
-                if (registryHelper.IsExist(KeyType.HKEY_LOCAL_MACHINE, @"Rime\Weasel"))
-                {
-                    rimeKey = @"Rime\Weasel";
-                }
-                else if (registryHelper.IsExist(KeyType.HKEY_LOCAL_MACHINE, @"WOW6432Node\Rime\Weasel"))
+                if (registryHelper.IsExist(KeyType.HKEY_LOCAL_MACHINE, @"WOW6432Node\Rime\Weasel"))
                 {
                     rimeKey = @"WOW6432Node\Rime\Weasel";
+                }
+                else if (registryHelper.IsExist(KeyType.HKEY_LOCAL_MACHINE, @"Rime\Weasel"))
+                {
+                    rimeKey = @"Rime\Weasel";
                 }
 
                 if (string.IsNullOrEmpty(rimeKey)) throw new NullReferenceException("无法找到Rime程序安装目录");
