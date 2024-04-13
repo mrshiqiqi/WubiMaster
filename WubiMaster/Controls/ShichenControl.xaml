@@ -28,15 +28,13 @@
                                 <Storyboard>
                                     <DoubleAnimation Storyboard.TargetName="txt_shichen"
                                                      Storyboard.TargetProperty="Opacity"
-                                                     From="1"
-                                                     To="0"
+                                                     From="1" To="0"
                                                      Duration="0:0:1" />
 
                                     <DoubleAnimation BeginTime="0:0:0.5"
                                                      Storyboard.TargetName="txt_tip"
                                                      Storyboard.TargetProperty="Opacity"
-                                                     From="0"
-                                                     To="1"
+                                                     From="0" To="1"
                                                      Duration="0:0:1" />
                                 </Storyboard>
                             </BeginStoryboard>
@@ -47,15 +45,13 @@
                                 <Storyboard>
                                     <DoubleAnimation Storyboard.TargetName="txt_shichen"
                                                      Storyboard.TargetProperty="Opacity"
-                                                     From="0"
-                                                     To="1"
+                                                     From="0" To="1"
                                                      Duration="0:0:1" />
 
                                     <DoubleAnimation BeginTime="0:0:0.5"
                                                      Storyboard.TargetName="txt_tip"
                                                      Storyboard.TargetProperty="Opacity"
-                                                     From="1"
-                                                     To="0"
+                                                     From="1" To="0"
                                                      Duration="0:0:1" />
                                 </Storyboard>
                             </BeginStoryboard>
@@ -64,6 +60,49 @@
 
                     <Grid>
                         <Grid HorizontalAlignment="Center">
+
+                            <Grid Width="100"
+                                  Height="240"
+                                  Margin="10"
+                                  Panel.ZIndex="100">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+
+                                <Ellipse Width="25"
+                                         Height="25"
+                                         Margin="0,10"
+                                         HorizontalAlignment="Center"
+                                         VerticalAlignment="Top"
+                                         Fill="{DynamicResource bg-300}" />
+
+                                <TextBlock x:Name="txt_shichen"
+                                           Grid.Row="1"
+                                           Width="80"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"
+                                           FontSize="80"
+                                           Foreground="{DynamicResource bg-100}"
+                                           SnapsToDevicePixels="True"
+                                           Text="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=ShichenText}"
+                                           TextOptions.TextRenderingMode="ClearType"
+                                           TextWrapping="Wrap" />
+
+                                <TextBlock x:Name="txt_tip"
+                                           Grid.Row="1"
+                                           Width="80"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"
+                                           FontSize="80"
+                                           Foreground="{DynamicResource bg-100}"
+                                           Opacity="0"
+                                           SnapsToDevicePixels="True"
+                                           Text="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=ShichenTip}"
+                                           TextOptions.TextRenderingMode="ClearType"
+                                           TextWrapping="Wrap" />
+                            </Grid>
+
                             <Border Grid.Column="1"
                                     Width="100"
                                     Height="240"
@@ -80,44 +119,7 @@
                                                       Color="{DynamicResource bg-3000}" />
                                 </Border.Effect>
 
-                                <Grid>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition />
-                                    </Grid.RowDefinitions>
 
-                                    <Ellipse Width="25"
-                                             Height="25"
-                                             Margin="0,10"
-                                             HorizontalAlignment="Center"
-                                             VerticalAlignment="Top"
-                                             Fill="{DynamicResource bg-300}" />
-
-                                    <TextBlock x:Name="txt_shichen"
-                                               Grid.Row="1"
-                                               Width="80"
-                                               HorizontalAlignment="Center"
-                                               VerticalAlignment="Center"
-                                               FontSize="80"
-                                               Foreground="{DynamicResource bg-100}"
-                                               SnapsToDevicePixels="True"
-                                               Text="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=ShichenText}"
-                                               TextOptions.TextRenderingMode="ClearType"
-                                               TextWrapping="Wrap" />
-
-                                    <TextBlock x:Name="txt_tip"
-                                               Grid.Row="1"
-                                               Width="80"
-                                               HorizontalAlignment="Center"
-                                               VerticalAlignment="Center"
-                                               FontSize="80"
-                                               Foreground="{DynamicResource bg-100}"
-                                               Opacity="0"
-                                               SnapsToDevicePixels="True"
-                                               Text="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=ShichenTip}"
-                                               TextOptions.TextRenderingMode="ClearType"
-                                               TextWrapping="Wrap" />
-                                </Grid>
                             </Border>
                         </Grid>
 
