@@ -26,12 +26,8 @@
     </Style>
 
     <Style x:Key="SocialIconStyle" TargetType="c:IconButton">
-        <Setter Property="Margin" Value="15,0" />
         <Setter Property="ButtonBackground" Value="{DynamicResource bg-100}" />
         <Setter Property="ButtonForeground" Value="{DynamicResource primary-200}" />
-        <Setter Property="ButtonWidth" Value="50" />
-        <Setter Property="ButtonHeight" Value="50 " />
-        <Setter Property="ButtonPadding" Value="10" />
     </Style>
 
     <Style x:Key="WubiIocnStyle" TargetType="Border">

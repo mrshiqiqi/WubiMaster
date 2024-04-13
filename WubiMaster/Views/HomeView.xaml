@@ -431,10 +431,10 @@
                             <TextBlock Style="{StaticResource CardSubTitleStyle}" Text="斯是陋室，惟吾德馨" />
                         </StackPanel>
 
-                        <StackPanel Grid.Column="1"
-                                    HorizontalAlignment="Center"
-                                    VerticalAlignment="Center"
-                                    Orientation="Horizontal">
+                        <UniformGrid Grid.Column="1"
+                                     Margin="30,5"
+                                     VerticalAlignment="Stretch"
+                                     Rows="1">
 
                             <c:IconButton ButtonCommand="{Binding CopyInfoCommand}"
                                           ButtonCommandParameter="750379822"
@@ -465,7 +465,7 @@
                                           IconText="&#xe691;"
                                           Style="{StaticResource SocialIconStyle}"
                                           ToolTip="项目源" />
-                        </StackPanel>
+                        </UniformGrid>
                     </Grid>
                 </Border>
             </Grid>
