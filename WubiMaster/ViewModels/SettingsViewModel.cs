@@ -148,7 +148,7 @@ namespace WubiMaster.ViewModels
             if (DaemonIsRun)
                 ServiceHelper.StartDaemon();
             else
-                ServiceHelper.StartDaemon();
+                ServiceHelper.StopDaemon();
 
             ConfigHelper.WriteConfigByBool("daemon_state", DaemonIsRun);
         }
