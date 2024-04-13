@@ -52,15 +52,6 @@
 
     <Grid>
 
-        <!--<Border Padding="30">
-            <Viewbox>
-                <TextBlock FontFamily="../Fonts/#iconfont"
-                           Foreground="{DynamicResource primary-300}"
-                           Opacity="0.2"
-                           Text="&#xe609;" />
-            </Viewbox>
-        </Border>-->
-
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
@@ -115,7 +106,7 @@
 
                     <TextBlock Style="{StaticResource auther_text_style}" Text="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=ShiciTitle}" />
 
-                    <ItemsControl ItemsSource="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=ShiciTexts}">
+                    <ItemsControl FocusVisualStyle="{x:Null}" ItemsSource="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=ShiciTexts}">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <StackPanel Orientation="Horizontal" />

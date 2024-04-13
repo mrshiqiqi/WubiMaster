@@ -6,6 +6,7 @@
         <Setter Property="Background" Value="{DynamicResource bg-200}" />
         <Setter Property="CornerRadius" Value="15" />
         <Setter Property="Padding" Value="20" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
     </Style>
 
     <Style x:Key="CardTitleStyle" TargetType="TextBlock">

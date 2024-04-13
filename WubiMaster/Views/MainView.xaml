@@ -121,7 +121,7 @@
                                       VerticalAlignment="Center">
 
                                     <!--插件-->
-                                    <ContentControl Content="{Binding PluginControl}" />
+                                    <ContentControl Content="{Binding PluginControl}" FocusVisualStyle="{x:Null}" />
                                 </Grid>
 
                                 <StackPanel Grid.Row="1"
@@ -258,7 +258,8 @@
                     <ContentControl x:Name="Pages"
                                     Grid.Row="1"
                                     Margin="30"
-                                    Content="{Binding CurrentView}" />
+                                    Content="{Binding CurrentView}"
+                                    FocusVisualStyle="{x:Null}" />
                 </Grid>
             </Grid>
 
