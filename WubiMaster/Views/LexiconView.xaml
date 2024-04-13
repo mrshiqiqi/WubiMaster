@@ -45,6 +45,7 @@
                           ButtonPadding="4"
                           ButtonWidth="25"
                           IconText="&#xe60f;"
+                          IsEnabled="False"
                           ToolTip="自造词" />
         </Grid>
 
