@@ -104,21 +104,35 @@
                             </Grid>
 
                             <Border Grid.Column="1"
-                                    Width="100"
-                                    Height="240"
-                                    Margin="10"
+                                    Width="200"
+                                    Height="260"
+                                    Margin="5"
                                     HorizontalAlignment="Center"
                                     VerticalAlignment="Center"
-                                    Background="{DynamicResource primary-100}"
                                     CornerRadius="20"
                                     SnapsToDevicePixels="True">
-                                <Border.Effect>
-                                    <DropShadowEffect BlurRadius="20"
-                                                      Direction="-45"
-                                                      ShadowDepth="10"
-                                                      Color="{DynamicResource bg-3000}" />
-                                </Border.Effect>
 
+                                <Grid>
+                                    <Viewbox Stretch="Fill">
+                                        <Border>
+                                            <Grid>
+                                                <TextBlock x:Name="bg_tblk"
+                                                           HorizontalAlignment="Center"
+                                                           VerticalAlignment="Center"
+                                                           FontFamily="../Fonts/#iconfont"
+                                                           Foreground="{DynamicResource primary-100}"
+                                                           Text="&#xe6bd;">
+                                                    <TextBlock.Effect>
+                                                        <DropShadowEffect BlurRadius="3"
+                                                                          Direction="-45"
+                                                                          ShadowDepth="2"
+                                                                          Color="{DynamicResource bg-3000}" />
+                                                    </TextBlock.Effect>
+                                                </TextBlock>
+                                            </Grid>
+                                        </Border>
+                                    </Viewbox>
+                                </Grid>
 
                             </Border>
                         </Grid>
