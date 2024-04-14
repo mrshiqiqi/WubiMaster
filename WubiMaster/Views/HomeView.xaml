@@ -179,8 +179,8 @@
                                 </Grid>
 
                                 <Grid Grid.Column="2">
-                                    <c:RunningControl Width="40"
-                                                      Height="40"
+                                    <c:RunningControl Width="50"
+                                                      Height="50"
                                                       CheckState="{Binding Schema86State, Mode=TwoWay}"
                                                       CommandParameter="{Binding ElementName=txt_wubi86_icon, Path=Text}"
                                                       RunningCommand="{Binding ChangeWbTableCommand}" />
@@ -226,8 +226,8 @@
                                 </Grid>
 
                                 <Grid Grid.Column="2">
-                                    <c:RunningControl Width="40"
-                                                      Height="40"
+                                    <c:RunningControl Width="50"
+                                                      Height="50"
                                                       CheckState="{Binding Schema98State, Mode=TwoWay}"
                                                       CommandParameter="{Binding ElementName=txt_wubi98_icon, Path=Text}"
                                                       RunningCommand="{Binding ChangeWbTableCommand}" />
@@ -273,8 +273,8 @@
                                 </Grid>
 
                                 <Grid Grid.Column="2">
-                                    <c:RunningControl Width="40"
-                                                      Height="40"
+                                    <c:RunningControl Width="50"
+                                                      Height="50"
                                                       CheckState="{Binding Schema06State, Mode=TwoWay}"
                                                       CommandParameter="{Binding ElementName=txt_wubi06_icon, Path=Text}"
                                                       RunningCommand="{Binding ChangeWbTableCommand}" />

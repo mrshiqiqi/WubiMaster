@@ -19,24 +19,41 @@
                     <ControlTemplate TargetType="ToggleButton">
                         <Grid>
                             <Viewbox>
-                                <Border Width="50"
-                                        Height="50"
-                                        Background="{DynamicResource bg-200}"
-                                        CornerRadius="25">
-                                    <Viewbox>
-                                        <TextBlock x:Name="tblk_content"
-                                                   Margin="{TemplateBinding Padding}"
-                                                   HorizontalAlignment="Center"
-                                                   VerticalAlignment="Center"
-                                                   FontFamily="../Fonts/#iconfont"
-                                                   Foreground="{DynamicResource accent-100}"
-                                                   RenderTransformOrigin="0.5,0.5"
-                                                   Text="{StaticResource stopStr}">
-                                            <TextBlock.RenderTransform>
-                                                <RotateTransform x:Name="tblk_rotate" Angle="0" />
-                                            </TextBlock.RenderTransform>
-                                        </TextBlock>
-                                    </Viewbox>
+                                <Border Width="100" Height="100">
+                                    <!--<Border.Effect>
+                                        <DropShadowEffect BlurRadius="10"
+                                                          Direction="-45"
+                                                          ShadowDepth="3" />
+                                    </Border.Effect>-->
+                                    <Grid>
+
+                                        <Viewbox>
+                                            <TextBlock HorizontalAlignment="Center"
+                                                       VerticalAlignment="Center"
+                                                       FontFamily="../Fonts/#iconfont"
+                                                       Foreground="{DynamicResource accent-200}"
+                                                       Text="&#xe67f;" />
+                                        </Viewbox>
+
+                                        <Ellipse Margin="22" Fill="{DynamicResource bg-200}" />
+
+                                        <Viewbox Margin="25">
+                                            <TextBlock x:Name="tblk_content"
+                                                       HorizontalAlignment="Center"
+                                                       VerticalAlignment="Center"
+                                                       FontFamily="../Fonts/#iconfont"
+                                                       Foreground="{DynamicResource accent-100}"
+                                                       RenderTransformOrigin="0.5,0.5"
+                                                       Text="{StaticResource stopStr}">
+                                                <TextBlock.RenderTransform>
+                                                    <RotateTransform x:Name="tblk_rotate" Angle="0" />
+                                                </TextBlock.RenderTransform>
+
+                                            </TextBlock>
+                                        </Viewbox>
+                                    </Grid>
+
+
                                 </Border>
                             </Viewbox>
                         </Grid>
@@ -56,8 +73,7 @@
                                             <DoubleAnimation RepeatBehavior="Forever"
                                                              Storyboard.TargetName="tblk_rotate"
                                                              Storyboard.TargetProperty="(RotateTransform.Angle)"
-                                                             From="0.0"
-                                                             To="360"
+                                                             From="0.0" To="360"
                                                              Duration="0:0:3" />
                                         </Storyboard>
                                     </BeginStoryboard>

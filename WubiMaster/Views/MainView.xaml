@@ -232,7 +232,7 @@
                                                    FontFamily="../Fonts/#iconfont"
                                                    FontSize="18"
                                                    Foreground="{DynamicResource bg-100}"
-                                                   Text="&#xe61a;" />
+                                                   Text="&#xe63a;" />
 
                                         <TextBlock Grid.Column="2"
                                                    FontSize="16"
