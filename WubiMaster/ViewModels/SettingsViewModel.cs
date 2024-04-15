@@ -610,7 +610,7 @@ namespace WubiMaster.ViewModels
 
             // 加载插件名称
             string plugName = ConfigHelper.ReadConfigByString("plugin_name");
-            PluginIndex = PluginsList.IndexOf(plugName);
+            PluginIndex = string.IsNullOrEmpty(plugName) ? 0 : PluginsList.IndexOf(plugName);
         }
 
         private void ReadProcessPathRegistry()
