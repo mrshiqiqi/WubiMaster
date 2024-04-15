@@ -32,11 +32,11 @@
                                                FontSize="100"
                                                Foreground="{DynamicResource primary-200}"
                                                Text="&#xe66d;">
-                                        <TextBlock.Effect>
+                                        <!--<TextBlock.Effect>
                                             <DropShadowEffect BlurRadius="5"
                                                               Direction="-45"
                                                               ShadowDepth="3" />
-                                        </TextBlock.Effect>
+                                        </TextBlock.Effect>-->
                                     </TextBlock>
                                 </Grid>
                             </Border>
@@ -54,12 +54,12 @@
                                Foreground="{TemplateBinding Foreground}"
                                Text="{Binding ElementName=icon_button, Path=IconText}"
                                Visibility="Visible">
-                        <TextBlock.Effect>
+                        <!--<TextBlock.Effect>
                             <DropShadowEffect BlurRadius="3"
                                               Direction="-45"
                                               ShadowDepth="2"
                                               Color="{DynamicResource bg-3000}" />
-                        </TextBlock.Effect>
+                        </TextBlock.Effect>-->
                     </TextBlock>
                 </Viewbox>
             </Grid>
