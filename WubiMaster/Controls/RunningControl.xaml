@@ -28,11 +28,17 @@
                                     <Grid>
 
                                         <Viewbox>
-                                            <TextBlock HorizontalAlignment="Center"
+                                            <TextBlock x:Name="tblk_border"
+                                                       HorizontalAlignment="Center"
                                                        VerticalAlignment="Center"
                                                        FontFamily="../Fonts/#iconfont"
                                                        Foreground="{DynamicResource accent-200}"
-                                                       Text="&#xe67f;" />
+                                                       RenderTransformOrigin="0.5,0.5"
+                                                       Text="&#xe67f;">
+                                                <TextBlock.RenderTransform>
+                                                    <RotateTransform x:Name="border_rotate" Angle="0" />
+                                                </TextBlock.RenderTransform>
+                                            </TextBlock>
                                         </Viewbox>
 
                                         <Ellipse Margin="22" Fill="{DynamicResource bg-200}" />
@@ -46,14 +52,11 @@
                                                        RenderTransformOrigin="0.5,0.5"
                                                        Text="{StaticResource stopStr}">
                                                 <TextBlock.RenderTransform>
-                                                    <RotateTransform x:Name="tblk_rotate" Angle="0" />
+                                                    <RotateTransform x:Name="content_rotate" Angle="0" />
                                                 </TextBlock.RenderTransform>
-
                                             </TextBlock>
                                         </Viewbox>
                                     </Grid>
-
-
                                 </Border>
                             </Viewbox>
                         </Grid>
@@ -71,10 +74,18 @@
                                     <BeginStoryboard>
                                         <Storyboard>
                                             <DoubleAnimation RepeatBehavior="Forever"
-                                                             Storyboard.TargetName="tblk_rotate"
+                                                             Storyboard.TargetName="content_rotate"
                                                              Storyboard.TargetProperty="(RotateTransform.Angle)"
-                                                             From="0.0" To="360"
+                                                             From="0.0"
+                                                             To="360"
                                                              Duration="0:0:3" />
+
+                                            <DoubleAnimation RepeatBehavior="Forever"
+                                                             Storyboard.TargetName="border_rotate"
+                                                             Storyboard.TargetProperty="(RotateTransform.Angle)"
+                                                             From="0.0"
+                                                             To="-360"
+                                                             Duration="0:0:5" />
                                         </Storyboard>
                                     </BeginStoryboard>
                                 </Trigger.EnterActions>
@@ -82,7 +93,12 @@
                                 <Trigger.ExitActions>
                                     <BeginStoryboard>
                                         <Storyboard>
-                                            <DoubleAnimation Storyboard.TargetName="tblk_rotate"
+                                            <DoubleAnimation Storyboard.TargetName="content_rotate"
+                                                             Storyboard.TargetProperty="(RotateTransform.Angle)"
+                                                             To="0.0"
+                                                             Duration="0:0:0" />
+
+                                            <DoubleAnimation Storyboard.TargetName="border_rotate"
                                                              Storyboard.TargetProperty="(RotateTransform.Angle)"
                                                              To="0.0"
                                                              Duration="0:0:0" />
