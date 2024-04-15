@@ -35,7 +35,7 @@
         <!--<c:LogoControl Width="60" Height="70" />-->
         <!--<c:ShichenControl />-->
 
-        <Grid Visibility="Collapsed">
+        <Grid Visibility="Visible">
             <Grid.RowDefinitions>
                 <RowDefinition />
                 <RowDefinition Height="Auto" />

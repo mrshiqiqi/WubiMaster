@@ -34,7 +34,7 @@ namespace WubiMaster.ViewModels
 
         public MainViewModel()
         {
-            //TestViewShow();
+            TestViewShow();
             IsActive = true;
             pageDict = new Dictionary<string, object>();
 
