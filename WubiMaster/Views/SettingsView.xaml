@@ -75,7 +75,7 @@
 
                     <c:SettingPanel Title="初始化"
                                     IconText="&#xe617;"
-                                    SubTitle="初始化五笔引擎">
+                                    SubTitle="初始化 Rime 引擎的基础配置信息">
                         <c:SettingPanel.SettingContent>
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock HorizontalAlignment="Left"

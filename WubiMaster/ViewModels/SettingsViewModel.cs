@@ -676,16 +676,16 @@ namespace WubiMaster.ViewModels
                 string wubi_master_key = GlobalValues.UserPath + GlobalValues.SchemaKey;
                 bool hasKey = File.Exists(wubi_master_key);
                 if (hasKey)
-                    WubiSchemaTip = "已加载五笔引擎";
+                    WubiSchemaTip = "已初始化 Rime 引擎";
                 else
                 {
-                    WubiSchemaTip = "未检测到五笔引擎";
+                    WubiSchemaTip = "Rime 引擎未初始化";
                     WeakReferenceMessenger.Default.Send<string, string>("", "ChangeShcemaState");
                 }
             }
             catch (Exception ex)
             {
-                WubiSchemaTip = "未检测到五笔引擎";
+                WubiSchemaTip = "Rime 引擎未初始化";
                 WeakReferenceMessenger.Default.Send<string, string>("", "ChangeShcemaState");
                 LogHelper.Error(ex.Message);
             }
