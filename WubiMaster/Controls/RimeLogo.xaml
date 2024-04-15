@@ -9,59 +9,54 @@
              d:DesignWidth="400"
              mc:Ignorable="d">
 
-    <Grid>
+    <Viewbox>
+        <Grid>
 
-        <Line Panel.ZIndex="100"
-              Stroke="{Binding ElementName=logo_control, Path=IconColor}"
-              StrokeEndLineCap="Flat"
-              StrokeStartLineCap="Round"
-              StrokeThickness="40"
-              X1="20"
-              X2="20"
-              Y1="50"
-              Y2="100" />
+            <Line Panel.ZIndex="100"
+                  Stroke="{Binding ElementName=logo_control, Path=IconColor}"
+                  StrokeEndLineCap="Flat"
+                  StrokeStartLineCap="Round"
+                  StrokeThickness="40"
+                  X1="20" X2="20"
+                  Y1="50" Y2="100" />
 
-        <Path Stroke="{Binding ElementName=logo_control, Path=IconColor}" StrokeThickness="40">
-            <Path.Data>
-                <PathGeometry>
-                    <PathFigure IsClosed="False" StartPoint="20, 50">
+            <Path Stroke="{Binding ElementName=logo_control, Path=IconColor}" StrokeThickness="40">
+                <Path.Data>
+                    <PathGeometry>
+                        <PathFigure IsClosed="False" StartPoint="20, 50">
 
-                        <LineSegment Point="20, 150" />
-                        <ArcSegment Point="380, 150"
-                                    Size="180, 120"
-                                    SweepDirection="Counterclockwise" />
-                        <LineSegment Point="380, 50" />
-                    </PathFigure>
-                </PathGeometry>
-            </Path.Data>
-        </Path>
+                            <LineSegment Point="20, 150" />
+                            <ArcSegment Point="380, 150"
+                                        Size="180, 120"
+                                        SweepDirection="Counterclockwise" />
+                            <LineSegment Point="380, 50" />
+                        </PathFigure>
+                    </PathGeometry>
+                </Path.Data>
+            </Path>
 
-        <Line Panel.ZIndex="100"
-              Stroke="{Binding ElementName=logo_control, Path=IconColor}"
-              StrokeEndLineCap="Round"
-              StrokeStartLineCap="Flat"
-              StrokeThickness="40"
-              X1="380"
-              X2="380"
-              Y1="100"
-              Y2="50" />
+            <Line Panel.ZIndex="100"
+                  Stroke="{Binding ElementName=logo_control, Path=IconColor}"
+                  StrokeEndLineCap="Round"
+                  StrokeStartLineCap="Flat"
+                  StrokeThickness="40"
+                  X1="380" X2="380"
+                  Y1="100" Y2="50" />
 
-        <Line Stroke="{Binding ElementName=logo_control, Path=IconColor}"
-              StrokeEndLineCap="Flat"
-              StrokeStartLineCap="Round"
-              StrokeThickness="40"
-              X1="200"
-              X2="200"
-              Y1="20"
-              Y2="380" />
+            <Line Stroke="{Binding ElementName=logo_control, Path=IconColor}"
+                  StrokeEndLineCap="Flat"
+                  StrokeStartLineCap="Round"
+                  StrokeThickness="40"
+                  X1="200" X2="200"
+                  Y1="20" Y2="380" />
 
-        <Line Stroke="{Binding ElementName=logo_control, Path=IconColor}"
-              StrokeEndLineCap="Round"
-              StrokeStartLineCap="Round"
-              StrokeThickness="40"
-              X1="20"
-              X2="380"
-              Y1="380"
-              Y2="380" />
-    </Grid>
+            <Line Stroke="{Binding ElementName=logo_control, Path=IconColor}"
+                  StrokeEndLineCap="Round"
+                  StrokeStartLineCap="Round"
+                  StrokeThickness="40"
+                  X1="20" X2="380"
+                  Y1="380" Y2="380" />
+        </Grid>
+    </Viewbox>
+
 </UserControl>

@@ -412,10 +412,30 @@
                                 <ColumnDefinition Width="4*" />
                             </Grid.ColumnDefinitions>
 
-                            <Viewbox Width="30"
+                            <Viewbox Width="50"
                                      Margin="5"
                                      HorizontalAlignment="Right">
-                                <c:RimeLogo IconColor="{DynamicResource primary-200}" Opacity="0.8" />
+                                <Grid>
+                                    <TextBlock HorizontalAlignment="Center"
+                                               VerticalAlignment="Center"
+                                               FontFamily="../Fonts/#iconfont"
+                                               Foreground="{DynamicResource bg-300}"
+                                               Text="&#xe67c;" />
+
+                                    <c:RimeLogo Width="5" Height="5"
+                                                HorizontalAlignment="Center"
+                                                VerticalAlignment="Center"
+                                                IconColor="{DynamicResource primary-100}"
+                                                Opacity="0.8"
+                                                Visibility="Visible">
+                                        <c:RimeLogo.Effect>
+                                            <DropShadowEffect BlurRadius="2"
+                                                              Direction="-45"
+                                                              ShadowDepth="1" />
+                                        </c:RimeLogo.Effect>
+                                    </c:RimeLogo>
+                                </Grid>
+
                             </Viewbox>
 
                             <StackPanel Grid.Column="1"
