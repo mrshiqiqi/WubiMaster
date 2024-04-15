@@ -20,6 +20,8 @@
         <Button Width="150"
                 Height="40"
                 Content="Hello" />
+
+        <c:WeatherControl />
         <!--<Viewbox>
             <Border Width="100" Height="35">
                 <Grid>
@@ -35,7 +37,7 @@
         <!--<c:LogoControl Width="60" Height="70" />-->
         <!--<c:ShichenControl />-->
 
-        <Grid Visibility="Visible">
+        <Grid Visibility="Collapsed">
             <Grid.RowDefinitions>
                 <RowDefinition />
                 <RowDefinition Height="Auto" />
