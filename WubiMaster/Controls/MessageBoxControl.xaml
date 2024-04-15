@@ -5,8 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:WubiMaster.Controls"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             d:DesignHeight="180"
-             d:DesignWidth="300"
+             d:DesignHeight="200"
+             d:DesignWidth="400"
              mc:Ignorable="d">
 
     <UserControl.Resources>
@@ -15,9 +15,9 @@
                    Text="&#xe61f;" />
     </UserControl.Resources>
 
-    <Grid>
+    <Grid Width="350" Height="190">
 
-        <c:CancelButton Width="15"
+        <!--<c:CancelButton Width="15"
                         Height="15"
                         Margin="0,-5,-5,0"
                         HorizontalAlignment="Right"
@@ -28,12 +28,9 @@
                         CBBorderThinckness="1"
                         CBCommand="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=CancelCommand}"
                         CBCommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=CommandParameter}"
-                        CBForeground="{DynamicResource bg-100}" />
+                        CBForeground="{DynamicResource bg-100}" />-->
 
-        <Border Background="{DynamicResource bg-100}"
-                BorderBrush="{DynamicResource primary-100}"
-                BorderThickness="1"
-                CornerRadius="5">
+        <Border>
 
             <Grid>
                 <Grid.RowDefinitions>
@@ -41,65 +38,93 @@
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
 
+                <Grid Grid.RowSpan="2">
+                    <Viewbox Stretch="Fill">
+                        <Border>
+                            <Grid>
+                                <TextBlock x:Name="bg_tblk"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"
+                                           FontFamily="../Fonts/#iconfont"
+                                           FontSize="100"
+                                           Foreground="{DynamicResource primary-200}"
+                                           Text="&#xe65d;">
+                                    <TextBlock.Effect>
+                                        <DropShadowEffect BlurRadius="15"
+                                                          Direction="-45"
+                                                          ShadowDepth="0" />
+                                    </TextBlock.Effect>
+                                </TextBlock>
+                            </Grid>
+                        </Border>
+                    </Viewbox>
+                </Grid>
+
                 <Border CornerRadius="5 5 0 0">
-                    <Border.Background>
+                    <!--<Border.Background>
                         <LinearGradientBrush StartPoint="0.3,0" EndPoint="1,0.7">
                             <GradientStop Offset="0" Color="{DynamicResource primary-2000}" />
                             <GradientStop Offset="1" Color="{DynamicResource primary-3000}" />
                         </LinearGradientBrush>
-                    </Border.Background>
+                    </Border.Background>-->
 
                     <Grid>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="50" />
+                            <RowDefinition Height="Auto" />
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
 
-                        <Border>
-                            <Viewbox Margin="8">
+                        <Border Width="25"
+                                Height="25"
+                                Margin="0,25,0,0">
+                            <Viewbox>
                                 <Grid TextBlock.FontFamily="../Fonts/#iconfont">
 
-                                    <TextBlock Foreground="{DynamicResource primary-100}"
+                                    <TextBlock Foreground="{DynamicResource bg-100}"
                                                Text="&#xeb65;"
                                                Visibility="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=NormalVisible}" />
-                                    <TextBlock Foreground="{DynamicResource primary-100}"
+                                    <TextBlock Foreground="{DynamicResource bg-100}"
                                                Text="&#xe61f;"
                                                Visibility="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=WarnVisible}" />
-                                    <TextBlock Foreground="{DynamicResource primary-100}"
+                                    <TextBlock Foreground="{DynamicResource bg-100}"
                                                Text="&#xe625;"
                                                Visibility="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=ErrorVisible}" />
-                                    <TextBlock Foreground="{DynamicResource primary-100}"
+                                    <TextBlock Foreground="{DynamicResource bg-100}"
                                                Text="&#xe61c;"
                                                Visibility="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=FailVisible}" />
-                                    <TextBlock Foreground="{DynamicResource primary-100}"
+                                    <TextBlock Foreground="{DynamicResource bg-100}"
                                                Text="&#xe604;"
                                                Visibility="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=SucceedVisible}" />
                                 </Grid>
                             </Viewbox>
                         </Border>
 
-                        <TextBlock Grid.Row="1"
-                                   Margin="10,-10,10,0"
-                                   HorizontalAlignment="Center"
-                                   VerticalAlignment="Center"
-                                   FontSize="15"
-                                   FontWeight="Light"
-                                   Foreground="{DynamicResource bg-100}"
-                                   Text="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=Message}"
-                                   TextWrapping="Wrap" />
+                        <Grid Grid.Row="1" Margin="48,0">
+                            <TextBlock Margin="10,-10,10,0"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       FontSize="15"
+                                       FontWeight="Light"
+                                       Foreground="{DynamicResource bg-100}"
+                                       Text="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=Message}"
+                                       TextWrapping="Wrap" />
+                        </Grid>
                     </Grid>
                 </Border>
 
-                <UniformGrid Grid.Row="1" Rows="1">
+                <UniformGrid Grid.Row="1"
+                             Margin="70,0,70,10"
+                             Rows="1">
 
-                    <Button MaxWidth="110"
+                    <Button MaxWidth="80"
                             MaxHeight="35"
                             Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=ConfirmCommand}"
                             CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=CommandParameter}"
                             Content="确认"
                             Foreground="{DynamicResource bg-100}" />
 
-                    <Button MaxWidth="110"
+                    <Button Grid.Column="1"
+                            MaxWidth="80"
                             MaxHeight="35"
                             Background="{DynamicResource bg-300}"
                             Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=CancelCommand}"
@@ -108,7 +133,6 @@
                             Foreground="{DynamicResource bg-100}"
                             Visibility="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=CancelButtonVisibility}" />
                 </UniformGrid>
-
             </Grid>
         </Border>
     </Grid>

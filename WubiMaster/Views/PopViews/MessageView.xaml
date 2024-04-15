@@ -7,8 +7,8 @@
         xmlns:vm="clr-namespace:WubiMaster.ViewModels"
         x:Name="message_winow"
         Title="MessageView"
-        Width="300"
-        Height="200"
+        Width="500"
+        Height="400"
         Style="{StaticResource PopViewBaseStyle}"
         WindowStartupLocation="CenterScreen"
         mc:Ignorable="d">
