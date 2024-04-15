@@ -448,7 +448,7 @@
                         </StackPanel>
 
                         <UniformGrid Grid.Column="1"
-                                     Margin="30,5"
+                                     Margin="40,10"
                                      VerticalAlignment="Stretch"
                                      Rows="1">
 

@@ -46,7 +46,7 @@
 
                 <Viewbox Margin="{TemplateBinding Padding}">
                     <TextBlock x:Name="text"
-                               Margin="15"
+                               Margin="12"
                                HorizontalAlignment="Center"
                                VerticalAlignment="Center"
                                FontFamily="../Fonts/#iconfont"

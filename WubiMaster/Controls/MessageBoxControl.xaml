@@ -45,8 +45,13 @@
                                            VerticalAlignment="Center"
                                            FontFamily="../Fonts/#iconfont"
                                            FontSize="100"
-                                           Foreground="{DynamicResource primary-200}"
                                            Text="&#xe65d;">
+                                    <TextBlock.Foreground>
+                                        <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                                            <GradientStop Offset="0" Color="{DynamicResource primary-2000}" />
+                                            <GradientStop Offset="1" Color="{DynamicResource primary-3000}" />
+                                        </LinearGradientBrush>
+                                    </TextBlock.Foreground>
                                     <TextBlock.Effect>
                                         <DropShadowEffect BlurRadius="15"
                                                           Direction="-45"
