@@ -78,14 +78,14 @@
                                                              Storyboard.TargetProperty="(RotateTransform.Angle)"
                                                              From="0.0"
                                                              To="360"
-                                                             Duration="0:0:3" />
+                                                             Duration="0:0:4" />
 
                                             <DoubleAnimation RepeatBehavior="Forever"
                                                              Storyboard.TargetName="border_rotate"
                                                              Storyboard.TargetProperty="(RotateTransform.Angle)"
                                                              From="0.0"
                                                              To="-360"
-                                                             Duration="0:0:5" />
+                                                             Duration="0:0:8" />
                                         </Storyboard>
                                     </BeginStoryboard>
                                 </Trigger.EnterActions>
