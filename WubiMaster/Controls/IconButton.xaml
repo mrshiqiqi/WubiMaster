@@ -29,9 +29,9 @@
                                                HorizontalAlignment="Center"
                                                VerticalAlignment="Center"
                                                FontFamily="../Fonts/#iconfont"
-                                               FontSize="100"
-                                               Foreground="{DynamicResource primary-200}"
-                                               Text="&#xe66d;">
+                                               FontSize="500"
+                                               Foreground="{DynamicResource primary-300}"
+                                               Text="&#xe669;">
                                         <!--<TextBlock.Effect>
                                             <DropShadowEffect BlurRadius="5"
                                                               Direction="-45"
@@ -68,12 +68,12 @@
 
                 <Trigger Property="IsMouseOver" Value="True">
                     <Setter TargetName="border" Property="Opacity" Value="0.8" />
-                    <Setter TargetName="bg_tblk" Property="Foreground" Value="{DynamicResource primary-100}" />
+                    <Setter TargetName="bg_tblk" Property="Foreground" Value="{DynamicResource primary-200}" />
                 </Trigger>
 
                 <Trigger Property="IsPressed" Value="True">
                     <Setter TargetName="border" Property="Opacity" Value="1" />
-                    <Setter TargetName="bg_tblk" Property="Foreground" Value="{DynamicResource primary-300}" />
+                    <Setter TargetName="bg_tblk" Property="Opacity" Value="0.8" />
                 </Trigger>
             </ControlTemplate.Triggers>
         </ControlTemplate>

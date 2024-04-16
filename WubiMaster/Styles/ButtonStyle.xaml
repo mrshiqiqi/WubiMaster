@@ -29,7 +29,7 @@
                                                    VerticalAlignment="Center"
                                                    FontFamily="../Fonts/#iconfont"
                                                    FontSize="100"
-                                                   Foreground="{DynamicResource primary-100}"
+                                                   Foreground="{DynamicResource primary-200}"
                                                    Text="&#xe656;" />
                                     </Grid>
                                 </Border>
