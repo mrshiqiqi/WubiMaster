@@ -21,7 +21,6 @@
                 Height="40"
                 Content="Hello" />
 
-        <c:WeatherControl />
         <!--<Viewbox>
             <Border Width="100" Height="35">
                 <Grid>
