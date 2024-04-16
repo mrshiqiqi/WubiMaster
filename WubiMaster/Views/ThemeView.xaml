@@ -4,9 +4,14 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:WubiMaster.Views"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:WubiMaster.ViewModels"
              d:DesignWidth="800"
              Style="{StaticResource PageStyle}"
              mc:Ignorable="d">
+
+    <UserControl.DataContext>
+        <vm:ThemeViewModel />
+    </UserControl.DataContext>
 
     <ScrollViewer>
 
@@ -169,7 +174,7 @@
                                       Height="30"
                                       Margin="0,0,120,0"
                                       HorizontalAlignment="Right"
-                                      Text="兰亭序-华采" />
+                                      ItemsSource="{Binding RimeThemes}" />
 
                             <Button Width="100"
                                     Height="35"
