@@ -180,7 +180,7 @@
                                       HorizontalAlignment="Right"
                                       DisplayMemberPath="Value.name"
                                       ItemsSource="{Binding WeaselDetails.preset_color_schemes}"
-                                      SelectedIndex="0"
+                                      SelectedIndex="{Binding ColorIndex}"
                                       SelectedValuePath="Key">
                                 <b:Interaction.Triggers>
                                     <b:EventTrigger EventName="SelectionChanged">
@@ -188,6 +188,11 @@
                                     </b:EventTrigger>
                                 </b:Interaction.Triggers>
                             </ComboBox>
+
+                            <Button Margin="0,0,12,0"
+                                    Command="{Binding SetColorCommand}"
+                                    Content="应用"
+                                    Style="{StaticResource TVButtonStyle}" />
 
                             <Button Command="{Binding DeleteColorCommand}"
                                     Content="删除"

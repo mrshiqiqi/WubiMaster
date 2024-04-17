@@ -17,28 +17,37 @@ using YamlDotNet.Core;
 using YamlDotNet.Serialization;
 using YamlDotNet.Serialization.NamingConventions;
 using System.Runtime.InteropServices;
+using System.ComponentModel.DataAnnotations;
 
 namespace WubiMaster.ViewModels
 {
     public partial class ThemeViewModel : ObservableRecipient
     {
         [ObservableProperty]
+        private int colorIndex;
+
+        [ObservableProperty]
         private WeaselCustomModel weaselCustomDetails;
+
+        private string weaselCustomPath = "";
 
         [ObservableProperty]
         private WeaselModel weaselDetails;
 
+        private string weaselPath = "";
+
         public ThemeViewModel()
         {
             LoadRimeThemeDetails();
+            LoadConfig();
         }
 
-        [RelayCommand]
-        public void ChangeTheme(object obj)
-        {
-            WeaselCustomDetails.patch.style.color_scheme = obj.ToString();
-            WriteRimeThemeDetails();
-        }
+        //[RelayCommand]
+        //public void ChangeTheme(object obj)
+        //{
+        //    if (obj == null) return;
+        //    string colorName = obj.ToString();
+        //}
 
         [RelayCommand]
         public void DeleteColor()
@@ -46,20 +55,52 @@ namespace WubiMaster.ViewModels
             MessageBox.Show(WeaselCustomDetails.patch.style.color_scheme);
         }
 
+        [RelayCommand]
+        public void SetColor()
+        {
+            WriteRimeThemeDetails();
+
+            string colorScheme = WeaselDetails.preset_color_schemes.Keys.ToList()[ColorIndex];
+            ConfigHelper.WriteConfigByString("color_scheme", colorScheme);
+        }
+
+        private void LoadConfig()
+        {
+            string colorScheme = ConfigHelper.ReadConfigByString("color_scheme");
+            if (string.IsNullOrEmpty(colorScheme))
+                ColorIndex = -1;
+            else
+            {
+                int index = WeaselDetails.preset_color_schemes.Keys.ToList().IndexOf(colorScheme);
+                ColorIndex = index;
+            }
+        }
+
         private void LoadRimeThemeDetails()
         {
-            string weaselPath = @"D:\Rime\weasel.yaml";
-            string weaselCustomPath = @"D:\Rime\weasel.custom.yaml";
-            string weaselTxt = File.ReadAllText(weaselPath);
-            string weaselCustomTxt = File.ReadAllText(weaselCustomPath);
+            if (string.IsNullOrEmpty(GlobalValues.UserPath)) return;
+            weaselPath = @$"{GlobalValues.UserPath}\weasel.yaml";
+            weaselCustomPath = @$"{GlobalValues.UserPath}\weasel.custom.yaml";
 
-            WeaselDetails = YamlHelper.Deserizlize<WeaselModel>(weaselTxt);
-            WeaselCustomDetails = YamlHelper.Deserizlize<WeaselCustomModel>(weaselCustomTxt);
+            try
+            {
+                string weaselTxt = File.ReadAllText(weaselPath);
+                string weaselCustomTxt = File.ReadAllText(weaselCustomPath);
+
+                WeaselDetails = YamlHelper.Deserizlize<WeaselModel>(weaselTxt);
+                WeaselCustomDetails = YamlHelper.Deserizlize<WeaselCustomModel>(weaselCustomTxt);
+
+                ConfigHelper.WriteConfigByString("color_scheme", WeaselCustomDetails.patch.style.color_scheme);
+            }
+            catch (Exception ex)
+            {
+                LogHelper.Error(ex.ToString());
+            }
         }
 
         private void WriteRimeThemeDetails()
         {
-            string weaselCustomPath = @"D:\Rime\weasel.custom.yaml";
+            WeaselCustomDetails.patch.style.color_scheme = WeaselDetails.preset_color_schemes.Keys.ToList()[ColorIndex];
             YamlHelper.WriteYaml(WeaselCustomDetails, weaselCustomPath);
         }
     }

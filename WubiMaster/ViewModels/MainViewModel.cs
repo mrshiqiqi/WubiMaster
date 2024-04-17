@@ -3,12 +3,14 @@ using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using WubiMaster.Common;
 using WubiMaster.Controls;
 using WubiMaster.Views;
+using static WubiMaster.Common.RegistryHelper;
 
 namespace WubiMaster.ViewModels
 {
@@ -26,6 +28,8 @@ namespace WubiMaster.ViewModels
         [ObservableProperty]
         private UserControl pluginControl;
 
+        private RegistryHelper registryHelper;
+
         [ObservableProperty]
         private bool showTestView;
 
@@ -34,15 +38,20 @@ namespace WubiMaster.ViewModels
 
         public MainViewModel()
         {
-            TestViewShow();
             IsActive = true;
             pageDict = new Dictionary<string, object>();
+            registryHelper = new RegistryHelper();
 
             //Register<string, string>：消息类型、token类型
             WeakReferenceMessenger.Default.Register<string, string>(this, "ShowMaskLayer", ShowMaskLayer);
             WeakReferenceMessenger.Default.Register<string, string>(this, "ChangeWinStateLayout", ChangeWinStateLayout);
             WeakReferenceMessenger.Default.Register<string, string>(this, "ChangePluginControl", ChangePluginControl);
 
+            TestViewShow();
+            GetRimeRegistryKey();
+            ReadUserPathRegistry();
+            ReadProcessPathRegistry();
+            ReadServerRegistry();
             LaodAllSpellingDataAsync();
             LoadConfig();
         }
@@ -279,6 +288,27 @@ namespace WubiMaster.ViewModels
             ConfigHelper.WriteConfigByString("win_state_layout", WinStateLayout == HorizontalAlignment.Right ? "right" : "left");
         }
 
+        private void GetRimeRegistryKey()
+        {
+            try
+            {
+                if (registryHelper.IsExist(KeyType.HKEY_LOCAL_MACHINE, @"WOW6432Node\Rime\Weasel"))
+                {
+                    GlobalValues.RimeKey = @"WOW6432Node\Rime\Weasel";
+                }
+                else if (registryHelper.IsExist(KeyType.HKEY_LOCAL_MACHINE, @"Rime\Weasel"))
+                {
+                    GlobalValues.RimeKey = @"Rime\Weasel";
+                }
+
+                if (string.IsNullOrEmpty(GlobalValues.RimeKey)) throw new NullReferenceException("无法找到Rime程序安装目录");
+            }
+            catch (Exception ex)
+            {
+                LogHelper.Error(ex.Message);
+            }
+        }
+
         private async void LaodAllSpellingDataAsync()
         {
             await Task.Run(() =>
@@ -316,6 +346,59 @@ namespace WubiMaster.ViewModels
                     var defaultPlugin = new LogoControl();
                     PluginControl = defaultPlugin;
                     break;
+            }
+        }
+
+        private void ReadProcessPathRegistry()
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(GlobalValues.RimeKey)) return;
+
+                string pPath = registryHelper.GetValue(KeyType.HKEY_LOCAL_MACHINE, GlobalValues.RimeKey, "WeaselRoot");
+                if (string.IsNullOrEmpty(pPath)) throw new NullReferenceException("ProcessFilePath: 无法找到 Rime 的注册表信息");
+                GlobalValues.ProcessPath = pPath;
+            }
+            catch (Exception ex)
+            {
+                LogHelper.Error(ex.Message);
+            }
+        }
+
+        private void ReadServerRegistry()
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(GlobalValues.RimeKey)) return;
+
+                string sName = registryHelper.GetValue(KeyType.HKEY_LOCAL_MACHINE, GlobalValues.RimeKey, "ServerExecutable");
+                if (string.IsNullOrEmpty(sName)) throw new NullReferenceException("无法找到 Rime 的注册表信息");
+                GlobalValues.ServerName = sName;
+            }
+            catch (Exception ex)
+            {
+                LogHelper.Error(ex.Message);
+            }
+        }
+
+        private void ReadUserPathRegistry()
+        {
+            try
+            {
+                if (!registryHelper.IsExist(KeyType.HKEY_CURRENT_USER, @"Rime\Weasel")) return;
+
+                string uPath = registryHelper.GetValue(KeyType.HKEY_CURRENT_USER, @"Rime\Weasel", "RimeUserDir");
+                if (string.IsNullOrEmpty(uPath))
+                {
+                    uPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Rime";
+                    if (!Directory.Exists(uPath)) throw new NullReferenceException("UserPath: 无法找到 Rime 的注册表信息");
+                }
+
+                GlobalValues.UserPath = uPath;
+            }
+            catch (Exception ex)
+            {
+                LogHelper.Error(ex.Message);
             }
         }
 

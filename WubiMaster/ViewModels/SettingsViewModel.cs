@@ -59,8 +59,6 @@ namespace WubiMaster.ViewModels
 
         private RegistryHelper registryHelper;
 
-        private string rimeKey;
-
         [ObservableProperty]
         private bool serviceIsRun;
 
@@ -103,10 +101,6 @@ namespace WubiMaster.ViewModels
             InitThemes();
             InitShiciInterval();
             InitLogBackList();
-            GetRimeRegistryKey();
-            ReadUserPathRegistry();
-            ReadProcessPathRegistry();
-            ReadServerRegistry();
             CheckService();
             LoadConfig();
         }
@@ -478,27 +472,6 @@ namespace WubiMaster.ViewModels
             QuickSpellChange();
         }
 
-        private void GetRimeRegistryKey()
-        {
-            try
-            {
-                if (registryHelper.IsExist(KeyType.HKEY_LOCAL_MACHINE, @"WOW6432Node\Rime\Weasel"))
-                {
-                    rimeKey = @"WOW6432Node\Rime\Weasel";
-                }
-                else if (registryHelper.IsExist(KeyType.HKEY_LOCAL_MACHINE, @"Rime\Weasel"))
-                {
-                    rimeKey = @"Rime\Weasel";
-                }
-
-                if (string.IsNullOrEmpty(rimeKey)) throw new NullReferenceException("无法找到Rime程序安装目录");
-            }
-            catch (Exception ex)
-            {
-                LogHelper.Error(ex.Message);
-            }
-        }
-
         private void InitLogBackList()
         {
             int[] backDays = new int[] { 5, 15, 30, 100 };
@@ -545,10 +518,10 @@ namespace WubiMaster.ViewModels
         private void LoadConfig()
         {
             // 加载用户目录配置
-            //UserFilePath = ConfigHelper.ReadConfigByString("user_file_path");
+            UserFilePath = GlobalValues.UserPath;
 
             // 加载程序目录配置
-            //ProcessFilePath = ConfigHelper.ReadConfigByString("process_file_path");
+            ProcessFilePath = GlobalValues.ProcessPath;
 
             // 加载默认词库
             DefaultCikuFile = ConfigHelper.ReadConfigByString("default_ciku_file");
@@ -611,62 +584,6 @@ namespace WubiMaster.ViewModels
             // 加载插件名称
             string plugName = ConfigHelper.ReadConfigByString("plugin_name");
             PluginIndex = string.IsNullOrEmpty(plugName) ? 0 : PluginsList.IndexOf(plugName);
-        }
-
-        private void ReadProcessPathRegistry()
-        {
-            try
-            {
-                if (string.IsNullOrEmpty(rimeKey)) return;
-
-                string pPath = registryHelper.GetValue(KeyType.HKEY_LOCAL_MACHINE, rimeKey, "WeaselRoot");
-                if (string.IsNullOrEmpty(pPath)) throw new NullReferenceException("ProcessFilePath: 无法找到 Rime 的注册表信息");
-                ProcessFilePath = GlobalValues.ProcessPath = pPath;
-                ConfigHelper.WriteConfigByString("process_file_path", ProcessFilePath);
-            }
-            catch (Exception ex)
-            {
-                LogHelper.Error(ex.Message);
-            }
-        }
-
-        private void ReadServerRegistry()
-        {
-            try
-            {
-                if (string.IsNullOrEmpty(rimeKey)) return;
-
-                string sName = registryHelper.GetValue(KeyType.HKEY_LOCAL_MACHINE, rimeKey, "ServerExecutable");
-                if (string.IsNullOrEmpty(sName)) throw new NullReferenceException("无法找到 Rime 的注册表信息");
-                GlobalValues.ServerName = sName;
-                //ConfigHelper.WriteConfigByString("weasel_server", sName);
-            }
-            catch (Exception ex)
-            {
-                LogHelper.Error(ex.Message);
-            }
-        }
-
-        private void ReadUserPathRegistry()
-        {
-            try
-            {
-                if (!registryHelper.IsExist(KeyType.HKEY_CURRENT_USER, @"Rime\Weasel")) return;
-
-                string uPath = registryHelper.GetValue(KeyType.HKEY_CURRENT_USER, @"Rime\Weasel", "RimeUserDir");
-                if (string.IsNullOrEmpty(uPath))
-                {
-                    uPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Rime";
-                    if (!Directory.Exists(uPath)) throw new NullReferenceException("UserPath: 无法找到 Rime 的注册表信息");
-                }
-
-                UserFilePath = GlobalValues.UserPath = uPath;
-                ConfigHelper.WriteConfigByString("user_file_path", UserFilePath);
-            }
-            catch (Exception ex)
-            {
-                LogHelper.Error(ex.Message);
-            }
         }
 
         private void UpdateWubiSchemaTip()
