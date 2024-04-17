@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Shapes;
 using YamlDotNet.Serialization;
 using YamlDotNet.Serialization.NamingConventions;
 
@@ -11,10 +12,10 @@ namespace WubiMaster.Common
 {
     public static class YamlHelper
     {
-        private static ISerializer _serializer;
         private static IDeserializer _deserializer;
         private static IDeserializer _jsondeserializer;
         private static ISerializer _jsonserializer;
+        private static ISerializer _serializer;
 
         static YamlHelper()
         {
@@ -22,6 +23,17 @@ namespace WubiMaster.Common
             _deserializer = new DeserializerBuilder().WithNamingConvention(UnderscoredNamingConvention.Instance).Build();
             _jsondeserializer = new DeserializerBuilder().Build();
             _jsonserializer = new SerializerBuilder().JsonCompatible().Build();
+        }
+
+        public static T DeserializeFromFile<T>(string filePath)
+        {
+            var yaml = File.ReadAllText(filePath, Encoding.UTF8);
+            return Deserizlize<T>(yaml);
+        }
+
+        public static T Deserizlize<T>(string yaml)
+        {
+            return _deserializer.Deserialize<T>(yaml);
         }
 
         public static string Serialize(object target)
@@ -35,15 +47,12 @@ namespace WubiMaster.Common
             File.WriteAllText(filePath, content, Encoding.UTF8);
         }
 
-        public static T Deserizlize<T>(string yaml)
+        public static void WriteYaml(object target, string filePath)
         {
-            return _deserializer.Deserialize<T>(yaml);
-        }
-
-        public static T DeserializeFromFile<T>(string filePath)
-        {
-            var yaml = File.ReadAllText(filePath, Encoding.UTF8);
-            return Deserizlize<T>(yaml);
+            StreamWriter yamlWriter = File.CreateText(filePath);
+            Serializer yamlSerializer = new Serializer();
+            yamlSerializer.Serialize(yamlWriter, target);
+            yamlWriter.Close();
         }
 
         public static string YamlToJson(string yaml)
