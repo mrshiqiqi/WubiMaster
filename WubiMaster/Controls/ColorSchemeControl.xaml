@@ -1,0 +1,92 @@
+﻿<UserControl x:Class="WubiMaster.Controls.ColorSchemeControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:WubiMaster.Controls"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             x:Name="color_scheme_control"
+             d:Background="{DynamicResource bg-100}"
+             d:DesignWidth="400"
+             mc:Ignorable="d">
+    <Grid>
+        <Border Background="{Binding ElementName=color_scheme_control, Path=BackColor}"
+                BorderBrush="{Binding ElementName=color_scheme_control, Path=BorderColor}"
+                BorderThickness="{Binding ElementName=color_scheme_control, Path=BorderWidth}"
+                CornerRadius="{Binding ElementName=color_scheme_control, Path=BorderCornerRadius}">
+            <Grid Margin="10,8"
+                  TextBlock.FontSize="16"
+                  TextBlock.Foreground="{Binding ElementName=color_scheme_control, Path=CandidateTextColor}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock VerticalAlignment="Center" Text="中书君" />
+                    <Border Margin="3,0,0,0"
+                            Background="{Binding ElementName=color_scheme_control, Path=HilitedBackColor}"
+                            CornerRadius="5">
+                        <TextBlock Margin="3" Text="knvt" />
+                    </Border>
+                </StackPanel>
+
+                <StackPanel Grid.Row="1"
+                            Margin="0,5"
+                            Orientation="{Binding ElementName=color_scheme_control, Path=StyleOrientation}">
+
+                    <Border Height="30"
+                            Padding="5,0"
+                            Background="{Binding ElementName=color_scheme_control, Path=HilitedCandidateBackColor}"
+                            CornerRadius="8">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="15" />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock VerticalAlignment="Center"
+                                       Foreground="{Binding ElementName=color_scheme_control, Path=HilitedLabelColor}"
+                                       Text="1." />
+                            <TextBlock Grid.Column="1"
+                                       VerticalAlignment="Center"
+                                       Foreground="{Binding ElementName=color_scheme_control, Path=HilitedCandidateTextColor}"
+                                       Text="中书君" />
+                        </Grid>
+                    </Border>
+
+                    <Border Height="30"
+                            Padding="5,0"
+                            CornerRadius="8">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="15" />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock VerticalAlignment="Center" Text="2." />
+                            <TextBlock Grid.Column="1"
+                                       VerticalAlignment="Center"
+                                       Text="五笔" />
+                        </Grid>
+                    </Border>
+
+                    <Border Height="30"
+                            Padding="5,0"
+                            CornerRadius="8">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="15" />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock VerticalAlignment="Center" Text="3." />
+                            <TextBlock Grid.Column="1"
+                                       VerticalAlignment="Center"
+                                       Text="空山明月" />
+                        </Grid>
+                    </Border>
+                </StackPanel>
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>

@@ -18,6 +18,8 @@ using YamlDotNet.Serialization;
 using YamlDotNet.Serialization.NamingConventions;
 using System.Runtime.InteropServices;
 using System.ComponentModel.DataAnnotations;
+using System.Windows.Forms.VisualStyles;
+using System.Windows.Media;
 
 namespace WubiMaster.ViewModels
 {
@@ -25,6 +27,9 @@ namespace WubiMaster.ViewModels
     {
         [ObservableProperty]
         private int colorIndex;
+
+        [ObservableProperty]
+        private ColorSchemeModel currentSchmemeMd;
 
         [ObservableProperty]
         private WeaselCustomModel weaselCustomDetails;
@@ -42,12 +47,32 @@ namespace WubiMaster.ViewModels
             LoadConfig();
         }
 
-        //[RelayCommand]
-        //public void ChangeTheme(object obj)
-        //{
-        //    if (obj == null) return;
-        //    string colorName = obj.ToString();
-        //}
+        [RelayCommand]
+        public void ChangeTheme(object obj)
+        {
+            if (obj == null) return;
+
+            try
+            {
+                WeaselColorScheme colorScheme = weaselDetails.preset_color_schemes[obj.ToString()];
+                if (colorScheme == null) throw new NullReferenceException($"找不到皮肤对象: {obj.ToString()}");
+
+                CurrentSchmemeMd ??= new ColorSchemeModel();
+                CurrentSchmemeMd.BackColor = new SolidColorBrush(ColorConvter(colorScheme.back_color));
+                CurrentSchmemeMd.BorderColor = new SolidColorBrush(ColorConvter(colorScheme.border_color));
+                CurrentSchmemeMd.HilitedBackColor = new SolidColorBrush(ColorConvter(string.IsNullOrEmpty(colorScheme.hilited_back_color) ? colorScheme.back_color : colorScheme.hilited_back_color));
+                CurrentSchmemeMd.HilitedCandidateBackColor = new SolidColorBrush(ColorConvter(colorScheme.hilited_candidate_back_color));
+                CurrentSchmemeMd.CandidateTextColor = new SolidColorBrush(ColorConvter(string.IsNullOrEmpty(colorScheme.candidate_text_color) ? colorScheme.text_color : colorScheme.candidate_text_color));
+                CurrentSchmemeMd.HilitedCandidateTextColor = new SolidColorBrush(ColorConvter(colorScheme.hilited_candidate_text_color));
+                CurrentSchmemeMd.HilitedLabelColor = new SolidColorBrush(ColorConvter(string.IsNullOrEmpty(colorScheme.hilited_label_color) ? colorScheme.hilited_candidate_text_color : colorScheme.hilited_label_color));
+                Console.WriteLine();
+            }
+            catch (Exception ex)
+            {
+                LogHelper.Error(ex.ToString());
+                //this.ShowMessage("无法查看该皮肤样式！");
+            }
+        }
 
         [RelayCommand]
         public void DeleteColor()
@@ -62,6 +87,19 @@ namespace WubiMaster.ViewModels
 
             string colorScheme = WeaselDetails.preset_color_schemes.Keys.ToList()[ColorIndex];
             ConfigHelper.WriteConfigByString("color_scheme", colorScheme);
+
+            this.ShowMessage("应用成功，部署生效", DialogType.Success);
+        }
+
+        private static Color ColorConvter(string colorTxt)
+        {
+            if (string.IsNullOrEmpty(colorTxt))
+                colorTxt = "0x000000";
+            string _color = colorTxt.Substring(2, colorTxt.Length - 2);
+            var _cArray = _color.ToArray();
+            string _the_color = $"#{_cArray[4]}{_cArray[5]}{_cArray[2]}{_cArray[3]}{_cArray[0]}{_cArray[1]}";
+            Color back_color = (Color)ColorConverter.ConvertFromString(_the_color);
+            return back_color;
         }
 
         private void LoadConfig()
@@ -74,6 +112,7 @@ namespace WubiMaster.ViewModels
                 int index = WeaselDetails.preset_color_schemes.Keys.ToList().IndexOf(colorScheme);
                 ColorIndex = index;
             }
+            ChangeTheme(colorScheme);
         }
 
         private void LoadRimeThemeDetails()

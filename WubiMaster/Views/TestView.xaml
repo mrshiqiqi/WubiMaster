@@ -17,9 +17,17 @@
 
     <Grid>
 
-        <Button Width="150"
+        <StackPanel>
+            <c:ColorSchemeControl Width="300"
+                                  Height="Auto"
+                                  BackColor="{DynamicResource primary-300}"
+                                  BorderCornerRadius="15"
+                                  StyleOrientation="Vertical" />
+        </StackPanel>
+
+        <!--<Button Width="150"
                 Height="40"
-                Content="Hello" />
+                Content="Hello" />-->
 
         <!--<Viewbox>
             <Border Width="100" Height="35">
