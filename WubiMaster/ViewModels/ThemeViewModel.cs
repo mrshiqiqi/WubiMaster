@@ -20,6 +20,7 @@ using System.Runtime.InteropServices;
 using System.ComponentModel.DataAnnotations;
 using System.Windows.Forms.VisualStyles;
 using System.Windows.Media;
+using CommunityToolkit.Mvvm.Messaging;
 
 namespace WubiMaster.ViewModels
 {
@@ -43,6 +44,8 @@ namespace WubiMaster.ViewModels
 
         public ThemeViewModel()
         {
+            WeakReferenceMessenger.Default.Register<string, string>(this, "ChangeColorScheme", ChangeColorScheme);
+
             LoadRimeThemeDetails();
             LoadConfig();
         }
@@ -77,12 +80,16 @@ namespace WubiMaster.ViewModels
         [RelayCommand]
         public void DeleteColor()
         {
-            MessageBox.Show(WeaselCustomDetails.patch.style.color_scheme);
         }
 
         [RelayCommand]
         public void SetColor()
         {
+            if (WeaselCustomDetails == null)
+            {
+                this.ShowMessage("请先配置码表版本！", DialogType.Warring);
+                return;
+            }
             WriteRimeThemeDetails();
 
             string colorScheme = WeaselDetails.preset_color_schemes.Keys.ToList()[ColorIndex];
@@ -102,17 +109,32 @@ namespace WubiMaster.ViewModels
             return back_color;
         }
 
+        private void ChangeColorScheme(object recipient, string message)
+        {
+            LoadRimeThemeDetails();
+            string colorName = WeaselCustomDetails.patch.style.color_scheme;
+            int index = WeaselDetails.preset_color_schemes.Keys.ToList().IndexOf(colorName);
+            ColorIndex = index;
+            ChangeTheme(colorName);
+        }
+
         private void LoadConfig()
         {
-            string colorScheme = ConfigHelper.ReadConfigByString("color_scheme");
-            if (string.IsNullOrEmpty(colorScheme))
-                ColorIndex = -1;
-            else
+            if (WeaselDetails != null)
             {
-                int index = WeaselDetails.preset_color_schemes.Keys.ToList().IndexOf(colorScheme);
-                ColorIndex = index;
+                if (WeaselCustomDetails == null)
+                {
+                    ColorIndex = 0;
+                    string shemeName = WeaselDetails.preset_color_schemes.Keys.ToList()[ColorIndex];
+                    ChangeTheme(shemeName);
+                }
+                else
+                {
+                    string shemeName = WeaselCustomDetails.patch.style.color_scheme;
+                    ChangeTheme(shemeName);
+                    ColorIndex = WeaselDetails.preset_color_schemes.Keys.ToList().IndexOf(shemeName); ;
+                }
             }
-            ChangeTheme(colorScheme);
         }
 
         private void LoadRimeThemeDetails()
@@ -124,12 +146,14 @@ namespace WubiMaster.ViewModels
             try
             {
                 string weaselTxt = File.ReadAllText(weaselPath);
-                string weaselCustomTxt = File.ReadAllText(weaselCustomPath);
-
                 WeaselDetails = YamlHelper.Deserizlize<WeaselModel>(weaselTxt);
-                WeaselCustomDetails = YamlHelper.Deserizlize<WeaselCustomModel>(weaselCustomTxt);
 
-                ConfigHelper.WriteConfigByString("color_scheme", WeaselCustomDetails.patch.style.color_scheme);
+                if (File.Exists(weaselCustomPath))
+                {
+                    string weaselCustomTxt = File.ReadAllText(weaselCustomPath);
+                    WeaselCustomDetails = YamlHelper.Deserizlize<WeaselCustomModel>(weaselCustomTxt);
+                    ConfigHelper.WriteConfigByString("color_scheme", WeaselCustomDetails.patch.style.color_scheme);
+                }
             }
             catch (Exception ex)
             {
@@ -139,8 +163,15 @@ namespace WubiMaster.ViewModels
 
         private void WriteRimeThemeDetails()
         {
-            WeaselCustomDetails.patch.style.color_scheme = WeaselDetails.preset_color_schemes.Keys.ToList()[ColorIndex];
-            YamlHelper.WriteYaml(WeaselCustomDetails, weaselCustomPath);
+            try
+            {
+                WeaselCustomDetails.patch.style.color_scheme = WeaselDetails.preset_color_schemes.Keys.ToList()[ColorIndex];
+                YamlHelper.WriteYaml(WeaselCustomDetails, weaselCustomPath);
+            }
+            catch (Exception ex)
+            {
+                LogHelper.Error(ex.ToString());
+            }
         }
     }
 }

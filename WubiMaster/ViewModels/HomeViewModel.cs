@@ -123,6 +123,7 @@ namespace WubiMaster.ViewModels
                 ServiceHelper.RunService();
                 string runningSchema = ConfigHelper.ReadConfigByString("running_schema");
                 UdateShcemaState(runningSchema);
+                WeakReferenceMessenger.Default.Send<string, string>("", "ChangeColorScheme");
             }
         }
 

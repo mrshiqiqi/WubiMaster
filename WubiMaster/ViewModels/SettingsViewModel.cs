@@ -204,75 +204,78 @@ namespace WubiMaster.ViewModels
         {
             string schema_zip = GlobalValues.SchemaZip;
 
-            try
-            {
-                // 先检测rime环境
-                if (string.IsNullOrEmpty(GlobalValues.UserPath) || string.IsNullOrEmpty(GlobalValues.ProcessPath))
-                {
-                    this.ShowMessage("未检测到 Rime 引擎的安装信息，请先安装 Rime 程序！", DialogType.Warring);
-                    return;
-                }
+            await App.Current.Dispatcher.BeginInvoke(async () =>
+             {
+                 try
+                 {
+                     // 先检测rime环境
+                     if (string.IsNullOrEmpty(GlobalValues.UserPath) || string.IsNullOrEmpty(GlobalValues.ProcessPath))
+                     {
+                         this.ShowMessage("未检测到 Rime 引擎的安装信息，请先安装 Rime 程序！", DialogType.Warring);
+                         return;
+                     }
 
-                if (!File.Exists(schema_zip))
-                {
-                    this.ShowMessage("找不到五笔引擎包！", DialogType.Error);
-                    return;
-                }
+                     if (!File.Exists(schema_zip))
+                     {
+                         this.ShowMessage("找不到五笔引擎包！", DialogType.Error);
+                         return;
+                     }
 
-                // 在配置前，先提示会将原有的方案覆盖
-                bool? result = this.ShowAskMessage("请注意：本次操作将清除 Rime 用户目录下所有数据！", DialogType.Normal);
-                if (result != true)
-                    return;
+                     // 在配置前，先提示会将原有的方案覆盖
+                     bool? result = this.ShowAskMessage("请注意：本次操作将清除 Rime 用户目录下所有数据！", DialogType.Normal);
+                     if (result != true)
+                         return;
 
-                // 停止服务
-                ServiceHelper.KillService();
-                await Task.Delay(1000);
+                     // 停止服务
+                     ServiceHelper.KillService();
+                     await Task.Delay(1000);
 
-                // 删除用户目录中的配置
-                if (Directory.Exists(GlobalValues.UserPath))
-                {
-                    DirectoryInfo dir = new DirectoryInfo(GlobalValues.UserPath);
-                    FileSystemInfo[] fileinfo = dir.GetFileSystemInfos();  //返回目录中所有文件和子目录
-                    foreach (FileSystemInfo i in fileinfo)
-                    {
-                        if (i is DirectoryInfo)            //判断是否文件夹
-                        {
-                            DirectoryInfo subdir = new DirectoryInfo(i.FullName);
-                            subdir.Delete(true);          //删除子目录和文件
-                        }
-                        else
-                        {
-                            File.Delete(i.FullName);      //删除指定文件
-                        }
-                    }
-                }
-                await Task.Delay(500);
+                     // 删除用户目录中的配置
+                     if (Directory.Exists(GlobalValues.UserPath))
+                     {
+                         DirectoryInfo dir = new DirectoryInfo(GlobalValues.UserPath);
+                         FileSystemInfo[] fileinfo = dir.GetFileSystemInfos();  //返回目录中所有文件和子目录
+                         foreach (FileSystemInfo i in fileinfo)
+                         {
+                             if (i is DirectoryInfo)            //判断是否文件夹
+                             {
+                                 DirectoryInfo subdir = new DirectoryInfo(i.FullName);
+                                 subdir.Delete(true);          //删除子目录和文件
+                             }
+                             else
+                             {
+                                 File.Delete(i.FullName);      //删除指定文件
+                             }
+                         }
+                     }
+                     await Task.Delay(500);
 
-                // 将方案解压到用户目录
-                ZipHelper.DecompressZip(schema_zip, GlobalValues.UserPath);
+                     // 将方案解压到用户目录
+                     ZipHelper.DecompressZip(schema_zip, GlobalValues.UserPath);
 
-                // 安装字根字体
-                if (!FontHelper.CheckFont("黑体字根.ttf"))
-                {
-                    string heiti_font = GlobalValues.HeitiFont;
-                    FontHelper.InstallFont(heiti_font);
-                }
+                     // 安装字根字体
+                     if (!FontHelper.CheckFont("黑体字根.ttf"))
+                     {
+                         string heiti_font = GlobalValues.HeitiFont;
+                         FontHelper.InstallFont(heiti_font);
+                     }
 
-                this.ShowMessage("初始化成功", DialogType.Success);
-            }
-            catch (Exception ex)
-            {
-                LogHelper.Error(ex.Message, true);
-                this.ShowMessage($"初始化失败: {ex.Message}", DialogType.Error);
-                return;
-            }
-            finally
-            {
-                // 启动服务
-                ServiceHelper.RunService();
-                UpdateWubiSchemaTip();
-                WeakReferenceMessenger.Default.Send<string, string>("", "ChangeShcemaState");
-            }
+                     this.ShowMessage("初始化成功", DialogType.Success);
+                 }
+                 catch (Exception ex)
+                 {
+                     LogHelper.Error(ex.Message, true);
+                     this.ShowMessage($"初始化失败: {ex.Message}", DialogType.Error);
+                     return;
+                 }
+                 finally
+                 {
+                     // 启动服务
+                     ServiceHelper.RunService();
+                     UpdateWubiSchemaTip();
+                     WeakReferenceMessenger.Default.Send<string, string>("", "ChangeShcemaState");
+                 }
+             });
         }
 
         [RelayCommand]
