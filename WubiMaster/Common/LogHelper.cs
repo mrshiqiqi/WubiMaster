@@ -8,9 +8,12 @@ namespace WubiMaster.Common
     public class LogHelper
     {
         private static ILog Log = LogManager.GetLogger(typeof(LogHelper));
+        private static string LogDirectory = AppDomain.CurrentDomain.BaseDirectory + "Logs";
 
         static LogHelper()
         {
+            if (!Directory.Exists(LogDirectory))
+                Directory.CreateDirectory(LogDirectory);
             LogHelper.RemoveLogs();
         }
 
@@ -115,7 +118,7 @@ namespace WubiMaster.Common
                         log.Delete();
             }
             catch (Exception ex)
-            { 
+            {
                 LogHelper.Error(ex.Message);
             }
         }
