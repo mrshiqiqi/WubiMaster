@@ -6,7 +6,7 @@
         <Setter Property="BorderThickness" Value="2" />
         <Setter Property="Foreground" Value="{DynamicResource text-200}" />
         <Setter Property="Margin" Value="5" />
-        <Setter Property="Opacity" Value="0.8" />
+        <Setter Property="Opacity" Value="1" />
 
         <Setter Property="Template">
             <Setter.Value>
@@ -35,9 +35,15 @@
                                        Margin="2"
                                        FontFamily="../Fonts/#iconfont"
                                        FontWeight="Bold"
-                                       Foreground="{DynamicResource bg-100}"
-                                       Text="&#xe66c;"
-                                       Visibility="Hidden" />
+                                       Foreground="{DynamicResource primary-300}"
+                                       Text="&#xe664;"
+                                       Visibility="Hidden">
+                                <TextBlock.Effect>
+                                    <DropShadowEffect BlurRadius="3"
+                                                      Direction="-45"
+                                                      ShadowDepth="1" />
+                                </TextBlock.Effect>
+                            </TextBlock>
                         </Viewbox>
 
                         <TextBlock x:Name="content"
