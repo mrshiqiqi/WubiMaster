@@ -147,13 +147,7 @@
                             <Setter TargetName="Border" Property="BorderThickness" Value="0,0,0,2" />
                             <Setter TargetName="icon_text" Property="Visibility" Value="Visible" />
                         </MultiDataTrigger>
-                        <MultiDataTrigger>
-                            <MultiDataTrigger.Conditions>
-                                <Condition Binding="{Binding IsSelected, RelativeSource={RelativeSource Self}}" Value="false" />
-                            </MultiDataTrigger.Conditions>
-                            <Setter Property="Panel.ZIndex" Value="1" />
-                            <Setter TargetName="Border" Property="Background" Value="{Binding Background}" />
-                        </MultiDataTrigger>
+
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
