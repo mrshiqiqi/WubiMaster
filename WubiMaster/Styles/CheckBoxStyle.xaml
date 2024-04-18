@@ -31,16 +31,13 @@
                                  Height="{Binding ElementName=border, Path=ActualHeight}"
                                  HorizontalAlignment="Center"
                                  VerticalAlignment="Center">
-                            <Polyline x:Name="polyline"
-                                      Margin="3"
-                                      Opacity="0.9"
-                                      Points="2,7 7,10 13,1"
-                                      Stroke="{DynamicResource bg-100}"
-                                      StrokeEndLineCap="Round"
-                                      StrokeLineJoin="Round"
-                                      StrokeStartLineCap="Round"
-                                      StrokeThickness="3"
-                                      Visibility="Hidden" />
+                            <TextBlock x:Name="icon_text"
+                                       Margin="2"
+                                       FontFamily="../Fonts/#iconfont"
+                                       FontWeight="Bold"
+                                       Foreground="{DynamicResource bg-100}"
+                                       Text="&#xe66c;"
+                                       Visibility="Hidden" />
                         </Viewbox>
 
                         <TextBlock x:Name="content"
@@ -57,7 +54,6 @@
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter TargetName="border" Property="Background" Value="{DynamicResource primary-200}" />
                             <Setter TargetName="border" Property="Opacity" Value="0.8" />
-
                         </Trigger>
 
                         <Trigger Property="IsPressed" Value="True">
@@ -66,14 +62,14 @@
 
                         <Trigger Property="IsChecked" Value="True">
                             <Setter TargetName="border" Property="BorderThickness" Value="0" />
-                            <Setter TargetName="polyline" Property="Visibility" Value="Visible" />
+                            <Setter TargetName="icon_text" Property="Visibility" Value="Visible" />
                             <Setter TargetName="border" Property="Opacity" Value="1" />
                             <Setter TargetName="border" Property="Background" Value="{DynamicResource primary-200}" />
 
                             <Trigger.EnterActions>
                                 <BeginStoryboard>
                                     <Storyboard>
-                                        <DoubleAnimation Storyboard.TargetName="polyline"
+                                        <DoubleAnimation Storyboard.TargetName="icon_text"
                                                          Storyboard.TargetProperty="Opacity"
                                                          From="0.1"
                                                          To="0.9"

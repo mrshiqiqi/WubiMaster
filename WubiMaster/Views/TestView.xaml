@@ -17,13 +17,7 @@
 
     <Grid>
 
-        <StackPanel>
-            <c:ColorSchemeControl Width="300"
-                                  Height="Auto"
-                                  BackColor="{DynamicResource primary-300}"
-                                  BorderCornerRadius="15"
-                                  StyleOrientation="Vertical" />
-        </StackPanel>
+        <CheckBox IsChecked="True" />
 
         <!--<Button Width="150"
                 Height="40"
