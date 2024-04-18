@@ -141,11 +141,9 @@ namespace WubiMaster.ViewModels
             {
                 try
                 {
-                    string prcessPath = ConfigHelper.ReadConfigByString("process_file_path");
-
-                    if (string.IsNullOrEmpty(prcessPath))
+                    if (string.IsNullOrEmpty(GlobalValues.ProcessPath))
                     {
-                        this.ShowMessage("请先配置程序文件目录", DialogType.Warring);
+                        this.ShowMessage("请先安装 Rime 引擎包", DialogType.Warring);
                         return;
                     }
 
@@ -163,7 +161,7 @@ namespace WubiMaster.ViewModels
                         this.ShowMessage(ex.Message, DialogType.Warring);
                     }
 
-                    CmdHelper.RunCmd(prcessPath, "WeaselDeployer.exe /deploy");
+                    CmdHelper.RunCmd(GlobalValues.ProcessPath, "WeaselDeployer.exe /deploy");
                     this.ShowMessage("部署成功", DialogType.Success);
                 }
                 catch (Exception ex)
