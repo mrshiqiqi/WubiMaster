@@ -29,8 +29,7 @@
                 <Grid>
                     <Border Height="220"
                             Margin="10,0"
-                            Background="{DynamicResource bg-200}"
-                            CornerRadius="15">
+                            Background="{DynamicResource bg-100}">
                         <Viewbox Stretch="Fill">
                             <TextBlock FontFamily="../Fonts/#iconfont"
                                        Foreground="{DynamicResource bg-300}"
