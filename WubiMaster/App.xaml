@@ -28,6 +28,7 @@
                 <ResourceDictionary Source="/Styles/ItemsControlStyle.xaml" />
                 <ResourceDictionary Source="/Styles/MainViewStyle.xaml" />
                 <ResourceDictionary Source="/Styles/HomeViewStyle.xaml" />
+                <ResourceDictionary Source="/Styles/TabControlStyle.xaml" />
                 <ResourceDictionary Source="/Styles/ThemeViewStyle.xaml" />
                 <ResourceDictionary Source="/Styles/LexiconViewStyle.xaml" />
                 <ResourceDictionary Source="/Styles/PageStyle.xaml" />
