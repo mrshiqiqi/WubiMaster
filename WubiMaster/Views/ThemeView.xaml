@@ -22,12 +22,21 @@
 
             <Grid Margin="0,0,15,0">
                 <Grid.RowDefinitions>
-                    <RowDefinition MaxHeight="180" />
+                    <RowDefinition MaxHeight="240" />
                     <RowDefinition />
                 </Grid.RowDefinitions>
 
                 <Grid>
-                    <Border Background="{DynamicResource bg-200}" CornerRadius="15" />
+                    <Border Height="220"
+                            Margin="10,0"
+                            Background="{DynamicResource bg-200}"
+                            CornerRadius="15">
+                        <Viewbox Stretch="Fill">
+                            <TextBlock FontFamily="../Fonts/#iconfont"
+                                       Foreground="{DynamicResource bg-300}"
+                                       Text="&#xe660;" />
+                        </Viewbox>
+                    </Border>
 
                     <StackPanel VerticalAlignment="Center">
                         <c:ColorSchemeControl Width="250"
