@@ -69,7 +69,7 @@
                                                FontSize="15"
                                                Foreground="{DynamicResource text-200}"
                                                Text="是否启用皮肤跟随主题功能" />
-                                    <ToggleButton IsChecked="False" />
+                                    <ToggleButton />
                                 </StackPanel>
 
                                 <Separator Grid.Row="2"

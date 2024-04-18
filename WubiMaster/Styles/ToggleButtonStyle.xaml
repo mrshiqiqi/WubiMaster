@@ -12,7 +12,7 @@
         <Setter Property="Foreground" Value="{DynamicResource bg-100}" />
         <Setter Property="FontSize" Value="11" />
         <Setter Property="IsEnabled" Value="True" />
-        <Setter Property="IsChecked" Value="True" />
+        <Setter Property="IsChecked" Value="False" />
         <Setter Property="MinWidth" Value="50" />
         <Setter Property="MinHeight" Value="24" />
 
@@ -21,31 +21,44 @@
                 <ControlTemplate TargetType="ToggleButton">
 
                     <Border x:Name="border"
+                            Padding="5,0"
                             Background="{TemplateBinding Background}"
                             BorderBrush="{TemplateBinding BorderBrush}"
                             CornerRadius="12">
+                        <Grid>
 
-                        <Grid x:Name="grid"
-                              Margin="3"
-                              HorizontalAlignment="Left">
+                            <Grid x:Name="grid"
+                                  Width="18"
+                                  Height="18"
+                                  HorizontalAlignment="Right">
 
-                            <Grid.RenderTransform>
-                                <TranslateTransform />
-                            </Grid.RenderTransform>
+                                <Grid.RenderTransform>
+                                    <TranslateTransform />
+                                </Grid.RenderTransform>
 
-                            <Ellipse x:Name="ellipse"
-                                     Width="18"
-                                     Height="18"
-                                     HorizontalAlignment="Left"
-                                     VerticalAlignment="Center"
-                                     Fill="{DynamicResource primary-200}" />
+                                <Viewbox Stretch="Fill">
+
+                                    <TextBlock x:Name="bg_tblk"
+                                               HorizontalAlignment="Center"
+                                               VerticalAlignment="Center"
+                                               FontFamily="../Fonts/#iconfont"
+                                               Foreground="{DynamicResource primary-300}"
+                                               Text="&#xe631;">
+                                        <TextBlock.Effect>
+                                            <DropShadowEffect BlurRadius="3"
+                                                              Direction="-45"
+                                                              ShadowDepth="1" />
+                                        </TextBlock.Effect>
+                                    </TextBlock>
+                                </Viewbox>
+                            </Grid>
 
                             <TextBlock x:Name="text"
-                                       HorizontalAlignment="Center"
+                                       Margin="2,0"
+                                       HorizontalAlignment="Left"
                                        VerticalAlignment="Center"
-                                       FontSize="{TemplateBinding FontSize}"
-                                       Text="{StaticResource OpenStr}"
-                                       TextOptions.TextFormattingMode="Display" />
+                                       Foreground="{DynamicResource bg-200}"
+                                       Text="关" />
                         </Grid>
                     </Border>
 
@@ -121,14 +134,15 @@
 
                         <Trigger Property="IsChecked" Value="True">
                             <Setter TargetName="grid" Property="HorizontalAlignment" Value="Right" />
+                            <Setter TargetName="text" Property="HorizontalAlignment" Value="Left" />
                             <Setter TargetName="text" Property="TextBlock.Text" Value="{StaticResource OpenStr}" />
                         </Trigger>
 
                         <Trigger Property="IsChecked" Value="False">
                             <Setter TargetName="grid" Property="HorizontalAlignment" Value="Left" />
+                            <Setter TargetName="text" Property="HorizontalAlignment" Value="Right" />
                             <Setter TargetName="text" Property="TextBlock.Text" Value="{StaticResource CloseStr}" />
                         </Trigger>
-
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
