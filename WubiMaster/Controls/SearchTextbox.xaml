@@ -206,11 +206,15 @@
                                            Foreground="{DynamicResource bg-100}"
                                            RenderTransformOrigin="0.5,0.5"
                                            Text="&#xe684;">
+                                    <TextBlock.Effect>
+                                        <DropShadowEffect BlurRadius="3"
+                                                          Direction="225"
+                                                          ShadowDepth="1" />
+                                    </TextBlock.Effect>
                                     <TextBlock.RenderTransform>
                                         <RotateTransform Angle="-90" />
                                     </TextBlock.RenderTransform>
                                 </TextBlock>
-
                             </Viewbox>
                         </Border>
 

@@ -225,14 +225,18 @@
                                             <ColumnDefinition />
                                         </Grid.ColumnDefinitions>
 
-                                        <TextBlock Margin="0"
-                                                   Padding="0"
-                                                   HorizontalAlignment="Right"
+                                        <TextBlock HorizontalAlignment="Right"
                                                    VerticalAlignment="Center"
                                                    FontFamily="../Fonts/#iconfont"
-                                                   FontSize="18"
+                                                   FontSize="20"
                                                    Foreground="{DynamicResource bg-100}"
-                                                   Text="&#xe63a;" />
+                                                   Text="&#xe63a;">
+                                            <TextBlock.Effect>
+                                                <DropShadowEffect BlurRadius="3"
+                                                                  Direction="-45"
+                                                                  ShadowDepth="1" />
+                                            </TextBlock.Effect>
+                                        </TextBlock>
 
                                         <TextBlock Grid.Column="2"
                                                    FontSize="16"
