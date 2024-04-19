@@ -20,8 +20,6 @@
                       CodeKeyList06="{Binding CodeKeyList06}"
                       CodeKeyList86="{Binding CodeKeyList86}"
                       CodeKeyList98="{Binding CodeKeyList98}"
-                      CodeText="{Binding CodeText}"
-                      GBKText="{Binding GBKText}"
                       SpellingKeyList06="{Binding SpellingKeyList06}"
                       SpellingKeyList86="{Binding SpellingKeyList86}"
                       SpellingKeyList98="{Binding SpellingKeyList98}"

@@ -8,19 +8,13 @@ namespace WubiMaster.Controls
     public partial class ZigenPanel : UserControl
     {
         public static readonly DependencyProperty CodeKeyList06Property =
-            DependencyProperty.Register("CodeKeyList06", typeof(List<object>), typeof(ZigenPanel));
+            DependencyProperty.Register("CodeKeyList06", typeof(List<CodeKeyModel>), typeof(ZigenPanel));
 
         public static readonly DependencyProperty CodeKeyList86Property =
-            DependencyProperty.Register("CodeKeyList86", typeof(List<object>), typeof(ZigenPanel));
+            DependencyProperty.Register("CodeKeyList86", typeof(List<CodeKeyModel>), typeof(ZigenPanel));
 
         public static readonly DependencyProperty CodeKeyList98Property =
-            DependencyProperty.Register("CodeKeyList98", typeof(List<object>), typeof(ZigenPanel));
-
-        public static readonly DependencyProperty CodeTextProperty =
-                                    DependencyProperty.Register("CodeText", typeof(string), typeof(ZigenPanel), new PropertyMetadata(""));
-
-        public static readonly DependencyProperty GBKTextProperty =
-            DependencyProperty.Register("GBKText", typeof(string), typeof(ZigenPanel), new PropertyMetadata(""));
+            DependencyProperty.Register("CodeKeyList98", typeof(List<CodeKeyModel>), typeof(ZigenPanel));
 
         public static readonly DependencyProperty SpellingKeyList06Property =
             DependencyProperty.Register("SpellingKeyList06", typeof(List<SpellingKeyModel>), typeof(ZigenPanel));
@@ -66,34 +60,22 @@ namespace WubiMaster.Controls
             InitializeComponent();
         }
 
-        public List<object> CodeKeyList06
+        public List<CodeKeyModel> CodeKeyList06
         {
-            get { return (List<object>)GetValue(CodeKeyList06Property); }
+            get { return (List<CodeKeyModel>)GetValue(CodeKeyList06Property); }
             set { SetValue(CodeKeyList06Property, value); }
         }
 
-        public List<object> CodeKeyList86
+        public List<CodeKeyModel> CodeKeyList86
         {
-            get { return (List<object>)GetValue(CodeKeyList86Property); }
+            get { return (List<CodeKeyModel>)GetValue(CodeKeyList86Property); }
             set { SetValue(CodeKeyList86Property, value); }
         }
 
-        public List<object> CodeKeyList98
+        public List<CodeKeyModel> CodeKeyList98
         {
-            get { return (List<object>)GetValue(CodeKeyList98Property); }
+            get { return (List<CodeKeyModel>)GetValue(CodeKeyList98Property); }
             set { SetValue(CodeKeyList98Property, value); }
-        }
-
-        public string CodeText
-        {
-            get { return (string)GetValue(CodeTextProperty); }
-            set { SetValue(CodeTextProperty, value); }
-        }
-
-        public string GBKText
-        {
-            get { return (string)GetValue(GBKTextProperty); }
-            set { SetValue(GBKTextProperty, value); }
         }
 
         public List<SpellingKeyModel> SpellingKeyList06
