@@ -41,6 +41,7 @@
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="15" />
+                                <ColumnDefinition Width="80" />
                                 <ColumnDefinition />
                             </Grid.ColumnDefinitions>
 
@@ -51,6 +52,11 @@
                                        VerticalAlignment="Center"
                                        Foreground="{Binding ElementName=color_scheme_control, Path=HilitedCandidateTextColor}"
                                        Text="中书君" />
+                            <TextBlock Grid.Column="2"
+                                       VerticalAlignment="Center"
+                                       FontFamily="../Fonts/#黑体字根"
+                                       Foreground="{Binding ElementName=color_scheme_control, Path=HilitedCandidateTextColor}"
+                                       Text="〔  〕" />
                         </Grid>
                     </Border>
 
@@ -60,6 +66,7 @@
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="15" />
+                                <ColumnDefinition Width="80" />
                                 <ColumnDefinition />
                             </Grid.ColumnDefinitions>
 
@@ -67,6 +74,11 @@
                             <TextBlock Grid.Column="1"
                                        VerticalAlignment="Center"
                                        Text="五笔" />
+                            <TextBlock Grid.Column="2"
+                                       VerticalAlignment="Center"
+                                       FontFamily="../Fonts/#黑体字根"
+                                       Foreground="{Binding ElementName=color_scheme_control, Path=CandidateTextColor}"
+                                       Text="〔  〕" />
                         </Grid>
                     </Border>
 
@@ -76,6 +88,7 @@
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="15" />
+                                <ColumnDefinition Width="80" />
                                 <ColumnDefinition />
                             </Grid.ColumnDefinitions>
 
@@ -83,6 +96,11 @@
                             <TextBlock Grid.Column="1"
                                        VerticalAlignment="Center"
                                        Text="空山明月" />
+                            <TextBlock Grid.Column="2"
+                                       VerticalAlignment="Center"
+                                       FontFamily="../Fonts/#黑体字根"
+                                       Foreground="{Binding ElementName=color_scheme_control, Path=CandidateTextColor}"
+                                       Text="〔  〕" />
                         </Grid>
                     </Border>
                 </StackPanel>
