@@ -37,7 +37,7 @@
                             <Border Height="220">
                                 <Viewbox Stretch="Fill">
                                     <TextBlock FontFamily="../Fonts/#iconfont"
-                                               Foreground="{DynamicResource accent-200}"
+                                               Foreground="{DynamicResource bg-300}"
                                                Text="&#xe8ae;" />
                                 </Viewbox>
                             </Border>

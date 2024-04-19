@@ -37,16 +37,34 @@
                                                 VerticalAlignment="Center"
                                                 Orientation="Horizontal">
 
-                                        <TextBlock Name="txt_icon"
-                                                   VerticalAlignment="Center"
-                                                   FontFamily="../Fonts/#iconfont"
-                                                   FontSize="18"
-                                                   Foreground="{DynamicResource primary-200}"
-                                                   Text="{Binding ElementName=setting_panel, Path=IconText}" />
+                                        <Grid Width="25">
+                                            <Viewbox Stretch="UniformToFill">
+                                                <TextBlock HorizontalAlignment="Center"
+                                                           VerticalAlignment="Center"
+                                                           FontFamily="../Fonts/#iconfont"
+                                                           Foreground="{DynamicResource bg-300}"
+                                                           Text="&#xe67c;" />
+                                            </Viewbox>
+
+                                            <Viewbox Margin="5">
+                                                <TextBlock Name="txt_icon"
+                                                           VerticalAlignment="Center"
+                                                           FontFamily="../Fonts/#iconfont"
+                                                           Foreground="{DynamicResource accent-100}"
+                                                           Text="{Binding ElementName=setting_panel, Path=IconText}">
+                                                    <TextBlock.Effect>
+                                                        <DropShadowEffect BlurRadius="2"
+                                                                          Direction="-45"
+                                                                          ShadowDepth="2" />
+                                                    </TextBlock.Effect>
+                                                </TextBlock>
+                                            </Viewbox>
+                                        </Grid>
 
                                         <TextBlock Margin="5,0,0,0"
                                                    VerticalAlignment="Center"
                                                    FontSize="15"
+                                                   FontWeight="Bold"
                                                    Foreground="{DynamicResource text-100}"
                                                    Text="{Binding ElementName=setting_panel, Path=Title}" />
                                     </StackPanel>
@@ -84,8 +102,6 @@
                 </Setter.Value>
             </Setter>
         </Style>
-
-
     </UserControl.Resources>
 
     <Label Style="{StaticResource setting_panel_style}" />
