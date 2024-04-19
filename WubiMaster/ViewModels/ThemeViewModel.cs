@@ -90,7 +90,7 @@ namespace WubiMaster.ViewModels
                 this.ShowMessage("请先配置码表版本！", DialogType.Warring);
                 return;
             }
-            WriteRimeThemeDetails();
+            WriteWeaselCustonDetails();
 
             string colorScheme = WeaselDetails.preset_color_schemes.Keys.ToList()[ColorIndex];
             ConfigHelper.WriteConfigByString("color_scheme", colorScheme);
@@ -161,11 +161,12 @@ namespace WubiMaster.ViewModels
             }
         }
 
-        private void WriteRimeThemeDetails()
+        private void WriteWeaselCustonDetails()
         {
             try
             {
                 WeaselCustomDetails.patch.style.color_scheme = WeaselDetails.preset_color_schemes.Keys.ToList()[ColorIndex];
+                WeaselCustomDetails.customization.modified_time = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff");
                 YamlHelper.WriteYaml(WeaselCustomDetails, weaselCustomPath);
             }
             catch (Exception ex)

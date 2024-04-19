@@ -21,7 +21,7 @@
         <TabControl>
             <TabItem IsSelected="True">
                 <TabItem.Header>
-                    <TextBlock FontSize="16" Text="设计器" />
+                    <TextBlock FontSize="15" Text="设计器" />
                 </TabItem.Header>
 
                 <!--皮肤编辑-->
@@ -399,7 +399,7 @@
 
             <TabItem>
                 <TabItem.Header>
-                    <TextBlock FontSize="16" Text="我的皮肤" />
+                    <TextBlock FontSize="15" Text="我的皮肤" />
                 </TabItem.Header>
 
                 <!--我的皮肤-->

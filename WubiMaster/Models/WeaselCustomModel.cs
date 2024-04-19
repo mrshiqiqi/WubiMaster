@@ -31,6 +31,5 @@ namespace WubiMaster.Models
     public class WeaselCustomStyle
     {
         public string color_scheme { get; set; }
-        public string font_face { get; set; }
     }
 }

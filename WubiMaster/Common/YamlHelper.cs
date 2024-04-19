@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.Unicode;
 using System.Threading.Tasks;
 using System.Windows.Shapes;
 using YamlDotNet.Serialization;
@@ -50,9 +51,22 @@ namespace WubiMaster.Common
         public static void WriteYaml(object target, string filePath)
         {
             StreamWriter yamlWriter = File.CreateText(filePath);
+
             Serializer yamlSerializer = new Serializer();
             yamlSerializer.Serialize(yamlWriter, target);
             yamlWriter.Close();
+
+            StringBuilder YamlHeaderStr = new StringBuilder();
+            YamlHeaderStr.Append("# Rime settings\n");
+            YamlHeaderStr.Append("# encoding: utf-8\n");
+            YamlHeaderStr.Append("# author: 空山明月\n");
+            YamlHeaderStr.Append("# by: 中书君\n");
+            YamlHeaderStr.Append("# update: " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff") + "\n");
+
+            string[] yamlText = File.ReadAllLines(filePath);
+            List<string> _list = yamlText.ToList();
+            _list.Insert(0, YamlHeaderStr.ToString());
+            File.WriteAllLines(filePath, _list.ToArray(), encoding: Encoding.UTF8);
         }
 
         public static string YamlToJson(string yaml)
