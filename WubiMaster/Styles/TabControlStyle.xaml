@@ -86,8 +86,8 @@
 
     <Style TargetType="{x:Type TabItem}">
         <Setter Property="OverridesDefaultStyle" Value="True" />
-        <Setter Property="BorderThickness" Value="0" />
-        <Setter Property="BorderBrush" Value="{DynamicResource primary-200}" />
+        <Setter Property="BorderThickness" Value="0,0,0,2" />
+        <Setter Property="BorderBrush" Value="Transparent" />
         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
         <Setter Property="VerticalContentAlignment" Value="Stretch" />
         <Setter Property="Foreground" Value="{DynamicResource text-100}" />
@@ -144,10 +144,17 @@
                                 <Condition Binding="{Binding IsSelected, RelativeSource={RelativeSource Self}}" Value="true" />
                             </MultiDataTrigger.Conditions>
                             <Setter Property="Panel.ZIndex" Value="1" />
-                            <Setter TargetName="Border" Property="BorderThickness" Value="0,0,0,2" />
                             <Setter TargetName="icon_text" Property="Visibility" Value="Visible" />
+                            <Setter TargetName="Border" Property="BorderBrush" Value="{DynamicResource primary-200}" />
                         </MultiDataTrigger>
 
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsSelected" Value="False" />
+                                <Condition Property="IsMouseOver" Value="True" />
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="Border" Property="BorderBrush" Value="{DynamicResource bg-300}" />
+                        </MultiTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
