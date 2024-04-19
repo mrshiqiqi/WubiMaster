@@ -26,6 +26,20 @@
             </Setter>
         </Style>
 
+        <Style x:Key="type_icon_style" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="../Fonts/#iconfont" />
+            <Setter Property="Text" Value="&#xe780;" />
+            <Setter Property="Foreground" Value="{DynamicResource primary-100}" />
+
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect BlurRadius="3"
+                                      Direction="-45"
+                                      ShadowDepth="1" />
+                </Setter.Value>
+            </Setter>
+        </Style>
+
         <Style x:Key="code_icon_style" TargetType="TextBlock">
             <Setter Property="FontFamily" Value="../Fonts/#iconfont" />
             <Setter Property="Text" Value="&#xe6e8;" />
@@ -40,7 +54,7 @@
                 <Setter.Value>
                     <DropShadowEffect BlurRadius="3"
                                       Direction="45"
-                                      ShadowDepth="2" />
+                                      ShadowDepth="1" />
                 </Setter.Value>
             </Setter>
         </Style>
@@ -70,7 +84,7 @@
         </Style>
     </UserControl.Resources>
 
-    <Grid>
+    <Grid MaxWidth="900">
 
         <Border Background="{DynamicResource bg-200}" CornerRadius="10">
 
@@ -87,15 +101,21 @@
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
 
-                    <Border Width=" 20"
-                            Height="20"
-                            Background="{DynamicResource accent-200}"
-                            CornerRadius="10">
-                        <TextBlock HorizontalAlignment="Center"
-                                   VerticalAlignment="Center"
-                                   FontSize="12"
-                                   Foreground="{DynamicResource bg-100}"
-                                   Text="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=TypeText}" />
+                    <Border Margin="5,0,0,0">
+
+                        <Grid>
+                            <Viewbox Margin="-15">
+                                <TextBlock Style="{StaticResource type_icon_style}" />
+                            </Viewbox>
+
+                            <TextBlock Margin="-3,0,0,0"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       FontSize="12"
+                                       Foreground="{DynamicResource bg-100}"
+                                       Text="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=TypeText}" />
+                        </Grid>
+
                     </Border>
 
                     <Border Grid.Column="1"
