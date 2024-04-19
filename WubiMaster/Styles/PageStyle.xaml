@@ -4,7 +4,7 @@
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
         <Setter Property="RenderTransform">
             <Setter.Value>
-                <TranslateTransform X="0" Y="50" />
+                <TranslateTransform X="0" Y="8" />
             </Setter.Value>
         </Setter>
 
@@ -21,12 +21,12 @@
                         <DoubleAnimation Storyboard.TargetProperty="Opacity"
                                          From="0.3"
                                          To="1"
-                                         Duration="0:0:1" />
+                                         Duration="0:0:0.5" />
 
                         <DoubleAnimation AccelerationRatio="0.2"
                                          DecelerationRatio="0.2"
                                          Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.Y)"
-                                         From="50"
+                                         From="8"
                                          To="0"
                                          Duration="0:0:1" />
                     </Storyboard>

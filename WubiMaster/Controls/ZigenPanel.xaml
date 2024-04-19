@@ -12,23 +12,41 @@
         <com:Text2Visibility x:Key="Text2Visibility" />
         <com:WubiType2Visibility x:Key="WubiType2Visibility" />
 
-        <Style x:Key="zigen_border_style"
-               BasedOn="{StaticResource UIElementHover}"
-               TargetType="Border">
-            <Setter Property="Background" Value="{DynamicResource primary-100}" />
-            <Setter Property="Width" Value="30" />
-            <Setter Property="Height" Value="30" />
-            <Setter Property="CornerRadius" Value="15" />
-            <Setter Property="Margin" Value="0,0,10,0" />
-            <Setter Property="HorizontalAlignment" Value="Center" />
-            <Setter Property="VerticalAlignment" Value="Center" />
-            <!--<Setter Property="Effect">
+        <Style x:Key="spell_icon_style" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="../Fonts/#iconfont" />
+            <Setter Property="Text" Value="&#xe67c;" />
+            <Setter Property="Foreground" Value="{DynamicResource accent-100}" />
+
+            <Setter Property="Effect">
                 <Setter.Value>
-                    <DropShadowEffect BlurRadius="4"
-                                      ShadowDepth="2"
-                                      Color="{DynamicResource bg-3000}" />
+                    <DropShadowEffect BlurRadius="3"
+                                      Direction="-45"
+                                      ShadowDepth="2" />
                 </Setter.Value>
-            </Setter>-->
+            </Setter>
+        </Style>
+
+        <Style x:Key="code_icon_style" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="../Fonts/#iconfont" />
+            <Setter Property="Text" Value="&#xe6e8;" />
+            <Setter Property="Foreground" Value="{DynamicResource accent-200}" />
+            <Setter Property="RenderTransformOrigin" Value="0.5,0.5" />
+            <Setter Property="LayoutTransform">
+                <Setter.Value>
+                    <RotateTransform Angle="90" />
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect BlurRadius="3"
+                                      Direction="45"
+                                      ShadowDepth="2" />
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="zigen_border_style" TargetType="Border">
+            <Setter Property="Margin" Value="5,0" />
         </Style>
 
         <Style x:Key="zigen_textblock_style" TargetType="TextBlock">
@@ -40,24 +58,8 @@
             <Setter Property="Margin" Value="5" />
         </Style>
 
-        <Style x:Key="code_border_style"
-               BasedOn="{StaticResource UIElementHover}"
-               TargetType="Border">
-            <Setter Property="Background" Value="{DynamicResource primary-200}" />
-            <Setter Property="Width" Value="Auto" />
-            <Setter Property="Height" Value="25" />
-            <Setter Property="CornerRadius" Value="3" />
-            <Setter Property="Padding" Value="5,0,5,0" />
-            <Setter Property="Margin" Value="10,0,0,0" />
-            <Setter Property="HorizontalAlignment" Value="Center" />
-            <Setter Property="VerticalAlignment" Value="Center" />
-            <!--<Setter Property="Effect">
-                <Setter.Value>
-                    <DropShadowEffect BlurRadius="4"
-                                      ShadowDepth="2"
-                                      Color="{DynamicResource bg-3000}" />
-                </Setter.Value>
-            </Setter>-->
+        <Style x:Key="code_border_style" TargetType="Border">
+            <Setter Property="Margin" Value="10,0" />
         </Style>
 
         <Style x:Key="code_textblock_style" TargetType="TextBlock">
@@ -152,9 +154,16 @@
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
                                     <Border Style="{StaticResource zigen_border_style}">
-                                        <Viewbox>
-                                            <TextBlock Style="{StaticResource zigen_textblock_style}" Text="{Binding SpellingKey}" />
-                                        </Viewbox>
+                                        <Grid>
+                                            <Viewbox>
+                                                <TextBlock Style="{StaticResource spell_icon_style}" />
+                                            </Viewbox>
+
+                                            <Viewbox Margin="5">
+                                                <TextBlock Style="{StaticResource zigen_textblock_style}" Text="{Binding SpellingKey}" />
+                                            </Viewbox>
+                                        </Grid>
+
                                     </Border>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
@@ -170,7 +179,18 @@
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
                                     <Border Style="{StaticResource code_border_style}">
-                                        <TextBlock Style="{StaticResource code_textblock_style}" Text="{Binding CodeKey}" />
+                                        <Grid>
+                                            <Viewbox Margin="-5,-15" Stretch="Fill">
+                                                <TextBlock Style="{StaticResource code_icon_style}" />
+                                            </Viewbox>
+
+                                            <Grid Margin="5">
+                                                <TextBlock Style="{StaticResource code_textblock_style}" Text="{Binding CodeKey}" />
+                                            </Grid>
+
+                                        </Grid>
+
+
                                     </Border>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
@@ -205,9 +225,16 @@
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
                                     <Border Style="{StaticResource zigen_border_style}">
-                                        <Viewbox>
-                                            <TextBlock Style="{StaticResource zigen_textblock_style}" Text="{Binding SpellingKey}" />
-                                        </Viewbox>
+                                        <Grid>
+                                            <Viewbox>
+                                                <TextBlock Style="{StaticResource spell_icon_style}" />
+                                            </Viewbox>
+
+                                            <Viewbox Margin="5">
+                                                <TextBlock Style="{StaticResource zigen_textblock_style}" Text="{Binding SpellingKey}" />
+                                            </Viewbox>
+                                        </Grid>
+
                                     </Border>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
@@ -223,7 +250,17 @@
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
                                     <Border Style="{StaticResource code_border_style}">
-                                        <TextBlock Style="{StaticResource code_textblock_style}" Text="{Binding CodeKey}" />
+                                        <Grid>
+                                            <Viewbox Margin="-5,-15" Stretch="Fill">
+                                                <TextBlock Style="{StaticResource code_icon_style}" />
+                                            </Viewbox>
+
+                                            <Grid Margin="5">
+                                                <TextBlock Style="{StaticResource code_textblock_style}" Text="{Binding CodeKey}" />
+                                            </Grid>
+
+                                        </Grid>
+
                                     </Border>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
@@ -258,9 +295,16 @@
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
                                     <Border Style="{StaticResource zigen_border_style}">
-                                        <Viewbox>
-                                            <TextBlock Style="{StaticResource zigen_textblock_style}" Text="{Binding SpellingKey}" />
-                                        </Viewbox>
+                                        <Grid>
+                                            <Viewbox>
+                                                <TextBlock Style="{StaticResource spell_icon_style}" />
+                                            </Viewbox>
+
+                                            <Viewbox Margin="5">
+                                                <TextBlock Style="{StaticResource zigen_textblock_style}" Text="{Binding SpellingKey}" />
+                                            </Viewbox>
+                                        </Grid>
+
                                     </Border>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
@@ -276,7 +320,17 @@
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
                                     <Border Style="{StaticResource code_border_style}">
-                                        <TextBlock Style="{StaticResource code_textblock_style}" Text="{Binding CodeKey}" />
+                                        <Grid>
+                                            <Viewbox Margin="-5,-15" Stretch="Fill">
+                                                <TextBlock Style="{StaticResource code_icon_style}" />
+                                            </Viewbox>
+
+                                            <Grid Margin="5">
+                                                <TextBlock Style="{StaticResource code_textblock_style}" Text="{Binding CodeKey}" />
+                                            </Grid>
+
+                                        </Grid>
+
                                     </Border>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
