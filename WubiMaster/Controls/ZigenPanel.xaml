@@ -115,7 +115,6 @@
                                        Foreground="{DynamicResource bg-100}"
                                        Text="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=TypeText}" />
                         </Grid>
-
                     </Border>
 
                     <Border Grid.Column="1"
@@ -183,7 +182,6 @@
                                                 <TextBlock Style="{StaticResource zigen_textblock_style}" Text="{Binding SpellingKey}" />
                                             </Viewbox>
                                         </Grid>
-
                                     </Border>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
@@ -207,10 +205,7 @@
                                             <Grid Margin="5">
                                                 <TextBlock Style="{StaticResource code_textblock_style}" Text="{Binding CodeKey}" />
                                             </Grid>
-
                                         </Grid>
-
-
                                     </Border>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
@@ -254,7 +249,6 @@
                                                 <TextBlock Style="{StaticResource zigen_textblock_style}" Text="{Binding SpellingKey}" />
                                             </Viewbox>
                                         </Grid>
-
                                     </Border>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
@@ -278,9 +272,7 @@
                                             <Grid Margin="5">
                                                 <TextBlock Style="{StaticResource code_textblock_style}" Text="{Binding CodeKey}" />
                                             </Grid>
-
                                         </Grid>
-
                                     </Border>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
@@ -324,7 +316,6 @@
                                                 <TextBlock Style="{StaticResource zigen_textblock_style}" Text="{Binding SpellingKey}" />
                                             </Viewbox>
                                         </Grid>
-
                                     </Border>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
@@ -348,9 +339,7 @@
                                             <Grid Margin="5">
                                                 <TextBlock Style="{StaticResource code_textblock_style}" Text="{Binding CodeKey}" />
                                             </Grid>
-
                                         </Grid>
-
                                     </Border>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>

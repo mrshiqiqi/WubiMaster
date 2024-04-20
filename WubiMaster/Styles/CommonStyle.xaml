@@ -9,4 +9,12 @@
     <Style BasedOn="{StaticResource ScrollViewerStyle}" TargetType="ScrollViewer" />
     <Style BasedOn="{StaticResource ToolTipStyle}" TargetType="ToolTip" />
     <Style BasedOn="{StaticResource RadioButtonStyle}" TargetType="RadioButton" />
+    <Style TargetType="Control">
+        <Setter Property="IsTabStop" Value="True" />
+    </Style>
+
+    <DropShadowEffect x:Key="CommonEffect"
+                      BlurRadius="3"
+                      Direction="-45"
+                      ShadowDepth="2" />
 </ResourceDictionary>
