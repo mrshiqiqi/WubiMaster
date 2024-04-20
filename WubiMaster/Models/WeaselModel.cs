@@ -52,6 +52,8 @@ namespace WubiMaster.Models
     {
         public string click_to_capture { get; set; }
         public string color_scheme { get; set; }
+        public string comment_font_face { get; set; }
+        public string comment_font_point { get; set; }
         public string display_tray_icon { get; set; }
         public string enable_mouse { get; set; }
         public string font_face { get; set; }
@@ -59,6 +61,8 @@ namespace WubiMaster.Models
         public string fullscreen { get; set; }
         public string horizontal { get; set; }
         public string inline_preedit { get; set; }
+        public string label_font_face { get; set; }
+        public string label_font_point { get; set; }
         public string label_format { get; set; }
         public WeaselLayout layout { get; set; }
         public string preedit_type { get; set; }

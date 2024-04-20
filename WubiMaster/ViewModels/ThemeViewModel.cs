@@ -166,7 +166,6 @@ namespace WubiMaster.ViewModels
             try
             {
                 WeaselCustomDetails.patch.style.color_scheme = WeaselDetails.preset_color_schemes.Keys.ToList()[ColorIndex];
-                WeaselCustomDetails.customization.modified_time = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff");
                 YamlHelper.WriteYaml(WeaselCustomDetails, weaselCustomPath);
             }
             catch (Exception ex)

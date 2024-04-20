@@ -60,8 +60,8 @@ namespace WubiMaster.Common
             YamlHeaderStr.Append("# Rime settings\n");
             YamlHeaderStr.Append("# encoding: utf-8\n");
             YamlHeaderStr.Append("# author: 空山明月\n");
-            YamlHeaderStr.Append("# by: 中书君\n");
-            YamlHeaderStr.Append("# update: " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff") + "\n");
+            YamlHeaderStr.Append("# modify: 中书君\n");
+            YamlHeaderStr.Append("# time: " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff") + "\n");
 
             string[] yamlText = File.ReadAllLines(filePath);
             List<string> _list = yamlText.ToList();
