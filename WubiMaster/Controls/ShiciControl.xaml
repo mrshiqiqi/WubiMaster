@@ -67,12 +67,12 @@
                        RenderOptions.BitmapScalingMode="HighQuality"
                        SnapsToDevicePixels="True"
                        Source="{Binding ElementName=shici_control, Path=ShiciImage}">
-                    <Image.Effect>
+                    <!--<Image.Effect>
                         <DropShadowEffect BlurRadius="20"
                                           Direction="0"
                                           ShadowDepth="0"
                                           Color="White" />
-                    </Image.Effect>
+                    </Image.Effect>-->
                 </Image>
             </Grid>
 
