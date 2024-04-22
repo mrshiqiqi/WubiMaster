@@ -18,7 +18,8 @@
         <Border Background="{Binding ElementName=color_scheme_control, Path=BackColor}"
                 BorderBrush="{Binding ElementName=color_scheme_control, Path=BorderColor}"
                 BorderThickness="{Binding ElementName=color_scheme_control, Path=BorderWidth}"
-                CornerRadius="{Binding ElementName=color_scheme_control, Path=CornerRadius}">
+                CornerRadius="{Binding ElementName=color_scheme_control, Path=CornerRadius}"
+                TextBlock.Foreground="{Binding ElementName=color_scheme_control, Path=TextColor}">
             <Grid Margin="10,8"
                   TextBlock.FontSize="16"
                   TextBlock.Foreground="{Binding ElementName=color_scheme_control, Path=CandidateTextColor}">

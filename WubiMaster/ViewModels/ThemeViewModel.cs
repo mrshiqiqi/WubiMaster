@@ -1,26 +1,12 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using Newtonsoft.Json;
+using CommunityToolkit.Mvvm.Messaging;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.Runtime.Serialization;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows;
+using System.Windows.Media;
 using WubiMaster.Common;
 using WubiMaster.Models;
-using YamlDotNet.Core;
-using YamlDotNet.Serialization;
-using YamlDotNet.Serialization.NamingConventions;
-using System.Runtime.InteropServices;
-using System.ComponentModel.DataAnnotations;
-using System.Windows.Forms.VisualStyles;
-using System.Windows.Media;
-using CommunityToolkit.Mvvm.Messaging;
 
 namespace WubiMaster.ViewModels
 {
@@ -61,14 +47,31 @@ namespace WubiMaster.ViewModels
                 if (colorScheme == null) throw new NullReferenceException($"找不到皮肤对象: {obj.ToString()}");
 
                 CurrentSchmemeMd ??= new ColorSchemeModel();
-                CurrentSchmemeMd.BackColor = new SolidColorBrush(ColorConvter(colorScheme.back_color));
-                CurrentSchmemeMd.BorderColor = new SolidColorBrush(ColorConvter(colorScheme.border_color));
-                CurrentSchmemeMd.HilitedBackColor = new SolidColorBrush(ColorConvter(string.IsNullOrEmpty(colorScheme.hilited_back_color) ? colorScheme.back_color : colorScheme.hilited_back_color));
-                CurrentSchmemeMd.HilitedCandidateBackColor = new SolidColorBrush(ColorConvter(colorScheme.hilited_candidate_back_color));
-                CurrentSchmemeMd.CandidateTextColor = new SolidColorBrush(ColorConvter(string.IsNullOrEmpty(colorScheme.candidate_text_color) ? colorScheme.text_color : colorScheme.candidate_text_color));
-                CurrentSchmemeMd.HilitedCandidateTextColor = new SolidColorBrush(ColorConvter(colorScheme.hilited_candidate_text_color));
-                CurrentSchmemeMd.HilitedLabelColor = new SolidColorBrush(ColorConvter(string.IsNullOrEmpty(colorScheme.hilited_label_color) ? colorScheme.hilited_candidate_text_color : colorScheme.hilited_label_color));
+                CurrentSchmemeMd.TextColor = BrushConvter(colorScheme.text_color, colorFormat: colorScheme.color_format);  // 默认字体颜色
                 Console.WriteLine();
+                //CurrentSchmemeMd.BackColor = new SolidColorBrush(ColorConvter(colorScheme.back_color));
+                //CurrentSchmemeMd.BorderColor = new SolidColorBrush(ColorConvter(colorScheme.border_color));
+                //CurrentSchmemeMd.HilitedBackColor = new SolidColorBrush(ColorConvter(string.IsNullOrEmpty(colorScheme.hilited_back_color) ? colorScheme.back_color : colorScheme.hilited_back_color));
+                //CurrentSchmemeMd.HilitedCandidateBackColor = new SolidColorBrush(ColorConvter(colorScheme.hilited_candidate_back_color));
+                //CurrentSchmemeMd.CandidateTextColor = new SolidColorBrush(ColorConvter(string.IsNullOrEmpty(colorScheme.candidate_text_color) ? colorScheme.text_color : colorScheme.candidate_text_color));
+                //CurrentSchmemeMd.HilitedCandidateTextColor = new SolidColorBrush(ColorConvter(colorScheme.hilited_candidate_text_color));
+                //CurrentSchmemeMd.HilitedLabelColor = new SolidColorBrush(ColorConvter(string.IsNullOrEmpty(colorScheme.hilited_label_color) ? colorScheme.hilited_candidate_text_color : colorScheme.hilited_label_color));
+
+
+                /**
+                 * 用小狼毫打字
+                 * 现在用小狼毫慢点打字：可以看到有时候窗口看不到，跟不上手
+                 * 再快点打字的时候基本看不窗口的出现
+                 * 
+                 * 用搜狗打字
+                 * 再在用搜狗慢点打字：可以看到窗口一直能出现，也能跟得上手
+                 * 现点打字的时候，也能跟得上手，窗口也是一直有的
+                 * 
+                 * 在关掉阴影效果等的情况下测试，还是不理想
+                 * **/
+                
+
+
             }
             catch (Exception ex)
             {
@@ -98,15 +101,52 @@ namespace WubiMaster.ViewModels
             this.ShowMessage("应用成功，部署生效", DialogType.Success);
         }
 
-        private static Color ColorConvter(string colorTxt)
+        private Brush BrushConvter(string colorTxt, string defaultColor = "0x000000", string colorFormat = "abgr")
         {
-            if (string.IsNullOrEmpty(colorTxt))
-                colorTxt = "0x000000";
-            string _color = colorTxt.Substring(2, colorTxt.Length - 2);
-            var _cArray = _color.ToArray();
-            string _the_color = $"#{_cArray[4]}{_cArray[5]}{_cArray[2]}{_cArray[3]}{_cArray[0]}{_cArray[1]}";
-            Color back_color = (Color)ColorConverter.ConvertFromString(_the_color);
-            return back_color;
+            Color targetColor = ColorConvter(colorTxt, defaultColor, colorFormat);
+            SolidColorBrush targetBrush = new SolidColorBrush(targetColor);
+            return targetBrush;
+        }
+
+        private Color ColorConvter(string colorTxt, string defaultColor = "0x000000", string colorFormat = "abgr")
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(colorTxt))
+                    colorTxt = defaultColor;
+
+                string colorStr = "";
+                Color targetColor = Colors.Black;
+                string _color = colorTxt.Substring(2, colorTxt.Length - 2);
+                if (_color.Length <= 6) _color = "FF" + _color;
+                var _cArray = _color.ToArray();
+
+                switch (colorFormat)
+                {
+                    case "argb":
+                        colorStr = "#" + _cArray.ToString();
+                        targetColor = (Color)ColorConverter.ConvertFromString(colorStr);
+                        break;
+
+                    case "rgba":
+                        colorStr = "#" + $"{_cArray[6]}{_cArray[7]}{_cArray[0]}{_cArray[1]}{_cArray[2]}{_cArray[3]}{_cArray[4]}{_cArray[5]}";
+                        targetColor = (Color)ColorConverter.ConvertFromString(colorStr);
+                        break;
+
+                    default:
+                        // 默认是 abgr
+                        colorStr = "#" + $"{_cArray[0]}{_cArray[1]}{_cArray[6]}{_cArray[7]}{_cArray[4]}{_cArray[5]}{_cArray[2]}{_cArray[3]}";
+                        targetColor = (Color)ColorConverter.ConvertFromString(colorStr);
+                        break;
+                }
+
+                return targetColor;
+            }
+            catch (Exception ex)
+            {
+                LogHelper.Error(ex.ToString());
+                return Colors.Black;
+            }
         }
 
         private void ChangeColorScheme(object recipient, string message)

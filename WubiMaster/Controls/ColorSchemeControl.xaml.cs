@@ -91,7 +91,12 @@ namespace WubiMaster.Controls
                             DependencyProperty.Register("ShadowColor", typeof(string), typeof(ColorSchemeControl));
 
         public static readonly DependencyProperty TextColorProperty =
-                                    DependencyProperty.Register("TextColor", typeof(string), typeof(ColorSchemeControl));
+                                    DependencyProperty.Register("TextColor", typeof(string), typeof(ColorSchemeControl), new PropertyMetadata( new PropertyChangedCallback(OnTextColorPropertyChanged)));
+
+        private static void OnTextColorPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            ColorSchemeControl control = (ColorSchemeControl)d;
+        }
 
         public ColorSchemeControl()
         {

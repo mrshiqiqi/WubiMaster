@@ -45,5 +45,8 @@ namespace WubiMaster.Models
 
         [ObservableProperty]
         private Brush labelColor;
+
+        [ObservableProperty]
+        private Brush textColor;
     }
 }

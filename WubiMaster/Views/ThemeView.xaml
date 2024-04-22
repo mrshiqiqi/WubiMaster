@@ -44,6 +44,7 @@
 
                             <StackPanel VerticalAlignment="Center">
                                 <c:ColorSchemeControl Width="250"
+                                                      TextColor="{}"
                                                       Height="Auto"
                                                       BackColor="{Binding CurrentSchmemeMd.BackColor, Mode=TwoWay}"
                                                       BorderColor="{Binding CurrentSchmemeMd.BorderColor, Mode=TwoWay}"
