@@ -47,14 +47,11 @@
                                                       Height="Auto"
                                                       BackColor="{Binding CurrentSchmemeMd.BackColor, Mode=TwoWay}"
                                                       BorderColor="{Binding CurrentSchmemeMd.BorderColor, Mode=TwoWay}"
-                                                      BorderCornerRadius="10"
-                                                      BorderWidth="2"
                                                       CandidateTextColor="{Binding CurrentSchmemeMd.CandidateTextColor, Mode=TwoWay}"
                                                       HilitedBackColor="{Binding CurrentSchmemeMd.HilitedBackColor, Mode=TwoWay}"
                                                       HilitedCandidateBackColor="{Binding CurrentSchmemeMd.HilitedCandidateBackColor, Mode=TwoWay}"
                                                       HilitedCandidateTextColor="{Binding CurrentSchmemeMd.HilitedCandidateTextColor, Mode=TwoWay}"
-                                                      HilitedLabelColor="{Binding CurrentSchmemeMd.HilitedLabelColor, Mode=TwoWay}"
-                                                      StyleOrientation="Vertical" />
+                                                      HilitedLabelColor="{Binding CurrentSchmemeMd.HilitedLabelColor, Mode=TwoWay}" />
                             </StackPanel>
                         </Grid>
 

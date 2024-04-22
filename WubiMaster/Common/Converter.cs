@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Data;
 
 namespace WubiMaster.Common
@@ -74,6 +75,29 @@ namespace WubiMaster.Common
             if (value == null) return Visibility.Collapsed;
             if (value.ToString() == parameter.ToString() || value.ToString() == "全部") return Visibility.Visible;
             return Visibility.Collapsed;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return value;
+        }
+    }
+
+    public class Bool2Orientation : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            try
+            {
+                if (value == null) return Orientation.Horizontal;
+                bool _value = (bool)value;
+                return _value ? Orientation.Horizontal : Orientation.Vertical;
+            }
+            catch (Exception)
+            {
+                return Orientation.Horizontal;
+            }
+            
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

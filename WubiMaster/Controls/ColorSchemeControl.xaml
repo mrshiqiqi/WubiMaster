@@ -1,6 +1,7 @@
 ﻿<UserControl x:Class="WubiMaster.Controls.ColorSchemeControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:com="clr-namespace:WubiMaster.Common"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:WubiMaster.Controls"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -8,11 +9,16 @@
              d:Background="{DynamicResource bg-100}"
              d:DesignWidth="400"
              mc:Ignorable="d">
+
+    <UserControl.Resources>
+        <com:Bool2Orientation x:Key="Bool2Orientation" />
+    </UserControl.Resources>
+
     <Grid>
         <Border Background="{Binding ElementName=color_scheme_control, Path=BackColor}"
                 BorderBrush="{Binding ElementName=color_scheme_control, Path=BorderColor}"
                 BorderThickness="{Binding ElementName=color_scheme_control, Path=BorderWidth}"
-                CornerRadius="{Binding ElementName=color_scheme_control, Path=BorderCornerRadius}">
+                CornerRadius="{Binding ElementName=color_scheme_control, Path=CornerRadius}">
             <Grid Margin="10,8"
                   TextBlock.FontSize="16"
                   TextBlock.Foreground="{Binding ElementName=color_scheme_control, Path=CandidateTextColor}">
@@ -32,7 +38,7 @@
 
                 <StackPanel Grid.Row="1"
                             Margin="0,5"
-                            Orientation="{Binding ElementName=color_scheme_control, Path=StyleOrientation}">
+                            Orientation="{Binding ElementName=color_scheme_control, Path=Horizontal, Converter={StaticResource Bool2Orientation}}">
 
                     <Border Height="30"
                             Padding="5,0"
