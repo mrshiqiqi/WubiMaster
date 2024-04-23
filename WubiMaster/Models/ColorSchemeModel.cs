@@ -44,7 +44,7 @@ namespace WubiMaster.Models
         //private Brush hilitedTextColor;
 
         //[ObservableProperty]
-        //private Brush labelColor;
+        //private Brush LabelColor;
 
         //[ObservableProperty]
         //private Brush textColor;
