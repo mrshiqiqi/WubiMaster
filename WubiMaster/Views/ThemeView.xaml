@@ -50,7 +50,7 @@
                             <StackPanel VerticalAlignment="Center">
                                 <c:ColorSchemeControl HorizontalAlignment="Center"
                                                       VerticalAlignment="Center"
-                                                      ColorModel="{Binding CurrentColor}" />
+                                                      ColorModel="{Binding CurrentColor, Mode=TwoWay}" />
                             </StackPanel>
                         </Grid>
 

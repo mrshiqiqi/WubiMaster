@@ -43,10 +43,11 @@ namespace WubiMaster.ViewModels
 
             try
             {
-                CurrentColor ??= new ColorSchemeModel();
-                CurrentColor.Style = WeaselCustomDetails.patch.style;
-                CurrentColor.UsedColor = weaselDetails.preset_color_schemes[obj.ToString()];
-                if (CurrentColor.UsedColor == null) throw new NullReferenceException($"找不到皮肤对象: {obj.ToString()}");
+                ColorSchemeModel _colorModel = new ColorSchemeModel();
+                _colorModel.Style = WeaselCustomDetails.patch.style;
+                _colorModel.UsedColor = weaselDetails.preset_color_schemes[obj.ToString()];
+                if (_colorModel.UsedColor == null) throw new NullReferenceException($"找不到皮肤对象: {obj.ToString()}");
+                CurrentColor = _colorModel;
             }
             catch (Exception ex)
             {
