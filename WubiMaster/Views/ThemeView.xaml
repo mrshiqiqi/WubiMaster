@@ -48,8 +48,8 @@
                             </Border>
 
                             <StackPanel VerticalAlignment="Center">
-                                <c:ColorSchemeControl Width="250"
-                                                      Height="Auto"
+                                <c:ColorSchemeControl HorizontalAlignment="Center"
+                                                      VerticalAlignment="Center"
                                                       ColorModel="{Binding CurrentColor}" />
                             </StackPanel>
                         </Grid>

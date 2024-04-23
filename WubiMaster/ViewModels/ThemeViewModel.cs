@@ -50,7 +50,7 @@ namespace WubiMaster.ViewModels
                 CurrentColor.UsedColor = weaselDetails.preset_color_schemes[obj.ToString()];
                 if (CurrentColor.UsedColor == null) throw new NullReferenceException($"找不到皮肤对象: {obj.ToString()}");
 
-                ColorScheme colorScheme = weaselDetails.preset_color_schemes[obj.ToString()];
+                //ColorScheme colorScheme = weaselDetails.preset_color_schemes[obj.ToString()];
                 
                 //CurrentSchmemeMd.BackColor = new SolidColorBrush(ColorConvter(colorScheme.back_color));
                 //CurrentSchmemeMd.BorderColor = new SolidColorBrush(ColorConvter(colorScheme.border_color));

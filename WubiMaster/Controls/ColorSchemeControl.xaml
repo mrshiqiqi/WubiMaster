@@ -7,29 +7,31 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              x:Name="color_scheme_control"
              d:Background="{DynamicResource bg-100}"
-             d:DesignWidth="400"
              mc:Ignorable="d">
 
     <UserControl.Resources>
         <com:Bool2Orientation x:Key="Bool2Orientation" />
     </UserControl.Resources>
 
-    <Grid>
+    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
         <Border Background="{Binding ElementName=color_scheme_control, Path=BackColor}"
                 BorderBrush="{Binding ElementName=color_scheme_control, Path=BorderColor}"
                 BorderThickness="{Binding ElementName=color_scheme_control, Path=BorderWidth}"
-                CornerRadius="{Binding ElementName=color_scheme_control, Path=CornerRadius}"
-                TextBlock.Foreground="{Binding ElementName=color_scheme_control, Path=TextColor}">
+                CornerRadius="{Binding ElementName=color_scheme_control, Path=CornerRadius}">
+
             <Grid Margin="10,8"
-                  TextBlock.FontSize="16"
-                  TextBlock.Foreground="{Binding ElementName=color_scheme_control, Path=CandidateTextColor}">
+                  TextBlock.FontFamily="{Binding ElementName=color_scheme_control, Path=FontFace}"
+                  TextBlock.FontSize="{Binding ElementName=color_scheme_control, Path=FontPoint}"
+                  TextBlock.Foreground="{Binding ElementName=color_scheme_control, Path=TextColor}">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition />
                 </Grid.RowDefinitions>
 
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock VerticalAlignment="Center" Text="中书君" Foreground="{Binding ElementName=color_scheme_control,Path=TextColor}"/>
+                    <TextBlock VerticalAlignment="Center"
+                               Foreground="{Binding ElementName=color_scheme_control, Path=TextColor}"
+                               Text="中书君" />
                     <Border Margin="3,0,0,0"
                             Background="{Binding ElementName=color_scheme_control, Path=HilitedBackColor}"
                             CornerRadius="5">
@@ -44,7 +46,11 @@
                     <Border Height="30"
                             Padding="5,0"
                             Background="{Binding ElementName=color_scheme_control, Path=HilitedCandidateBackColor}"
-                            CornerRadius="8">
+                            BorderBrush="{Binding ElementName=color_scheme_control, Path=HilitedCandidateBorderColor}"
+                            BorderThickness="{Binding ElementName=color_scheme_control, Path=BorderWidth}"
+                            CornerRadius="{Binding ElementName=color_scheme_control, Path=RoundCorner}"
+                            SnapsToDevicePixels="True"
+                            UseLayoutRounding="True">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="15" />
@@ -53,6 +59,8 @@
                             </Grid.ColumnDefinitions>
 
                             <TextBlock VerticalAlignment="Center"
+                                       FontFamily="{Binding ElementName=color_scheme_control, Path=LabelFontFace}"
+                                       FontSize="{Binding ElementName=color_scheme_control, Path=LabelFontPoint}"
                                        Foreground="{Binding ElementName=color_scheme_control, Path=HilitedLabelColor}"
                                        Text="1." />
                             <TextBlock Grid.Column="1"
@@ -61,7 +69,8 @@
                                        Text="中书君" />
                             <TextBlock Grid.Column="2"
                                        VerticalAlignment="Center"
-                                       FontFamily="../Fonts/#黑体字根"
+                                       FontFamily="{Binding ElementName=color_scheme_control, Path=CommentFontFace}"
+                                       FontSize="{Binding ElementName=color_scheme_control, Path=CommentFontPoint}"
                                        Foreground="{Binding ElementName=color_scheme_control, Path=HilitedCandidateTextColor}"
                                        Text="〔  〕" />
                         </Grid>
@@ -77,13 +86,17 @@
                                 <ColumnDefinition />
                             </Grid.ColumnDefinitions>
 
-                            <TextBlock VerticalAlignment="Center" Text="2." />
+                            <TextBlock VerticalAlignment="Center"
+                                       FontFamily="{Binding ElementName=color_scheme_control, Path=LabelFontFace}"
+                                       FontSize="{Binding ElementName=color_scheme_control, Path=LabelFontPoint}"
+                                       Text="2." />
                             <TextBlock Grid.Column="1"
                                        VerticalAlignment="Center"
                                        Text="五笔" />
                             <TextBlock Grid.Column="2"
                                        VerticalAlignment="Center"
-                                       FontFamily="../Fonts/#黑体字根"
+                                       FontFamily="{Binding ElementName=color_scheme_control, Path=CommentFontFace}"
+                                       FontSize="{Binding ElementName=color_scheme_control, Path=CommentFontPoint}"
                                        Foreground="{Binding ElementName=color_scheme_control, Path=CandidateTextColor}"
                                        Text="〔  〕" />
                         </Grid>
@@ -99,13 +112,17 @@
                                 <ColumnDefinition />
                             </Grid.ColumnDefinitions>
 
-                            <TextBlock VerticalAlignment="Center" Text="3." />
+                            <TextBlock VerticalAlignment="Center"
+                                       FontFamily="{Binding ElementName=color_scheme_control, Path=LabelFontFace}"
+                                       FontSize="{Binding ElementName=color_scheme_control, Path=LabelFontPoint}"
+                                       Text="3." />
                             <TextBlock Grid.Column="1"
                                        VerticalAlignment="Center"
                                        Text="空山明月" />
                             <TextBlock Grid.Column="2"
                                        VerticalAlignment="Center"
-                                       FontFamily="../Fonts/#黑体字根"
+                                       FontFamily="{Binding ElementName=color_scheme_control, Path=CommentFontFace}"
+                                       FontSize="{Binding ElementName=color_scheme_control, Path=CommentFontPoint}"
                                        Foreground="{Binding ElementName=color_scheme_control, Path=CandidateTextColor}"
                                        Text="〔  〕" />
                         </Grid>

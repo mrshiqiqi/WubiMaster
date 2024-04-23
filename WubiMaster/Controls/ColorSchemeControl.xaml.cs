@@ -24,10 +24,10 @@ namespace WubiMaster.Controls
             DependencyProperty.Register("Author", typeof(string), typeof(ColorSchemeControl));
 
         public static readonly DependencyProperty BackColorProperty =
-            DependencyProperty.Register("BackColor", typeof(string), typeof(ColorSchemeControl));
+            DependencyProperty.Register("BackColor", typeof(Brush), typeof(ColorSchemeControl));
 
         public static readonly DependencyProperty BorderColorProperty =
-            DependencyProperty.Register("BorderColor", typeof(string), typeof(ColorSchemeControl));
+            DependencyProperty.Register("BorderColor", typeof(Brush), typeof(ColorSchemeControl));
 
         public static readonly DependencyProperty CandidateBackColorProperty =
             DependencyProperty.Register("CandidateBackColor", typeof(string), typeof(ColorSchemeControl));
@@ -54,16 +54,16 @@ namespace WubiMaster.Controls
             DependencyProperty.Register("HilitedBackColor", typeof(string), typeof(ColorSchemeControl));
 
         public static readonly DependencyProperty HilitedCandidateBackColorProperty =
-            DependencyProperty.Register("HilitedCandidateBackColor", typeof(string), typeof(ColorSchemeControl));
+            DependencyProperty.Register("HilitedCandidateBackColor", typeof(Brush), typeof(ColorSchemeControl));
 
         public static readonly DependencyProperty HilitedCandidateBorderColorProperty =
-            DependencyProperty.Register("HilitedCandidateBorderColor", typeof(string), typeof(ColorSchemeControl));
+            DependencyProperty.Register("HilitedCandidateBorderColor", typeof(Brush), typeof(ColorSchemeControl));
 
         public static readonly DependencyProperty HilitedCandidateShadowColorProperty =
                     DependencyProperty.Register("HilitedCandidateShadowColor", typeof(string), typeof(ColorSchemeControl));
 
         public static readonly DependencyProperty HilitedCandidateTextColorProperty =
-                            DependencyProperty.Register("HilitedCandidateTextColor", typeof(string), typeof(ColorSchemeControl));
+                            DependencyProperty.Register("HilitedCandidateTextColor", typeof(Brush), typeof(ColorSchemeControl));
 
         public static readonly DependencyProperty HilitedCommentTextColorProperty =
             DependencyProperty.Register("HilitedCommentTextColor", typeof(string), typeof(ColorSchemeControl));
@@ -110,18 +110,18 @@ namespace WubiMaster.Controls
         /// <summary>
         /// 候选窗背景色
         /// </summary>
-        public string BackColor
+        public Brush BackColor
         {
-            get { return (string)GetValue(BackColorProperty); }
+            get { return (Brush)GetValue(BackColorProperty); }
             set { SetValue(BackColorProperty, value); }
         }
 
         /// <summary>
         /// 候选窗边框颜色
         /// </summary>
-        public string BorderColor
+        public Brush BorderColor
         {
-            get { return (string)GetValue(BorderColorProperty); }
+            get { return (Brush)GetValue(BorderColorProperty); }
             set { SetValue(BorderColorProperty, value); }
         }
 
@@ -200,18 +200,18 @@ namespace WubiMaster.Controls
         /// <summary>
         /// 高亮候选背景颜色
         /// </summary>
-        public string HilitedCandidateBackColor
+        public Brush HilitedCandidateBackColor
         {
-            get { return (string)GetValue(HilitedCandidateBackColorProperty); }
+            get { return (Brush)GetValue(HilitedCandidateBackColorProperty); }
             set { SetValue(HilitedCandidateBackColorProperty, value); }
         }
 
         /// <summary>
         /// 高亮候选边框颜色
         /// </summary>
-        public string HilitedCandidateBorderColor
+        public Brush HilitedCandidateBorderColor
         {
-            get { return (string)GetValue(HilitedCandidateBorderColorProperty); }
+            get { return (Brush)GetValue(HilitedCandidateBorderColorProperty); }
             set { SetValue(HilitedCandidateBorderColorProperty, value); }
         }
 
@@ -227,9 +227,9 @@ namespace WubiMaster.Controls
         /// <summary>
         /// 高亮候选文字颜色
         /// </summary>
-        public string HilitedCandidateTextColor
+        public Brush HilitedCandidateTextColor
         {
-            get { return (string)GetValue(HilitedCandidateTextColorProperty); }
+            get { return (Brush)GetValue(HilitedCandidateTextColorProperty); }
             set { SetValue(HilitedCandidateTextColorProperty, value); }
         }
 
@@ -588,41 +588,41 @@ namespace WubiMaster.Controls
         /// <summary>
         /// 全局字体
         /// </summary>
-        public string FontFace
+        public FontFamily FontFace
         {
-            get { return (string)GetValue(FontFaceProperty); }
+            get { return (FontFamily)GetValue(FontFaceProperty); }
             set { SetValue(FontFaceProperty, value); }
         }
 
         public static readonly DependencyProperty FontFaceProperty =
-            DependencyProperty.Register("FontFace", typeof(string), typeof(ColorSchemeControl));
+            DependencyProperty.Register("FontFace", typeof(FontFamily), typeof(ColorSchemeControl));
 
 
 
         /// <summary>
         /// 标签字体
         /// </summary>
-        public string LabelFontFace
+        public FontFamily LabelFontFace
         {
-            get { return (string)GetValue(LabelFontFaceProperty); }
+            get { return (FontFamily)GetValue(LabelFontFaceProperty); }
             set { SetValue(LabelFontFaceProperty, value); }
         }
 
         public static readonly DependencyProperty LabelFontFaceProperty =
-            DependencyProperty.Register("LabelFontFace", typeof(string), typeof(ColorSchemeControl));
+            DependencyProperty.Register("LabelFontFace", typeof(FontFamily), typeof(ColorSchemeControl));
 
 
         /// <summary>
         ///  注释字体
         /// </summary>
-        public string CommentFontFace
+        public FontFamily CommentFontFace
         {
-            get { return (string)GetValue(CommentFontFaceProperty); }
+            get { return (FontFamily)GetValue(CommentFontFaceProperty); }
             set { SetValue(CommentFontFaceProperty, value); }
         }
 
         public static readonly DependencyProperty CommentFontFaceProperty =
-            DependencyProperty.Register("CommentFontFace", typeof(string), typeof(ColorSchemeControl));
+            DependencyProperty.Register("CommentFontFace", typeof(FontFamily), typeof(ColorSchemeControl));
 
 
         /// <summary>
@@ -858,7 +858,7 @@ namespace WubiMaster.Controls
         }
 
         public static readonly DependencyProperty AntialiasModeProperty =
-            DependencyProperty.Register("AntialiasMode", typeof(string), typeof(ColorSchemeControl), new  PropertyMetadata("default"));
+            DependencyProperty.Register("AntialiasMode", typeof(string), typeof(ColorSchemeControl), new PropertyMetadata("default"));
 
 
 
@@ -906,7 +906,7 @@ namespace WubiMaster.Controls
         /// <summary>
         /// 外观Model
         /// </summary>
-        public ColorSchemeModel ColorModel    
+        public ColorSchemeModel ColorModel
         {
             get { return (ColorSchemeModel)GetValue(ColorModelProperty); }
             set { SetValue(ColorModelProperty, value); }
@@ -917,20 +917,49 @@ namespace WubiMaster.Controls
 
         private static void OnColorChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            ColorSchemeControl control = (ColorSchemeControl)d;
-            control.ColorModel = e.NewValue as ColorSchemeModel;
-            control.TextColor = control.BrushConvter(control.ColorModel.UsedColor.text_color,colorFormat:control.ColorModel.UsedColor.color_format);
+            ColorSchemeControl c = (ColorSchemeControl)d;
+            c.ColorModel = e.NewValue as ColorSchemeModel;
+
+            ColorStyle styleModel = c.ColorModel.Style;
+            ColorScheme schemeModel = c.ColorModel.UsedColor;
+            string color_format = schemeModel.color_format;
+
+            // 公共
+            c.TextColor = c.BrushConvter(schemeModel.text_color, colorFormat: color_format);
+            c.FontPoint = double.Parse(styleModel.font_point);
+            c.LabelFontPoint = string.IsNullOrEmpty(styleModel.label_font_point) ? c.FontPoint : double.Parse(styleModel.label_font_point);
+            c.CommentFontPoint = string.IsNullOrEmpty(styleModel.comment_font_point) ? c.FontPoint : double.Parse(styleModel.comment_font_point);
+            c.FontFace = new FontFamily(styleModel.font_face);
+            c.LabelFontFace = string.IsNullOrEmpty(styleModel.label_font_face) ? c.FontFace : new FontFamily(styleModel.label_font_face);
+            c.CommentFontFace = string.IsNullOrEmpty(styleModel.comment_font_face) ? c.FontFace : new FontFamily(styleModel.comment_font_face);
+
+            // 边框
+            c.BackColor = c.BrushConvter(schemeModel.back_color, colorFormat: color_format);
+            c.BorderColor = c.BrushConvter(schemeModel.border_color, colorFormat: color_format);
+            c.BorderWidth = double.Parse(styleModel.layout.border_width);
+            c.CornerRadius = double.Parse(styleModel.layout.corner_radius);
+
+            // 候选
+            c.HilitedCandidateBackColor = c.BrushConvter(schemeModel.hilited_candidate_back_color, schemeModel.back_color, colorFormat: color_format);
+            c.HilitedCandidateTextColor = c.BrushConvter(schemeModel.hilited_candidate_text_color, schemeModel.text_color, colorFormat: color_format);
+            c.HilitedCandidateBorderColor = c.BrushConvter(schemeModel.hilited_candidate_border_color, schemeModel.hilited_candidate_back_color, colorFormat: color_format);
+            c.RoundCorner = c.CornerRadius;
+
+            // 阴影
+
+            //c.BorderWidth = double.Parse(styleModel.layout.border_width);
+
             Console.WriteLine();
         }
 
-        private Brush BrushConvter(string colorTxt, string defaultColor = "0x000000", string colorFormat = "abgr")
+        private Brush BrushConvter(string colorTxt, string defaultColor = "0x00000000", string colorFormat = "abgr")
         {
             Color targetColor = ColorConvter(colorTxt, defaultColor, colorFormat);
             SolidColorBrush targetBrush = new SolidColorBrush(targetColor);
             return targetBrush;
         }
 
-        private Color ColorConvter(string colorTxt, string defaultColor = "0x000000", string colorFormat = "abgr")
+        private Color ColorConvter(string colorTxt, string defaultColor = "0x00000000", string colorFormat = "abgr")
         {
             try
             {
