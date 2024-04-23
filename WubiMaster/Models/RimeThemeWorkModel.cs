@@ -8,6 +8,6 @@ namespace WubiMaster.Models
 {
     public class RimeThemeWorkModel
     {
-        public WeaselModel ThemeDetail { get; set; }
+        public ColorModel ThemeDetail { get; set; }
     }
 }

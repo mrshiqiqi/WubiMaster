@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:c="clr-namespace:WubiMaster.Controls"
+             xmlns:com="clr-namespace:WubiMaster.Common"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:WubiMaster.Views"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -15,6 +16,10 @@
     <UserControl.DataContext>
         <vm:ThemeViewModel />
     </UserControl.DataContext>
+
+    <UserControl.Resources>
+        <com:Str2Brush x:Key="Str2Brush" />
+    </UserControl.Resources>
 
     <Grid>
 
@@ -44,15 +49,8 @@
 
                             <StackPanel VerticalAlignment="Center">
                                 <c:ColorSchemeControl Width="250"
-                                                      TextColor="{}"
                                                       Height="Auto"
-                                                      BackColor="{Binding CurrentSchmemeMd.BackColor, Mode=TwoWay}"
-                                                      BorderColor="{Binding CurrentSchmemeMd.BorderColor, Mode=TwoWay}"
-                                                      CandidateTextColor="{Binding CurrentSchmemeMd.CandidateTextColor, Mode=TwoWay}"
-                                                      HilitedBackColor="{Binding CurrentSchmemeMd.HilitedBackColor, Mode=TwoWay}"
-                                                      HilitedCandidateBackColor="{Binding CurrentSchmemeMd.HilitedCandidateBackColor, Mode=TwoWay}"
-                                                      HilitedCandidateTextColor="{Binding CurrentSchmemeMd.HilitedCandidateTextColor, Mode=TwoWay}"
-                                                      HilitedLabelColor="{Binding CurrentSchmemeMd.HilitedLabelColor, Mode=TwoWay}" />
+                                                      ColorModel="{Binding CurrentColor}" />
                             </StackPanel>
                         </Grid>
 

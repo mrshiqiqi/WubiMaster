@@ -4,7 +4,7 @@ using YamlDotNet.Serialization;
 
 namespace WubiMaster.Models
 {
-    public class WeaselColorScheme
+    public class ColorScheme
     {
         public string author { get; set; }
         public string back_color { get; set; }
@@ -33,7 +33,7 @@ namespace WubiMaster.Models
         public string text_color { get; set; }
     }
 
-    public class WeaselLayout
+    public class ColorLayout
     {
         public string align_type { get; set; }
         public string border_width { get; set; }
@@ -54,19 +54,19 @@ namespace WubiMaster.Models
         public string spacing { get; set; }
     }
 
-    public class WeaselModel
+    public class ColorModel
     {
         [YamlMember(Alias = "config_version")]
         public string ConfigVersion { get; set; }
 
         [YamlMember(Alias = "preset_color_schemes")]
-        public Dictionary<string, WeaselColorScheme> preset_color_schemes { get; set; }
+        public Dictionary<string, ColorScheme> preset_color_schemes { get; set; }
 
         [YamlMember(Alias = "style")]
-        public WeaselStyle style { get; set; }
+        public ColorStyle style { get; set; }
     }
 
-    public class WeaselStyle
+    public class ColorStyle
     {
         public string antialias_mode { get; set; }
         public string ascii_tip_follow_cursor { get; set; }
@@ -87,7 +87,7 @@ namespace WubiMaster.Models
         public string label_font_face { get; set; }
         public string label_font_point { get; set; }
         public string label_format { get; set; }
-        public WeaselLayout layout { get; set; }
+        public ColorLayout layout { get; set; }
         public string mark_text { get; set; }
         public string mouse_hover_ms { get; set; }
         public string paging_on_scroll { get; set; }

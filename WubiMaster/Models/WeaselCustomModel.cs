@@ -9,11 +9,11 @@ namespace WubiMaster.Models
 {
     public class WeaselCustomModel
     {
-        public WeaselCustomPatch patch { get; set; }
+        public CustomPatch patch { get; set; }
     }
 
-    public class WeaselCustomPatch
+    public class CustomPatch
     {
-        public WeaselStyle style { get; set; }
+        public ColorStyle style { get; set; }
     }
 }

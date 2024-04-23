@@ -10,43 +10,49 @@ namespace WubiMaster.Models
 {
     public partial class ColorSchemeModel : ObservableRecipient
     {
-        [ObservableProperty]
-        private Brush backColor;
+        //[ObservableProperty]
+        //private Brush backColor;
+
+        //[ObservableProperty]
+        //private Brush borderColor;
+
+        //[ObservableProperty]
+        //private Brush candidateTextColor;
+
+        //[ObservableProperty]
+        //private Brush commentTextColor;
+
+        //[ObservableProperty]
+        //private Brush hilitedBackColor;
+
+        //[ObservableProperty]
+        //private Brush hilitedCandidateBackColor;
+
+        //[ObservableProperty]
+        //private Brush hilitedCandidateLabelColor;
+
+        //[ObservableProperty]
+        //private Brush hilitedCandidateTextColor;
+
+        //[ObservableProperty]
+        //private Brush hilitedCommentTextColor;
+
+        //[ObservableProperty]
+        //private Brush hilitedLabelColor;
+
+        //[ObservableProperty]
+        //private Brush hilitedTextColor;
+
+        //[ObservableProperty]
+        //private Brush labelColor;
+
+        //[ObservableProperty]
+        //private Brush textColor;
 
         [ObservableProperty]
-        private Brush borderColor;
+        private ColorStyle style;
 
         [ObservableProperty]
-        private Brush candidateTextColor;
-
-        [ObservableProperty]
-        private Brush commentTextColor;
-
-        [ObservableProperty]
-        private Brush hilitedBackColor;
-
-        [ObservableProperty]
-        private Brush hilitedCandidateBackColor;
-
-        [ObservableProperty]
-        private Brush hilitedCandidateLabelColor;
-
-        [ObservableProperty]
-        private Brush hilitedCandidateTextColor;
-
-        [ObservableProperty]
-        private Brush hilitedCommentTextColor;
-
-        [ObservableProperty]
-        private Brush hilitedLabelColor;
-
-        [ObservableProperty]
-        private Brush hilitedTextColor;
-
-        [ObservableProperty]
-        private Brush labelColor;
-
-        [ObservableProperty]
-        private Brush textColor;
+        private ColorScheme usedColor;
     }
 }

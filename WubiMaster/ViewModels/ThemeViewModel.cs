@@ -16,7 +16,7 @@ namespace WubiMaster.ViewModels
         private int colorIndex;
 
         [ObservableProperty]
-        private ColorSchemeModel currentSchmemeMd;
+        private ColorSchemeModel currentColor;
 
         [ObservableProperty]
         private WeaselCustomModel weaselCustomDetails;
@@ -24,12 +24,14 @@ namespace WubiMaster.ViewModels
         private string weaselCustomPath = "";
 
         [ObservableProperty]
-        private WeaselModel weaselDetails;
+        private ColorModel weaselDetails;
 
         private string weaselPath = "";
 
         public ThemeViewModel()
         {
+            
+
             WeakReferenceMessenger.Default.Register<string, string>(this, "ChangeColorScheme", ChangeColorScheme);
 
             LoadRimeThemeDetails();
@@ -43,12 +45,13 @@ namespace WubiMaster.ViewModels
 
             try
             {
-                WeaselColorScheme colorScheme = weaselDetails.preset_color_schemes[obj.ToString()];
-                if (colorScheme == null) throw new NullReferenceException($"找不到皮肤对象: {obj.ToString()}");
+                CurrentColor ??= new ColorSchemeModel();
+                CurrentColor.Style = WeaselCustomDetails.patch.style;
+                CurrentColor.UsedColor = weaselDetails.preset_color_schemes[obj.ToString()];
+                if (CurrentColor.UsedColor == null) throw new NullReferenceException($"找不到皮肤对象: {obj.ToString()}");
 
-                CurrentSchmemeMd ??= new ColorSchemeModel();
-                CurrentSchmemeMd.TextColor = BrushConvter(colorScheme.text_color, colorFormat: colorScheme.color_format);  // 默认字体颜色
-                Console.WriteLine();
+                ColorScheme colorScheme = weaselDetails.preset_color_schemes[obj.ToString()];
+                
                 //CurrentSchmemeMd.BackColor = new SolidColorBrush(ColorConvter(colorScheme.back_color));
                 //CurrentSchmemeMd.BorderColor = new SolidColorBrush(ColorConvter(colorScheme.border_color));
                 //CurrentSchmemeMd.HilitedBackColor = new SolidColorBrush(ColorConvter(string.IsNullOrEmpty(colorScheme.hilited_back_color) ? colorScheme.back_color : colorScheme.hilited_back_color));
@@ -186,7 +189,7 @@ namespace WubiMaster.ViewModels
             try
             {
                 string weaselTxt = File.ReadAllText(weaselPath);
-                WeaselDetails = YamlHelper.Deserizlize<WeaselModel>(weaselTxt);
+                WeaselDetails = YamlHelper.Deserizlize<ColorModel>(weaselTxt);
 
                 if (File.Exists(weaselCustomPath))
                 {

@@ -13,6 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WubiMaster.Common;
+using WubiMaster.Models;
 
 namespace WubiMaster.Controls
 {
@@ -90,13 +92,6 @@ namespace WubiMaster.Controls
         public static readonly DependencyProperty ShadowColorProperty =
                             DependencyProperty.Register("ShadowColor", typeof(string), typeof(ColorSchemeControl));
 
-        public static readonly DependencyProperty TextColorProperty =
-                                    DependencyProperty.Register("TextColor", typeof(string), typeof(ColorSchemeControl), new PropertyMetadata( new PropertyChangedCallback(OnTextColorPropertyChanged)));
-
-        private static void OnTextColorPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            ColorSchemeControl control = (ColorSchemeControl)d;
-        }
 
         public ColorSchemeControl()
         {
@@ -324,11 +319,15 @@ namespace WubiMaster.Controls
         /// <summary>
         /// 默认文字颜色
         /// </summary>
-        public string TextColor
+        public Brush TextColor
         {
-            get { return (string)GetValue(TextColorProperty); }
+            get { return (Brush)GetValue(TextColorProperty); }
             set { SetValue(TextColorProperty, value); }
         }
+
+        public static readonly DependencyProperty TextColorProperty =
+            DependencyProperty.Register("TextColor", typeof(Brush), typeof(ColorSchemeControl));
+
 
 
         /// <summary>
@@ -904,5 +903,72 @@ namespace WubiMaster.Controls
 
 
 
+        /// <summary>
+        /// 外观Model
+        /// </summary>
+        public ColorSchemeModel ColorModel    
+        {
+            get { return (ColorSchemeModel)GetValue(ColorModelProperty); }
+            set { SetValue(ColorModelProperty, value); }
+        }
+
+        public static readonly DependencyProperty ColorModelProperty =
+            DependencyProperty.Register("ColorModel", typeof(ColorSchemeModel), typeof(ColorSchemeControl), new PropertyMetadata(new PropertyChangedCallback(OnColorChanged)));
+
+        private static void OnColorChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            ColorSchemeControl control = (ColorSchemeControl)d;
+            control.ColorModel = e.NewValue as ColorSchemeModel;
+            control.TextColor = control.BrushConvter(control.ColorModel.UsedColor.text_color,colorFormat:control.ColorModel.UsedColor.color_format);
+            Console.WriteLine();
+        }
+
+        private Brush BrushConvter(string colorTxt, string defaultColor = "0x000000", string colorFormat = "abgr")
+        {
+            Color targetColor = ColorConvter(colorTxt, defaultColor, colorFormat);
+            SolidColorBrush targetBrush = new SolidColorBrush(targetColor);
+            return targetBrush;
+        }
+
+        private Color ColorConvter(string colorTxt, string defaultColor = "0x000000", string colorFormat = "abgr")
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(colorTxt))
+                    colorTxt = defaultColor;
+
+                string colorStr = "";
+                Color targetColor = Colors.Black;
+                string _color = colorTxt.Substring(2, colorTxt.Length - 2);
+                if (_color.Length <= 6) _color = "FF" + _color;
+                var _cArray = _color.ToArray();
+
+                switch (colorFormat)
+                {
+                    case "argb":
+                        colorStr = "#" + _cArray.ToString();
+                        targetColor = (Color)ColorConverter.ConvertFromString(colorStr);
+                        break;
+
+                    case "rgba":
+                        colorStr = "#" + $"{_cArray[6]}{_cArray[7]}{_cArray[0]}{_cArray[1]}{_cArray[2]}{_cArray[3]}{_cArray[4]}{_cArray[5]}";
+                        targetColor = (Color)ColorConverter.ConvertFromString(colorStr);
+                        break;
+
+                    default:
+                        // 默认是 abgr
+                        colorStr = "#" + $"{_cArray[0]}{_cArray[1]}{_cArray[6]}{_cArray[7]}{_cArray[4]}{_cArray[5]}{_cArray[2]}{_cArray[3]}";
+                        targetColor = (Color)ColorConverter.ConvertFromString(colorStr);
+                        break;
+                }
+
+                return targetColor;
+            }
+            catch (Exception ex)
+            {
+                LogHelper.Error(ex.ToString());
+                return Colors.Black;
+            }
+        }
     }
 }
