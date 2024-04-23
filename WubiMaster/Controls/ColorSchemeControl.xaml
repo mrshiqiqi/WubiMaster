@@ -20,9 +20,9 @@
                 BorderBrush="{Binding ElementName=color_scheme_control, Path=BorderColor}"
                 BorderThickness="{Binding ElementName=color_scheme_control, Path=BorderWidth}"
                 CornerRadius="{Binding ElementName=color_scheme_control, Path=CornerRadius}">
-            <Border.Effect>
+            <!--<Border.Effect>
                 <DropShadowEffect Color="{Binding ElementName=color_scheme_control, Path=ShadowColor}" />
-            </Border.Effect>
+            </Border.Effect>-->
 
             <Grid TextBlock.FontFamily="{Binding ElementName=color_scheme_control, Path=FontFace}"
                   TextBlock.FontSize="{Binding ElementName=color_scheme_control, Path=FontPoint}"
@@ -32,32 +32,33 @@
                     <RowDefinition />
                 </Grid.RowDefinitions>
 
-                <StackPanel Orientation="Horizontal">
+                <StackPanel Margin="{Binding ElementName=color_scheme_control, Path=SpacingMargin}" Orientation="Horizontal">
                     <TextBlock VerticalAlignment="Center"
                                Foreground="{Binding ElementName=color_scheme_control, Path=TextColor}"
                                Text="中书君" />
                     <Border Margin="{Binding ElementName=color_scheme_control, Path=HilitePadding}"
                             Background="{Binding ElementName=color_scheme_control, Path=HilitedBackColor}"
                             CornerRadius="{Binding ElementName=color_scheme_control, Path=CornerRadius}">
-                        <Border.Effect>
+                        <!--<Border.Effect>
                             <DropShadowEffect Color="{Binding ElementName=color_scheme_control, Path=HilitedShadowColor}" />
-                        </Border.Effect>
+                        </Border.Effect>-->
                         <TextBlock Foreground="{Binding ElementName=color_scheme_control, Path=HilitedTextColor}" Text="knvt" />
                     </Border>
                 </StackPanel>
-                
+
                 <StackPanel Grid.Row="1" Orientation="{Binding ElementName=color_scheme_control, Path=Horizontal, Converter={StaticResource Bool2Orientation}}">
 
-                    <Border Padding="{Binding ElementName=color_scheme_control, Path=HilitePadding}"
+                    <Border Margin="{Binding ElementName=color_scheme_control, Path=CandidateMargin}"
+                            Padding="{Binding ElementName=color_scheme_control, Path=HilitePadding}"
                             Background="{Binding ElementName=color_scheme_control, Path=HilitedCandidateBackColor}"
                             BorderBrush="{Binding ElementName=color_scheme_control, Path=HilitedCandidateBorderColor}"
                             BorderThickness="{Binding ElementName=color_scheme_control, Path=BorderWidth}"
                             CornerRadius="{Binding ElementName=color_scheme_control, Path=RoundCorner}"
                             SnapsToDevicePixels="True"
                             UseLayoutRounding="True">
-                        <Border.Effect>
+                        <!--<Border.Effect>
                             <DropShadowEffect Color="{Binding ElementName=color_scheme_control, Path=HilitedCandidateShadowColor}" />
-                        </Border.Effect>
+                        </Border.Effect>-->
 
                         <Grid>
                             <Grid.ColumnDefinitions>
@@ -90,14 +91,15 @@
                         </Grid>
                     </Border>
 
-                    <Border Padding="{Binding ElementName=color_scheme_control, Path=HilitePadding}"
+                    <Border Margin="{Binding ElementName=color_scheme_control, Path=CandidateMargin}"
+                            Padding="{Binding ElementName=color_scheme_control, Path=HilitePadding}"
                             Background="{Binding ElementName=color_scheme_control, Path=CandidateBackColor}"
                             BorderBrush="{Binding ElementName=color_scheme_control, Path=CandidateBorderColor}"
                             BorderThickness="{Binding ElementName=color_scheme_control, Path=BorderWidth}"
                             CornerRadius="{Binding ElementName=color_scheme_control, Path=CornerRadius}">
-                        <Border.Effect>
+                        <!--<Border.Effect>
                             <DropShadowEffect Color="{Binding ElementName=color_scheme_control, Path=CandidateShadowColor}" />
-                        </Border.Effect>
+                        </Border.Effect>-->
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto" SharedSizeGroup="MarkTextGroup" />
@@ -130,9 +132,9 @@
                             BorderBrush="{Binding ElementName=color_scheme_control, Path=CandidateBorderColor}"
                             BorderThickness="{Binding ElementName=color_scheme_control, Path=BorderWidth}"
                             CornerRadius="{Binding ElementName=color_scheme_control, Path=CornerRadius}">
-                        <Border.Effect>
+                        <!--<Border.Effect>
                             <DropShadowEffect Color="{Binding ElementName=color_scheme_control, Path=CandidateShadowColor}" />
-                        </Border.Effect>
+                        </Border.Effect>-->
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto" SharedSizeGroup="MarkTextGroup" />

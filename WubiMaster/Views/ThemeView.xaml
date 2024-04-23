@@ -154,16 +154,12 @@
                                                            FontSize="15"
                                                            Foreground="{DynamicResource text-100}"
                                                            Text="横排/竖排" />
-                                                <Button Width="100"
-                                                        Height="35"
-                                                        HorizontalAlignment="Right"
-                                                        Content="横排" />
-                                                <Button Width="100"
-                                                        Height="35"
-                                                        Margin="0,0,120,0"
-                                                        HorizontalAlignment="Right"
-                                                        Background="{DynamicResource bg-300}"
-                                                        Content="竖排" />
+                                                <c:StateToggleButton Width="120"
+                                                                     Height="28"
+                                                                     HorizontalAlignment="Right"
+                                                                     VerticalAlignment="Center"
+                                                                     CheckedState="竖排"
+                                                                     UnCheckedState="横排" />
                                             </Grid>
 
                                             <Grid Grid.Row="1" Margin="0,10,0,0">

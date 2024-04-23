@@ -965,16 +965,48 @@ namespace WubiMaster.Controls
             c.CandidateBorderColor = c.BrushConvter(schemeModel.candidate_border_color, schemeModel.back_color, colorFormat: color_format);
 
             // 布局控件
-            c.HilitePadding = double.Parse(styleModel.layout.hilite_padding);
+            c.HilitePadding = double.Parse(styleModel.layout.hilite_padding) - (c.BorderWidth * 2);
             c.HiliteSpacing = double.Parse(styleModel.layout.hilite_spacing);  // rime中不生效
-            c.MarginX = double.Parse(styleModel.layout.margin_x);
-            c.MarginY = double.Parse(styleModel.layout.margin_y);
+            c.MarginX = double.Parse(styleModel.layout.margin_x) - (c.BorderWidth * 2);
+            c.MarginY = double.Parse(styleModel.layout.margin_y) - (c.BorderWidth * 2);
             c.BorderPadding = new Thickness(c.MarginX, c.MarginY, c.MarginX, c.MarginY);
+            c.Spacing = double.Parse(styleModel.layout.spacing) - (c.BorderWidth * 2);
+            c.SpacingMargin = new Thickness(0, 0, 0, c.Spacing);
+            c.CandidateSpacing = double.Parse(styleModel.layout.candidate_spacing) - (c.BorderWidth * 4);
+            c.CandidateMargin = new Thickness(0,0,0,c.CandidateSpacing);
             // 阴影
             //c.BorderWidth = double.Parse(styleModel.layout.border_width);
 
             Console.WriteLine();
         }
+
+
+        /// <summary>
+        /// 编码区与候选项的距离
+        /// </summary>
+        public Thickness SpacingMargin
+        {
+            get { return (Thickness)GetValue(SpacingMarginProperty); }
+            set { SetValue(SpacingMarginProperty, value); }
+        }
+
+        public static readonly DependencyProperty SpacingMarginProperty =
+            DependencyProperty.Register("SpacingMargin", typeof(Thickness), typeof(ColorSchemeControl));
+
+
+
+        /// <summary>
+        /// 候选项间的距离
+        /// </summary>
+        public Thickness CandidateMargin
+        {
+            get { return (Thickness)GetValue(CandidateMarginProperty); }
+            set { SetValue(CandidateMarginProperty, value); }
+        }
+
+        public static readonly DependencyProperty CandidateMarginProperty =
+            DependencyProperty.Register("CandidateMargin", typeof(Thickness), typeof(ColorSchemeControl));
+
 
 
         /// <summary>

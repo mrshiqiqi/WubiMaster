@@ -30,8 +30,6 @@ namespace WubiMaster.ViewModels
 
         public ThemeViewModel()
         {
-            
-
             WeakReferenceMessenger.Default.Register<string, string>(this, "ChangeColorScheme", ChangeColorScheme);
 
             LoadRimeThemeDetails();
@@ -49,32 +47,6 @@ namespace WubiMaster.ViewModels
                 CurrentColor.Style = WeaselCustomDetails.patch.style;
                 CurrentColor.UsedColor = weaselDetails.preset_color_schemes[obj.ToString()];
                 if (CurrentColor.UsedColor == null) throw new NullReferenceException($"找不到皮肤对象: {obj.ToString()}");
-
-                //ColorScheme colorScheme = weaselDetails.preset_color_schemes[obj.ToString()];
-                
-                //CurrentSchmemeMd.BackColor = new SolidColorBrush(ColorConvter(colorScheme.back_color));
-                //CurrentSchmemeMd.BorderColor = new SolidColorBrush(ColorConvter(colorScheme.border_color));
-                //CurrentSchmemeMd.HilitedBackColor = new SolidColorBrush(ColorConvter(string.IsNullOrEmpty(colorScheme.hilited_back_color) ? colorScheme.back_color : colorScheme.hilited_back_color));
-                //CurrentSchmemeMd.HilitedCandidateBackColor = new SolidColorBrush(ColorConvter(colorScheme.hilited_candidate_back_color));
-                //CurrentSchmemeMd.CandidateTextColor = new SolidColorBrush(ColorConvter(string.IsNullOrEmpty(colorScheme.candidate_text_color) ? colorScheme.text_color : colorScheme.candidate_text_color));
-                //CurrentSchmemeMd.HilitedCandidateTextColor = new SolidColorBrush(ColorConvter(colorScheme.hilited_candidate_text_color));
-                //CurrentSchmemeMd.HilitedLabelColor = new SolidColorBrush(ColorConvter(string.IsNullOrEmpty(colorScheme.hilited_label_color) ? colorScheme.hilited_candidate_text_color : colorScheme.hilited_label_color));
-
-
-                /**
-                 * 用小狼毫打字
-                 * 现在用小狼毫慢点打字：可以看到有时候窗口看不到，跟不上手
-                 * 再快点打字的时候基本看不窗口的出现
-                 * 
-                 * 用搜狗打字
-                 * 再在用搜狗慢点打字：可以看到窗口一直能出现，也能跟得上手
-                 * 现点打字的时候，也能跟得上手，窗口也是一直有的
-                 * 
-                 * 在关掉阴影效果等的情况下测试，还是不理想
-                 * **/
-                
-
-
             }
             catch (Exception ex)
             {
