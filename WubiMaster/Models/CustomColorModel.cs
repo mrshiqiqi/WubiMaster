@@ -7,7 +7,7 @@ using WubiMaster.Models;
 
 namespace WubiMaster.Models
 {
-    public class WeaselCustomModel
+    public class CustomColorModel
     {
         public CustomPatch patch { get; set; }
     }
@@ -15,5 +15,6 @@ namespace WubiMaster.Models
     public class CustomPatch
     {
         public ColorStyle style { get; set; }
+        public Dictionary<string, ColorScheme> preset_color_schemes { get; set; }
     }
 }

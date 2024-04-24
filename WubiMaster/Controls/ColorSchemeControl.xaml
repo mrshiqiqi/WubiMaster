@@ -15,7 +15,7 @@
     <Grid HorizontalAlignment="Center"
           VerticalAlignment="Center"
           Grid.IsSharedSizeScope="True">
-        <Border Padding="{Binding ElementName=color_scheme_control, Path=BorderPadding}"
+        <Border Padding="5"
                 Background="{Binding ElementName=color_scheme_control, Path=BackColor}"
                 BorderBrush="{Binding ElementName=color_scheme_control, Path=BorderColor}"
                 BorderThickness="{Binding ElementName=color_scheme_control, Path=BorderWidth}"
@@ -32,13 +32,15 @@
                     <RowDefinition />
                 </Grid.RowDefinitions>
 
-                <StackPanel Margin="{Binding ElementName=color_scheme_control, Path=SpacingMargin}" Orientation="Horizontal">
-                    <TextBlock VerticalAlignment="Center"
+                <StackPanel Margin="0,0,0,5" Orientation="Horizontal">
+                    <TextBlock Margin="0,0,3,0"
+                               VerticalAlignment="Center"
                                Foreground="{Binding ElementName=color_scheme_control, Path=TextColor}"
                                Text="中书君" />
                     <Border Margin="{Binding ElementName=color_scheme_control, Path=HilitePadding}"
+                            Padding="{Binding ElementName=color_scheme_control, Path=HilitePadding}"
                             Background="{Binding ElementName=color_scheme_control, Path=HilitedBackColor}"
-                            CornerRadius="{Binding ElementName=color_scheme_control, Path=CornerRadius}">
+                            CornerRadius="{Binding ElementName=color_scheme_control, Path=RoundCorner}">
                         <!--<Border.Effect>
                             <DropShadowEffect Color="{Binding ElementName=color_scheme_control, Path=HilitedShadowColor}" />
                         </Border.Effect>-->
@@ -53,7 +55,7 @@
                             Background="{Binding ElementName=color_scheme_control, Path=HilitedCandidateBackColor}"
                             BorderBrush="{Binding ElementName=color_scheme_control, Path=HilitedCandidateBorderColor}"
                             BorderThickness="{Binding ElementName=color_scheme_control, Path=BorderWidth}"
-                            CornerRadius="{Binding ElementName=color_scheme_control, Path=RoundCorner}"
+                            CornerRadius="15"
                             SnapsToDevicePixels="True"
                             UseLayoutRounding="True">
                         <!--<Border.Effect>
@@ -87,7 +89,7 @@
                                        FontFamily="{Binding ElementName=color_scheme_control, Path=CommentFontFace}"
                                        FontSize="{Binding ElementName=color_scheme_control, Path=CommentFontPoint}"
                                        Foreground="{Binding ElementName=color_scheme_control, Path=HilitedCommentTextColor}"
-                                       Text="〔  〕" />
+                                       Text="〈  〉" />
                         </Grid>
                     </Border>
 
@@ -123,7 +125,7 @@
                                        FontFamily="{Binding ElementName=color_scheme_control, Path=CommentFontFace}"
                                        FontSize="{Binding ElementName=color_scheme_control, Path=CommentFontPoint}"
                                        Foreground="{Binding ElementName=color_scheme_control, Path=CommentTextColor}"
-                                       Text="〔  〕" />
+                                       Text="〈  〉" />
                         </Grid>
                     </Border>
 
@@ -158,7 +160,7 @@
                                        FontFamily="{Binding ElementName=color_scheme_control, Path=CommentFontFace}"
                                        FontSize="{Binding ElementName=color_scheme_control, Path=CommentFontPoint}"
                                        Foreground="{Binding ElementName=color_scheme_control, Path=CommentTextColor}"
-                                       Text="〔  〕" />
+                                       Text="〈  〉" />
                         </Grid>
                     </Border>
                 </StackPanel>

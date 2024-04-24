@@ -19,12 +19,15 @@ namespace WubiMaster.ViewModels
         private ColorSchemeModel currentColor;
 
         [ObservableProperty]
-        private WeaselCustomModel weaselCustomDetails;
+        private CustomColorModel weaselCustomDetails;
 
         private string weaselCustomPath = "";
 
         [ObservableProperty]
         private ColorModel weaselDetails;
+
+        [ObservableProperty]
+        private ColorThemesModel colorThemes;
 
         private string weaselPath = "";
 
@@ -44,8 +47,8 @@ namespace WubiMaster.ViewModels
             try
             {
                 ColorSchemeModel _colorModel = new ColorSchemeModel();
-                _colorModel.Style = WeaselCustomDetails.patch.style;
-                _colorModel.UsedColor = weaselDetails.preset_color_schemes[obj.ToString()];
+                _colorModel.Style = ColorThemes.color_themes[obj.ToString()].style;
+                _colorModel.UsedColor = ColorThemes.color_themes[obj.ToString()].color_scheme;
                 if (_colorModel.UsedColor == null) throw new NullReferenceException($"找不到皮肤对象: {obj.ToString()}");
                 CurrentColor = _colorModel;
             }
@@ -141,14 +144,14 @@ namespace WubiMaster.ViewModels
                 if (WeaselCustomDetails == null)
                 {
                     ColorIndex = 0;
-                    string shemeName = WeaselDetails.preset_color_schemes.Keys.ToList()[ColorIndex];
+                    string shemeName = ColorThemes.color_themes.Keys.ToList()[ColorIndex];
                     ChangeTheme(shemeName);
                 }
                 else
                 {
                     string shemeName = WeaselCustomDetails.patch.style.color_scheme;
                     ChangeTheme(shemeName);
-                    ColorIndex = WeaselDetails.preset_color_schemes.Keys.ToList().IndexOf(shemeName); ;
+                    ColorIndex = ColorThemes.color_themes.Keys.ToList().IndexOf(shemeName);
                 }
             }
         }
@@ -158,16 +161,20 @@ namespace WubiMaster.ViewModels
             if (string.IsNullOrEmpty(GlobalValues.UserPath)) return;
             weaselPath = @$"{GlobalValues.UserPath}\weasel.yaml";
             weaselCustomPath = @$"{GlobalValues.UserPath}\weasel.custom.yaml";
+            string colorThemesPath = @$"{GlobalValues.UserPath}\color_themes.yaml";
 
             try
             {
                 string weaselTxt = File.ReadAllText(weaselPath);
                 WeaselDetails = YamlHelper.Deserizlize<ColorModel>(weaselTxt);
 
+                string colorsTxt = File.ReadAllText(colorThemesPath);
+                ColorThemes = YamlHelper.Deserizlize<ColorThemesModel>(colorsTxt);
+
                 if (File.Exists(weaselCustomPath))
                 {
                     string weaselCustomTxt = File.ReadAllText(weaselCustomPath);
-                    WeaselCustomDetails = YamlHelper.Deserizlize<WeaselCustomModel>(weaselCustomTxt);
+                    WeaselCustomDetails = YamlHelper.Deserizlize<CustomColorModel>(weaselCustomTxt);
                     ConfigHelper.WriteConfigByString("color_scheme", WeaselCustomDetails.patch.style.color_scheme);
                 }
             }
@@ -181,7 +188,12 @@ namespace WubiMaster.ViewModels
         {
             try
             {
-                WeaselCustomDetails.patch.style.color_scheme = WeaselDetails.preset_color_schemes.Keys.ToList()[ColorIndex];
+                string key = ColorThemes.color_themes.Keys.ToList()[ColorIndex];
+                WeaselCustomDetails.patch.preset_color_schemes.Clear();
+
+                WeaselCustomDetails.patch.style = ColorThemes.color_themes[key].style;
+                WeaselCustomDetails.patch.preset_color_schemes.Add(key, ColorThemes.color_themes[key].color_scheme);
+
                 YamlHelper.WriteYaml(WeaselCustomDetails, weaselCustomPath);
             }
             catch (Exception ex)

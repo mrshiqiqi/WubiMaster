@@ -41,6 +41,8 @@ namespace WubiMaster.Models
         public string corner_radius { get; set; }
         public string hilite_padding { get; set; }
         public string hilite_spacing { get; set; }
+        public string hilite_padding_x { get; set; }
+        public string hilite_padding_y { get; set; }
         public string margin_x { get; set; }
         public string margin_y { get; set; }
         public string max_height { get; set; }

@@ -939,7 +939,7 @@ namespace WubiMaster.Controls
             c.BackColor = c.BrushConvter(schemeModel.back_color, colorFormat: color_format);
             c.BorderColor = c.BrushConvter(schemeModel.border_color, colorFormat: color_format);
             c.BorderWidth = double.Parse(styleModel.layout.border_width);
-            c.CornerRadius = double.Parse(styleModel.layout.corner_radius);
+            c.CornerRadius = double.Parse(styleModel.layout.corner_radius) * 0.6;
             c.ShadowColor = c.ColorConvter(schemeModel.shadow_color, colorFormat: color_format);
 
             // 编码区
@@ -951,7 +951,7 @@ namespace WubiMaster.Controls
             c.HilitedCandidateBackColor = c.BrushConvter(schemeModel.hilited_candidate_back_color, schemeModel.back_color, colorFormat: color_format);
             c.HilitedCandidateTextColor = c.BrushConvter(schemeModel.hilited_candidate_text_color, schemeModel.text_color, colorFormat: color_format);
             c.HilitedCandidateBorderColor = c.BrushConvter(schemeModel.hilited_candidate_border_color, schemeModel.hilited_candidate_back_color, colorFormat: color_format);
-            c.RoundCorner = c.CornerRadius;
+            c.RoundCorner = double.Parse(styleModel.layout.round_corner) * 0.6;
             c.HilitedLabelColor = c.BrushConvter(schemeModel.hilited_label_color, schemeModel.text_color, colorFormat: color_format);
             c.MarkText = styleModel.mark_text;
             c.HilitedMarkColor = c.BrushConvter(schemeModel.hilited_mark_color, schemeModel.text_color, colorFormat: color_format);
@@ -965,7 +965,7 @@ namespace WubiMaster.Controls
             c.CandidateBorderColor = c.BrushConvter(schemeModel.candidate_border_color, schemeModel.back_color, colorFormat: color_format);
 
             // 布局控件
-            c.HilitePadding = double.Parse(styleModel.layout.hilite_padding) - (c.BorderWidth * 2);
+            c.HilitePadding = double.Parse(styleModel.layout.hilite_padding) - c.BorderWidth;
             c.HiliteSpacing = double.Parse(styleModel.layout.hilite_spacing);  // rime中不生效
             c.MarginX = double.Parse(styleModel.layout.margin_x) - (c.BorderWidth * 2);
             c.MarginY = double.Parse(styleModel.layout.margin_y) - (c.BorderWidth * 2);
@@ -974,6 +974,8 @@ namespace WubiMaster.Controls
             c.SpacingMargin = new Thickness(0, 0, 0, c.Spacing);
             c.CandidateSpacing = double.Parse(styleModel.layout.candidate_spacing) - (c.BorderWidth * 4);
             c.CandidateMargin = new Thickness(0, 0, 0, c.CandidateSpacing);
+            c.Horizontal = bool.Parse(styleModel.horizontal);
+
             // 阴影
             //c.BorderWidth = double.Parse(styleModel.layout.border_width);
 
