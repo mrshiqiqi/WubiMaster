@@ -938,7 +938,7 @@ namespace WubiMaster.Controls
             // 边框/候选窗口
             c.BackColor = c.BrushConvter(schemeModel.back_color, colorFormat: color_format);
             c.BorderColor = c.BrushConvter(schemeModel.border_color, colorFormat: color_format);
-            c.BorderWidth = double.Parse(styleModel.layout.border_width);
+            c.BorderWidth = double.Parse(styleModel.layout.border_width) * 0.6;
             c.CornerRadius = double.Parse(styleModel.layout.corner_radius) * 0.6;
             c.ShadowColor = c.ColorConvter(schemeModel.shadow_color, colorFormat: color_format);
 
@@ -967,8 +967,10 @@ namespace WubiMaster.Controls
             // 布局控件
             c.HilitePadding = double.Parse(styleModel.layout.hilite_padding) - c.BorderWidth;
             c.HiliteSpacing = double.Parse(styleModel.layout.hilite_spacing);  // rime中不生效
-            c.MarginX = double.Parse(styleModel.layout.margin_x);
-            c.MarginY = double.Parse(styleModel.layout.margin_y);
+            c.MarginX = (double.Parse(styleModel.layout.margin_x) - 5) * 0.3;
+            c.MarginY = (double.Parse(styleModel.layout.margin_y) - 5) * 0.3;
+            c.MarginX = c.MarginX <= 0 ? 0 : c.MarginX;
+            c.MarginY = c.MarginY <= 0 ? 0 : c.MarginY;
             c.BorderPadding = new Thickness(c.MarginX, c.MarginY, c.MarginX, c.MarginY);
             c.Spacing = double.Parse(styleModel.layout.spacing) - (c.BorderWidth * 2);
             c.SpacingMargin = new Thickness(0, 0, 0, c.Spacing);
