@@ -15,7 +15,17 @@
     <Grid HorizontalAlignment="Center"
           VerticalAlignment="Center"
           Grid.IsSharedSizeScope="True">
-        <Border Padding="5"
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <Grid>
+            <TextBlock Text="knvt" TextDecorations="Underline" />
+        </Grid>
+
+
+        <Border Grid.Row="1"
                 Background="{Binding ElementName=color_scheme_control, Path=BackColor}"
                 BorderBrush="{Binding ElementName=color_scheme_control, Path=BorderColor}"
                 BorderThickness="{Binding ElementName=color_scheme_control, Path=BorderWidth}"
@@ -32,7 +42,9 @@
                     <RowDefinition />
                 </Grid.RowDefinitions>
 
-                <StackPanel Margin="0,0,0,5" Orientation="Horizontal">
+                <StackPanel Margin="0,0,0,5"
+                            Orientation="Horizontal"
+                            Visibility="Collapsed">
                     <TextBlock Margin="0,0,3,0"
                                VerticalAlignment="Center"
                                Foreground="{Binding ElementName=color_scheme_control, Path=TextColor}"
@@ -50,12 +62,11 @@
 
                 <StackPanel Grid.Row="1" Orientation="{Binding ElementName=color_scheme_control, Path=Horizontal, Converter={StaticResource Bool2Orientation}}">
 
-                    <Border Margin="{Binding ElementName=color_scheme_control, Path=CandidateMargin}"
-                            Padding="{Binding ElementName=color_scheme_control, Path=HilitePadding}"
+                    <Border Padding="{Binding ElementName=color_scheme_control, Path=HilitePadding}"
                             Background="{Binding ElementName=color_scheme_control, Path=HilitedCandidateBackColor}"
                             BorderBrush="{Binding ElementName=color_scheme_control, Path=HilitedCandidateBorderColor}"
                             BorderThickness="{Binding ElementName=color_scheme_control, Path=BorderWidth}"
-                            CornerRadius="15"
+                            CornerRadius="{Binding ElementName=color_scheme_control, Path=CornerRadius}"
                             SnapsToDevicePixels="True"
                             UseLayoutRounding="True">
                         <!--<Border.Effect>
@@ -93,8 +104,7 @@
                         </Grid>
                     </Border>
 
-                    <Border Margin="{Binding ElementName=color_scheme_control, Path=CandidateMargin}"
-                            Padding="{Binding ElementName=color_scheme_control, Path=HilitePadding}"
+                    <Border Padding="{Binding ElementName=color_scheme_control, Path=HilitePadding}"
                             Background="{Binding ElementName=color_scheme_control, Path=CandidateBackColor}"
                             BorderBrush="{Binding ElementName=color_scheme_control, Path=CandidateBorderColor}"
                             BorderThickness="{Binding ElementName=color_scheme_control, Path=BorderWidth}"
@@ -130,6 +140,7 @@
                     </Border>
 
                     <Border Padding="{Binding ElementName=color_scheme_control, Path=HilitePadding}"
+                            VerticalAlignment="Top"
                             Background="{Binding ElementName=color_scheme_control, Path=CandidateBackColor}"
                             BorderBrush="{Binding ElementName=color_scheme_control, Path=CandidateBorderColor}"
                             BorderThickness="{Binding ElementName=color_scheme_control, Path=BorderWidth}"

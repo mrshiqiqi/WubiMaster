@@ -949,7 +949,7 @@ namespace WubiMaster.Controls
 
             // 高亮候选
             c.HilitedCandidateBackColor = c.BrushConvter(schemeModel.hilited_candidate_back_color, schemeModel.back_color, colorFormat: color_format);
-            c.HilitedCandidateTextColor = c.BrushConvter(schemeModel.hilited_candidate_text_color, schemeModel.text_color, colorFormat: color_format);
+            c.HilitedCandidateTextColor = c.BrushConvter(schemeModel.hilited_candidate_text_color, c.HilitedTextColor.ToString(), "argb");
             c.HilitedCandidateBorderColor = c.BrushConvter(schemeModel.hilited_candidate_border_color, schemeModel.hilited_candidate_back_color, colorFormat: color_format);
             c.RoundCorner = double.Parse(styleModel.layout.round_corner) * 0.6;
             c.HilitedLabelColor = c.BrushConvter(schemeModel.hilited_label_color, schemeModel.text_color, colorFormat: color_format);
@@ -967,8 +967,8 @@ namespace WubiMaster.Controls
             // 布局控件
             c.HilitePadding = double.Parse(styleModel.layout.hilite_padding) - c.BorderWidth;
             c.HiliteSpacing = double.Parse(styleModel.layout.hilite_spacing);  // rime中不生效
-            c.MarginX = double.Parse(styleModel.layout.margin_x) - (c.BorderWidth * 2);
-            c.MarginY = double.Parse(styleModel.layout.margin_y) - (c.BorderWidth * 2);
+            c.MarginX = double.Parse(styleModel.layout.margin_x);
+            c.MarginY = double.Parse(styleModel.layout.margin_y);
             c.BorderPadding = new Thickness(c.MarginX, c.MarginY, c.MarginX, c.MarginY);
             c.Spacing = double.Parse(styleModel.layout.spacing) - (c.BorderWidth * 2);
             c.SpacingMargin = new Thickness(0, 0, 0, c.Spacing);
@@ -1034,6 +1034,15 @@ namespace WubiMaster.Controls
 
         private Color ColorConvter(string colorTxt, string defaultColor = "0x00000000", string colorFormat = "abgr")
         {
+            var ConverColorText = (string colorTxt) =>
+            {
+                if (colorTxt.Contains("0x"))
+                    colorTxt = colorTxt.Substring(2, colorTxt.Length - 2);
+                else if (colorTxt.Contains("#"))
+                    colorTxt = colorTxt.Substring(1, colorTxt.Length - 1);
+                return colorTxt;
+            };
+
             try
             {
                 if (string.IsNullOrEmpty(colorTxt))
@@ -1046,26 +1055,26 @@ namespace WubiMaster.Controls
                 switch (colorFormat)
                 {
                     case "argb":
-                        string _color1 = colorTxt.Substring(2, colorTxt.Length - 2);
-                        if (_color1.Length <= 6) _color1 = "FF" + _color1;
-                        _cArray = _color1.ToArray();
-                        colorStr = "#" + _cArray.ToString();
+                        colorTxt = ConverColorText(colorTxt);
+                        if (colorTxt.Length <= 6) colorTxt = "FF" + colorTxt;
+                        _cArray = colorTxt.ToArray();
+                        colorStr = "#" + $"{_cArray[0]}{_cArray[1]}{_cArray[2]}{_cArray[3]}{_cArray[4]}{_cArray[5]}{_cArray[6]}{_cArray[7]}";
                         targetColor = (Color)ColorConverter.ConvertFromString(colorStr);
                         break;
 
                     case "rgba":
-                        string _color2 = colorTxt.Substring(2, colorTxt.Length - 2);
-                        if (_color2.Length <= 6) _color2 = _color2 + "FF";
-                        _cArray = _color2.ToArray();
+                        colorTxt = ConverColorText(colorTxt);
+                        if (colorTxt.Length <= 6) colorTxt = colorTxt + "FF";
+                        _cArray = colorTxt.ToArray();
                         colorStr = "#" + $"{_cArray[6]}{_cArray[7]}{_cArray[0]}{_cArray[1]}{_cArray[2]}{_cArray[3]}{_cArray[4]}{_cArray[5]}";
                         targetColor = (Color)ColorConverter.ConvertFromString(colorStr);
                         break;
 
                     default:
                         // 默认是 abgr
-                        string _color3 = colorTxt.Substring(2, colorTxt.Length - 2);
-                        if (_color3.Length <= 6) _color3 = "FF" + _color3;
-                        _cArray = _color3.ToArray();
+                        colorTxt = ConverColorText(colorTxt);
+                        if (colorTxt.Length <= 6) colorTxt = "FF" + colorTxt;
+                        _cArray = colorTxt.ToArray();
                         colorStr = "#" + $"{_cArray[0]}{_cArray[1]}{_cArray[6]}{_cArray[7]}{_cArray[4]}{_cArray[5]}{_cArray[2]}{_cArray[3]}";
                         targetColor = (Color)ColorConverter.ConvertFromString(colorStr);
                         break;
@@ -1076,8 +1085,10 @@ namespace WubiMaster.Controls
             catch (Exception ex)
             {
                 LogHelper.Error(ex.ToString());
-                return Colors.Black;
+                return Colors.Orange;
             }
         }
+
+
     }
 }
