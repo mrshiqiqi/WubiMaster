@@ -928,12 +928,12 @@ namespace WubiMaster.Controls
             c.TextColor = c.BrushConvter(schemeModel.text_color, colorFormat: color_format);
             c.FontPoint = double.Parse(styleModel.font_point);
             c.LabelFontPoint = string.IsNullOrEmpty(styleModel.label_font_point) ? c.FontPoint : double.Parse(styleModel.label_font_point);
-            c.LabelColor = c.BrushConvter(schemeModel.label_color, schemeModel.text_color, colorFormat: color_format);
+            c.LabelColor = c.BrushConvter(schemeModel.label_color, Colors.Gray.ToString(), "argb");
             c.CommentFontPoint = string.IsNullOrEmpty(styleModel.comment_font_point) ? c.FontPoint : double.Parse(styleModel.comment_font_point);
             c.FontFace = new FontFamily(styleModel.font_face);
             c.LabelFontFace = string.IsNullOrEmpty(styleModel.label_font_face) ? c.FontFace : new FontFamily(styleModel.label_font_face);
             c.CommentFontFace = string.IsNullOrEmpty(styleModel.comment_font_face) ? c.FontFace : new FontFamily(styleModel.comment_font_face);
-            c.CommentTextColor = c.BrushConvter(schemeModel.comment_text_color, schemeModel.text_color, colorFormat: color_format);
+            c.CommentTextColor = c.BrushConvter(schemeModel.comment_text_color, Colors.Gray.ToString(), "argb");
 
             // 边框/候选窗口
             c.BackColor = c.BrushConvter(schemeModel.back_color, colorFormat: color_format);
@@ -952,11 +952,11 @@ namespace WubiMaster.Controls
             c.HilitedCandidateTextColor = c.BrushConvter(schemeModel.hilited_candidate_text_color, c.HilitedTextColor.ToString(), "argb");
             c.HilitedCandidateBorderColor = c.BrushConvter(schemeModel.hilited_candidate_border_color, schemeModel.hilited_candidate_back_color, colorFormat: color_format);
             c.RoundCorner = double.Parse(styleModel.layout.round_corner) * 0.6;
-            c.HilitedLabelColor = c.BrushConvter(schemeModel.hilited_label_color, schemeModel.text_color, colorFormat: color_format);
+            c.HilitedLabelColor = c.BrushConvter(schemeModel.hilited_label_color, Colors.Gray.ToString(), "argb");
             c.MarkText = styleModel.mark_text;
             c.HilitedMarkColor = c.BrushConvter(schemeModel.hilited_mark_color, schemeModel.text_color, colorFormat: color_format);
             c.HilitedCandidateShadowColor = c.ColorConvter(schemeModel.hilited_candidate_shadow_color, colorFormat: color_format);
-            c.HilitedCommentTextColor = c.BrushConvter(schemeModel.hilited_comment_text_color, schemeModel.text_color, colorFormat: color_format);
+            c.HilitedCommentTextColor = c.BrushConvter(schemeModel.hilited_comment_text_color, Colors.Gray.ToString(), "argb");
 
             // 非高亮区
             c.CandidateTextColor = c.BrushConvter(schemeModel.candidate_text_color, schemeModel.text_color, colorFormat: color_format);
@@ -964,9 +964,10 @@ namespace WubiMaster.Controls
             c.CandidateShadowColor = c.ColorConvter(schemeModel.candidate_shadow_color, colorFormat: color_format);
             c.CandidateBorderColor = c.BrushConvter(schemeModel.candidate_border_color, schemeModel.back_color, colorFormat: color_format);
 
-            // 布局控件
+            // 布局
             c.HilitePadding = double.Parse(styleModel.layout.hilite_padding) - c.BorderWidth;
-            c.HiliteSpacing = double.Parse(styleModel.layout.hilite_spacing);  // rime中不生效
+            c.HiliteSpacing = double.Parse(styleModel.layout.hilite_spacing);
+            c.HiSpacingMargin = new Thickness(c.HiliteSpacing, 0, c.HiliteSpacing, 0);
             c.MarginX = (double.Parse(styleModel.layout.margin_x) - 5) * 0.3;
             c.MarginY = (double.Parse(styleModel.layout.margin_y) - 5) * 0.3;
             c.MarginX = c.MarginX <= 0 ? 0 : c.MarginX;
@@ -977,12 +978,41 @@ namespace WubiMaster.Controls
             c.CandidateSpacing = double.Parse(styleModel.layout.candidate_spacing) - (c.BorderWidth * 4);
             c.CandidateMargin = new Thickness(0, 0, 0, c.CandidateSpacing);
             c.Horizontal = bool.Parse(styleModel.horizontal);
+            c.InlinePreedit = bool.Parse(styleModel.inline_preedit);
+            c.UnInlinePreedit = !c.InlinePreedit;
 
             // 阴影
             //c.BorderWidth = double.Parse(styleModel.layout.border_width);
 
             Console.WriteLine();
         }
+
+
+        /// <summary>
+        /// 是否取消在行内显示预编辑区
+        /// </summary>
+        public bool UnInlinePreedit
+        {
+            get { return (bool)GetValue(UnInlinePreeditProperty); }
+            set { SetValue(UnInlinePreeditProperty, value); }
+        }
+
+        public static readonly DependencyProperty UnInlinePreeditProperty =
+            DependencyProperty.Register("UnInlinePreedit", typeof(bool), typeof(ColorSchemeControl));
+
+
+
+        // 文字与标签及注解之间的距离
+        public Thickness HiSpacingMargin
+        {
+            get { return (Thickness)GetValue(HiSpacingMarginProperty); }
+            set { SetValue(HiSpacingMarginProperty, value); }
+        }
+
+        public static readonly DependencyProperty HiSpacingMarginProperty =
+            DependencyProperty.Register("HiSpacingMargin", typeof(Thickness), typeof(ColorSchemeControl));
+
+
 
 
         /// <summary>

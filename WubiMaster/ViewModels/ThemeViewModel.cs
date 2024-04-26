@@ -150,7 +150,10 @@ namespace WubiMaster.ViewModels
                 else
                 {
                     string shemeName = WeaselCustomDetails.patch.style.color_scheme;
-                    ChangeTheme(shemeName);
+                    ColorSchemeModel _colorModel = new ColorSchemeModel();
+                    _colorModel.Style = WeaselCustomDetails.patch.style;
+                    _colorModel.UsedColor = WeaselCustomDetails.patch.preset_color_schemes[shemeName];
+                    CurrentColor = _colorModel;
                     ColorIndex = ColorThemes.color_themes.Keys.ToList().IndexOf(shemeName);
                 }
             }

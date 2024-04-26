@@ -10,6 +10,7 @@
 
     <UserControl.Resources>
         <com:Bool2Orientation x:Key="Bool2Orientation" />
+        <BooleanToVisibilityConverter x:Key="Bool2Visibility" />
     </UserControl.Resources>
 
     <Grid HorizontalAlignment="Center"
@@ -20,8 +21,8 @@
             <RowDefinition />
         </Grid.RowDefinitions>
 
-        <Grid>
-            <TextBlock Text="knvt" TextDecorations="Underline" />
+        <Grid Visibility="{Binding ElementName=color_scheme_control, Path=InlinePreedit, Converter={StaticResource Bool2Visibility}}">
+            <TextBlock Text="中书君knvt" TextDecorations="Underline" />
         </Grid>
 
 
@@ -42,23 +43,23 @@
                     <RowDefinition />
                 </Grid.RowDefinitions>
 
-                <StackPanel Margin="0,0,0,5"
-                            Orientation="Horizontal"
-                            Visibility="Collapsed">
-                    <TextBlock Margin="0,0,3,0"
-                               VerticalAlignment="Center"
-                               Foreground="{Binding ElementName=color_scheme_control, Path=TextColor}"
-                               Text="中书君" />
-                    <Border Margin="{Binding ElementName=color_scheme_control, Path=HilitePadding}"
-                            Padding="{Binding ElementName=color_scheme_control, Path=HilitePadding}"
-                            Background="{Binding ElementName=color_scheme_control, Path=HilitedBackColor}"
-                            CornerRadius="{Binding ElementName=color_scheme_control, Path=RoundCorner}">
-                        <!--<Border.Effect>
+                <Grid Margin="{Binding ElementName=color_scheme_control, Path=BorderPadding}">
+                    <StackPanel Orientation="Horizontal" Visibility="{Binding ElementName=color_scheme_control, Path=UnInlinePreedit, Converter={StaticResource Bool2Visibility}}">
+                        <TextBlock Margin="0,0,1,0"
+                                   VerticalAlignment="Center"
+                                   Foreground="{Binding ElementName=color_scheme_control, Path=TextColor}"
+                                   Text="中书君" />
+                        <Border Padding="{Binding ElementName=color_scheme_control, Path=HilitePadding}"
+                                Background="{Binding ElementName=color_scheme_control, Path=HilitedBackColor}"
+                                CornerRadius="{Binding ElementName=color_scheme_control, Path=RoundCorner}">
+                            <!--<Border.Effect>
                             <DropShadowEffect Color="{Binding ElementName=color_scheme_control, Path=HilitedShadowColor}" />
                         </Border.Effect>-->
-                        <TextBlock Foreground="{Binding ElementName=color_scheme_control, Path=HilitedTextColor}" Text="knvt" />
-                    </Border>
-                </StackPanel>
+                            <TextBlock Foreground="{Binding ElementName=color_scheme_control, Path=HilitedTextColor}" Text="knvt" />
+                        </Border>
+                    </StackPanel>
+                </Grid>
+
 
                 <Grid Grid.Row="1">
                     <StackPanel Margin="{Binding ElementName=color_scheme_control, Path=BorderPadding}" Orientation="{Binding ElementName=color_scheme_control, Path=Horizontal, Converter={StaticResource Bool2Orientation}}">
@@ -78,7 +79,7 @@
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" SharedSizeGroup="MarkTextGroup" />
                                     <ColumnDefinition Width="15" />
-                                    <ColumnDefinition Width="80" />
+                                    <ColumnDefinition Width="Auto" />
                                     <ColumnDefinition />
                                 </Grid.ColumnDefinitions>
 
@@ -93,10 +94,12 @@
                                            Foreground="{Binding ElementName=color_scheme_control, Path=HilitedLabelColor}"
                                            Text="1." />
                                 <TextBlock Grid.Column="2"
+                                           Margin="{Binding ElementName=color_scheme_control, Path=HiSpacingMargin}"
                                            VerticalAlignment="Center"
                                            Foreground="{Binding ElementName=color_scheme_control, Path=HilitedCandidateTextColor}"
                                            Text="中书君" />
                                 <TextBlock Grid.Column="3"
+                                           HorizontalAlignment="Left"
                                            VerticalAlignment="Center"
                                            FontFamily="{Binding ElementName=color_scheme_control, Path=CommentFontFace}"
                                            FontSize="{Binding ElementName=color_scheme_control, Path=CommentFontPoint}"
@@ -117,7 +120,7 @@
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" SharedSizeGroup="MarkTextGroup" />
                                     <ColumnDefinition Width="15" />
-                                    <ColumnDefinition Width="80" />
+                                    <ColumnDefinition Width="Auto" />
                                     <ColumnDefinition />
                                 </Grid.ColumnDefinitions>
 
@@ -128,6 +131,7 @@
                                            Foreground="{Binding ElementName=color_scheme_control, Path=LabelColor}"
                                            Text="2." />
                                 <TextBlock Grid.Column="2"
+                                           Margin="{Binding ElementName=color_scheme_control, Path=HiSpacingMargin}"
                                            VerticalAlignment="Center"
                                            Foreground="{Binding ElementName=color_scheme_control, Path=CandidateTextColor}"
                                            Text="五笔" />
@@ -153,7 +157,7 @@
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" SharedSizeGroup="MarkTextGroup" />
                                     <ColumnDefinition Width="15" />
-                                    <ColumnDefinition Width="80" />
+                                    <ColumnDefinition Width="Auto" />
                                     <ColumnDefinition />
                                 </Grid.ColumnDefinitions>
 
@@ -164,6 +168,7 @@
                                            Foreground="{Binding ElementName=color_scheme_control, Path=LabelColor}"
                                            Text="3." />
                                 <TextBlock Grid.Column="2"
+                                           Margin="{Binding ElementName=color_scheme_control, Path=HiSpacingMargin}"
                                            VerticalAlignment="Center"
                                            Foreground="{Binding ElementName=color_scheme_control, Path=CandidateTextColor}"
                                            Text="空山明月" />
