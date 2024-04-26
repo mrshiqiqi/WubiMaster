@@ -3,6 +3,7 @@ using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using System;
 using System.Collections.Generic;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Windows.Media;
@@ -38,6 +39,14 @@ namespace WubiMaster.ViewModels
 
             LoadColorShemes();
             LoadConfig();
+        }
+
+        [RelayCommand]
+        public void ChangeHorizontal(object obj)
+        {
+            var tempColor = CurrentColor;
+            CurrentColor = null;
+            CurrentColor = tempColor;
         }
 
         [RelayCommand]
@@ -222,7 +231,6 @@ namespace WubiMaster.ViewModels
                 }
             }
         }
-
         private void LoadCustomColor()
         {
             try
@@ -247,8 +255,9 @@ namespace WubiMaster.ViewModels
             try
             {
                 WeaselCustomDetails.patch.preset_color_schemes.Clear();
-                WeaselCustomDetails.patch.style = ColorsList[ColorIndex].style;
-                WeaselCustomDetails.patch.preset_color_schemes = ColorsList[ColorIndex].preset_color_schemes;
+                WeaselCustomDetails.patch.style = CurrentColor.Style;
+                string name = ColorsList[ColorIndex].description.color_name;
+                WeaselCustomDetails.patch.preset_color_schemes.Add(name, CurrentColor.UsedColor);
 
                 YamlHelper.WriteYaml(WeaselCustomDetails, weaselCustomPath);
             }

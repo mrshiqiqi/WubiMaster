@@ -917,6 +917,8 @@ namespace WubiMaster.Controls
 
         private static void OnColorChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
+            if (e.NewValue == null) return;
+
             ColorSchemeControl c = (ColorSchemeControl)d;
             c.ColorModel = e.NewValue as ColorSchemeModel;
 

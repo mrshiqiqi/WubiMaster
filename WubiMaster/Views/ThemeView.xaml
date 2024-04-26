@@ -159,6 +159,8 @@
                                                                      HorizontalAlignment="Right"
                                                                      VerticalAlignment="Center"
                                                                      CheckedState="竖排"
+                                                                     Command="{Binding ChangeHorizontalCommand}"
+                                                                     IsChecked="{Binding CurrentColor.Style.horizontal, Mode=TwoWay}"
                                                                      UnCheckedState="横排" />
                                             </Grid>
 
