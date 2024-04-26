@@ -104,10 +104,10 @@
                                                       MaxWidth="220"
                                                       Margin="0,0,15,0"
                                                       HorizontalAlignment="Right"
-                                                      DisplayMemberPath="Value.name"
-                                                      ItemsSource="{Binding ColorThemes.color_themes}"
+                                                      DisplayMemberPath="description.display_name"
+                                                      ItemsSource="{Binding ColorsList}"
                                                       SelectedIndex="{Binding ColorIndex}"
-                                                      SelectedValuePath="Key">
+                                                      SelectedValuePath="description.color_name">
                                                 <b:Interaction.Triggers>
                                                     <b:EventTrigger EventName="SelectionChanged">
                                                         <b:InvokeCommandAction Command="{Binding ChangeThemeCommand}" CommandParameter="{Binding Path=SelectedValue, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ComboBox}, AncestorLevel=1}}" />

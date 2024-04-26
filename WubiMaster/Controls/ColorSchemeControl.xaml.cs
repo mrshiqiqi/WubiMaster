@@ -922,7 +922,7 @@ namespace WubiMaster.Controls
 
             ColorStyle styleModel = c.ColorModel.Style;
             ColorScheme schemeModel = c.ColorModel.UsedColor;
-            string color_format = schemeModel.color_format;
+            string color_format = schemeModel.color_format??="abgr";
 
             // 公共
             c.TextColor = c.BrushConvter(schemeModel.text_color, colorFormat: color_format);

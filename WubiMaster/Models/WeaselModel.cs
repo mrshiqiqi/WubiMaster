@@ -56,7 +56,7 @@ namespace WubiMaster.Models
         public string spacing { get; set; }
     }
 
-    public class ColorModel
+    public class WeaselModel
     {
         [YamlMember(Alias = "config_version")]
         public string ConfigVersion { get; set; }

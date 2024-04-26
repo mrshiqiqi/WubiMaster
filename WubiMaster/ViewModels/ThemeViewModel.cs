@@ -2,6 +2,7 @@
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Windows.Media;
@@ -16,18 +17,18 @@ namespace WubiMaster.ViewModels
         private int colorIndex;
 
         [ObservableProperty]
+        private List<ColorsModel> colorsList;
+
+        [ObservableProperty]
         private ColorSchemeModel currentColor;
 
         [ObservableProperty]
-        private CustomColorModel weaselCustomDetails;
+        private WeaselCustomModel weaselCustomDetails;
 
         private string weaselCustomPath = "";
 
         [ObservableProperty]
-        private ColorModel weaselDetails;
-
-        [ObservableProperty]
-        private ColorThemesModel colorThemes;
+        private WeaselModel weaselDetails;
 
         private string weaselPath = "";
 
@@ -35,7 +36,7 @@ namespace WubiMaster.ViewModels
         {
             WeakReferenceMessenger.Default.Register<string, string>(this, "ChangeColorScheme", ChangeColorScheme);
 
-            LoadRimeThemeDetails();
+            LoadColorShemes();
             LoadConfig();
         }
 
@@ -46,16 +47,19 @@ namespace WubiMaster.ViewModels
 
             try
             {
+                var cModel = ColorsList.First(c => c.description.color_name == obj.ToString());
+                if (cModel == null) throw new NullReferenceException($"找不到皮肤对象: {obj.ToString()}");
+
                 ColorSchemeModel _colorModel = new ColorSchemeModel();
-                _colorModel.Style = ColorThemes.color_themes[obj.ToString()].style;
-                _colorModel.UsedColor = ColorThemes.color_themes[obj.ToString()].color_scheme;
-                if (_colorModel.UsedColor == null) throw new NullReferenceException($"找不到皮肤对象: {obj.ToString()}");
+                _colorModel.Style = cModel.style;
+                _colorModel.UsedColor = cModel.preset_color_schemes.FirstOrDefault().Value;
+
                 CurrentColor = _colorModel;
             }
             catch (Exception ex)
             {
                 LogHelper.Error(ex.ToString());
-                //this.ShowMessage("无法查看该皮肤样式！");
+                this.ShowMessage("选中的样式在外观文件中不存在！",DialogType.Error);
             }
         }
 
@@ -74,7 +78,7 @@ namespace WubiMaster.ViewModels
             }
             WriteWeaselCustonDetails();
 
-            string colorScheme = WeaselDetails.preset_color_schemes.Keys.ToList()[ColorIndex];
+            string colorScheme = ColorsList[ColorIndex].description.color_name;
             ConfigHelper.WriteConfigByString("color_scheme", colorScheme);
 
             this.ShowMessage("应用成功，部署生效", DialogType.Success);
@@ -85,6 +89,12 @@ namespace WubiMaster.ViewModels
             Color targetColor = ColorConvter(colorTxt, defaultColor, colorFormat);
             SolidColorBrush targetBrush = new SolidColorBrush(targetColor);
             return targetBrush;
+        }
+
+        private void ChangeColorScheme(object recipient, string message)
+        {
+            LoadColorShemes();
+            LoadCustomColor();
         }
 
         private Color ColorConvter(string colorTxt, string defaultColor = "0x000000", string colorFormat = "abgr")
@@ -128,10 +138,72 @@ namespace WubiMaster.ViewModels
             }
         }
 
-        private void ChangeColorScheme(object recipient, string message)
+        private void LoadColorShemes()
         {
-            LoadRimeThemeDetails();
-            LoadCustomColor();
+            if (string.IsNullOrEmpty(GlobalValues.UserPath)) return;
+            weaselPath = @$"{GlobalValues.UserPath}\weasel.yaml";
+            weaselCustomPath = @$"{GlobalValues.UserPath}\weasel.custom.yaml";
+            //string colorThemesPath = @$"{GlobalValues.UserPath}\color_themes.yaml";
+            string colorsDirectory = @$"{GlobalValues.UserPath}\colors";
+
+            // 加载colors文件夹下的所有外观文件
+            try
+            {
+                if (!Directory.Exists(colorsDirectory))
+                    throw new NullReferenceException("方案中未包括皮肤文件目录");
+
+                DirectoryInfo dInfo = new DirectoryInfo(colorsDirectory);
+                FileInfo[] files = dInfo.GetFiles();
+
+                ColorsList = new List<ColorsModel>();
+                for (int i = 0; i < files.Length; i++)
+                {
+                    try
+                    {
+                        FileInfo file = files[i];
+                        string colorTxt = File.ReadAllText(file.FullName);
+                        ColorsModel cModel = YamlHelper.Deserizlize<ColorsModel>(colorTxt);
+                        ColorsList.Add(cModel);
+                    }
+                    catch (Exception ex)
+                    {
+                        LogHelper.Error($"外观文件[{files[i].Name}]格式异常，未能正确加载\n" + ex.ToString());
+                        continue;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                LogHelper.Error(ex.ToString());
+                this.ShowMessage("加载皮肤文件出错！", DialogType.Error);
+            }
+
+            // 加载 weasel.custom 中的外观
+            try
+            {
+                if (!File.Exists(weaselCustomPath))
+                    throw new NullReferenceException("方案中未包含 weasel.custom 文件");
+
+                string weaselCustomTxt = File.ReadAllText(weaselCustomPath);
+                WeaselCustomDetails = YamlHelper.Deserizlize<WeaselCustomModel>(weaselCustomTxt);
+                ConfigHelper.WriteConfigByString("color_scheme", WeaselCustomDetails.patch.style.color_scheme);
+            }
+            catch (Exception ex)
+            {
+                LogHelper.Error(ex.ToString());
+                this.ShowMessage("加载 weasel.custom 文件出错！", DialogType.Error);
+            }
+
+            // 加载 weasel 中的外观
+            try
+            {
+                string weaselTxt = File.ReadAllText(weaselPath);
+                WeaselDetails = YamlHelper.Deserizlize<WeaselModel>(weaselTxt);
+            }
+            catch (Exception ex)
+            {
+                LogHelper.Error(ex.ToString());
+            }
         }
 
         private void LoadConfig()
@@ -141,7 +213,7 @@ namespace WubiMaster.ViewModels
                 if (WeaselCustomDetails == null)
                 {
                     ColorIndex = 0;
-                    string shemeName = ColorThemes.color_themes.Keys.ToList()[ColorIndex];
+                    string shemeName = ColorsList[0].description.color_name;
                     ChangeTheme(shemeName);
                 }
                 else
@@ -153,51 +225,30 @@ namespace WubiMaster.ViewModels
 
         private void LoadCustomColor()
         {
-            string shemeName = WeaselCustomDetails.patch.style.color_scheme;
-            ColorSchemeModel _colorModel = new ColorSchemeModel();
-            _colorModel.Style = WeaselCustomDetails.patch.style;
-            _colorModel.UsedColor = WeaselCustomDetails.patch.preset_color_schemes[shemeName];
-            CurrentColor = _colorModel;
-            ColorIndex = ColorThemes.color_themes.Keys.ToList().IndexOf(shemeName);
-        }
-
-        private void LoadRimeThemeDetails()
-        {
-            if (string.IsNullOrEmpty(GlobalValues.UserPath)) return;
-            weaselPath = @$"{GlobalValues.UserPath}\weasel.yaml";
-            weaselCustomPath = @$"{GlobalValues.UserPath}\weasel.custom.yaml";
-            string colorThemesPath = @$"{GlobalValues.UserPath}\color_themes.yaml";
-
             try
             {
-                string weaselTxt = File.ReadAllText(weaselPath);
-                WeaselDetails = YamlHelper.Deserizlize<ColorModel>(weaselTxt);
-
-                string colorsTxt = File.ReadAllText(colorThemesPath);
-                ColorThemes = YamlHelper.Deserizlize<ColorThemesModel>(colorsTxt);
-
-                if (File.Exists(weaselCustomPath))
-                {
-                    string weaselCustomTxt = File.ReadAllText(weaselCustomPath);
-                    WeaselCustomDetails = YamlHelper.Deserizlize<CustomColorModel>(weaselCustomTxt);
-                    ConfigHelper.WriteConfigByString("color_scheme", WeaselCustomDetails.patch.style.color_scheme);
-                }
+                string shemeName = WeaselCustomDetails.patch.style.color_scheme;
+                ColorSchemeModel _colorModel = new ColorSchemeModel();
+                _colorModel.Style = WeaselCustomDetails.patch.style;
+                _colorModel.UsedColor = WeaselCustomDetails.patch.preset_color_schemes[shemeName];
+                CurrentColor = _colorModel;
+                ColorIndex = ColorsList.Select(c => c.description.color_name).ToList().IndexOf(shemeName);
             }
             catch (Exception ex)
             {
                 LogHelper.Error(ex.ToString());
+                this.ShowAskMessage("加载 weasel.custom 异常");
             }
+            
         }
 
         private void WriteWeaselCustonDetails()
         {
             try
             {
-                string key = ColorThemes.color_themes.Keys.ToList()[ColorIndex];
                 WeaselCustomDetails.patch.preset_color_schemes.Clear();
-
-                WeaselCustomDetails.patch.style = ColorThemes.color_themes[key].style;
-                WeaselCustomDetails.patch.preset_color_schemes.Add(key, ColorThemes.color_themes[key].color_scheme);
+                WeaselCustomDetails.patch.style = ColorsList[ColorIndex].style;
+                WeaselCustomDetails.patch.preset_color_schemes = ColorsList[ColorIndex].preset_color_schemes;
 
                 YamlHelper.WriteYaml(WeaselCustomDetails, weaselCustomPath);
             }
