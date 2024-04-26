@@ -595,7 +595,7 @@ namespace WubiMaster.Controls
         }
 
         public static readonly DependencyProperty FontFaceProperty =
-            DependencyProperty.Register("FontFace", typeof(FontFamily), typeof(ColorSchemeControl));
+            DependencyProperty.Register("FontFace", typeof(FontFamily), typeof(ColorSchemeControl), new PropertyMetadata(new FontFamily("Microsoft YaHei")));
 
 
 
@@ -609,7 +609,7 @@ namespace WubiMaster.Controls
         }
 
         public static readonly DependencyProperty LabelFontFaceProperty =
-            DependencyProperty.Register("LabelFontFace", typeof(FontFamily), typeof(ColorSchemeControl));
+            DependencyProperty.Register("LabelFontFace", typeof(FontFamily), typeof(ColorSchemeControl), new PropertyMetadata(new FontFamily("Microsoft YaHei")));
 
 
         /// <summary>
@@ -622,7 +622,7 @@ namespace WubiMaster.Controls
         }
 
         public static readonly DependencyProperty CommentFontFaceProperty =
-            DependencyProperty.Register("CommentFontFace", typeof(FontFamily), typeof(ColorSchemeControl));
+            DependencyProperty.Register("CommentFontFace", typeof(FontFamily), typeof(ColorSchemeControl), new PropertyMetadata(new FontFamily("Microsoft YaHei")));
 
 
         /// <summary>
@@ -635,7 +635,7 @@ namespace WubiMaster.Controls
         }
 
         public static readonly DependencyProperty FontPointProperty =
-            DependencyProperty.Register("FontPoint", typeof(double), typeof(ColorSchemeControl));
+            DependencyProperty.Register("FontPoint", typeof(double), typeof(ColorSchemeControl), new PropertyMetadata(12.0));
 
 
 
@@ -649,7 +649,7 @@ namespace WubiMaster.Controls
         }
 
         public static readonly DependencyProperty LabelFontPointProperty =
-            DependencyProperty.Register("LabelFontPoint", typeof(double), typeof(ColorSchemeControl));
+            DependencyProperty.Register("LabelFontPoint", typeof(double), typeof(ColorSchemeControl), new PropertyMetadata(12.0));
 
 
         /// <summary>
@@ -662,7 +662,7 @@ namespace WubiMaster.Controls
         }
 
         public static readonly DependencyProperty CommentFontPointProperty =
-            DependencyProperty.Register("CommentFontPoint", typeof(double), typeof(ColorSchemeControl));
+            DependencyProperty.Register("CommentFontPoint", typeof(double), typeof(ColorSchemeControl), new PropertyMetadata(12.0));
 
 
 
