@@ -397,9 +397,7 @@
                 </TabItem.Header>
 
                 <!--我的皮肤-->
-                <Grid Margin="0,10,0,0" Background="{DynamicResource bg-300}">
-                    <TextBlock />
-                </Grid>
+                <local:MyColorsView />
             </TabItem>
         </TabControl>
     </Grid>
