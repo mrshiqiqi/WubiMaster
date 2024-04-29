@@ -1,4 +1,4 @@
-![](images/楔子.png)
+![](images/title.png)
 
 # 写给热爱打字的你
 
