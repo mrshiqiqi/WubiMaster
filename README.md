@@ -59,4 +59,4 @@ https://gitee.com/hi-coder/rime-86wubi
 
 欢迎您的加入！
 
-![QQ](Images/qq.jpg)
+![QQ](Images/QQ.jpg)
