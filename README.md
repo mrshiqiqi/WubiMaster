@@ -1,4 +1,4 @@
-![](images/%E6%A5%94%E5%AD%90.png)
+![](images/楔子.png)
 
 # 写给热爱打字的你
 
