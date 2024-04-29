@@ -494,16 +494,15 @@
                                           ToolTip="博客" />
 
                             <c:IconButton ButtonCommand="{Binding ToWebPageCommand}"
-                                          ButtonCommandParameter="https://www.bilibili.com/video/BV11t421g7Xs/"
-                                          IconText="&#xe849;"
-                                          Style="{StaticResource SocialIconStyle}"
-                                          ToolTip="视频教程" />
-
-                            <c:IconButton ButtonCommand="{Binding ToWebPageCommand}"
                                           ButtonCommandParameter="https://gitee.com/hi-coder/WubiMaster"
                                           IconText="&#xe691;"
                                           Style="{StaticResource SocialIconStyle}"
                                           ToolTip="项目源" />
+
+                            <c:IconButton ButtonCommand="{Binding ShowDonationViewCommand}"
+                                          IconText="&#xe7ec;"
+                                          Style="{StaticResource SocialIconStyle}"
+                                          ToolTip="捐赠" />
                         </UniformGrid>
                     </Grid>
                 </Border>

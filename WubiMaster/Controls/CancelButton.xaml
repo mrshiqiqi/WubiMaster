@@ -33,13 +33,16 @@
                                                   Color="#000000" />
                             </Border.Effect>
 
-                            <TextBlock HorizontalAlignment="Center"
-                                       VerticalAlignment="Center"
-                                       FontFamily="../Fonts/#iconfont"
-                                       FontSize="8"
-                                       FontWeight="Bold"
-                                       Foreground="{TemplateBinding Foreground}"
-                                       Text="&#xe723;" />
+                            <Viewbox>
+                                <TextBlock HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"
+                                           FontFamily="../Fonts/#iconfont"
+                                           FontSize="8"
+                                           FontWeight="Bold"
+                                           Foreground="{TemplateBinding Foreground}"
+                                           Text="&#xe723;" />
+                            </Viewbox>
+
                         </Border>
 
                         <ControlTemplate.Triggers>

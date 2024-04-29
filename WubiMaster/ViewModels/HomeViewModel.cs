@@ -10,6 +10,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using WubiMaster.Common;
+using WubiMaster.Views.PopViews;
 
 namespace WubiMaster.ViewModels
 {
@@ -50,6 +51,19 @@ namespace WubiMaster.ViewModels
             LoadSpellTextShow();
             GetTheKeyTextAsync();
             LoadConfig();
+        }
+
+        [RelayCommand]
+        public void ShowDonationView(object obj)
+        {
+            DonationView donationView = new DonationView();
+
+            Window mainWindow = App.Current.MainWindow;
+
+            WeakReferenceMessenger.Default.Send<string, string>("true", "ShowMaskLayer");
+            donationView.Owner = mainWindow;
+            donationView.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+            donationView.ShowPop();
         }
 
         [RelayCommand]

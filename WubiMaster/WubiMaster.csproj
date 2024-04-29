@@ -31,6 +31,7 @@
     <None Remove="Fonts\方正启体_GBK.ttf" />
     <None Remove="Fonts\演示佛系体.ttf" />
     <None Remove="Fonts\黑体字根.ttf" />
+    <None Remove="Images\donation.jpg" />
     <None Remove="Images\JinriShici\低头.png" />
     <None Remove="Images\JinriShici\侧脸.png" />
     <None Remove="Images\JinriShici\侧身微笑.png" />
@@ -95,6 +96,7 @@
     <Resource Include="Fonts\黑体字根.ttf">
       <CopyToOutputDirectory></CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Images\donation.jpg" />
     <Resource Include="Images\JinriShici\低头.png" />
     <Resource Include="Images\JinriShici\侧脸.png" />
     <Resource Include="Images\JinriShici\侧身微笑.png" />
