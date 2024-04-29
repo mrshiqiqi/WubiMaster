@@ -1,4 +1,4 @@
-![楔子](Images/title.png)
+![楔子](Images/楔子.png)
 
 # 写给热爱打字的你
 
@@ -12,7 +12,7 @@
 
 # 预览
 
-![首页](Images/wubi_master.png)
+![首页](Images/中书君.png)
 
 ## 介绍
 
@@ -38,7 +38,7 @@
 
 支持86、98和新世纪码表
 
-![皮肤](Images/colors.png)
+![皮肤](Images/打字效果.png)
 
 ### 方案地址
 
@@ -53,7 +53,7 @@ https://gitee.com/hi-coder/rime-86wubi
 >  再次感谢您的支持与厚爱！祝您生活愉快，工作顺利！  
 > 空山明月 敬上
 
-![捐赠](Images/donation.jpg)
+![捐赠](Images/捐赠.jpg)
 
 ## QQ群
 
