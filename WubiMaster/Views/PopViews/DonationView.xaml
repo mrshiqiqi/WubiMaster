@@ -22,7 +22,7 @@
             CornerRadius="10"
             SnapsToDevicePixels="True"
             UseLayoutRounding="True">
-        <Grid Margin="10">
+        <Grid Margin="10,15,10,10">
             <Grid.RowDefinitions>
                 <RowDefinition Height="40" />
                 <RowDefinition />
@@ -70,7 +70,7 @@
                         VerticalAlignment="Center">
                 <StackPanel.Resources>
                     <Style TargetType="TextBlock">
-                        <Setter Property="FontSize" Value="15" />
+                        <Setter Property="FontSize" Value="14" />
                         <Setter Property="Foreground" Value="{DynamicResource text-100}" />
                         <Setter Property="TextWrapping" Value="Wrap" />
                     </Style>
