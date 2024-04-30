@@ -11,6 +11,127 @@
     <UserControl.Resources>
         <com:Bool2Orientation x:Key="Bool2Orientation" />
         <BooleanToVisibilityConverter x:Key="Bool2Visibility" />
+
+        <Style TargetType="{x:Type TabControl}">
+            <Setter Property="OverridesDefaultStyle" Value="True" />
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+            <Setter Property="VerticalContentAlignment" Value="Top" />
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TabControl}">
+                        <Grid x:Name="templateRoot"
+                              ClipToBounds="True"
+                              KeyboardNavigation.TabNavigation="Local"
+                              SnapsToDevicePixels="True">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition x:Name="ColumnDefinition0" />
+                                <ColumnDefinition x:Name="ColumnDefinition1" Width="0" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition x:Name="RowDefinition0" Height="Auto" />
+                                <RowDefinition x:Name="RowDefinition1" Height="*" />
+                            </Grid.RowDefinitions>
+
+                            <TabPanel Name="HeaderPanel"
+                                      Grid.Row="0"
+                                      Grid.Column="0"
+                                      HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                                      Panel.ZIndex="1"
+                                      Background="Transparent"
+                                      IsItemsHost="True"
+                                      KeyboardNavigation.TabIndex="1" />
+
+                            <Border Name="ContentPanel"
+                                    Grid.Row="1"
+                                    Grid.Column="0"
+                                    Background="{TemplateBinding Background}"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                    KeyboardNavigation.DirectionalNavigation="Contained"
+                                    KeyboardNavigation.TabIndex="2"
+                                    KeyboardNavigation.TabNavigation="Local">
+                                <ContentPresenter Name="PART_SelectedContentHost"
+                                                  Margin="0"
+                                                  Content="{TemplateBinding SelectedContent}"
+                                                  ContentSource="SelectedContent"
+                                                  ContentStringFormat="{TemplateBinding SelectedContentStringFormat}"
+                                                  ContentTemplate="{TemplateBinding SelectedContentTemplate}"
+                                                  SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                            </Border>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="TabStripPlacement" Value="Bottom">
+                                <Setter TargetName="HeaderPanel" Property="Grid.Row" Value="1" />
+                                <Setter TargetName="ContentPanel" Property="Grid.Row" Value="0" />
+                                <Setter TargetName="RowDefinition0" Property="Height" Value="*" />
+                                <Setter TargetName="RowDefinition1" Property="Height" Value="Auto" />
+                            </Trigger>
+                            <Trigger Property="TabStripPlacement" Value="Left">
+                                <Setter TargetName="HeaderPanel" Property="Grid.Row" Value="0" />
+                                <Setter TargetName="ContentPanel" Property="Grid.Row" Value="0" />
+                                <Setter TargetName="HeaderPanel" Property="Grid.Column" Value="0" />
+                                <Setter TargetName="ContentPanel" Property="Grid.Column" Value="1" />
+                                <Setter TargetName="ColumnDefinition0" Property="Width" Value="Auto" />
+                                <Setter TargetName="ColumnDefinition1" Property="Width" Value="*" />
+                                <Setter TargetName="RowDefinition0" Property="Height" Value="*" />
+                                <Setter TargetName="RowDefinition1" Property="Height" Value="0" />
+                            </Trigger>
+                            <Trigger Property="TabStripPlacement" Value="Right">
+                                <Setter TargetName="HeaderPanel" Property="Grid.Row" Value="0" />
+                                <Setter TargetName="ContentPanel" Property="Grid.Row" Value="0" />
+                                <Setter TargetName="HeaderPanel" Property="Grid.Column" Value="1" />
+                                <Setter TargetName="ContentPanel" Property="Grid.Column" Value="0" />
+                                <Setter TargetName="ColumnDefinition0" Property="Width" Value="*" />
+                                <Setter TargetName="ColumnDefinition1" Property="Width" Value="Auto" />
+                                <Setter TargetName="RowDefinition0" Property="Height" Value="*" />
+                                <Setter TargetName="RowDefinition1" Property="Height" Value="0" />
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter TargetName="templateRoot" Property="TextElement.Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="{x:Type TabItem}">
+            <Setter Property="OverridesDefaultStyle" Value="True" />
+            <Setter Property="BorderBrush" Value="Transparent" />
+            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+            <Setter Property="VerticalContentAlignment" Value="Stretch" />
+            <Setter Property="Foreground" Value="{DynamicResource text-100}" />
+            <Setter Property="MinWidth" Value="120" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TabItem}">
+                        <Grid x:Name="templateRoot"
+                              Margin="0,0,20,0"
+                              Background="Transparent"
+                              SnapsToDevicePixels="True">
+                            <Border Name="Border"
+                                    Margin="{TemplateBinding Margin}"
+                                    Background="{TemplateBinding Background}"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                    CornerRadius="2,12,0,0">
+
+                                <Grid>
+                                    <ContentPresenter x:Name="ContentSite"
+                                                      Width="0"
+                                                      Height="0"
+                                                      HorizontalAlignment="Center"
+                                                      VerticalAlignment="Center"
+                                                      ContentSource="Header"
+                                                      RecognizesAccessKey="True" />
+                                </Grid>
+                            </Border>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </UserControl.Resources>
 
     <Grid HorizontalAlignment="Center"
@@ -60,128 +181,149 @@
                     </StackPanel>
                 </Grid>
 
+                <TabControl Grid.Row="1">
 
-                <Grid Grid.Row="1">
-                    <StackPanel Margin="{Binding ElementName=color_scheme_control, Path=BorderPadding}" Orientation="{Binding ElementName=color_scheme_control, Path=Horizontal, Converter={StaticResource Bool2Orientation}}">
+                    <!--横排模式-->
+                    <TabItem IsEnabled="False">
+                        <Grid>
+                            <StackPanel Margin="{Binding ElementName=color_scheme_control, Path=BorderPadding}" Orientation="{Binding ElementName=color_scheme_control, Path=Horizontal, Converter={StaticResource Bool2Orientation}}">
 
-                        <Border Padding="{Binding ElementName=color_scheme_control, Path=HilitePadding}"
-                                Background="{Binding ElementName=color_scheme_control, Path=HilitedCandidateBackColor}"
-                                BorderBrush="{Binding ElementName=color_scheme_control, Path=HilitedCandidateBorderColor}"
-                                BorderThickness="{Binding ElementName=color_scheme_control, Path=BorderWidth}"
-                                CornerRadius="{Binding ElementName=color_scheme_control, Path=CornerRadius}"
-                                SnapsToDevicePixels="True"
-                                UseLayoutRounding="True">
-                            <!--<Border.Effect>
+                                <Border Padding="{Binding ElementName=color_scheme_control, Path=HilitePadding}"
+                                        Background="{Binding ElementName=color_scheme_control, Path=HilitedCandidateBackColor}"
+                                        BorderBrush="{Binding ElementName=color_scheme_control, Path=HilitedCandidateBorderColor}"
+                                        BorderThickness="{Binding ElementName=color_scheme_control, Path=BorderWidth}"
+                                        CornerRadius="{Binding ElementName=color_scheme_control, Path=CornerRadius}"
+                                        SnapsToDevicePixels="True"
+                                        UseLayoutRounding="True">
+                                    <!--<Border.Effect>
                             <DropShadowEffect Color="{Binding ElementName=color_scheme_control, Path=HilitedCandidateShadowColor}" />
                         </Border.Effect>-->
 
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" SharedSizeGroup="MarkTextGroup" />
-                                    <ColumnDefinition Width="15" />
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition />
-                                </Grid.ColumnDefinitions>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" SharedSizeGroup="MarkTextGroup" />
+                                            <ColumnDefinition Width="15" />
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition />
+                                        </Grid.ColumnDefinitions>
 
-                                <TextBlock HorizontalAlignment="Left"
-                                           VerticalAlignment="Center"
-                                           Foreground="{Binding ElementName=color_scheme_control, Path=HilitedMarkColor}"
-                                           Text="{Binding ElementName=color_scheme_control, Path=MarkText}" />
-                                <TextBlock Grid.Column="1"
-                                           VerticalAlignment="Center"
-                                           FontFamily="{Binding ElementName=color_scheme_control, Path=LabelFontFace}"
-                                           FontSize="{Binding ElementName=color_scheme_control, Path=LabelFontPoint}"
-                                           Foreground="{Binding ElementName=color_scheme_control, Path=HilitedLabelColor}"
-                                           Text="1." />
-                                <TextBlock Grid.Column="2"
-                                           Margin="{Binding ElementName=color_scheme_control, Path=HiSpacingMargin}"
-                                           VerticalAlignment="Center"
-                                           Foreground="{Binding ElementName=color_scheme_control, Path=HilitedCandidateTextColor}"
-                                           Text="中书君" />
-                                <TextBlock Grid.Column="3"
-                                           HorizontalAlignment="Left"
-                                           VerticalAlignment="Center"
-                                           FontFamily="{Binding ElementName=color_scheme_control, Path=CommentFontFace}"
-                                           FontSize="{Binding ElementName=color_scheme_control, Path=CommentFontPoint}"
-                                           Foreground="{Binding ElementName=color_scheme_control, Path=HilitedCommentTextColor}"
-                                           Text="〈  〉" />
-                            </Grid>
-                        </Border>
+                                        <TextBlock HorizontalAlignment="Left"
+                                                   VerticalAlignment="Center"
+                                                   Foreground="{Binding ElementName=color_scheme_control, Path=HilitedMarkColor}"
+                                                   Text="{Binding ElementName=color_scheme_control, Path=MarkText}" />
+                                        <TextBlock Grid.Column="1"
+                                                   VerticalAlignment="Center"
+                                                   FontFamily="{Binding ElementName=color_scheme_control, Path=LabelFontFace}"
+                                                   FontSize="{Binding ElementName=color_scheme_control, Path=LabelFontPoint}"
+                                                   Foreground="{Binding ElementName=color_scheme_control, Path=HilitedLabelColor}"
+                                                   Text="1." />
+                                        <TextBlock Grid.Column="2"
+                                                   Margin="{Binding ElementName=color_scheme_control, Path=HiSpacingMargin}"
+                                                   VerticalAlignment="Center"
+                                                   Foreground="{Binding ElementName=color_scheme_control, Path=HilitedCandidateTextColor}"
+                                                   Text="中书君" />
+                                        <TextBlock Grid.Column="3"
+                                                   HorizontalAlignment="Left"
+                                                   VerticalAlignment="Center"
+                                                   FontFamily="{Binding ElementName=color_scheme_control, Path=CommentFontFace}"
+                                                   FontSize="{Binding ElementName=color_scheme_control, Path=CommentFontPoint}"
+                                                   Foreground="{Binding ElementName=color_scheme_control, Path=HilitedCommentTextColor}"
+                                                   Text="〈  〉" />
+                                    </Grid>
+                                </Border>
 
-                        <Border Padding="{Binding ElementName=color_scheme_control, Path=HilitePadding}"
-                                Background="{Binding ElementName=color_scheme_control, Path=CandidateBackColor}"
-                                BorderBrush="{Binding ElementName=color_scheme_control, Path=CandidateBorderColor}"
-                                BorderThickness="{Binding ElementName=color_scheme_control, Path=BorderWidth}"
-                                CornerRadius="{Binding ElementName=color_scheme_control, Path=CornerRadius}">
-                            <!--<Border.Effect>
+                                <Border Padding="{Binding ElementName=color_scheme_control, Path=HilitePadding}"
+                                        Background="{Binding ElementName=color_scheme_control, Path=CandidateBackColor}"
+                                        BorderBrush="{Binding ElementName=color_scheme_control, Path=CandidateBorderColor}"
+                                        BorderThickness="{Binding ElementName=color_scheme_control, Path=BorderWidth}"
+                                        CornerRadius="{Binding ElementName=color_scheme_control, Path=CornerRadius}">
+                                    <!--<Border.Effect>
                             <DropShadowEffect Color="{Binding ElementName=color_scheme_control, Path=CandidateShadowColor}" />
                         </Border.Effect>-->
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" SharedSizeGroup="MarkTextGroup" />
-                                    <ColumnDefinition Width="15" />
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition />
-                                </Grid.ColumnDefinitions>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" SharedSizeGroup="MarkTextGroup" />
+                                            <ColumnDefinition Width="15" />
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition />
+                                        </Grid.ColumnDefinitions>
 
-                                <TextBlock Grid.Column="1"
-                                           VerticalAlignment="Center"
-                                           FontFamily="{Binding ElementName=color_scheme_control, Path=LabelFontFace}"
-                                           FontSize="{Binding ElementName=color_scheme_control, Path=LabelFontPoint}"
-                                           Foreground="{Binding ElementName=color_scheme_control, Path=LabelColor}"
-                                           Text="2." />
-                                <TextBlock Grid.Column="2"
-                                           Margin="{Binding ElementName=color_scheme_control, Path=HiSpacingMargin}"
-                                           VerticalAlignment="Center"
-                                           Foreground="{Binding ElementName=color_scheme_control, Path=CandidateTextColor}"
-                                           Text="五笔" />
-                                <TextBlock Grid.Column="3"
-                                           VerticalAlignment="Center"
-                                           FontFamily="{Binding ElementName=color_scheme_control, Path=CommentFontFace}"
-                                           FontSize="{Binding ElementName=color_scheme_control, Path=CommentFontPoint}"
-                                           Foreground="{Binding ElementName=color_scheme_control, Path=CommentTextColor}"
-                                           Text="〈  〉" />
-                            </Grid>
-                        </Border>
+                                        <TextBlock Grid.Column="1"
+                                                   VerticalAlignment="Center"
+                                                   FontFamily="{Binding ElementName=color_scheme_control, Path=LabelFontFace}"
+                                                   FontSize="{Binding ElementName=color_scheme_control, Path=LabelFontPoint}"
+                                                   Foreground="{Binding ElementName=color_scheme_control, Path=LabelColor}"
+                                                   Text="2." />
+                                        <TextBlock Grid.Column="2"
+                                                   Margin="{Binding ElementName=color_scheme_control, Path=HiSpacingMargin}"
+                                                   VerticalAlignment="Center"
+                                                   Foreground="{Binding ElementName=color_scheme_control, Path=CandidateTextColor}"
+                                                   Text="五笔" />
+                                        <TextBlock Grid.Column="3"
+                                                   VerticalAlignment="Center"
+                                                   FontFamily="{Binding ElementName=color_scheme_control, Path=CommentFontFace}"
+                                                   FontSize="{Binding ElementName=color_scheme_control, Path=CommentFontPoint}"
+                                                   Foreground="{Binding ElementName=color_scheme_control, Path=CommentTextColor}"
+                                                   Text="〈  〉" />
+                                    </Grid>
+                                </Border>
 
-                        <Border Padding="{Binding ElementName=color_scheme_control, Path=HilitePadding}"
-                                VerticalAlignment="Top"
-                                Background="{Binding ElementName=color_scheme_control, Path=CandidateBackColor}"
-                                BorderBrush="{Binding ElementName=color_scheme_control, Path=CandidateBorderColor}"
-                                BorderThickness="{Binding ElementName=color_scheme_control, Path=BorderWidth}"
-                                CornerRadius="{Binding ElementName=color_scheme_control, Path=CornerRadius}">
-                            <!--<Border.Effect>
+                                <Border Padding="{Binding ElementName=color_scheme_control, Path=HilitePadding}"
+                                        VerticalAlignment="Top"
+                                        Background="{Binding ElementName=color_scheme_control, Path=CandidateBackColor}"
+                                        BorderBrush="{Binding ElementName=color_scheme_control, Path=CandidateBorderColor}"
+                                        BorderThickness="{Binding ElementName=color_scheme_control, Path=BorderWidth}"
+                                        CornerRadius="{Binding ElementName=color_scheme_control, Path=CornerRadius}">
+                                    <!--<Border.Effect>
                             <DropShadowEffect Color="{Binding ElementName=color_scheme_control, Path=CandidateShadowColor}" />
                         </Border.Effect>-->
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" SharedSizeGroup="MarkTextGroup" />
-                                    <ColumnDefinition Width="15" />
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition />
-                                </Grid.ColumnDefinitions>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" SharedSizeGroup="MarkTextGroup" />
+                                            <ColumnDefinition Width="15" />
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition />
+                                        </Grid.ColumnDefinitions>
 
-                                <TextBlock Grid.Column="1"
-                                           VerticalAlignment="Center"
-                                           FontFamily="{Binding ElementName=color_scheme_control, Path=LabelFontFace}"
-                                           FontSize="{Binding ElementName=color_scheme_control, Path=LabelFontPoint}"
-                                           Foreground="{Binding ElementName=color_scheme_control, Path=LabelColor}"
-                                           Text="3." />
-                                <TextBlock Grid.Column="2"
-                                           Margin="{Binding ElementName=color_scheme_control, Path=HiSpacingMargin}"
-                                           VerticalAlignment="Center"
-                                           Foreground="{Binding ElementName=color_scheme_control, Path=CandidateTextColor}"
-                                           Text="空山明月" />
-                                <TextBlock Grid.Column="3"
-                                           VerticalAlignment="Center"
-                                           FontFamily="{Binding ElementName=color_scheme_control, Path=CommentFontFace}"
-                                           FontSize="{Binding ElementName=color_scheme_control, Path=CommentFontPoint}"
-                                           Foreground="{Binding ElementName=color_scheme_control, Path=CommentTextColor}"
-                                           Text="〈  〉" />
-                            </Grid>
-                        </Border>
-                    </StackPanel>
-                </Grid>
+                                        <TextBlock Grid.Column="1"
+                                                   VerticalAlignment="Center"
+                                                   FontFamily="{Binding ElementName=color_scheme_control, Path=LabelFontFace}"
+                                                   FontSize="{Binding ElementName=color_scheme_control, Path=LabelFontPoint}"
+                                                   Foreground="{Binding ElementName=color_scheme_control, Path=LabelColor}"
+                                                   Text="3." />
+                                        <TextBlock Grid.Column="2"
+                                                   Margin="{Binding ElementName=color_scheme_control, Path=HiSpacingMargin}"
+                                                   VerticalAlignment="Center"
+                                                   Foreground="{Binding ElementName=color_scheme_control, Path=CandidateTextColor}"
+                                                   Text="空山明月" />
+                                        <TextBlock Grid.Column="3"
+                                                   VerticalAlignment="Center"
+                                                   FontFamily="{Binding ElementName=color_scheme_control, Path=CommentFontFace}"
+                                                   FontSize="{Binding ElementName=color_scheme_control, Path=CommentFontPoint}"
+                                                   Foreground="{Binding ElementName=color_scheme_control, Path=CommentTextColor}"
+                                                   Text="〈  〉" />
+                                    </Grid>
+                                </Border>
+                            </StackPanel>
+                        </Grid>
+                    </TabItem>
+
+                    <!--纵排模式-->
+                    <TabItem IsEnabled="False" IsSelected="True">
+                        <Grid Width="20"
+                              Height="20"
+                              Background="Green" />
+                    </TabItem>
+
+                    <!--文本垂直模式-->
+                    <TabItem IsEnabled="False" IsSelected="True">
+                        <Grid Width="20"
+                              Height="20"
+                              Background="Blue" />
+                    </TabItem>
+                </TabControl>
+
+
 
             </Grid>
         </Border>

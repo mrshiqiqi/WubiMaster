@@ -16,21 +16,6 @@
                             Height="{TemplateBinding Height}"
                             BorderThickness="0">
 
-                        <!--<Border.Background>
-                            <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                                <LinearGradientBrush.GradientStops>
-                                    <GradientStopCollection>
-                                        <GradientStop Offset="0.0" Color="{DynamicResource primary-1000}" />
-                                        <GradientStop Offset="1.0" Color="{DynamicResource primary-2000}" />
-                                    </GradientStopCollection>
-                                </LinearGradientBrush.GradientStops>
-                            </LinearGradientBrush>
-                        </Border.Background>
-
-                        <Border.BorderBrush>
-                            <SolidColorBrush Color="{DynamicResource primary-3000}" />
-                        </Border.BorderBrush>-->
-
                         <Grid>
                             <Viewbox Margin="0,-15" Stretch="Fill">
                                 <TextBlock FontFamily="../Fonts/#iconfont"
