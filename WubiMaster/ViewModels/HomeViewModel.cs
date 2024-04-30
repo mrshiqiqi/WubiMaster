@@ -51,6 +51,11 @@ namespace WubiMaster.ViewModels
             LoadSpellTextShow();
             GetTheKeyTextAsync();
             LoadConfig();
+        }
+
+        [RelayCommand]
+        public void ViewLoaded()
+        {
             ShowWelcomeViewAsync();
         }
 

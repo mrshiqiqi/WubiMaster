@@ -4,6 +4,9 @@
         <Setter Property="OverridesDefaultStyle" Value="true" />
         <Setter Property="HasDropShadow" Value="True" />
         <Setter Property="Foreground" Value="{DynamicResource bg-200}" />
+        <Setter Property="Height" Value="30" />
+        <Setter Property="Width" Value="80" />
+        <Setter Property="Placement" Value="Bottom" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="ToolTip">
@@ -13,7 +16,7 @@
                             Height="{TemplateBinding Height}"
                             BorderThickness="0">
 
-                        <Border.Background>
+                        <!--<Border.Background>
                             <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
                                 <LinearGradientBrush.GradientStops>
                                     <GradientStopCollection>
@@ -26,11 +29,36 @@
 
                         <Border.BorderBrush>
                             <SolidColorBrush Color="{DynamicResource primary-3000}" />
-                        </Border.BorderBrush>
+                        </Border.BorderBrush>-->
 
-                        <ContentPresenter Margin="4"
-                                          HorizontalAlignment="Center"
-                                          VerticalAlignment="Center" />
+                        <Grid>
+                            <Viewbox Margin="0,-15" Stretch="Fill">
+                                <TextBlock FontFamily="../Fonts/#iconfont"
+                                           RenderTransformOrigin="0.5,0.5"
+                                           Text="&#xe6e8;">
+                                    <TextBlock.Foreground>
+                                        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                            <LinearGradientBrush.GradientStops>
+                                                <GradientStopCollection>
+                                                    <GradientStop Offset="0.0" Color="{DynamicResource primary-1000}" />
+                                                    <GradientStop Offset="1.0" Color="{DynamicResource primary-3000}" />
+                                                </GradientStopCollection>
+                                            </LinearGradientBrush.GradientStops>
+                                        </LinearGradientBrush>
+                                    </TextBlock.Foreground>
+
+                                    <TextBlock.RenderTransform>
+                                        <RotateTransform Angle="90" />
+                                    </TextBlock.RenderTransform>
+                                </TextBlock>
+                            </Viewbox>
+
+                            <ContentPresenter Margin="4"
+                                              HorizontalAlignment="Center"
+                                              VerticalAlignment="Center" />
+                        </Grid>
+
+
                     </Border>
 
                     <ControlTemplate.Triggers>
