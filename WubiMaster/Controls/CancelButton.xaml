@@ -26,11 +26,10 @@
                                 CornerRadius="100">
 
                             <Border.Effect>
-                                <DropShadowEffect BlurRadius="10"
-                                                  Direction="200"
+                                <DropShadowEffect BlurRadius="8"
+                                                  Direction="-45"
                                                   Opacity="0.8"
-                                                  ShadowDepth="3"
-                                                  Color="#000000" />
+                                                  ShadowDepth="3" />
                             </Border.Effect>
 
                             <Viewbox>
