@@ -51,19 +51,38 @@ namespace WubiMaster.ViewModels
             LoadSpellTextShow();
             GetTheKeyTextAsync();
             LoadConfig();
+            ShowWelcomeViewAsync();
+        }
+
+        private async void ShowWelcomeViewAsync()
+        {
+            bool is_first_login = ConfigHelper.ReadConfigByBool("is_first_login", true);
+            if (!is_first_login) return;
+            await Task.Delay(3 * 1000);
+
+            await App.Current.Dispatcher.BeginInvoke(() =>
+            {
+                ShowPopWindow(new WelcomeView());
+
+                ConfigHelper.WriteConfigByBool("is_first_login", false);
+            });
+
+        }
+
+        private static void ShowPopWindow(Window popView)
+        {
+            Window mainWindow = App.Current.MainWindow;
+
+            WeakReferenceMessenger.Default.Send<string, string>("true", "ShowMaskLayer");
+            popView.Owner = mainWindow;
+            popView.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+            popView.ShowPop();
         }
 
         [RelayCommand]
         public void ShowDonationView(object obj)
         {
-            DonationView donationView = new DonationView();
-
-            Window mainWindow = App.Current.MainWindow;
-
-            WeakReferenceMessenger.Default.Send<string, string>("true", "ShowMaskLayer");
-            donationView.Owner = mainWindow;
-            donationView.WindowStartupLocation = WindowStartupLocation.CenterOwner;
-            donationView.ShowPop();
+            ShowPopWindow(new DonationView());
         }
 
         [RelayCommand]
