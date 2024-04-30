@@ -4459,7 +4459,7 @@
                             <TextBlock Grid.Row="1"
                                        Grid.Column="1"
                                        Style="{StaticResource FormulaTextStyle}"
-                                       Text="日早两竖与虫依" />
+                                       Text="日曰两竖与虫依" />
 
                             <TextBlock Grid.Row="2"
                                        Style="{StaticResource FormulaNumberStyle}"
