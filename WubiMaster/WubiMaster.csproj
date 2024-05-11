@@ -51,6 +51,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="Assets\Fonts\黑体字根.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Assets\Schemas\schema.zip">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -87,15 +90,10 @@
     <Content Include="Assets\Spelling\wb98_spelling.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Fonts\黑体字根.ttf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Resource Include="Fonts\iconfont.ttf" />
     <Resource Include="Fonts\方正启体_GBK.ttf" />
     <Resource Include="Fonts\演示佛系体.ttf" />
-    <Resource Include="Fonts\黑体字根.ttf">
-      <CopyToOutputDirectory></CopyToOutputDirectory>
-    </Resource>
+    <Resource Include="Fonts\黑体字根.ttf" />
     <Resource Include="Images\donation.jpg" />
     <Resource Include="Images\JinriShici\低头.png" />
     <Resource Include="Images\JinriShici\侧脸.png" />
