@@ -24,6 +24,7 @@
     <None Remove="Assets\Schemas\table06.zip" />
     <None Remove="Assets\Schemas\table86.zip" />
     <None Remove="Assets\Schemas\table98.zip" />
+    <None Remove="Assets\Schemas\WubiMaster.txt" />
     <None Remove="Assets\Spelling\wb06_spelling.txt" />
     <None Remove="Assets\Spelling\wb86_spelling.txt" />
     <None Remove="Assets\Spelling\wb98_spelling.txt" />
@@ -64,6 +65,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Schemas\table98.zip">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Schemas\WubiMaster.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="faviocn.ico">

@@ -95,13 +95,13 @@ namespace WubiMaster.ViewModels
         {
             if (obj == null) return;
             string type = obj.ToString();
-            string tableZip = GlobalValues.Table86Zip;
+            string tableFiles = @$"{GlobalValues.UserPath}\tables\86";
             if (type == "06")
-                tableZip = GlobalValues.Table06Zip;
+                tableFiles = @$"{GlobalValues.UserPath}\tables\06";
             else if (type == "98")
-                tableZip = GlobalValues.Table98Zip;
+                tableFiles = @$"{GlobalValues.UserPath}\tables\98";
             else
-                tableZip = GlobalValues.Table86Zip;
+                tableFiles = @$"{GlobalValues.UserPath}\tables\86";
 
             try
             {
@@ -131,16 +131,16 @@ namespace WubiMaster.ViewModels
                 await Task.Delay(1000);
 
                 // 将对应的码表解压到目录中，并覆盖同名文件
-                ZipHelper.DecompressZip(tableZip, GlobalValues.UserPath, true);
+                //ZipHelper.DecompressZip(tableFiles, GlobalValues.UserPath, true);
 
-                //// 将对应的五笔码表复制到用户目录
-                //DirectoryInfo mabiaoDir = new DirectoryInfo(tableZip);
-                //FileSystemInfo[] mabiaoInfo = mabiaoDir.GetFileSystemInfos();
-                //foreach (FileSystemInfo info in mabiaoInfo)
-                //{
-                //    if (info is not DirectoryInfo)
-                //        File.Copy(info.FullName, GlobalValues.UserPath + @$"\{info.Name}", true);
-                //}
+                // 将对应的五笔码表复制到用户目录
+                DirectoryInfo mabiaoDir = new DirectoryInfo(tableFiles);
+                FileSystemInfo[] mabiaoInfo = mabiaoDir.GetFileSystemInfos();
+                foreach (FileSystemInfo info in mabiaoInfo)
+                {
+                    if (info is not DirectoryInfo)
+                        File.Copy(info.FullName, GlobalValues.UserPath + @$"\{info.Name}", true);
+                }
 
                 await Task.Delay(500);
 

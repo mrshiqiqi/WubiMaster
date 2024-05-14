@@ -236,6 +236,7 @@ namespace WubiMaster.ViewModels
         }
         private void LoadCustomColor()
         {
+            return;
             if (!File.Exists(GlobalValues.UserPath + "\\" + GlobalValues.SchemaKey))
                 return;
 
