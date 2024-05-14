@@ -2,6 +2,7 @@
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Microsoft.Win32;
+using Microsoft.Xaml.Behaviors.Media;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -11,6 +12,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Threading;
 using WubiMaster.Common;
 using WubiMaster.Models;
 using WubiMaster.Views.PopViews;
@@ -205,14 +207,8 @@ namespace WubiMaster.ViewModels
         /// <summary>
         /// 从github下载五笔方案
         /// </summary>
-        private async Task<bool> DownLoadWubiSchemaAsync()
+        private async Task<bool> DownLoadWubiSchemaAsync(string zipUrl, string savePath)
         {
-            // GitHub上仓库的ZIP归档文件URL（通常通过Web界面获得）  
-            // 注意：你需要将以下URL替换为实际的仓库和分支名称  
-            string zipUrl = "https://github.com/mrshiqiqi/rime-wubi/archive/refs/heads/master.zip";
-            // 本地保存ZIP文件的路径  
-            string localFilePath = GlobalValues.AppDirectory + @"Assets\Schemas\rime-wubi.zip";
-
             try
             {
                 // 使用HttpClient下载ZIP文件  
@@ -222,14 +218,14 @@ namespace WubiMaster.ViewModels
                 // 获取ZIP文件的字节流  
                 byte[] contentBytes = await response.Content.ReadAsByteArrayAsync();
 
-                // 将字节流写入到本地ZIP文件  
-                File.WriteAllBytes(localFilePath, contentBytes);
+                // 将字节流写入到本地ZIP文件
+                File.WriteAllBytes(savePath, contentBytes);
 
                 return true;
             }
             catch (HttpRequestException ex)
             {
-                LogHelper.Error("从 github 更新五笔方案异常：" + ex.ToString());
+                LogHelper.Error("从 github 下载五笔方案异常：" + ex.ToString());
                 return false;
             }
         }
@@ -238,7 +234,7 @@ namespace WubiMaster.ViewModels
         {
             try
             {
-                DirectoryInfo dir = new DirectoryInfo(srcPath); 
+                DirectoryInfo dir = new DirectoryInfo(srcPath);
                 FileSystemInfo[] fileinfo = dir.GetFileSystemInfos();  //获取目录下（不包含子目录）的文件和子目录
                 foreach (FileSystemInfo i in fileinfo)
                 {
@@ -265,101 +261,114 @@ namespace WubiMaster.ViewModels
         [RelayCommand]
         public async Task InitializeSchema()
         {
+            // 先检测rime环境
+            if (string.IsNullOrEmpty(GlobalValues.UserPath) || string.IsNullOrEmpty(GlobalValues.ProcessPath))
+            {
+                this.ShowMessage("未检测到 Rime 引擎的安装信息，请先安装 Rime 程序！", DialogType.Warring);
+                return;
+            }
 
+            // 在配置前，先提示会将原有的方案覆盖
+            bool? result = this.ShowAskMessage("请注意：本次操作将清除 Rime 用户目录下所有数据！", DialogType.Normal);
+            if (result != true)
+                return;
+
+            // 停止服务
+            ServiceHelper.KillService();
+
+            // 异步加载 loading
             LodingView lodingView = new LodingView();
             App.Current.Dispatcher.BeginInvoke(() => { lodingView.ShowPop(); });
 
-            var down_value = await DownLoadWubiSchemaAsync();
+            // 删除从github下载的旧方案
+            if (File.Exists(GlobalValues.WubiZipPath))
+                File.Delete(GlobalValues.WubiZipPath);
 
-            lodingView.ClosePop();
-
+            // 从github下载方案
+            var down_value = await DownLoadWubiSchemaAsync(GlobalValues.GithubZipUrl, GlobalValues.WubiZipPath);
             if (!down_value)
             {
+                lodingView.ClosePop();
                 this.ShowMessage("网络情况不佳，无法从 Github 获取五笔方案资源", DialogType.Error);
                 return;
             }
 
-           
-            //string schema_zip = GlobalValues.SchemaZip;
-            string schema_zip = GlobalValues.AppDirectory + @"Assets\Schemas\rime-wubi.zip"; 
+            await App.Current.Dispatcher.BeginInvoke(DispatcherPriority.SystemIdle, async () =>
+            {
+                try
+                {
+                    // 删除用户目录中的配置
+                    if (Directory.Exists(GlobalValues.UserPath))
+                    {
+                        DirectoryInfo dir = new DirectoryInfo(GlobalValues.UserPath);
+                        FileSystemInfo[] fileinfo = dir.GetFileSystemInfos();  //返回目录中所有文件和子目录
+                        foreach (FileSystemInfo i in fileinfo)
+                        {
+                            if (i is DirectoryInfo)            //判断是否文件夹
+                            {
+                                try
+                                {
+                                    DirectoryInfo subdir = new DirectoryInfo(i.FullName);
+                                    subdir.Delete(true);          //删除子目录和文件
+                                }
+                                catch (Exception)
+                                {
+                                    continue;
+                                }
+                            }
+                            else
+                            {
+                                File.Delete(i.FullName);      //删除指定文件
+                            }
+                        }
+                    }
 
-            await App.Current.Dispatcher.BeginInvoke(async () =>
-             {
-                 try
-                 {
-                     // 先检测rime环境
-                     if (string.IsNullOrEmpty(GlobalValues.UserPath) || string.IsNullOrEmpty(GlobalValues.ProcessPath))
-                     {
-                         this.ShowMessage("未检测到 Rime 引擎的安装信息，请先安装 Rime 程序！", DialogType.Warring);
-                         return;
-                     }
+                    // 安装字根字体
+                    if (!FontHelper.CheckFont("黑体字根.ttf"))
+                    {
+                        string heiti_font = GlobalValues.HeitiFont;
+                        FontHelper.InstallFont(heiti_font);
+                    }
 
-                     if (!File.Exists(schema_zip))
-                     {
-                         this.ShowMessage("找不到五笔引擎包！", DialogType.Error);
-                         return;
-                     }
+                    // 将下载好的方案zip解压
+                    ZipHelper.DecompressZip(GlobalValues.WubiZipPath, GlobalValues.UserPath);
 
-                     // 在配置前，先提示会将原有的方案覆盖
-                     bool? result = this.ShowAskMessage("请注意：本次操作将清除 Rime 用户目录下所有数据！", DialogType.Normal);
-                     if (result != true)
-                         return;
+                    // 将解压的方案文件复制到用户目录下，然后删除
+                    string wubi_file = GlobalValues.UserPath + "\\" + GlobalValues.WubiFileName;
+                    if (Directory.Exists(wubi_file))
+                        CopyDirectory(wubi_file, GlobalValues.UserPath);
+                    Directory.Delete(wubi_file, true);
 
-                     // 停止服务
-                     ServiceHelper.KillService();
-                     await Task.Delay(1000);
+                    // 添加初始化成功的标记，标记为 WubiMaster.txt
+                    // 并在该文件中添加初始化信息
+                    string wubi_master_info = "";
+                    wubi_master_info += "中书君标记文件，请勿删除！\n\r";
+                    wubi_master_info += $"初始化时间：{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")}\n\r";
+                    File.WriteAllText(GlobalValues.UserPath + "\\" + GlobalValues.SchemaKey, wubi_master_info);
 
-                     // 删除用户目录中的配置
-                     if (Directory.Exists(GlobalValues.UserPath))
-                     {
-                         DirectoryInfo dir = new DirectoryInfo(GlobalValues.UserPath);
-                         FileSystemInfo[] fileinfo = dir.GetFileSystemInfos();  //返回目录中所有文件和子目录
-                         foreach (FileSystemInfo i in fileinfo)
-                         {
-                             if (i is DirectoryInfo)            //判断是否文件夹
-                             {
-                                 DirectoryInfo subdir = new DirectoryInfo(i.FullName);
-                                 subdir.Delete(true);          //删除子目录和文件
-                             }
-                             else
-                             {
-                                 File.Delete(i.FullName);      //删除指定文件
-                             }
-                         }
-                     }
-                     await Task.Delay(500);
+                    // 首页同步，默认五笔方案个性为86
+                    WeakReferenceMessenger.Default.Send<string, string>("86", "ChangeShcemaState");
 
-                     // 将方案解压到用户目录
-                     ZipHelper.DecompressZip(schema_zip, GlobalValues.UserPath);
-                     string soruce_dire = GlobalValues.UserPath + "\\rime-wubi-master";
-
-                     if (Directory.Exists(soruce_dire) && Directory.Exists(GlobalValues.UserPath))
-                         CopyDirectory(soruce_dire, GlobalValues.UserPath);
-                     Directory.Delete(soruce_dire, true);
-
-                     // 安装字根字体
-                     if (!FontHelper.CheckFont("黑体字根.ttf"))
-                     {
-                         string heiti_font = GlobalValues.HeitiFont;
-                         FontHelper.InstallFont(heiti_font);
-                     }
-
-                     this.ShowMessage("初始化成功", DialogType.Success);
-                 }
-                 catch (Exception ex)
-                 {
-                     LogHelper.Error(ex.Message, true);
-                     this.ShowMessage($"初始化失败: {ex.Message}", DialogType.Error);
-                     return;
-                 }
-                 finally
-                 {
-                     // 启动服务
-                     ServiceHelper.RunService();
-                     UpdateWubiSchemaTip();
-                     WeakReferenceMessenger.Default.Send<string, string>("", "ChangeShcemaState");
-                 }
-             });
+                    lodingView.ClosePop();
+                    this.ShowMessage("初始化成功", DialogType.Success);
+                }
+                catch (Exception ex)
+                {
+                    LogHelper.Error(ex.Message, true);
+                    WeakReferenceMessenger.Default.Send<string, string>("", "ChangeShcemaState");
+                    this.ShowMessage($"初始化失败: {ex.Message}", DialogType.Error);
+                    return;
+                }
+                finally
+                {
+                    // 启动服务
+                    UpdateWubiSchemaTip();
+                    lodingView.ClosePop();
+                    ServiceHelper.RunService();
+                    await Task.Delay(500);
+                    CmdHelper.RunCmd(GlobalValues.ProcessPath, "WeaselDeployer.exe /deploy");
+                }
+            });
         }
 
         [RelayCommand]

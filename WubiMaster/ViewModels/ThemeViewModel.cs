@@ -68,7 +68,7 @@ namespace WubiMaster.ViewModels
             catch (Exception ex)
             {
                 LogHelper.Error(ex.ToString());
-                this.ShowMessage("选中的样式在外观文件中不存在！",DialogType.Error);
+                this.ShowMessage("选中的样式在外观文件中不存在！", DialogType.Error);
             }
         }
 
@@ -149,6 +149,9 @@ namespace WubiMaster.ViewModels
 
         private void LoadColorShemes()
         {
+            if (!File.Exists(GlobalValues.UserPath + "\\" + GlobalValues.SchemaKey))
+                return;
+
             if (string.IsNullOrEmpty(GlobalValues.UserPath)) return;
             weaselPath = @$"{GlobalValues.UserPath}\weasel.yaml";
             weaselCustomPath = @$"{GlobalValues.UserPath}\weasel.custom.yaml";
@@ -233,6 +236,9 @@ namespace WubiMaster.ViewModels
         }
         private void LoadCustomColor()
         {
+            if (!File.Exists(GlobalValues.UserPath + "\\" + GlobalValues.SchemaKey))
+                return;
+
             try
             {
                 string shemeName = WeaselCustomDetails.patch.style.color_scheme;
@@ -247,7 +253,7 @@ namespace WubiMaster.ViewModels
                 LogHelper.Error(ex.ToString());
                 this.ShowAskMessage("加载 weasel.custom 异常");
             }
-            
+
         }
 
         private void WriteWeaselCustonDetails()
