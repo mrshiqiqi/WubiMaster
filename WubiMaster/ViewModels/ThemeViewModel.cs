@@ -190,12 +190,12 @@ namespace WubiMaster.ViewModels
             // 加载 weasel.custom 中的外观
             try
             {
-                if (!File.Exists(weaselCustomPath))
-                    throw new NullReferenceException("方案中未包含 weasel.custom 文件");
+                //if (!File.Exists(weaselCustomPath))
+                //    throw new NullReferenceException("方案中未包含 weasel.custom 文件");
 
-                string weaselCustomTxt = File.ReadAllText(weaselCustomPath);
-                WeaselCustomDetails = YamlHelper.Deserizlize<WeaselCustomModel>(weaselCustomTxt);
-                ConfigHelper.WriteConfigByString("color_scheme", WeaselCustomDetails.patch.style.color_scheme);
+                //string weaselCustomTxt = File.ReadAllText(weaselCustomPath);
+                //WeaselCustomDetails = YamlHelper.Deserizlize<WeaselCustomModel>(weaselCustomTxt);
+                //ConfigHelper.WriteConfigByString("color_scheme", WeaselCustomDetails.patch.style.color_scheme);
             }
             catch (Exception ex)
             {

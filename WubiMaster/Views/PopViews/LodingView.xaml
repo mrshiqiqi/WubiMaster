@@ -1,0 +1,58 @@
+﻿<Window x:Class="WubiMaster.Views.PopViews.LodingView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:WubiMaster.Views.PopViews"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        Title="LodingView"
+        Width="400"
+        Height="200"
+        Style="{StaticResource PopViewBaseStyle}"
+        mc:Ignorable="d">
+
+    <Border Background="{DynamicResource bg-200}"
+            BorderBrush="{DynamicResource bg-300}"
+            BorderThickness="2"
+            CornerRadius="10"
+            SnapsToDevicePixels="True"
+            UseLayoutRounding="True">
+
+        <Grid>
+            <Grid RenderTransformOrigin="0.5,0.5">
+                <Grid.RenderTransform>
+                    <RotateTransform x:Name="load_rotate" Angle="0" />
+                </Grid.RenderTransform>
+
+                <Grid.Triggers>
+                    <EventTrigger RoutedEvent="Grid.Loaded">
+                        <EventTrigger.Actions>
+                            <BeginStoryboard>
+                                <Storyboard TargetProperty="Angle" TargetName="load_rotate">
+                                    <DoubleAnimation RepeatBehavior="Forever"
+                                                     From="0" To="359.9"
+                                                     Duration="0:0:5" />
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger.Actions>
+                    </EventTrigger>
+                </Grid.Triggers>
+
+                <Border Margin="30">
+                    <Viewbox>
+                        <TextBlock FontFamily="../../Fonts/#iconfont"
+                                   Foreground="{DynamicResource primary-100}"
+                                   Text="&#xe66d;" />
+                    </Viewbox>
+                </Border>
+            </Grid>
+
+            <TextBlock HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       FontSize="16"
+                       Foreground="{DynamicResource text-100}"
+                       Text="加载中..." />
+        </Grid>
+
+    </Border>
+
+</Window>

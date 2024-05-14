@@ -8,10 +8,12 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 using System.Windows;
 using WubiMaster.Common;
 using WubiMaster.Models;
+using WubiMaster.Views.PopViews;
 using static WubiMaster.Common.RegistryHelper;
 
 namespace WubiMaster.ViewModels
@@ -199,10 +201,87 @@ namespace WubiMaster.ViewModels
             ServiceIsRun = ServiceHelper.FindService();
         }
 
+        static readonly HttpClient client = new HttpClient();
+        /// <summary>
+        /// 从github下载五笔方案
+        /// </summary>
+        private async Task<bool> DownLoadWubiSchemaAsync()
+        {
+            // GitHub上仓库的ZIP归档文件URL（通常通过Web界面获得）  
+            // 注意：你需要将以下URL替换为实际的仓库和分支名称  
+            string zipUrl = "https://github.com/mrshiqiqi/rime-wubi/archive/refs/heads/master.zip";
+            // 本地保存ZIP文件的路径  
+            string localFilePath = GlobalValues.AppDirectory + @"Assets\Schemas\rime-wubi.zip";
+
+            try
+            {
+                // 使用HttpClient下载ZIP文件  
+                HttpResponseMessage response = await client.GetAsync(zipUrl);
+                response.EnsureSuccessStatusCode();
+
+                // 获取ZIP文件的字节流  
+                byte[] contentBytes = await response.Content.ReadAsByteArrayAsync();
+
+                // 将字节流写入到本地ZIP文件  
+                File.WriteAllBytes(localFilePath, contentBytes);
+
+                return true;
+            }
+            catch (HttpRequestException ex)
+            {
+                LogHelper.Error("从 github 更新五笔方案异常：" + ex.ToString());
+                return false;
+            }
+        }
+
+        public static void CopyDirectory(string srcPath, string destPath)
+        {
+            try
+            {
+                DirectoryInfo dir = new DirectoryInfo(srcPath); 
+                FileSystemInfo[] fileinfo = dir.GetFileSystemInfos();  //获取目录下（不包含子目录）的文件和子目录
+                foreach (FileSystemInfo i in fileinfo)
+                {
+                    if (i is DirectoryInfo)     //判断是否文件夹
+                    {
+                        if (!Directory.Exists(destPath + "\\" + i.Name))
+                        {
+                            Directory.CreateDirectory(destPath + "\\" + i.Name);   //目标目录下不存在此文件夹即创建子文件夹
+                        }
+                        CopyDirectory(i.FullName, destPath + "\\" + i.Name);    //递归调用复制子文件夹
+                    }
+                    else
+                    {
+                        File.Copy(i.FullName, destPath + "\\" + i.Name, true);      //不是文件夹即复制文件，true表示可以覆盖同名文件
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                throw;
+            }
+        }
+
         [RelayCommand]
         public async Task InitializeSchema()
         {
-            string schema_zip = GlobalValues.SchemaZip;
+
+            LodingView lodingView = new LodingView();
+            App.Current.Dispatcher.BeginInvoke(() => { lodingView.ShowPop(); });
+
+            var down_value = await DownLoadWubiSchemaAsync();
+
+            lodingView.ClosePop();
+
+            if (!down_value)
+            {
+                this.ShowMessage("网络情况不佳，无法从 Github 获取五笔方案资源", DialogType.Error);
+                return;
+            }
+
+           
+            //string schema_zip = GlobalValues.SchemaZip;
+            string schema_zip = GlobalValues.AppDirectory + @"Assets\Schemas\rime-wubi.zip"; 
 
             await App.Current.Dispatcher.BeginInvoke(async () =>
              {
@@ -252,6 +331,11 @@ namespace WubiMaster.ViewModels
 
                      // 将方案解压到用户目录
                      ZipHelper.DecompressZip(schema_zip, GlobalValues.UserPath);
+                     string soruce_dire = GlobalValues.UserPath + "\\rime-wubi-master";
+
+                     if (Directory.Exists(soruce_dire) && Directory.Exists(GlobalValues.UserPath))
+                         CopyDirectory(soruce_dire, GlobalValues.UserPath);
+                     Directory.Delete(soruce_dire, true);
 
                      // 安装字根字体
                      if (!FontHelper.CheckFont("黑体字根.ttf"))

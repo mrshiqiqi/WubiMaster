@@ -1,5 +1,7 @@
-﻿using System;
+﻿using CommunityToolkit.Mvvm.Messaging;
+using System;
 using System.Windows;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace WubiMaster.Common
 {
@@ -24,6 +26,11 @@ namespace WubiMaster.Common
         {
             if (pop == null) return null;
 
+            Window mainWindow = App.Current.MainWindow;
+
+            WeakReferenceMessenger.Default.Send<string, string>("true", "ShowMaskLayer");
+            pop.Owner = mainWindow;
+            pop.WindowStartupLocation = WindowStartupLocation.CenterOwner;
             return pop.ShowDialog();
         }
     }

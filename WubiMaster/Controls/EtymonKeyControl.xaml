@@ -624,8 +624,7 @@
 
                     <UniformGrid Grid.Row="1"
                                  Margin="35,0"
-                                 Columns="9"
-                                 Rows="1">
+                                 Columns="9" Rows="1">
                         <!--A-->
                         <Border Style="{StaticResource KeyBorderStyle}">
                             <Grid>
@@ -1005,8 +1004,7 @@
 
                     <UniformGrid Grid.Row="2"
                                  Margin="70,0,140,0"
-                                 Columns="7"
-                                 Rows="1">
+                                 Columns="7" Rows="1">
                         <!--Z-->
                         <Border Style="{StaticResource KeyBorderStyle}">
                             <Grid>
@@ -2156,8 +2154,7 @@
 
                     <UniformGrid Grid.Row="1"
                                  Margin="35,0"
-                                 Columns="9"
-                                 Rows="1">
+                                 Columns="9" Rows="1">
                         <!--A-->
                         <Border Style="{StaticResource KeyBorderStyle}">
                             <Grid>
@@ -2544,8 +2541,7 @@
 
                     <UniformGrid Grid.Row="2"
                                  Margin="70,0,140,0"
-                                 Columns="7"
-                                 Rows="1">
+                                 Columns="7" Rows="1">
                         <!--Z-->
                         <Border Style="{StaticResource KeyBorderStyle}">
                             <Grid>
@@ -3693,8 +3689,7 @@
 
                     <UniformGrid Grid.Row="1"
                                  Margin="35,0"
-                                 Columns="9"
-                                 Rows="1">
+                                 Columns="9" Rows="1">
                         <!--A-->
                         <Border Style="{StaticResource KeyBorderStyle}">
                             <Grid>
@@ -4063,8 +4058,7 @@
 
                     <UniformGrid Grid.Row="2"
                                  Margin="70,0,140,0"
-                                 Columns="7"
-                                 Rows="1">
+                                 Columns="7" Rows="1">
                         <!--Z-->
                         <Border Style="{StaticResource KeyBorderStyle}">
                             <Grid>

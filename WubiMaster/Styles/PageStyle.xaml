@@ -19,15 +19,13 @@
                     <Storyboard>
 
                         <DoubleAnimation Storyboard.TargetProperty="Opacity"
-                                         From="0.3"
-                                         To="1"
+                                         From="0.3" To="1"
                                          Duration="0:0:0.5" />
 
                         <DoubleAnimation AccelerationRatio="0.2"
                                          DecelerationRatio="0.2"
                                          Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.Y)"
-                                         From="8"
-                                         To="0"
+                                         From="8" To="0"
                                          Duration="0:0:1" />
                     </Storyboard>
                 </BeginStoryboard>

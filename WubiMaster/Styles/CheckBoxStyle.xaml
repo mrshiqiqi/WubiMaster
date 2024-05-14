@@ -77,8 +77,7 @@
                                     <Storyboard>
                                         <DoubleAnimation Storyboard.TargetName="icon_text"
                                                          Storyboard.TargetProperty="Opacity"
-                                                         From="0.1"
-                                                         To="0.9"
+                                                         From="0.1" To="0.9"
                                                          Duration="0:0:0.4" />
                                     </Storyboard>
                                 </BeginStoryboard>

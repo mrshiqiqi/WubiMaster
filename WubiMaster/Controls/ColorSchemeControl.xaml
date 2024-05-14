@@ -119,8 +119,7 @@
 
                                 <Grid>
                                     <ContentPresenter x:Name="ContentSite"
-                                                      Width="0"
-                                                      Height="0"
+                                                      Width="0" Height="0"
                                                       HorizontalAlignment="Center"
                                                       VerticalAlignment="Center"
                                                       ContentSource="Header"

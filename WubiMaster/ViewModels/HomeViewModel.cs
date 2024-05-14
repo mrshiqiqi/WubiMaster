@@ -76,11 +76,11 @@ namespace WubiMaster.ViewModels
 
         private static void ShowPopWindow(Window popView)
         {
-            Window mainWindow = App.Current.MainWindow;
+            //Window mainWindow = App.Current.MainWindow;
 
-            WeakReferenceMessenger.Default.Send<string, string>("true", "ShowMaskLayer");
-            popView.Owner = mainWindow;
-            popView.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+            //WeakReferenceMessenger.Default.Send<string, string>("true", "ShowMaskLayer");
+            //popView.Owner = mainWindow;
+            //popView.WindowStartupLocation = WindowStartupLocation.CenterOwner;
             popView.ShowPop();
         }
 
